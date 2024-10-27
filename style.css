@@ -1,0 +1,57 @@
+/* Main Colors */
+:root {
+    --main-red: #ff4d4d;
+    --main-purple: #800080;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Header */
+header {
+    background-color: var(--main-purple);
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+/* Navigation */
+nav {
+    background-color: var(--main-red);
+    padding: 10px;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+/* Main Content */
+main {
+    padding: 20px;
+}
+
+h1, h2 {
+    color: var(--main-red);
+}
+
+/* Footer */
+footer {
+    background-color: var(--main-purple);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
