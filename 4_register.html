@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register - MSC Competition</title>
+    <link rel="stylesheet" href="9_style.css">
+</head>
+<body>
+    <header>
+        <h1>Register for the MSC Competition</h1>
+    </header>
+
+    <main>
+        <form id="registrationForm" action="https://formspree.io/f/mdkoadld" method="POST">
+            <label for="groupName">Group Name:</label>
+            <input type="text" id="groupName" name="groupName" required>
+
+            <label for="students">List of All 4 Students (comma-separated):</label>
+            <input type="text" id="students" name="students" required>
+
+            <label for="subject">Subject (Maths, Science, or Computing):</label>
+            <select id="subject" name="subject" required>
+                <option value="Maths">Maths</option>
+                <option value="Science">Science</option>
+                <option value="Computing">Computing</option>
+            </select>
+
+            <label for="school">School:</label>
+            <input type="text" id="school" name="school" required>
+
+            <button type="submit">Register</button>
+        </form>
+
+        <p id="successMessage" style="display: none;">Registration successful! Thank you!</p>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> MSC Competition</p>
+    </footer>
+
+    <script>
+        // Current year for footer
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+        // Show success message after form submission
+        const form = document.getElementById('registrationForm');
+        form.addEventListener('submit', function(event) {
+            // Prevent the default form submission for custom handling
+            event.preventDefault();
+
+            // Display success message
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+            form.reset(); // Reset form fields after submission
+        });
+    </script>
+</body>
+</html>
