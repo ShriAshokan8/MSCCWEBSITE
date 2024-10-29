@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Area - MSC Competition</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Staff Area</h1>
+        <nav>
+            <ul>
+                <li><a href="1_index.html">Home</a></li>
+                <li><a href="2_about.html">About</a></li>
+                <li><a href="3_events.html">Events</a></li>
+                <li><a href="4_register.html">Register</a></li>
+                <li><a href="5_contact.html">Contact</a></li>
+                <li><a href="6_scores.html">Scores</a></li>
+                <li><a href="7_staff.html">Staff</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Welcome, Staff!</h2>
+        <p>This is the staff area. Manage event details and scores here.</p>
+        <h3>Login</h3>
+        <form id="login-form" onsubmit="event.preventDefault(); staffLogin();">
+            <label for="login-username">Username:</label>
+            <input type="text" id="login-username" required>
+            <label for="login-password">Password:</label>
+            <input type="password" id="login-password" required>
+            <button type="submit">Login</button>
+            <p id="login-error" style="color: red;"></p>
+        </form>
+    </main>
+    <footer>
+        <p>&copy; 2024 MSC Competition. All rights reserved.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

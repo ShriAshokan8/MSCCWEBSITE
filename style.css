@@ -1,0 +1,203 @@
+/* ========================================================================== */
+/*                            General Body Styles                             */
+/* ========================================================================== */
+body {
+    font-family: 'Arial', sans-serif; /* Default font family for the entire body */
+    margin: 0; /* No margin */
+    padding: 0; /* No padding */
+    background: linear-gradient(to right, #ffcccc, #ffe6e6); /* Soft pink gradient background */
+    color: #333; /* Dark gray text color for better readability */
+    line-height: 1.6; /* Increase line height for better readability */
+}
+
+/* ========================================================================== */
+/*                                Header Styles                              */
+/* ========================================================================== */
+header {
+    background: #660066; /* Deep purple background for the header */
+    color: white; /* White text color for contrast */
+    text-align: center; /* Center-align text */
+    padding: 1.5rem; /* Padding around the header */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3); /* Soft shadow for depth */
+}
+
+/* ========================================================================== */
+/*                                H1 Styles                                  */
+/* ========================================================================== */
+h1 {
+    font-size: 2.5rem; /* Large font size for headings */
+    margin: 0; /* No margin */
+    letter-spacing: 1px; /* Slightly increased letter spacing */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Subtle shadow effect for text */
+}
+
+/* ========================================================================== */
+/*                               Main Content Styles                        */
+/* ========================================================================== */
+main {
+    max-width: 800px; /* Maximum width for main content */
+    margin: 2rem auto; /* Centered with auto margins */
+    padding: 2rem; /* Padding inside main content */
+    background: white; /* White background for contrast */
+    border-radius: 10px; /* Rounded corners for the main content */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    transition: transform 0.2s ease-in-out; /* Transition effect for hovering */
+}
+
+/* ========================================================================== */
+/*                             Hover Effect for Main Content                  */
+/* ========================================================================== */
+main:hover {
+    transform: translateY(-5px); /* Slight upward movement on hover */
+}
+
+/* ========================================================================== */
+/*                              Label Styles                                 */
+/* ========================================================================== */
+label {
+    display: block; /* Block display for labels */
+    margin-top: 1.5rem; /* Space above each label */
+    font-weight: bold; /* Bold font for labels */
+    color: #660066; /* Deep purple color for labels */
+}
+
+/* ========================================================================== */
+/*                             Input Field Styles                            */
+/* ========================================================================== */
+input {
+    width: 100%; /* Full width for input fields */
+    padding: 0.8rem; /* Padding inside input fields */
+    margin-top: 0.5rem; /* Space above input fields */
+    border: 1px solid #ddd; /* Light gray border */
+    border-radius: 5px; /* Rounded corners for input fields */
+    font-size: 1rem; /* Default font size for input text */
+    transition: border 0.3s; /* Transition for border color on focus */
+}
+
+/* ========================================================================== */
+/*                          Input Field Focus Effect                         */
+/* ========================================================================== */
+input:focus {
+    border-color: #660066; /* Change border color on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* ========================================================================== */
+/*                              Button Styles                                 */
+/* ========================================================================== */
+button {
+    margin-top: 1.5rem; /* Space above the button */
+    padding: 0.7rem; /* Padding inside the button */
+    background: #660066; /* Deep purple background for button */
+    color: white; /* White text color for button */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 1rem; /* Default font size for button text */
+    transition: background 0.3s, transform 0.2s; /* Transition effects */
+}
+
+/* ========================================================================== */
+/*                         Button Hover Effect                                 */
+/* ========================================================================== */
+button:hover {
+    background: #990099; /* Lighter purple background on hover */
+    transform: scale(1.05); /* Slightly enlarge button on hover */
+}
+
+/* ========================================================================== */
+/*                              Footer Styles                                 */
+/* ========================================================================== */
+footer {
+    text-align: center; /* Center-align text */
+    padding: 1rem; /* Padding inside footer */
+    background: #660066; /* Deep purple background for footer */
+    color: white; /* White text color for footer */
+    position: relative; /* Position footer */
+    bottom: 0; /* Align footer to the bottom */
+    width: 100%; /* Full width for footer */
+}
+
+/* ========================================================================== */
+/*                           Footer Paragraph Styles                          */
+/* ========================================================================== */
+footer p {
+    margin: 0; /* No margin for paragraphs in footer */
+}
+
+/* ========================================================================== */
+/*                          Responsive Design for Mobile                      */
+/* ========================================================================== */
+@media (max-width: 600px) {
+    main {
+        padding: 1rem; /* Less padding on smaller screens */
+    }
+
+    h1 {
+        font-size: 2rem; /* Smaller font size for heading */
+    }
+
+    button {
+        font-size: 0.9rem; /* Slightly smaller button text on small screens */
+    }
+}
+
+/* ========================================================================== */
+/*                          More Redundant Styles for Fun                     */
+/* ========================================================================== */
+h2, h3, h4, h5, h6 {
+    color: #660066; /* Match header colors for consistency */
+    text-align: center; /* Center all headers */
+    margin: 10px 0; /* Space above and below headers */
+}
+
+p {
+    font-size: 1rem; /* Default paragraph font size */
+    color: #333; /* Dark gray text color for paragraphs */
+    line-height: 1.5; /* Increase line height for better readability */
+    margin-bottom: 1rem; /* Space below paragraphs */
+}
+
+/* ========================================================================== */
+/*                          Style for Lists                                   */
+/* ========================================================================== */
+ul, ol {
+    margin: 1rem 0; /* Space around lists */
+    padding-left: 20px; /* Indent lists */
+}
+
+/* ========================================================================== */
+/*                         Style for List Items                              */
+/* ========================================================================== */
+li {
+    margin-bottom: 0.5rem; /* Space below each list item */
+}
+
+/* ========================================================================== */
+/*                      Hyperlink Styles for Added Fun                       */
+/* ========================================================================== */
+a {
+    color: #660066; /* Match link color to theme */
+    text-decoration: none; /* Remove underline */
+}
+
+a:hover {
+    text-decoration: underline; /* Underline links on hover */
+    color: #990099; /* Change link color on hover */
+}
+
+/* ========================================================================== */
+/*            Fun Animation Effects (Just Because I can :) )                 */
+/* ========================================================================== */
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0); /* Start and end at original position */
+    }
+    50% {
+        transform: translateY(-10px); /* Bounce up */
+    }
+}
+
+button:active {
+    animation: bounce 0.3s; /* Add bounce effect when button is clicked */
+}
