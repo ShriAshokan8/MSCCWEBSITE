@@ -6,7 +6,7 @@ body {
     margin: 0; /* No margin */
     padding: 0; /* No padding */
     background: linear-gradient(to right, #ffcccc, #ffe6e6); /* Soft pink gradient background */
-    color: white; /* Dark gray text color for better readability */
+    color: black; /* Default text color for body */
     line-height: 1.6; /* Increase line height for better readability */
 }
 
@@ -58,7 +58,7 @@ label {
     display: block; /* Block display for labels */
     margin-top: 1.5rem; /* Space above each label */
     font-weight: bold; /* Bold font for labels */
-    color: white; /* Deep purple color for labels */
+    color: black; /* Black color for labels */
 }
 
 /* ========================================================================== */
@@ -78,7 +78,7 @@ input {
 /*                          Input Field Focus Effect                         */
 /* ========================================================================== */
 input:focus {
-    border-color: white; /* Change border color on focus */
+    border-color: black; /* Change border color on focus */
     outline: none; /* Remove default outline */
 }
 
@@ -123,6 +123,7 @@ footer {
 /* ========================================================================== */
 footer p {
     margin: 0; /* No margin for paragraphs in footer */
+    color: black; /* Black color for footer text */
 }
 
 /* ========================================================================== */
@@ -153,7 +154,7 @@ h2, h3, h4, h5, h6 {
 
 p {
     font-size: 1rem; /* Default paragraph font size */
-    color: white; /* Dark gray text color for paragraphs */
+    color: black; /* Dark gray text color for paragraphs */
     line-height: 1.5; /* Increase line height for better readability */
     margin-bottom: 1rem; /* Space below paragraphs */
 }
@@ -177,13 +178,13 @@ li {
 /*                      Hyperlink Styles for Added Fun                       */
 /* ========================================================================== */
 a {
-    color: white; /* Match link color to theme */
+    color: black; /* Match link color to theme */
     text-decoration: none; /* Remove underline */
 }
 
 a:hover {
     text-decoration: underline; /* Underline links on hover */
-    color: white; /* Change link color on hover */
+    color: black; /* Change link color on hover */
 }
 
 /* ========================================================================== */
