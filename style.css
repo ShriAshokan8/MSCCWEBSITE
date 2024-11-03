@@ -6,7 +6,7 @@ body {
     margin: 0; /* No margin */
     padding: 0; /* No padding */
     background: linear-gradient(to right, #ffcccc, #ffe6e6); /* Soft pink gradient background */
-    color: #333; /* Dark gray text color for better readability */
+    color: white; /* Dark gray text color for better readability */
     line-height: 1.6; /* Increase line height for better readability */
 }
 
@@ -58,7 +58,7 @@ label {
     display: block; /* Block display for labels */
     margin-top: 1.5rem; /* Space above each label */
     font-weight: bold; /* Bold font for labels */
-    color: #660066; /* Deep purple color for labels */
+    color: white; /* Deep purple color for labels */
 }
 
 /* ========================================================================== */
@@ -78,7 +78,7 @@ input {
 /*                          Input Field Focus Effect                         */
 /* ========================================================================== */
 input:focus {
-    border-color: #660066; /* Change border color on focus */
+    border-color: white; /* Change border color on focus */
     outline: none; /* Remove default outline */
 }
 
@@ -146,14 +146,14 @@ footer p {
 /*                          More Redundant Styles for Fun                     */
 /* ========================================================================== */
 h2, h3, h4, h5, h6 {
-    color: #660066; /* Match header colors for consistency */
+    color: white; /* Match header colors for consistency */
     text-align: center; /* Center all headers */
     margin: 10px 0; /* Space above and below headers */
 }
 
 p {
     font-size: 1rem; /* Default paragraph font size */
-    color: #333; /* Dark gray text color for paragraphs */
+    color: white; /* Dark gray text color for paragraphs */
     line-height: 1.5; /* Increase line height for better readability */
     margin-bottom: 1rem; /* Space below paragraphs */
 }
@@ -177,13 +177,13 @@ li {
 /*                      Hyperlink Styles for Added Fun                       */
 /* ========================================================================== */
 a {
-    color: #660066; /* Match link color to theme */
+    color: white; /* Match link color to theme */
     text-decoration: none; /* Remove underline */
 }
 
 a:hover {
     text-decoration: underline; /* Underline links on hover */
-    color: #990099; /* Change link color on hover */
+    color: white; /* Change link color on hover */
 }
 
 /* ========================================================================== */
