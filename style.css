@@ -2,258 +2,166 @@
 /*                            General Body Styles                             */
 /* ========================================================================== */
 body {
-    font-family: 'Poppins', 'Arial', sans-serif; /* Modern font */
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to right, #7400ff, #ff3333); /* Futuristic gradient */
-    color: #f0f0f0; /* Light grey for readability */
-    line-height: 1.8; /* Better readability */
+    font-family: 'Arial', sans-serif; /* Default font family for the entire body */
+    margin: 0; /* No margin */
+    padding: 0; /* No padding */
+    background: linear-gradient(to right, #f0f0f0, #d9d9d9); /* Light grey gradient background */
+    color: #333; /* Black text for better readability */
+    line-height: 1.6; /* Increase line height for better readability */
 }
-
 /* ========================================================================== */
 /*                                Header Styles                              */
 /* ========================================================================== */
 header {
-    background: linear-gradient(45deg, #7400ff, #660066); /* Gradient header */
-    color: white;
-    text-align: center;
-    padding: 2rem;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-    text-transform: uppercase;
-    letter-spacing: 2px;
+    background: #660066; /* Deep purple background for the header */
+    color: white; /* White text color for header */
+    text-align: center; /* Center-align text */
+    padding: 1.5rem; /* Padding around the header */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
 }
-
 h1 {
-    font-size: 3rem;
-    margin: 0;
-    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    font-size: 2.5rem; /* Larger title font size */
+    margin: 0; /* No margin */
 }
-
 /* ========================================================================== */
-/*                               Navigation Bar Styles                       */
+/*                               Navigation Bar Styles                      */
 /* ========================================================================== */
 nav {
-    background: #7400ff;
-    padding: 15px 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    position: fixed;
-    top: 0;
-    width: 100%;
-    z-index: 1000;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 2rem;
+    background: #7400ff; /* Primary accent color for the nav bar */
+    padding: 10px 0; /* Vertical padding for nav */
 }
-
-nav .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-}
-
-nav .menu-toggle {
-    display: none;
-    flex-direction: column;
-    cursor: pointer;
-}
-
-nav .menu-toggle div {
-    width: 25px;
-    height: 3px;
-    background: white;
-    margin: 4px 0;
-}
-
 nav ul {
-    list-style-type: none;
+    list-style-type: none; /* Remove default list styling */
+    padding: 0; /* Remove padding */
+    margin: 0; /* Remove margin */
+    display: flex; /* Flexbox for horizontal layout */
+    justify-content: center; /* Center the items in the nav */
+}
+nav ul li {
+    position: relative; /* Necessary for dropdowns */
+    margin: 0 20px; /* Margin between nav items */
+}
+nav ul li a {
+    color: white; /* White text for nav links */
+    text-decoration: none; /* Remove underline */
+    font-weight: bold; /* Bold text for emphasis */
+    transition: color 0.3s; /* Transition effect for hover */
+    padding: 10px 15px; /* Padding around links for larger clickable area */
+    border-radius: 5px; /* Rounded corners for links */
+}
+nav ul li a:hover {
+    background-color: #ff3333; /* Light red background on hover */
+    color: white; /* Ensure text color is white on hover */
+}
+/* Dropdown Menu */
+nav ul li:hover > ul {
+    display: block; /* Display the dropdown menu on hover */
+}
+nav ul li ul {
+    display: none; /* Hide dropdown by default */
+    position: absolute; /* Position dropdown items */
+    background: #7400ff; /* Dropdown background */
+    border-radius: 5px; /* Rounded corners for dropdown items */
+    top: 100%; /* Position dropdown below the parent link */
+    left: 0;
     padding: 0;
     margin: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Shadow for dropdown */
 }
-
-nav ul li {
-    position: relative;
-    margin: 0 20px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-    font-weight: 600;
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: all 0.3s ease;
-}
-
-nav ul li a::after {
-    content: '';
-    display: block;
-    width: 0;
-    height: 2px;
-    background: white;
-    transition: width 0.3s;
-    margin: 0 auto;
-}
-
-nav ul li a:hover {
-    background-color: #ff3333;
-    color: #fff;
-}
-
-nav ul li a:hover::after {
-    width: 80%;
-}
-
-nav ul li ul {
-    display: none;
-    position: absolute;
-    background: #660066;
-    border-radius: 5px;
-    top: 100%;
-    padding: 0;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-}
-
-nav ul li:hover > ul {
-    display: block;
-}
-
 nav ul li ul li {
-    width: 200px;
+    width: 200px; /* Set fixed width for dropdown items */
 }
-
 nav ul li ul li a {
-    padding: 10px;
-    color: white;
-    display: block;
-    border-radius: 5px;
+    padding: 10px; /* Padding for dropdown items */
 }
-
-nav ul li ul li a:hover {
-    background-color: #ff3333;
-}
-
-/* Responsive Navigation */
-@media (max-width: 768px) {
-    nav .menu-toggle {
-        display: flex;
-    }
-
-    nav ul {
-        flex-direction: column;
-        align-items: flex-start;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background: #7400ff;
-        width: 100%;
-        display: none;
-        padding: 1rem;
-    }
-
-    nav ul.active {
-        display: flex;
-    }
-
-    nav ul li {
-        margin: 10px 0;
-    }
-}
-
 /* ========================================================================== */
-/*                               Main Content Styles                         */
+/*                               Main Content Styles                        */
 /* ========================================================================== */
 main {
-    max-width: 900px;
-    margin: 6rem auto 3rem auto; /* Adjusted for fixed navigation */
-    padding: 2rem;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 15px;
-    box-shadow: 0 6px 30px rgba(0, 0, 0, 0.2);
+    max-width: 800px; /* Maximum width for main content */
+    margin: 2rem auto; /* Centered with auto margins */
+    padding: 2rem; /* Padding inside main content */
+    background: white; /* White background for contrast */
+    border-radius: 10px; /* Rounded corners for the main content */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
 }
-
 /* ========================================================================== */
 /*                           Form Styles                                      */
 /* ========================================================================== */
 form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    display: flex; /* Flexbox for form layout */
+    flex-direction: column; /* Stack form elements vertically */
 }
-
 form label {
-    font-weight: bold;
-    color: #333;
+    margin-bottom: 5px; /* Space below labels */
+    font-weight: bold; /* Bold labels */
 }
-
 form input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    transition: border-color 0.3s;
+    margin-bottom: 15px; /* Space below input fields */
+    padding: 10px; /* Padding inside input fields */
+    border: 1px solid #ccc; /* Light grey border */
+    border-radius: 5px; /* Rounded corners for input fields */
+    transition: border-color 0.3s; /* Transition effect for border */
 }
-
 form input:focus {
-    border-color: #7400ff;
-    box-shadow: 0 0 5px rgba(116, 0, 255, 0.5);
+    border-color: #660066; /* Change border color on focus */
 }
-
 /* ========================================================================== */
 /*                              Button Styles                                 */
 /* ========================================================================== */
 button {
-    padding: 12px 20px;
-    background: linear-gradient(45deg, #ff3333, #7400ff);
-    color: white;
-    border: none;
-    border-radius: 50px;
-    cursor: pointer;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    padding: 10px 15px; /* Padding inside button */
+    background-color: #7400ff; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* No border */
+    border-radius: 5px; /* Rounded corners for button */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s; /* Transition for hover effect */
 }
-
 button:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    background-color: #ff3333; /* Lighter red on hover */
 }
-
 /* ========================================================================== */
 /*                              Footer Styles                                 */
 /* ========================================================================== */
 footer {
-    text-align: center;
-    padding: 2rem;
-    background: #660066;
-    color: white;
-    font-size: 0.9rem;
-    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.3);
+    text-align: center; /* Center-align text */
+    padding: 1rem; /* Padding inside footer */
+    background: #660066; /* Deep purple background for footer */
+    color: white; /* White text color for footer */
+    position: relative; /* Position footer */
+    bottom: 0; /* Align footer to the bottom */
+    width: 100%; /* Full width for footer */
 }
-
+/* ========================================================================== */
+/*                           Footer Paragraph Styles                          */
+/* ========================================================================== */
 footer p {
-    margin: 0;
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    margin: 0; /* No margin for paragraphs in footer */
+    color: white; /* White text color in footer paragraphs */
 }
-
 /* ========================================================================== */
-/*                          Responsive Design                                */
+/*                          Responsive Design for Mobile                      */
 /* ========================================================================== */
-@media (max-width: 768px) {
+@media (max-width: 600px) {
     main {
-        padding: 1.5rem;
+        padding: 1rem; /* Less padding on smaller screens */
     }
-
     h1 {
-        font-size: 2.5rem;
+        font-size: 2rem; /* Smaller font size for heading */
     }
-
     button {
-        font-size: 0.9rem;
+        font-size: 0.9rem; /* Slightly smaller button text on small screens */
+    }
+    nav ul {
+        flex-direction: column; /* Stack nav items vertically on small screens */
+        align-items: center; /* Center items */
+    }
+    nav ul li {
+        margin: 10px 0; /* Space between stacked items */
+    }
+    nav ul li ul {
+        position: relative; /* Adjust position of dropdown on small screens */
+        top: auto; /* Reset position */
     }
 }
