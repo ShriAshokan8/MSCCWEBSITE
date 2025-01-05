@@ -1,143 +1,175 @@
 /* ==================== General Body Styles ==================== */
 body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    background: linear-gradient(to right, #f0f0f0, #d9d9d9);
-    color: #333;
-    line-height: 1.6;
+    font-family: 'Arial', sans-serif; /* Set font to Arial for all text */
+    margin: 0; /* Remove all margin around the body */
+    padding: 0; /* Remove all padding around the body */
+    background: linear-gradient(to right, #f0f0f0, #d9d9d9); /* Set gradient background */
+    color: #333; /* Set text color to a dark shade of gray */
+    line-height: 1.6; /* Set line height to 1.6 for readability */
+    min-height: 100vh; /* Ensure body stretches to full viewport height, even if content is short */
 }
 
 /* ==================== Header Styles ==================== */
 header {
-    background: #660066;
-    color: white;
-    text-align: center;
-    padding: 1.5rem;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    background: #660066; /* Set header background to a rich purple shade */
+    color: white; /* Set header text color to white for contrast */
+    text-align: center; /* Center align text in the header */
+    padding: 1.5rem; /* Add padding around the header content */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Add a subtle shadow beneath the header */
 }
 h1 {
-    font-size: 2.5rem;
-    margin: 0;
+    font-size: 2.5rem; /* Set font size of h1 to 2.5rem for prominent header */
+    margin: 0; /* Remove any default margin around h1 */
 }
 
 /* ==================== Navigation Styles ==================== */
 nav {
-    position: relative;
-    background: #7400ff;
-    padding: 10px 0;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: relative; /* Set navigation bar to relative position */
+    background: #7400ff; /* Set navigation background to vibrant purple */
+    padding: 10px 0; /* Add padding top and bottom of the nav bar */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add a soft shadow below the nav bar */
 }
 .nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 1rem;
+    display: flex; /* Use flexbox for aligning navigation items */
+    justify-content: space-between; /* Space out navigation items */
+    align-items: center; /* Vertically center items in the nav container */
+    max-width: 1200px; /* Set a maximum width for the nav container */
+    margin: 0 auto; /* Center align nav container */
+    padding: 0 1rem; /* Add padding to left and right sides of the container */
 }
 .nav-logo {
-    font-size: 1.5rem;
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
+    font-size: 1.5rem; /* Set font size for the logo text */
+    color: white; /* Set text color of the logo to white */
+    font-weight: bold; /* Make the logo text bold */
+    text-decoration: none; /* Remove underline from the logo text */
 }
+
+/* ==================== Navigation Menu Styles ==================== */
 .nav-menu {
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    background: #7400ff;
-    position: absolute;
-    top: 100%;
-    right: 0;
-    width: 100%;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    z-index: 100;
+    display: none; /* Hide the nav menu by default */
+    flex-direction: column; /* Align menu items vertically */
+    align-items: center; /* Center align the menu items horizontally */
+    background: #7400ff; /* Set menu background to the same color as the nav */
+    position: absolute; /* Position the menu absolutely below the nav bar */
+    top: 100%; /* Position the top of the menu at the bottom of the nav bar */
+    right: 0; /* Align the menu to the right side */
+    width: 100%; /* Make the menu as wide as the parent container */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add a soft shadow below the menu */
+    z-index: 100; /* Ensure the menu is above other elements */
 }
+
+/* Menu becomes visible when active */
 .nav-menu.active {
-    display: flex;
+    display: flex; /* Change display to flex to show the menu */
 }
+
+/* Styles for each link in the navigation menu */
 .nav-menu a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2rem;
-    padding: 10px;
-    width: 100%;
-    text-align: center;
-    transition: background 0.3s;
+    color: white; /* Set text color of links to white */
+    text-decoration: none; /* Remove underline from the links */
+    font-size: 1.2rem; /* Set font size of the links */
+    padding: 10px; /* Add padding inside each link for better clickability */
+    width: 100%; /* Make the link width 100% to fill the menu */
+    text-align: center; /* Center align text inside each link */
+    transition: background 0.3s; /* Smooth transition for background on hover */
 }
+
+/* Hover effect on menu links */
 .nav-menu a:hover {
-    background: #ff3333;
+    background: #ff3333; /* Change background color to red on hover */
 }
+
+/* Styles for the hamburger menu icon */
 .hamburger {
-    cursor: pointer;
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+    background: none; /* Remove background from hamburger button */
+    border: none; /* Remove border from the button */
+    font-size: 1.5rem; /* Set font size for the hamburger icon */
+    color: white; /* Set icon color to white */
+    display: flex; /* Use flexbox for positioning the icon elements */
+    align-items: center; /* Vertically center the icon elements */
+    justify-content: center; /* Horizontally center the icon elements */
 }
+
+/* Hamburger icon bars */
 .hamburger span {
-    width: 25px;
-    height: 3px;
-    background: white;
-    margin: 4px 0;
-    transition: transform 0.3s, background 0.3s;
+    width: 25px; /* Set the width of each bar */
+    height: 3px; /* Set the height of each bar */
+    background: white; /* Set background color of the bars to white */
+    margin: 4px 0; /* Add vertical margin between bars */
+    transition: transform 0.3s, background 0.3s; /* Add smooth animation for transforms */
 }
+
+/* Hamburger icon animation for the first bar when clicked */
 .hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
+    transform: rotate(45deg) translate(5px, 5px); /* Rotate and translate the first bar */
 }
+
+/* Hamburger icon animation for the second bar when clicked */
 .hamburger.active span:nth-child(2) {
-    opacity: 0;
+    opacity: 0; /* Make the second bar invisible */
 }
+
+/* Hamburger icon animation for the third bar when clicked */
 .hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
+    transform: rotate(-45deg) translate(5px, -5px); /* Rotate and translate the third bar */
 }
 
 /* ==================== Main Content Styles ==================== */
 main {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 800px; /* Set a maximum width for the main content */
+    margin: 2rem auto; /* Center align main content with top and bottom margins */
+    padding: 2rem; /* Add padding inside the main content */
+    background: white; /* Set background color to white for contrast */
+    border-radius: 10px; /* Add rounded corners to the main content */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Add a soft shadow around the content */
 }
 
 /* ==================== Button Styles ==================== */
 button {
-    padding: 10px 15px;
-    background-color: #7400ff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    padding: 10px 15px; /* Add padding inside the button */
+    background-color: #7400ff; /* Set background color of the button */
+    color: white; /* Set text color of the button to white */
+    border: none; /* Remove border from the button */
+    border-radius: 5px; /* Add rounded corners to the button */
+    cursor: pointer; /* Change cursor to pointer to indicate clickability */
+    transition: background-color 0.3s; /* Smooth transition for background color */
 }
+
+/* Hover effect for buttons */
 button:hover {
-    background-color: #ff3333;
+    background-color: #ff3333; /* Change background to red when hovered */
 }
 
 /* ==================== Footer Styles ==================== */
 footer {
-    text-align: center;
-    padding: 1rem;
-    background: #660066;
-    color: white;
-    position: relative;
-    bottom: 0;
-    width: 100%;
+    text-align: center; /* Center align footer text */
+    padding: 1rem; /* Add padding around the footer */
+    background: #660066; /* Set footer background to purple */
+    color: white; /* Set footer text color to white */
+    position: fixed; /* Fix the footer to the bottom of the screen */
+    bottom: 0; /* Position the footer at the bottom */
+    width: 100%; /* Make the footer span the full width of the screen */
 }
 
 /* ==================== Responsive Design ==================== */
 @media (max-width: 768px) {
     .nav-container {
-        flex-direction: row-reverse;
-        justify-content: space-between;
+        flex-direction: row-reverse; /* Reverse the order of navigation items for small screens */
+        justify-content: space-between; /* Space out the items in the nav container */
     }
+
     .hamburger {
-        display: block;
+        display: block; /* Display the hamburger icon on smaller screens */
+    }
+
+    .nav-menu {
+        width: auto; /* Set the nav menu width to auto on small screens */
+        padding: 0; /* Remove padding from the menu */
+    }
+
+    .nav-menu a {
+        width: auto; /* Set link width to auto for smaller screens */
+        padding: 12px; /* Add extra padding to the links for better touch targets */
     }
 }
