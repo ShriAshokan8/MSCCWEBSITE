@@ -3,20 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MSC Competition</title>
+    <title><%= pageTitle %></title> <!-- Dynamic Page Title -->
     
     <!-- Link to External Stylesheet -->
     <link rel="stylesheet" href="style.css">
     
     <!-- Meta Description for SEO -->
-    <meta name="description" content="Join the MSC Competition and explore the fascinating world of Mathematics, Science, and Computing.">
+    <meta name="description" content="<%= metaDescription %>">
     <!-- Favicon for Branding -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
     <!-- Header Section with Logo and Navigation -->
     <header>
-        <h1>Welcome to the MSC Competition</h1>
+        <h1><%= headerTitle %></h1> <!-- Dynamic Header Title -->
         
         <!-- Main Navigation for the Site -->
         <nav class="navbar" aria-label="Main Navigation">
@@ -32,8 +32,8 @@
     <!-- Main Content Section -->
     <main>
         <section aria-labelledby="welcome-heading">
-            <h2 id="welcome-heading">Join us for an exciting competition!</h2>
-            <p>Discover the world of <strong>Mathematics</strong>, <strong>Science</strong>, and <strong>Computing</strong>. Challenge yourself and enhance your skills!</p>
+            <h2 id="welcome-heading"><%= sectionHeading %></h2> <!-- Dynamic Section Heading -->
+            <p><%= sectionContent %></p> <!-- Dynamic Section Content -->
         </section>
     </main>
     <!-- Footer Section -->
