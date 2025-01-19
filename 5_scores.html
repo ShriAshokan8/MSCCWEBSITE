@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scores - MSC Competition</title>
-    <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon link -->
-    <link rel="stylesheet" href="style.css"> <!-- Stylesheet link -->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <header>
         <h1>MSC Competition Scores</h1>
-        <nav aria-label="Main Navigation">
+        <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
                 <li><a href="2_about.html">About</a></li>
@@ -20,10 +20,10 @@
             </ul>
         </nav>
     </header>
-    
+
     <main>
         <h2>Scores & Achievements</h2>
-        
+
         <!-- Scores of All Tutor Groups -->
         <section>
             <h3>All Tutor Groups</h3>
@@ -37,14 +37,14 @@
             </ul>
         </section>
 
-        <!-- Outstanding Students in Each Category -->
+        <!-- Outstanding Students in Each Category (Repeated for each group) -->
         <section>
             <h3>Outstanding Students from 7M1</h3>
             <ul>
                 <li><strong>John D</strong> - Score: 85</li>
                 <li><strong>Jane S</strong> - Score: 82</li>
                 <li><strong>Sam J</strong> - Score: 78</li>
-                <li><strong>Emily s</strong> - Score: 75</li>
+                <li><strong>Emily S</strong> - Score: 75</li>
                 <li><strong>Michael B</strong> - Score: 70</li>
             </ul>
         </section>
@@ -55,7 +55,7 @@
                 <li><strong>John D</strong> - Score: 85</li>
                 <li><strong>Jane S</strong> - Score: 82</li>
                 <li><strong>Sam J</strong> - Score: 78</li>
-                <li><strong>Emily s</strong> - Score: 75</li>
+                <li><strong>Emily S</strong> - Score: 75</li>
                 <li><strong>Michael B</strong> - Score: 70</li>
             </ul>
         </section>
@@ -77,7 +77,7 @@
                 <li><strong>John D</strong> - Score: 85</li>
                 <li><strong>Jane S</strong> - Score: 82</li>
                 <li><strong>Sam J</strong> - Score: 78</li>
-                <li><strong>Emily s</strong> - Score: 75</li>
+                <li><strong>Emily S</strong> - Score: 75</li>
                 <li><strong>Michael B</strong> - Score: 70</li>
             </ul>
         </section>
@@ -88,7 +88,7 @@
                 <li><strong>John D</strong> - Score: 85</li>
                 <li><strong>Jane S</strong> - Score: 82</li>
                 <li><strong>Sam J</strong> - Score: 78</li>
-                <li><strong>Emily s</strong> - Score: 75</li>
+                <li><strong>Emily S</strong> - Score: 75</li>
                 <li><strong>Michael B</strong> - Score: 70</li>
             </ul>
         </section>
@@ -99,7 +99,7 @@
                 <li><strong>John D</strong> - Score: 85</li>
                 <li><strong>Jane S</strong> - Score: 82</li>
                 <li><strong>Sam J</strong> - Score: 78</li>
-                <li><strong>Emily s</strong> - Score: 75</li>
+                <li><strong>Emily S</strong> - Score: 75</li>
                 <li><strong>Michael B</strong> - Score: 70</li>
             </ul>
         </section>
@@ -136,6 +136,7 @@
                 <li><strong>Mia E</strong> - Score: 78</li>
             </ul>
         </section>
+
         <section>
             <h3>Outstanding Students from Maths (Set 1) Lessons - Y Band</h3>
             <ul>
@@ -201,18 +202,33 @@
                 <li><strong>Isaac M</strong> - Score: 86</li>
             </ul>
         </section>
+
+        <!-- Admin Section (Hidden for non-admin users) -->
+        <div id="admin-panel" style="display:none;">
+            <h3>Update Scores</h3>
+            <form action="/update-scores" method="POST">
+                <label for="studentId">Student ID:</label>
+                <input type="number" name="studentId" required><br>
+                <label for="score">New Score:</label>
+                <input type="number" name="score" required><br>
+                <button type="submit">Update Score</button>
+            </form>
+        </div>
     </main>
 
-        <!-- Footer Section -->
     <footer>
-        <p>&copy; <span id="currentYear"></span> MSC Competition. All rights reserved.</p>
+        <p>&copy; <span id="currentYear"></span> MSC Competition | All rights reserved.</p>
     </footer>
 
-    <!-- JavaScript File for Interactivity -->
-    <script src="script.js"></script>
-
-    <!-- Inline Script to Display Dynamic Year in Footer -->
+    <!-- JavaScript for Dynamic Content and Admin Panel -->
     <script>
+        // Display the admin panel if the user is logged in (set isAdmin flag accordingly)
+        const isAdmin = false;  // Check if the user is authenticated (this should come from backend)
+        if (isAdmin) {
+            document.getElementById('admin-panel').style.display = 'block';
+        }
+
+        // Inline script to display the current year in the footer
         document.getElementById("currentYear").textContent = new Date().getFullYear();
     </script>
 </body>
