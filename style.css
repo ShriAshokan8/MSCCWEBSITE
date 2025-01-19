@@ -9,7 +9,6 @@ body {
     color: #333; /* Black text for better readability */
     line-height: 1.6; /* Increase line height for better readability */
 }
-
 /* ========================================================================== */
 /*                                Header Styles                              */
 /* ========================================================================== */
@@ -24,7 +23,6 @@ h1 {
     font-size: 2.5rem; /* Larger title font size */
     margin: 0; /* No margin */
 }
-
 /* ========================================================================== */
 /*                               Navigation Bar Styles                      */
 /* ========================================================================== */
@@ -76,7 +74,6 @@ nav ul li ul li {
 nav ul li ul li a {
     padding: 10px; /* Padding for dropdown items */
 }
-
 /* ========================================================================== */
 /*                               Main Content Styles                        */
 /* ========================================================================== */
@@ -88,7 +85,6 @@ main {
     border-radius: 10px; /* Rounded corners for the main content */
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
 }
-
 /* ========================================================================== */
 /*                           Form Styles                                      */
 /* ========================================================================== */
@@ -110,7 +106,6 @@ form input {
 form input:focus {
     border-color: #660066; /* Change border color on focus */
 }
-
 /* ========================================================================== */
 /*                              Button Styles                                 */
 /* ========================================================================== */
@@ -126,7 +121,6 @@ button {
 button:hover {
     background-color: #ff3333; /* Lighter red on hover */
 }
-
 /* ========================================================================== */
 /*                              Footer Styles                                 */
 /* ========================================================================== */
@@ -139,7 +133,6 @@ footer {
     bottom: 0; /* Align footer to the bottom */
     width: 100%; /* Full width for footer */
 }
-
 /* ========================================================================== */
 /*                           Footer Paragraph Styles                          */
 /* ========================================================================== */
@@ -147,41 +140,6 @@ footer p {
     margin: 0; /* No margin for paragraphs in footer */
     color: white; /* White text color in footer paragraphs */
 }
-
-/* ========================================================================== */
-/*                          Modal Styles for Editing Scores                   */
-/* ========================================================================== */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Fixed position for modal */
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
-    z-index: 999; /* Ensure the modal is on top */
-    align-items: center; /* Center content */
-    justify-content: center; /* Center content */
-}
-.modal.visible {
-    display: flex; /* Show the modal when visible */
-}
-.modal-content {
-    background-color: white; /* White background for the modal */
-    padding: 2rem; /* Padding inside the modal */
-    border-radius: 10px; /* Rounded corners */
-    width: 300px; /* Set fixed width for the modal */
-    text-align: center; /* Center-align text */
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Shadow for depth */
-}
-.modal-content h2 {
-    margin-bottom: 1rem; /* Space below the heading */
-}
-.modal-content input {
-    width: 100%; /* Full width input fields */
-    margin-bottom: 1rem; /* Space between input fields */
-}
-.modal-content button {
-    width: 100%; /* Full width button */
-}
-
 /* ========================================================================== */
 /*                          Responsive Design for Mobile                      */
 /* ========================================================================== */
