@@ -2,7 +2,12 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log("The DOM has successfully loaded and been parsed. Ready to fetch and display scores.");
 
     fetch('scores.json')
-        .then(response => response.json())
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok " + response.statusText);
+            }
+            return response.json();
+        })
         .then(data => displayScores(data))
         .catch(error => console.error('Error fetching scores:', error));
 
