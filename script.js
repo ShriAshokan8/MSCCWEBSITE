@@ -19,10 +19,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         categories.forEach(category => {
             const categorySection = document.createElement('section');
-            categorySection.innerHTML = `<h3>All Scores from ${category}</h3>`;
+            categorySection.classList.add('category-section');
+
+            const categoryHeader = document.createElement('h3');
+            categoryHeader.innerHTML = `All Scores from ${category}`;
+            categoryHeader.classList.add('category-header');
+            categoryHeader.addEventListener('click', () => {
+                const studentList = categorySection.querySelector('.student-list');
+                studentList.classList.toggle('hidden');
+            });
 
             const categoryData = data.filter(student => student.Group === category);
             const studentList = document.createElement('ul');
+            studentList.classList.add('student-list', 'hidden');
 
             categoryData.forEach(student => {
                 const studentItem = document.createElement('li');
@@ -37,6 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 studentList.appendChild(studentItem);
             });
 
+            categorySection.appendChild(categoryHeader);
             categorySection.appendChild(studentList);
             scoresSection.appendChild(categorySection);
         });
