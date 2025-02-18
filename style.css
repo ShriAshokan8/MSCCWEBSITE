@@ -1,167 +1,119 @@
-/* ========================================================================== */
-/*                            General Body Styles                             */
-/* ========================================================================== */
+/* General Styles */
 body {
-    font-family: 'Arial', sans-serif; /* Default font family for the entire body */
-    margin: 0; /* No margin */
-    padding: 0; /* No padding */
-    background: linear-gradient(to right, #f0f0f0, #d9d9d9); /* Light grey gradient background */
-    color: #333; /* Black text for better readability */
-    line-height: 1.6; /* Increase line height for better readability */
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
 }
-/* ========================================================================== */
-/*                                Header Styles                              */
-/* ========================================================================== */
+
+/* Header Styles */
 header {
-    background: #660066; /* Deep purple background for the header */
-    color: white; /* White text color for header */
-    text-align: center; /* Center-align text */
-    padding: 1.5rem; /* Padding around the header */
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Soft shadow for depth */
+    background-color: #C40036;
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-h1 {
-    font-size: 2.5rem; /* Larger title font size */
-    margin: 0; /* No margin */
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
 }
-/* ========================================================================== */
-/*                               Navigation Bar Styles                      */
-/* ========================================================================== */
-nav {
-    background: #7400ff; /* Primary accent color for the nav bar */
-    padding: 10px 0; /* Vertical padding for nav */
-}
-nav ul {
-    list-style-type: none; /* Remove default list styling */
-    padding: 0; /* Remove padding */
-    margin: 0; /* Remove margin */
-    display: flex; /* Flexbox for horizontal layout */
-    justify-content: center; /* Center the items in the nav */
-}
-nav ul li {
-    position: relative; /* Necessary for dropdowns */
-    margin: 0 20px; /* Margin between nav items */
-}
-nav ul li a {
-    color: white; /* White text for nav links */
-    text-decoration: none; /* Remove underline */
-    font-weight: bold; /* Bold text for emphasis */
-    transition: color 0.3s; /* Transition effect for hover */
-    padding: 10px 15px; /* Padding around links for larger clickable area */
-    border-radius: 5px; /* Rounded corners for links */
-}
-nav ul li a:hover {
-    background-color: #ff3333; /* Light red background on hover */
-    color: white; /* Ensure text color is white on hover */
-}
-/* Dropdown Menu */
-nav ul li:hover > ul {
-    display: block; /* Display the dropdown menu on hover */
-}
-nav ul li ul {
-    display: none; /* Hide dropdown by default */
-    position: absolute; /* Position dropdown items */
-    background: #7400ff; /* Dropdown background */
-    border-radius: 5px; /* Rounded corners for dropdown items */
-    top: 100%; /* Position dropdown below the parent link */
-    left: 0;
+
+/* Navigation Styles */
+nav.navbar ul.navbar-links {
+    list-style: none;
     padding: 0;
     margin: 0;
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2); /* Shadow for dropdown */
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
 }
-nav ul li ul li {
-    width: 200px; /* Set fixed width for dropdown items */
+
+nav.navbar ul.navbar-links li {
+    display: inline;
 }
-nav ul li ul li a {
-    padding: 10px; /* Padding for dropdown items */
+
+nav.navbar ul.navbar-links li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    transition: background-color 0.3s ease;
+    font-weight: bold;
 }
-/* ========================================================================== */
-/*                               Main Content Styles                        */
-/* ========================================================================== */
+
+nav.navbar ul.navbar-links li a:hover {
+    background-color: #7400FF;
+    border-radius: 4px;
+}
+
+/* Main Content Styles */
 main {
-    max-width: 800px; /* Maximum width for main content */
-    margin: 2rem auto; /* Centered with auto margins */
-    padding: 2rem; /* Padding inside main content */
-    background: white; /* White background for contrast */
-    border-radius: 10px; /* Rounded corners for the main content */
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    padding: 2rem;
+    max-width: 1000px;
+    margin: auto;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    margin-top: 2rem;
 }
-/* ========================================================================== */
-/*                           Form Styles                                      */
-/* ========================================================================== */
-form {
-    display: flex; /* Flexbox for form layout */
-    flex-direction: column; /* Stack form elements vertically */
+
+main h2 {
+    color: #C40036;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #7400FF;
+    padding-bottom: 0.5rem;
 }
-form label {
-    margin-bottom: 5px; /* Space below labels */
-    font-weight: bold; /* Bold labels */
+
+main h3 {
+    color: #7400FF;
+    margin-bottom: 0.5rem;
 }
-form input {
-    margin-bottom: 15px; /* Space below input fields */
-    padding: 10px; /* Padding inside input fields */
-    border: 1px solid #ccc; /* Light grey border */
-    border-radius: 5px; /* Rounded corners for input fields */
-    transition: border-color 0.3s; /* Transition effect for border */
+
+main ul {
+    list-style: none;
+    padding: 0;
 }
-form input:focus {
-    border-color: #660066; /* Change border color on focus */
+
+main ul li {
+    background: #f9f9f9;
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+    border-left: 4px solid #C40036;
+    border-radius: 4px;
+    font-weight: bold;
 }
-/* ========================================================================== */
-/*                              Button Styles                                 */
-/* ========================================================================== */
-button {
-    padding: 10px 15px; /* Padding inside button */
-    background-color: #7400ff; /* Button background color */
-    color: white; /* Button text color */
-    border: none; /* No border */
-    border-radius: 5px; /* Rounded corners for button */
-    cursor: pointer; /* Pointer cursor on hover */
-    transition: background-color 0.3s; /* Transition for hover effect */
-}
-button:hover {
-    background-color: #ff3333; /* Lighter red on hover */
-}
-/* ========================================================================== */
-/*                              Footer Styles                                 */
-/* ========================================================================== */
+
+/* Footer Styles */
 footer {
-    text-align: center; /* Center-align text */
-    padding: 1rem; /* Padding inside footer */
-    background: #660066; /* Deep purple background for footer */
-    color: white; /* White text color for footer */
-    position: relative; /* Position footer */
-    bottom: 0; /* Align footer to the bottom */
-    width: 100%; /* Full width for footer */
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
 }
-/* ========================================================================== */
-/*                           Footer Paragraph Styles                          */
-/* ========================================================================== */
+
 footer p {
-    margin: 0; /* No margin for paragraphs in footer */
-    color: white; /* White text color in footer paragraphs */
+    margin: 0;
 }
-/* ========================================================================== */
-/*                          Responsive Design for Mobile                      */
-/* ========================================================================== */
-@media (max-width: 600px) {
-    main {
-        padding: 1rem; /* Less padding on smaller screens */
-    }
-    h1 {
-        font-size: 2rem; /* Smaller font size for heading */
-    }
-    button {
-        font-size: 0.9rem; /* Slightly smaller button text on small screens */
-    }
-    nav ul {
-        flex-direction: column; /* Stack nav items vertically on small screens */
-        align-items: center; /* Center items */
-    }
-    nav ul li {
-        margin: 10px 0; /* Space between stacked items */
-    }
-    nav ul li ul {
-        position: relative; /* Adjust position of dropdown on small screens */
-        top: auto; /* Reset position */
-    }
+
+footer p span {
+    color: #C40036;
+}
+
+/* Additional Styles */
+input[type="file"] {
+    display: block;
+    margin: 1rem 0;
+    padding: 0.5rem;
+    font-size: 1rem;
+}
+
+section {
+    margin-bottom: 2rem;
 }
