@@ -71,6 +71,14 @@ main h2 {
 main h3 {
     color: #7400FF;
     margin-bottom: 0.5rem;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+main h3:hover {
+    background-color: #ddd;
 }
 
 main ul {
@@ -85,6 +93,11 @@ main ul li {
     border-left: 4px solid #C40036;
     border-radius: 4px;
     font-weight: bold;
+}
+
+/* Hidden class to hide elements */
+.hidden {
+    display: none;
 }
 
 /* Footer Styles */
@@ -104,16 +117,4 @@ footer p {
 
 footer p span {
     color: #C40036;
-}
-
-/* Additional Styles */
-input[type="file"] {
-    display: block;
-    margin: 1rem 0;
-    padding: 0.5rem;
-    font-size: 1rem;
-}
-
-section {
-    margin-bottom: 2rem;
 }
