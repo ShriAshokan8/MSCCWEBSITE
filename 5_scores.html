@@ -8,21 +8,22 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Scores</h1>
-        <nav class="navbar" aria-label="Main Navigation">
-            <ul class="navbar-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="2_about.html">About</a></li>
-                <li><a href="3_events.html">Events</a></li>
-                <li><a href="4_contact.html">Contact</a></li>
-                <li><a href="5_scores.html">Scores</a></li>
-                <li><a href="6_future_plans.html">Future Plans</a></li>
-            </ul>
-        </nav>
+    <header class="main-header">
+        <div class="container">
+            <h1>Scores</h1>
+            <nav class="navbar" aria-label="Main Navigation">
+                <ul class="navbar-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="2_about.html">About</a></li>
+                    <li><a href="3_events.html">Events</a></li>
+                    <li><a href="4_contact.html">Contact</a></li>
+                    <li><a href="5_scores.html">Scores</a></li>
+                    <li><a href="6_future_plans.html">Future Plans</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    
-    <main>
+    <main class="main-content">
         <h2>Scores & Achievements</h2>
         <p>
             R1 = Round 1 (Tutor Group Competition)<br>
@@ -36,16 +37,12 @@
         <!-- Dynamic content will be inserted here -->
         <div id="scoresSection"></div>
     </main>
-
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; <span id="currentYear"></span> MSC Competition. All rights reserved.</p>
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> MSC Competition. All rights reserved.</p>
+        </div>
     </footer>
-
-    <!-- JavaScript File for Interactivity -->
     <script src="script.js"></script>
-
-    <!-- Inline Script to Display Dynamic Year in Footer -->
     <script>
         document.getElementById("currentYear").textContent = new Date().getFullYear();
     </script>
