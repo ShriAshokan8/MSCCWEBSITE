@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    console.log("The DOM has successfully loaded and been parsed. Ready to fetch and display scores.");
+    console.log("The DOM has loaded. Ready to fetch and display scores.");
 
     fetch('scores.json')
         .then(response => {
