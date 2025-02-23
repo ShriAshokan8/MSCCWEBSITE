@@ -43,11 +43,11 @@ nav.navbar ul.navbar-links li a {
     padding: 0.75rem 1.5rem;
     transition: background-color 0.3s ease;
     font-weight: bold;
+    border-radius: 5px;
 }
 
 nav.navbar ul.navbar-links li a:hover {
     background-color: #7400FF;
-    border-radius: 5px;
 }
 
 /* Main Content Styles */
