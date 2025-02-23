@@ -4,58 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Future Plans - MSC Competition</title>
-    
-    <!-- Link to External Stylesheet -->
     <link rel="stylesheet" href="style.css">
-    
-    <!-- Meta Description for SEO -->
     <meta name="description" content="Discover the future plans for the MSC Competition.">
-    
-    <!-- Favicon for Branding -->
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <!-- Header Section with Navigation -->
-    <header>
-        <h1>Future Plans</h1>
-        
-        <!-- Main Navigation for the Site -->
-        <nav class="navbar" aria-label="Main Navigation">
-            <ul class="navbar-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="2_about.html">About</a></li>
-                <li><a href="3_events.html">Events</a></li>
-                <li><a href="4_contact.html">Contact</a></li>
-                <li><a href="5_scores.html">Scores</a></li>
-                <li><a href="6_future_plans.html">Future Plans</a></li>
-            </ul>
-        </nav>
+    <header class="main-header">
+        <div class="container">
+            <h1>Future Plans</h1>
+            <nav class="navbar" aria-label="Main Navigation">
+                <ul class="navbar-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="2_about.html">About</a></li>
+                    <li><a href="3_events.html">Events</a></li>
+                    <li><a href="4_contact.html">Contact</a></li>
+                    <li><a href="5_scores.html">Scores</a></li>
+                    <li><a href="6_future_plans.html">Future Plans</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
-    <!-- Main Content Section -->
-    <main>
+    <main class="main-content">
         <section aria-labelledby="future-plans-heading">
             <h2 id="future-plans-heading">Find out on the 7th of April 2025 at 8am UK Time!</h2>
             <div id="countdown"></div>
         </section>
     </main>
-    <!-- Footer Section -->
-    <footer>
-        <p>&copy; <span id="currentYear"></span> MSC Competition. All rights reserved.</p>
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; <span id="currentYear"></span> MSC Competition. All rights reserved.</p>
+        </div>
     </footer>
-    <!-- JavaScript File for Interactivity -->
     <script src="script.js"></script>
-    <!-- Inline Script to Display Dynamic Year in Footer -->
     <script>
         document.getElementById("currentYear").textContent = new Date().getFullYear();
     </script>
-    <!-- Countdown Script -->
     <script>
         // Set the date we're counting down to
         var countDownDate = new Date("Apr 7, 2025 08:00:00 GMT").getTime();
 
         // Update the count down every 1 second
         var x = setInterval(function() {
-
             // Get today's date and time
             var now = new Date().getTime();
 
