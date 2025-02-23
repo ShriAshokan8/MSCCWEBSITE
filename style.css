@@ -8,36 +8,47 @@ body {
     color: #333;
 }
 
+/* Container */
+.container {
+    width: 90%;
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
 /* Header Styles */
-header {
+.main-header {
     background-color: #C40036;
     color: #fff;
-    padding: 1.5rem 0;
+    padding: 1rem 0;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-header h1 {
+.main-header h1 {
     margin: 0;
     font-size: 2.5rem;
     letter-spacing: 1px;
 }
 
 /* Navigation Styles */
-nav.navbar ul.navbar-links {
+.navbar {
+    margin-top: 1rem;
+}
+
+.navbar ul {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
     justify-content: center;
-    gap: 1.5rem;
+    gap: 1rem;
 }
 
-nav.navbar ul.navbar-links li {
+.navbar ul li {
     display: inline;
 }
 
-nav.navbar ul.navbar-links li a {
+.navbar ul li a {
     color: #fff;
     text-decoration: none;
     padding: 0.75rem 1.5rem;
@@ -46,102 +57,55 @@ nav.navbar ul.navbar-links li a {
     border-radius: 5px;
 }
 
-nav.navbar ul.navbar-links li a:hover {
+.navbar ul li a:hover {
     background-color: #7400FF;
 }
 
 /* Main Content Styles */
-main {
-    padding: 2rem;
-    max-width: 1000px;
-    margin: auto;
+.main-content {
+    padding: 2rem 0;
     background: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     margin-top: 2rem;
 }
 
-main h2 {
+.main-content h2 {
     color: #C40036;
     margin-bottom: 1rem;
     border-bottom: 2px solid #7400FF;
     padding-bottom: 0.5rem;
 }
 
-main h3 {
-    color: #7400FF;
-    margin-bottom: 0.75rem;
-    cursor: pointer;
-    background-color: #f1f1f1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-main h3:hover {
-    background-color: #ddd;
-}
-
-main ul {
-    list-style: none;
-    padding: 0;
-}
-
-main ul li {
-    background: #f9f9f9;
-    margin: 0.75rem 0;
-    padding: 1rem;
-    border-left: 4px solid #C40036;
-    border-radius: 5px;
-    font-weight: bold;
-}
-
-/* Hidden class to hide elements */
-.hidden {
-    display: none;
-}
-
 /* Footer Styles */
-footer {
+.main-footer {
     background-color: #333;
     color: #fff;
     text-align: center;
     padding: 1.5rem 0;
-    width: 100%;
+    margin-top: 2rem;
 }
 
-footer p {
+.main-footer p {
     margin: 0;
 }
 
-footer p span {
+.main-footer p span {
     color: #C40036;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    nav.navbar ul.navbar-links {
+    .navbar ul {
         flex-direction: column;
         align-items: center;
     }
 
-    main {
-        padding: 1rem;
-    }
-
-    header h1 {
+    .main-header h1 {
         font-size: 2rem;
     }
 
-    main h2 {
+    .main-content h2 {
         font-size: 1.5rem;
-    }
-
-    main h3 {
-        font-size: 1.2rem;
-    }
-
-    main ul li {
-        font-size: 1rem;
     }
 }
