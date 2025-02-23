@@ -8,15 +8,8 @@ body {
     color: #333;
 }
 
-/* Container */
-.container {
-    width: 90%;
-    margin: 0 auto;
-    max-width: 1200px;
-}
-
 /* Header Styles */
-.main-header {
+header {
     background-color: #C40036;
     color: #fff;
     padding: 1rem 0;
@@ -24,18 +17,14 @@ body {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.main-header h1 {
+header h1 {
     margin: 0;
     font-size: 2.5rem;
     letter-spacing: 1px;
 }
 
 /* Navigation Styles */
-.navbar {
-    margin-top: 1rem;
-}
-
-.navbar ul {
+nav.navbar ul.navbar-links {
     list-style: none;
     padding: 0;
     margin: 0;
@@ -44,102 +33,114 @@ body {
     gap: 1rem;
 }
 
-.navbar ul li {
+nav.navbar ul.navbar-links li {
     display: inline;
 }
 
-.navbar ul li a {
+nav.navbar ul.navbar-links li a {
     color: #fff;
     text-decoration: none;
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 1rem;
     transition: background-color 0.3s ease;
     font-weight: bold;
-    border-radius: 5px;
 }
 
-.navbar ul li a:hover {
+nav.navbar ul.navbar-links li a:hover {
     background-color: #7400FF;
+    border-radius: 4px;
 }
 
 /* Main Content Styles */
-.main-content {
-    padding: 2rem 0;
+main {
+    padding: 2rem;
+    max-width: 1000px;
+    margin: auto;
     background: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     margin-top: 2rem;
 }
 
-.main-content h2 {
+main h2 {
     color: #C40036;
     margin-bottom: 1rem;
     border-bottom: 2px solid #7400FF;
     padding-bottom: 0.5rem;
 }
 
-/* Scores Styles */
-.category-section {
-    margin-bottom: 1.5rem;
-}
-
-.category-header {
-    background-color: #C40036;
-    color: #fff;
-    padding: 0.5rem;
+main h3 {
+    color: #7400FF;
+    margin-bottom: 0.5rem;
     cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border: 1px solid #ccc;
 }
 
-.category-header:hover {
-    background-color: #7400FF;
+main h3:hover {
+    background-color: #ddd;
 }
 
-.student-list {
-    margin: 0;
-    padding: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    background-color: #f9f9f9;
+main ul {
+    list-style: none;
+    padding: 0;
 }
 
-.student-list.hidden {
+main ul li {
+    background: #f9f9f9;
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+    border-left: 4px solid #C40036;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* Hidden class to hide elements */
+.hidden {
     display: none;
 }
 
-.student-list li {
-    margin-bottom: 0.75rem;
-}
-
 /* Footer Styles */
-.main-footer {
+footer {
     background-color: #333;
     color: #fff;
     text-align: center;
-    padding: 1.5rem 0;
-    margin-top: 2rem;
+    padding: 1rem 0;
+    width: 100%;
 }
 
-.main-footer p {
+footer p {
     margin: 0;
 }
 
-.main-footer p span {
+footer p span {
     color: #C40036;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .navbar ul {
+    nav.navbar ul.navbar-links {
         flex-direction: column;
         align-items: center;
     }
 
-    .main-header h1 {
+    main {
+        padding: 1rem;
+    }
+
+    header h1 {
         font-size: 2rem;
     }
 
-    .main-content h2 {
+    main h2 {
         font-size: 1.5rem;
+    }
+
+    main h3 {
+        font-size: 1.2rem;
+    }
+
+    main ul li {
+        font-size: 1rem;
     }
 }
