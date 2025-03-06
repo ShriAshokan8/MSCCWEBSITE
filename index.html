@@ -41,15 +41,16 @@
     </section>
 </main>
 
-
     <footer>
         <p>&copy; <span id="currentYear"></span> MSC Competition. All rights reserved.</p>
     </footer>
 
+    <!-- Place scripts at the end of body -->
     <script src="script.js"></script>
-
     <script>
-        document.getElementById("currentYear").textContent = new Date().getFullYear();
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("currentYear").textContent = new Date().getFullYear();
+        });
     </script>
 </body>
 </html>
