@@ -4,17 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - MSC Competition</title>
-    
     <link rel="stylesheet" href="style.css">
-    
     <meta name="description" content="Learn about the MSC Competition, where students showcase their skills in Mathematics, Science, and Computing.">
-    
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+
     <header>
         <h1>About the MSC Competition</h1>
-        
+
+        <!-- Dark Mode Toggle -->
+        <div class="theme-switch">
+            <label class="switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="slider round"></span>
+            </label>
+        </div>
+
         <nav class="navbar" aria-label="Main Navigation">
             <ul class="navbar-links">
                 <li><a href="index.html">Home</a></li>
@@ -28,29 +34,9 @@
     </header>
 
     <main>
-        <section aria-labelledby="about-heading">
-            <h2 id="about-heading">About the Competition</h2>
-            <p>
-                The MSC (Maths, Science, and Computing) competition is a fun event where students get to show what they know 
-                about STEM subjects such as Maths, Science and Technology/Computing. It has different activities like quizzes 
-                and project tasks that help students work together, be creative, and learn. The theme for 
-                this year's event is "Change and Adapt", which goes along with STEM Week. The event will start on the 7th March 2025 
-                during STEM Week, over 5 weeks and it's going to be an exciting experience for everyone.
-            </p>
-            <p>
-                The competition has two rounds: Club Competitions and Tutor Group Competitions. In Round 1, students will 
-                participate within clubs such as: Science for Life Club (Science), Coding Club (Computing), STEM Club 
-                (Combined), the Maths part will take place within Maths Lessons. During the first four weeks, they will take part in 
-                quizzes and work on projects. At the end of the fifth week, winners will be announced. Round 2 will have quizzes 
-                during Tutor Time, and the points from each tutor group will go toward winning the Faculty Trophy.
-            </p>
-            <p>
-                The MSC Competition is more than just about winning. It's about getting students excited about STEM subjects, 
-                working together, solving problems, and showing what they can do. Students will have the chance to show their skills
-                in quizzes and projects. The outstanding participants will get certificates, and the top Maths participants may be
-                considered for the UKMT competition by the Head of Maths. The points earnt by Tutor Groups within Round 2 will go 
-                towards the Faculty Trophy which is given out to the winning faculty at the end of the school year.
-            </p>
+        <section>
+            <h2>About the Competition</h2>
+            <p>The MSC Competition is a STEM-based competition where students can showcase their skills.</p>
         </section>
     </main>
 
@@ -59,9 +45,5 @@
     </footer>
 
     <script src="script.js"></script>
-
-    <script>
-        document.getElementById("currentYear").textContent = new Date().getFullYear();
-    </script>
 </body>
 </html>
