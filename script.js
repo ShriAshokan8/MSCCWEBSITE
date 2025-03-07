@@ -1,25 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("The DOM has successfully loaded and been parsed. Ready to fetch and display scores.");
 
-    // Dark Mode Toggle
-    const themeToggle = document.getElementById("theme-toggle");
-    const isDarkMode = localStorage.getItem("darkMode") === "enabled";
-
-    if (isDarkMode) {
-        document.body.classList.add("dark-mode");
-        themeToggle.checked = true;
-    }
-
-    themeToggle.addEventListener("change", () => {
-        if (themeToggle.checked) {
-            document.body.classList.add("dark-mode");
-            localStorage.setItem("darkMode", "enabled");
-        } else {
-            document.body.classList.remove("dark-mode");
-            localStorage.setItem("darkMode", "disabled");
-        }
-    });
-
     // Fetch and display scores
     fetch('scores.json')
         .then(response => {
@@ -88,7 +69,9 @@ document.addEventListener('DOMContentLoaded', () => {
         function createAnnouncement() {
             if (announcementElement) {
                 announcementElement.innerHTML = `<h2>🎉 The event has officially started! 🎉</h2>`;
-                // You can add more details or animation here if needed
+                announcementElement.style.display = "block"; // Ensure it is visible
+            } else {
+                console.error("❌ Announcement element NOT found!");
             }
         }
 
