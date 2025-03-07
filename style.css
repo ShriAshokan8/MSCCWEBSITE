@@ -8,20 +8,6 @@ body {
 }
 
 h1, h2, h3 {
-    color: #7400ff;  /* Updated to purple */
-}
-
-header {
-    background-color: #C80032;  /* Updated to red *//* General page styling */
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f8f8f8;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
-
-h1, h2, h3 {
     color: #7400ff;  /* Purple */
 }
 
@@ -97,62 +83,20 @@ footer {
     opacity: 1;
 }
 
+/* Styling for the toggle button and hidden scores */
+.toggle-btn {
+    background-color: #7400ff;
     color: white;
-    padding: 20px;
-    text-align: center;
-}
-
-.navbar {
-    display: flex;
-    justify-content: center;
-    background-color: #C80032;  /* Updated to red */
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
     margin-top: 10px;
-    padding: 10px;
 }
 
-.navbar-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.toggle-btn:hover {
+    background-color: #5b00e6;
 }
 
-.navbar-links li {
-    display: inline;
-    margin-right: 20px;
-}
-
-.navbar-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.2em;
-}
-
-.navbar-links a:hover {
-    text-decoration: underline;
-}
-
-footer {
-    background-color: #C80032;  /* Updated to red */
-    color: white;
-    padding: 10px;
-    text-align: center;
-}
-
-/* Countdown timer styling */
-#countdown-timer {
-    font-size: 2em;
-    font-weight: bold;
-    color: #7400ff;  /* Updated to purple */
-}
-
-/* Announcement section styling */
-#announcement {
-    background-color: #f1f1f1;
-    padding: 15px;
-    margin-top: 20px;
-    border-left: 5px solid #7400ff;  /* Added purple border */
-}
-
-#announcement h3 {
-    color: #C80032;  /* Updated to red */
+.student-scores {
+    margin-top: 10px;
 }
