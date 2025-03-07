@@ -42,8 +42,8 @@
 
     <!-- Announcement Section -->
     <section id="announcement" aria-labelledby="announcement-heading" style="display: none;">
-        <h3 id="announcement-heading">Important Announcement</h3>
-        <p>Get ready for the most exciting STEM event of the year! The MSC Competition is approaching quickly, and we're thrilled to have you all participate!</p>
+        <h3 id="announcement-heading">Announcements</h3>
+        <p>The wait is over! The MSC Competition has officially begun, and we're thrilled to have you all participate in this exciting STEM event!</p>
     </section>
 
 </main>
@@ -71,11 +71,10 @@
                 const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-                countdownTimer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-                if (distance < 0) {
-                    clearInterval(x);
-                    countdownTimer.innerHTML = "The event has started!";
+                if (distance > 0) {
+                    countdownTimer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+                } else {
+                    countdownTimer.innerHTML = "🎉 The event has started!"; // Show the celebration emoji once the event starts
                     document.getElementById("announcement").style.display = "block"; // Show the announcement
                 }
             }
