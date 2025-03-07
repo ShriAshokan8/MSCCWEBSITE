@@ -41,7 +41,7 @@
     </section>
 
     <!-- Announcement Section -->
-    <section id="announcement" aria-labelledby="announcement-heading">
+    <section id="announcement" aria-labelledby="announcement-heading" style="display: none;">
         <h3 id="announcement-heading">Important Announcement</h3>
         <p>Get ready for the most exciting STEM event of the year! The MSC Competition is approaching quickly, and we're thrilled to have you all participate!</p>
     </section>
@@ -76,6 +76,7 @@
                 if (distance < 0) {
                     clearInterval(x);
                     countdownTimer.innerHTML = "The event has started!";
+                    document.getElementById("announcement").style.display = "block"; // Show the announcement
                 }
             }
 
