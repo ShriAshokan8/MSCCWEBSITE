@@ -22,29 +22,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Create a list item for each student with scores formatted
+    // Create a list item for each student
     function createStudentItem(student) {
         const studentItem = document.createElement('li');
         studentItem.innerHTML = `
             <strong>${student.Name}</strong><br>
-            <button class="toggle-btn">Show/Hide Scores</button>
-            <div class="student-scores" style="display: none;">
-                <p>R1S - ${student.R1S} / 100</p>
-                <p>R2MS - ${student.R2MS} / 100</p>
-                <p>R2SS - ${student.R2SS} / 100</p>
-                <p>R2CS - ${student.R2CS} / 100</p>
-                <p>R2CoS - ${student.R2CoS} / 100</p>
-            </div>
+            R1S - ${student.R1S} / 100<br>
+            R2MS - ${student.R2MS} / 100<br>
+            R2SS - ${student.R2SS} / 100<br>
+            R2CS - ${student.R2CS} / 100<br>
+            R2CoS - ${student.R2CoS} / 100
         `;
-
-        const toggleBtn = studentItem.querySelector('.toggle-btn');
-        const scoresDiv = studentItem.querySelector('.student-scores');
-
-        toggleBtn.addEventListener('click', () => {
-            const isVisible = scoresDiv.style.display === 'block';
-            scoresDiv.style.display = isVisible ? 'none' : 'block';
-        });
-
         return studentItem;
     }
 
@@ -108,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
             announcementElement.innerHTML = `<h2>🎉 The event has officially started! 🎉</h2>`;
             announcementElement.style.display = "block"; // Ensure the announcement is visible
 
+            // Optionally, you can add some animation here to make it more exciting.
             announcementElement.classList.add('fade-in');
         } else {
             console.error("❌ Announcement element NOT found!");
