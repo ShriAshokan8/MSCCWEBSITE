@@ -41,9 +41,10 @@
     </section>
 
     <!-- Announcement Section -->
-    <section id="announcement" style="display: none;"></section>
+    <section id="announcement" aria-labelledby="announcement-heading">
+        <h3 id="announcement-heading">Important Announcement</h3>
+        <p>Get ready for the most exciting STEM event of the year! The MSC Competition is approaching quickly, and we're thrilled to have you all participate!</p>
     </section>
-
 
 </main>
 
@@ -56,6 +57,29 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+            // Countdown Timer Script
+            const countdownDate = new Date("March 7, 2025 08:00:00 GMT+0000").getTime();
+            const countdownTimer = document.getElementById("countdown-timer");
+
+            function updateCountdown() {
+                const now = new Date().getTime();
+                const distance = countdownDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                countdownTimer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+                if (distance < 0) {
+                    clearInterval(x);
+                    countdownTimer.innerHTML = "The event has started!";
+                }
+            }
+
+            const x = setInterval(updateCountdown, 1000);
         });
     </script>
 </body>
