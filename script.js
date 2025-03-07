@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function createAnnouncement(announcementElement) {
         if (announcementElement) {
             // Show the announcement content
-            announcementElement.innerHTML = `<h2>🎉 The event has officially started! 🎉</h2>`;
+            announcementElement.innerHTML = `<h2>🎉 The wait is over! The MSC Competition has officially begun, and we are thrileld to have you all participate in the exciting STEM event. 🎉</h2>`;
             announcementElement.style.display = "block"; // Ensure the announcement is visible
 
             // Optionally, you can add some animation here to make it more exciting.
