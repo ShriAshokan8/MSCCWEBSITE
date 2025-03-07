@@ -12,7 +12,91 @@ h1, h2, h3 {
 }
 
 header {
-    background-color: #C80032;  /* Updated to red */
+    background-color: #C80032;  /* Updated to red *//* General page styling */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    color: #7400ff;  /* Purple */
+}
+
+header {
+    background-color: #C80032;  /* Red */
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    background-color: #C80032;  /* Red */
+    margin-top: 10px;
+    padding: 10px;
+}
+
+.navbar-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar-links li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.navbar-links a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    background-color: #C80032;  /* Red */
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+/* Countdown timer styling */
+#countdown-timer {
+    font-size: 2em;
+    font-weight: bold;
+    color: #7400ff;  /* Purple */
+}
+
+/* Announcement section styling */
+#announcement {
+    background-color: #f1f1f1;
+    padding: 15px;
+    margin-top: 20px;
+    border-left: 5px solid #7400ff;  /* Purple border */
+}
+
+#announcement h3 {
+    color: #C80032;  /* Red */
+}
+
+#announcement {
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+#announcement.fade-in {
+    opacity: 1;
+}
+
     color: white;
     padding: 20px;
     text-align: center;
