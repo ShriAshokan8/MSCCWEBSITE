@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Create a list item for each student
+    // Create a list item for each student with scores formatted
     function createStudentItem(student) {
         const studentItem = document.createElement('li');
         studentItem.innerHTML = `
@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // Countdown Timer (for future usage)
+    // Countdown Timer
     function startCountdown() {
         const eventDate = new Date("March 7, 2025 08:00:00 GMT").getTime();
         const timerElement = document.getElementById("countdown-timer");
@@ -96,7 +96,6 @@ document.addEventListener('DOMContentLoaded', () => {
             announcementElement.innerHTML = `<h2>🎉 The event has officially started! 🎉</h2>`;
             announcementElement.style.display = "block"; // Ensure the announcement is visible
 
-            // Optionally, you can add some animation here to make it more exciting.
             announcementElement.classList.add('fade-in');
         } else {
             console.error("❌ Announcement element NOT found!");
