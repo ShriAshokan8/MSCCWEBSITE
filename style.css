@@ -1,144 +1,74 @@
-/* General Styles */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
+/* General page styling */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+    background-color: #f8f8f8;
     color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+h1, h2, h3 {
+    color: #7400ff;  /* Updated to purple */
 }
 
 header {
-    background-color: #990000; /* Red color */
-    color: #fff;
+    background-color: #C80032;  /* Updated to red */
+    color: white;
     padding: 20px;
     text-align: center;
-}
-
-h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-}
-
-h2 {
-    font-size: 2em;
-    color: #990000;
-    margin-bottom: 15px;
-}
-
-main {
-    padding: 20px;
-}
-
-footer {
-    background-color: #990000; /* Red color */
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-}
-
-a {
-    text-decoration: none;
-    color: #990000;
-}
-
-a:hover {
-    text-decoration: underline;
 }
 
 .navbar {
-    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+    background-color: #C80032;  /* Updated to red */
+    margin-top: 10px;
+    padding: 10px;
 }
 
 .navbar-links {
     list-style: none;
-    display: flex;
-    justify-content: center;
-    padding: 10px;
+    padding: 0;
+    margin: 0;
 }
 
 .navbar-links li {
-    margin: 0 15px;
+    display: inline;
+    margin-right: 20px;
 }
 
-.navbar-links li a {
-    font-size: 1.1em;
-    color: #fff;
+.navbar-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
 }
 
-.navbar-links li a:hover {
-    color: #f4f4f4;
+.navbar-links a:hover {
+    text-decoration: underline;
 }
 
-/* Countdown Timer */
-#countdown-section {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
+footer {
+    background-color: #C80032;  /* Updated to red */
+    color: white;
+    padding: 10px;
+    text-align: center;
 }
 
+/* Countdown timer styling */
 #countdown-timer {
     font-size: 2em;
     font-weight: bold;
-    color: #990000;
+    color: #7400ff;  /* Updated to purple */
 }
 
-/* Announcement Section */
+/* Announcement section styling */
 #announcement {
-    background-color: #f9f9f9;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-    display: none; /* Hidden by default */
+    background-color: #f1f1f1;
+    padding: 15px;
+    margin-top: 20px;
+    border-left: 5px solid #7400ff;  /* Added purple border */
 }
 
 #announcement h3 {
-    color: #990000;
-}
-
-/* Main Content Section */
-section {
-    margin-bottom: 30px;
-}
-
-ul {
-    margin-left: 20px;
-}
-
-ul li {
-    margin-bottom: 10px;
-}
-
-strong {
-    color: #990000;
-}
-
-/* Footer */
-footer p {
-    font-size: 1em;
-}
-
-footer #currentYear {
-    font-weight: bold;
-}
-
-/* Responsiveness */
-@media (max-width: 768px) {
-    .navbar-links {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .navbar-links li {
-        margin: 10px 0;
-    }
+    color: #C80032;  /* Updated to red */
 }
