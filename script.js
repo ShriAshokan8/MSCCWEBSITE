@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
 
-    // Countdown Timer
+    // Countdown Timer (for future usage)
     function startCountdown() {
         const eventDate = new Date("March 7, 2025 08:00:00 GMT").getTime();
         const timerElement = document.getElementById("countdown-timer");
