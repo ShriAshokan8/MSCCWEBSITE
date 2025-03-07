@@ -1,6 +1,25 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("The DOM has successfully loaded and been parsed. Ready to fetch and display scores.");
 
+    // Dark Mode Toggle
+    const themeToggle = document.getElementById("theme-toggle");
+    const isDarkMode = localStorage.getItem("darkMode") === "enabled";
+
+    if (isDarkMode) {
+        document.body.classList.add("dark-mode");
+        themeToggle.checked = true;
+    }
+
+    themeToggle.addEventListener("change", () => {
+        if (themeToggle.checked) {
+            document.body.classList.add("dark-mode");
+            localStorage.setItem("darkMode", "enabled");
+        } else {
+            document.body.classList.remove("dark-mode");
+            localStorage.setItem("darkMode", "disabled");
+        }
+    });
+
     // Fetch and display scores
     fetch('scores.json')
         .then(response => {
@@ -39,6 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     function startCountdown() {
         const eventDate = new Date("March 7, 2025 08:00:00 GMT").getTime();
         const timerElement = document.getElementById("countdown-timer");
+        const announcementElement = document.getElementById("announcement");
 
         if (!timerElement) {
             console.error("❌ Countdown Timer element NOT found!");
@@ -52,6 +72,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (timeLeft <= 0) {
                 timerElement.innerHTML = "🎉 The event has started!";
                 clearInterval(countdownInterval);
+                createAnnouncement(); // Create announcement when the event starts
                 return;
             }
 
@@ -61,6 +82,14 @@ document.addEventListener('DOMContentLoaded', () => {
             const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
             timerElement.innerHTML = `Event starts in: ${days}d ${hours}h ${minutes}m ${seconds}s`;
+        }
+
+        // Function to create the event announcement
+        function createAnnouncement() {
+            if (announcementElement) {
+                announcementElement.innerHTML = `<h2>🎉 The event has officially started! 🎉</h2>`;
+                // You can add more details or animation here if needed
+            }
         }
 
         updateCountdown(); // Run immediately to prevent 1s delay
