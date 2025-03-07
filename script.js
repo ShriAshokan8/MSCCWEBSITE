@@ -27,12 +27,24 @@ document.addEventListener('DOMContentLoaded', () => {
         const studentItem = document.createElement('li');
         studentItem.innerHTML = `
             <strong>${student.Name}</strong><br>
-            R1S - ${student.R1S} / 100<br>
-            R2MS - ${student.R2MS} / 100<br>
-            R2SS - ${student.R2SS} / 100<br>
-            R2CS - ${student.R2CS} / 100<br>
-            R2CoS - ${student.R2CoS} / 100
+            <button class="toggle-btn">Show/Hide Scores</button>
+            <div class="student-scores" style="display: none;">
+                <p>R1S - ${student.R1S} / 100</p>
+                <p>R2MS - ${student.R2MS} / 100</p>
+                <p>R2SS - ${student.R2SS} / 100</p>
+                <p>R2CS - ${student.R2CS} / 100</p>
+                <p>R2CoS - ${student.R2CoS} / 100</p>
+            </div>
         `;
+
+        const toggleBtn = studentItem.querySelector('.toggle-btn');
+        const scoresDiv = studentItem.querySelector('.student-scores');
+
+        toggleBtn.addEventListener('click', () => {
+            const isVisible = scoresDiv.style.display === 'block';
+            scoresDiv.style.display = isVisible ? 'none' : 'block';
+        });
+
         return studentItem;
     }
 
