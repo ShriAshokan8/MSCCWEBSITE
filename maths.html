@@ -71,40 +71,18 @@
             <p>≤  = Squared</p>
         </div>
 
-        <div class="timer" id="timer">40:00</div>
+        <div class="timer" id="timer" data-duration="2400">40:00</div>
         <button onclick="startTimer()">Start</button>
         <button onclick="pauseTimer()">Pause</button>
         <button onclick="resetTimer()">Reset</button>
     </main>
 
-    <script>
-        let timerInterval;
-        let timeLeft = 2400; // 40 minutes in seconds
-        const timerElement = document.getElementById('timer');
+    <button id="theme-toggle" class="theme-toggle">Switch to Dark Mode</button>
 
-        function startTimer() {
-            clearInterval(timerInterval);
-            timerInterval = setInterval(() => {
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                } else {
-                    timeLeft--;
-                    const minutes = Math.floor(timeLeft / 60);
-                    const seconds = timeLeft % 60;
-                    timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-                }
-            }, 1000);
-        }
+    <footer>
+        <p>&copy; <span id="currentYear"></span> MSC Competition. All rights reserved.</p>
+    </footer>
 
-        function pauseTimer() {
-            clearInterval(timerInterval);
-        }
-
-        function resetTimer() {
-            clearInterval(timerInterval);
-            timeLeft = 2400;
-            timerElement.textContent = '40:00';
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
