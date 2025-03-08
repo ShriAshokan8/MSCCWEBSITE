@@ -183,3 +183,32 @@ footer p span {
 #announcement.hidden {
     display: none;
 }
+
+/* Dark Mode Styles */
+body.dark-mode {
+    background-color: #333;
+    color: #f4f4f4;
+}
+
+body.dark-mode header {
+    background-color: #7400FF;
+    color: #fff;
+}
+
+body.dark-mode main {
+    background: #555;
+    color: #fff;
+}
+
+body.dark-mode footer {
+    background-color: #222;
+    color: #f4f4f4;
+}
+
+body.dark-mode nav.navbar ul.navbar-links li a {
+    color: #fff;
+}
+
+body.dark-mode nav.navbar ul.navbar-links li a:hover {
+    background-color: #C40036;
+}
