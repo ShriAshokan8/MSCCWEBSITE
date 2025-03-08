@@ -60,6 +60,12 @@
         <button onclick="resetTimer()">Reset</button>
     </main>
 
+    <button id="theme-toggle" class="theme-toggle">Switch to Dark Mode</button>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> MSC Competition. All rights reserved.</p>
+    </footer>
+
     <script>
         let timerInterval;
         let timeLeft = 1800; // 30 minutes in seconds
@@ -88,6 +94,19 @@
             timeLeft = 1800;
             timerElement.textContent = '30:00';
         }
+
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+        const toggleButton = document.getElementById('theme-toggle');
+    
+        toggleButton.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                toggleButton.textContent = 'Switch to Light Mode';
+            } else {
+                toggleButton.textContent = 'Switch to Dark Mode';
+            }
+        });
     </script>
 </body>
 </html>
