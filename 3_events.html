@@ -58,7 +58,18 @@
     <script src="script.js"></script>
 
     <script>
-        document.getElementById("currentYear").textContent = new Date().getFullYear();
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("currentYear").textContent = new Date().getFullYear();
+
+            // Dark/Light Mode Toggle
+            const toggleButton = document.createElement('button');
+            toggleButton.textContent = 'Toggle Dark/Light Mode';
+            document.body.appendChild(toggleButton);
+
+            toggleButton.addEventListener('click', () => {
+                document.body.classList.toggle('dark-mode');
+            });
+        });
     </script>
 </body>
 </html>
