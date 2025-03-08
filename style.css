@@ -260,4 +260,23 @@ body.dark-mode .theme-toggle:hover {
     border: 1px solid #ccc;
     border-top: none;
     background-color: #fff;
+    color: #333;
+}
+
+/* Dark Mode specific styles for categories and students */
+body.dark-mode .category h3,
+body.dark-mode .student h4 {
+    background-color: #444;
+    border: 1px solid #666;
+}
+
+body.dark-mode .category h3:hover,
+body.dark-mode .student h4:hover {
+    background-color: #555;
+}
+
+body.dark-mode .category-content,
+body.dark-mode .student-content {
+    background-color: #666;
+    color: #f4f4f4;
 }
