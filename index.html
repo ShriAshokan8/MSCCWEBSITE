@@ -23,7 +23,8 @@
                 <li><a href="6_future_plans.html">Future Plans</a></li>
             </ul>
         </nav>
-        <button id="theme-toggle" class="lightbulb off"></button>
+
+        <button id="theme-toggle">Switch to Dark Mode</button>
     </header>
 
     <main>
@@ -83,29 +84,4 @@
                 const now = new Date().getTime();
                 const distance = countdownDate - now;
 
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                if (distance > 0) {
-                    countdownTimer.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-                } else {
-                    countdownTimer.innerHTML = "🎉 The event has started!"; // Show the celebration emoji once the event starts
-                    document.getElementById("announcement").style.display = "block"; // Show the announcement
-                }
-            }
-
-            const x = setInterval(updateCountdown, 1000);
-
-            // Theme toggle button
-            const themeToggleButton = document.getElementById('theme-toggle');
-            themeToggleButton.addEventListener('click', () => {
-                document.body.classList.toggle('dark-mode');
-                themeToggleButton.classList.toggle('off');
-                themeToggleButton.classList.toggle('on');
-            });
-        });
-    </script>
-</body>
-</html>
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24
