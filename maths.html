@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maths - Equation Escape</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { color: #333; }
+        p { margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <h1>Project - Equation Escape</h1>
+    <p>Theme: "How would I change and adapt a board game called Equation Escape?"</p>
+    <p>Concept of Equation Escape: Players solve equations to unlock paths and escape a maze.</p>
+    <p>Adaptations: May include adjusting difficulty levels, adding a time limit, creating different types of puzzles (e.g., fractions, algebra), and incorporating power-ups.</p>
+
+    <h2>Quiz (Conditions/Information)</h2>
+    <p>Time Limit: Complete the quiz within 40 minutes.</p>
+    <p>Format: 30 multiple-choice questions, each with one correct answer (multiple if specified).</p>
+    <p>Scoring: 1 point per correct answer. No negative marking.</p>
+
+    <h3>Rules:</h3>
+    <ul>
+        <li>No calculators or external aids unless allowed.</li>
+        <li>No talking to others during the quiz.</li>
+    </ul>
+
+    <p>Submission: Answers must be submitted within the time limit and cannot be changed.</p>
+    <p>Results: Scores will be announced the week after. Solutions may be provided afterward.</p>
+    <p>∞ = Degrees</p>
+    <p>Ignore the extra slash after each fraction! (2/5/)</p>
+    <p>≤ = Squared</p>
+
+    <h2>Timer</h2>
+    <div>
+        <button onclick="startTimer()">Start</button>
+        <button onclick="pauseTimer()">Pause</button>
+        <button onclick="resetTimer()">Reset</button>
+        <div id="timer">30:00</div>
+    </div>
+
+    <script>
+        let timer;
+        let timeLeft = 1800;
+        let timerRunning = false;
+
+        function startTimer() {
+            if (!timerRunning) {
+                timerRunning = true;
+                timer = setInterval(() => {
+                    if (timeLeft > 0) {
+                        timeLeft--;
+                        document.getElementById('timer').innerText = formatTime(timeLeft);
+                    } else {
+                        clearInterval(timer);
+                    }
+                }, 1000);
+            }
+        }
+
+        function pauseTimer() {
+            clearInterval(timer);
+            timerRunning = false;
+        }
+
+        function resetTimer() {
+            clearInterval(timer);
+            timerRunning = false;
+            timeLeft = 1800;
+            document.getElementById('timer').innerText = formatTime(timeLeft);
+        }
+
+        function formatTime(seconds) {
+            let minutes = Math.floor(seconds / 60);
+            let secs = seconds % 60;
+            return `${minutes.toString().padStart(2, '0')}:${secs.toString().padStart(2, '0')}`;
+        }
+    </script>
+</body>
+</html>
