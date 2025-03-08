@@ -15,6 +15,11 @@
             padding: 10px;
             font-size: 1em;
         }
+        .important-info {
+            font-size: 1.5em;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -59,10 +64,12 @@
             <li>Submission: Answers must be submitted within the time limit and cannot be changed.</li>
             <li>Results: Scores will be announced the week after. Solutions may be provided afterward.</li>
         </ul>
-        
-        <p>∞ = Degrees</p>
-        <p>Ignore the extra slash after each fraction! (2/5/)</p>
-        <p>≤  = Squared</p>
+
+        <div class="important-info">
+            <p>∞ = Degrees</p>
+            <p>Ignore the extra slash after each fraction! (2/5/)</p>
+            <p>≤  = Squared</p>
+        </div>
 
         <div class="timer" id="timer">30:00</div>
         <button onclick="startTimer()">Start</button>
