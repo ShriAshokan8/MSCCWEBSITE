@@ -54,7 +54,7 @@
             <li>Results: Scores will be announced the week after. Solutions may be provided afterward.</li>
         </ul>
 
-        <div class="timer" id="timer">30:00</div>
+        <div class="timer" id="timer" data-duration="1800">30:00</div>
         <button onclick="startTimer()">Start</button>
         <button onclick="pauseTimer()">Pause</button>
         <button onclick="resetTimer()">Reset</button>
@@ -66,47 +66,6 @@
         <p>&copy; <span id="currentYear"></span> MSC Competition. All rights reserved.</p>
     </footer>
 
-    <script>
-        let timerInterval;
-        let timeLeft = 1800; // 30 minutes in seconds
-        const timerElement = document.getElementById('timer');
-
-        function startTimer() {
-            clearInterval(timerInterval);
-            timerInterval = setInterval(() => {
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                } else {
-                    timeLeft--;
-                    const minutes = Math.floor(timeLeft / 60);
-                    const seconds = timeLeft % 60;
-                    timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-                }
-            }, 1000);
-        }
-
-        function pauseTimer() {
-            clearInterval(timerInterval);
-        }
-
-        function resetTimer() {
-            clearInterval(timerInterval);
-            timeLeft = 1800;
-            timerElement.textContent = '30:00';
-        }
-
-        document.getElementById("currentYear").textContent = new Date().getFullYear();
-
-        const toggleButton = document.getElementById('theme-toggle');
-    
-        toggleButton.addEventListener('click', () => {
-            document.body.classList.toggle('dark-mode');
-            if (document.body.classList.contains('dark-mode')) {
-                toggleButton.textContent = 'Switch to Light Mode';
-            } else {
-                toggleButton.textContent = 'Switch to Dark Mode';
-            }
-        });
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
