@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Show the announcement content
             announcementElement.innerHTML = `
                 <h2>🎉 The wait is over! The MSC Competition has officially begun, and we are thrilled to have you all participate in the exciting STEM event. 🎉</h2>
-                <h2>Rounds 1 and 2 of the MSC Competition will take place during the week commencing 10th March. If you require a pass for the respective clubs, please reach out to any member of the MSC Team!
+                <h2>Rounds 1 and 2 of the MSC Competition will take place during the week commencing 10th March. If you require a pass for the respective clubs, please reach out to any member of the MSC team.</h2>
             `;
             announcementElement.style.display = "block"; // Ensure the announcement is visible
 
@@ -171,4 +171,48 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleButton.textContent = 'Switch to Dark Mode';
         }
     });
+
+    // Timer Functions
+    let timerInterval;
+    let timeLeft;
+    const timerElement = document.getElementById('timer');
+
+    function startTimer() {
+        const duration = timerElement.getAttribute('data-duration');
+        timeLeft = parseInt(duration, 10);
+
+        clearInterval(timerInterval);
+        timerInterval = setInterval(() => {
+            if (timeLeft <= 0) {
+                clearInterval(timerInterval);
+            } else {
+                timeLeft--;
+                const minutes = Math.floor(timeLeft / 60);
+                const seconds = timeLeft % 60;
+                timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+            }
+        }, 1000);
+    }
+
+    function pauseTimer() {
+        clearInterval(timerInterval);
+    }
+
+    function resetTimer() {
+        clearInterval(timerInterval);
+        const duration = timerElement.getAttribute('data-duration');
+        timeLeft = parseInt(duration, 10);
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+    }
+
+    window.startTimer = startTimer;
+    window.pauseTimer = pauseTimer;
+    window.resetTimer = resetTimer;
+
+    // Initialize timer display
+    if (timerElement) {
+        resetTimer();
+    }
 });
