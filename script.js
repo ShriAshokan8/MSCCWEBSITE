@@ -1,5 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("The DOM has successfully loaded. Ready to fetch and display scores.");
+    
+    // Initialize AOS for scroll animations
+    AOS.init();
 
     // Fetch and display scores
     fetchScores('scores.json')
