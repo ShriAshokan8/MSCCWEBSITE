@@ -117,6 +117,23 @@ footer p span {
     color: #C40036;
 }
 
+/* Theme Toggle Button Styles */
+.theme-toggle {
+    display: block;
+    margin: 20px auto;
+    padding: 10px 20px;
+    background-color: #C40036;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.theme-toggle:hover {
+    background-color: #7400FF;
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     nav.navbar ul.navbar-links {
@@ -210,5 +227,13 @@ body.dark-mode nav.navbar ul.navbar-links li a {
 }
 
 body.dark-mode nav.navbar ul.navbar-links li a:hover {
+    background-color: #C40036;
+}
+
+body.dark-mode .theme-toggle {
+    background-color: #7400FF;
+}
+
+body.dark-mode .theme-toggle:hover {
     background-color: #C40036;
 }
