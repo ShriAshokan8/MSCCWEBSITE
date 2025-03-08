@@ -33,11 +33,11 @@
     </header>
 
     <main>
-        <h1>Tutor Time Section</h1>
-        
+        <h1>Tutor Time</h1>
+
         <h2>Quiz Information</h2>
         <ul>
-            <li>Time Limit: Complete the quiz within 30 minutes. (Start at 8:30am!)</li>
+            <li>Time Limit: Complete the quiz within 30 minutes.</li>
             <li>Format: 30 multiple-choice questions, each with one correct answer (multiple if specified).</li>
             <li>Scoring: 1 point per correct answer. No negative marking.</li>
             <li>Rules: 
@@ -50,40 +50,18 @@
             <li>Results: Scores will be announced the week after. Solutions may be provided afterward.</li>
         </ul>
 
-        <div class="timer" id="timer">30:00</div>
+        <div class="timer" id="timer" data-duration="1800">30:00</div>
         <button onclick="startTimer()">Start</button>
         <button onclick="pauseTimer()">Pause</button>
         <button onclick="resetTimer()">Reset</button>
     </main>
 
-    <script>
-        let timerInterval;
-        let timeLeft = 1800; // 30 minutes in seconds
-        const timerElement = document.getElementById('timer');
+    <button id="theme-toggle" class="theme-toggle">Switch to Dark Mode</button>
 
-        function startTimer() {
-            clearInterval(timerInterval);
-            timerInterval = setInterval(() => {
-                if (timeLeft <= 0) {
-                    clearInterval(timerInterval);
-                } else {
-                    timeLeft--;
-                    const minutes = Math.floor(timeLeft / 60);
-                    const seconds = timeLeft % 60;
-                    timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
-                }
-            }, 1000);
-        }
+    <footer>
+        <p>&copy; <span id="currentYear"></span> MSC Competition. All rights reserved.</p>
+    </footer>
 
-        function pauseTimer() {
-            clearInterval(timerInterval);
-        }
-
-        function resetTimer() {
-            clearInterval(timerInterval);
-            timeLeft = 1800;
-            timerElement.textContent = '30:00';
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
