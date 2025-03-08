@@ -59,6 +59,7 @@ main {
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     margin-top: 2rem;
+    color: #333;
 }
 
 main h2 {
@@ -93,6 +94,7 @@ main ul li {
     border-left: 4px solid #C40036;
     border-radius: 4px;
     font-weight: bold;
+    color: #333;
 }
 
 /* Hidden class to hide elements */
@@ -214,7 +216,7 @@ body.dark-mode header {
 
 body.dark-mode main {
     background: #555;
-    color: #fff;
+    color: #f4f4f4;
 }
 
 body.dark-mode footer {
