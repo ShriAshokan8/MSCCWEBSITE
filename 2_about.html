@@ -23,6 +23,8 @@
                 <li><a href="6_future_plans.html">Future Plans</a></li>
             </ul>
         </nav>
+
+        <button id="theme-toggle">Switch to Dark Mode</button>
     </header>
 
     <main>
@@ -57,19 +59,5 @@
     </footer>
 
     <script src="script.js"></script>
-    <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            document.getElementById("currentYear").textContent = new Date().getFullYear();
-
-            // Dark/Light Mode Toggle
-            const toggleButton = document.createElement('button');
-            toggleButton.textContent = 'Toggle Dark/Light Mode';
-            document.body.appendChild(toggleButton);
-
-            toggleButton.addEventListener('click', () => {
-                document.body.classList.toggle('dark-mode');
-            });
-        });
-    </script>
 </body>
 </html>
