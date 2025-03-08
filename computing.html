@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computing - Adapting Technology Over Time</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .timer {
+            font-size: 2em;
+            margin-top: 20px;
+        }
+        button {
+            margin: 5px;
+            padding: 10px;
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MSC Competition</h1>
+        <nav class="navbar">
+            <ul class="navbar-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="maths.html">Maths</a></li>
+                <li><a href="science.html">Science</a></li>
+                <li><a href="computing.html">Computing</a></li>
+                <li><a href="combined.html">Combined</a></li>
+                <li><a href="tutortime.html">Tutor Time</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Computing Section</h1>
+        <h2>Theme: "Adapting Technology Over Time"</h2>
+        <h3>Tasks:</h3>
+        <p>Develop a project on the evolution of devices, focusing on changes in phones or computers regarding size, speed, and function.</p>
+        <p>Present findings using a timeline, graph, or visual report accompanied by a brief written explanation.</p>
+        
+        <h2>Quiz Information</h2>
+        <ul>
+            <li>Time Limit: Complete the quiz within 30 minutes.</li>
+            <li>Format: 30 multiple-choice questions, each with one correct answer (multiple if specified).</li>
+            <li>Scoring: 1 point per correct answer. No negative marking.</li>
+            <li>Rules: 
+                <ul>
+                    <li>No external aids unless allowed.</li>
+                    <li>No cheating.</li>
+                </ul>
+            </li>
+            <li>Submission: Answers must be submitted within the time limit and cannot be changed.</li>
+            <li>Results: Scores will be announced the week after. Solutions may be provided afterward.</li>
+        </ul>
+
+        <div class="timer" id="timer">30:00</div>
+        <button onclick="startTimer()">Start</button>
+        <button onclick="pauseTimer()">Pause</button>
+        <button onclick="resetTimer()">Reset</button>
+    </main>
+
+    <script>
+        let timerInterval;
+        let timeLeft = 1800; // 30 minutes in seconds
+        const timerElement = document.getElementById('timer');
+
+        function startTimer() {
+            clearInterval(timerInterval);
+            timerInterval = setInterval(() => {
+                if (timeLeft <= 0) {
+                    clearInterval(timerInterval);
+                } else {
+                    timeLeft--;
+                    const minutes = Math.floor(timeLeft / 60);
+                    const seconds = timeLeft % 60;
+                    timerElement.textContent = `${minutes}:${seconds < 10 ? '0' : ''}${seconds}`;
+                }
+            }, 1000);
+        }
+
+        function pauseTimer() {
+            clearInterval(timerInterval);
+        }
+
+        function resetTimer() {
+            clearInterval(timerInterval);
+            timeLeft = 1800;
+            timerElement.textContent = '30:00';
+        }
+    </script>
+</body>
+</html>
