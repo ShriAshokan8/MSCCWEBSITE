@@ -71,7 +71,7 @@
             <p>≤  = Squared</p>
         </div>
 
-        <div class="timer" id="timer">30:00</div>
+        <div class="timer" id="timer">40:00</div>
         <button onclick="startTimer()">Start</button>
         <button onclick="pauseTimer()">Pause</button>
         <button onclick="resetTimer()">Reset</button>
@@ -79,7 +79,7 @@
 
     <script>
         let timerInterval;
-        let timeLeft = 1800; // 30 minutes in seconds
+        let timeLeft = 2400; // 40 minutes in seconds
         const timerElement = document.getElementById('timer');
 
         function startTimer() {
@@ -102,8 +102,8 @@
 
         function resetTimer() {
             clearInterval(timerInterval);
-            timeLeft = 1800;
-            timerElement.textContent = '30:00';
+            timeLeft = 2400;
+            timerElement.textContent = '40:00';
         }
     </script>
 </body>
