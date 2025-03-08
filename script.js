@@ -11,29 +11,80 @@ document.addEventListener('DOMContentLoaded', () => {
         const scoresSection = document.getElementById('scoresSection');
         if (scoresSection) {
             scoresSection.innerHTML = ''; // Clear existing content
-            const studentList = document.createElement('ul');
 
-            data.forEach(student => {
-                const studentItem = createStudentItem(student);
-                studentList.appendChild(studentItem);
+            // Group students by categories
+            const categories = groupByCategory(data);
+
+            // Create accordion for each category
+            Object.keys(categories).forEach(category => {
+                const categoryElement = createCategoryElement(category, categories[category]);
+                scoresSection.appendChild(categoryElement);
             });
-
-            scoresSection.appendChild(studentList);
         }
     }
 
-    // Create a list item for each student
-    function createStudentItem(student) {
-        const studentItem = document.createElement('li');
-        studentItem.innerHTML = `
-            <strong>${student.Name}</strong><br>
+    // Group students by categories
+    function groupByCategory(data) {
+        return data.reduce((acc, student) => {
+            const category = student.Group;
+            if (!acc[category]) {
+                acc[category] = [];
+            }
+            acc[category].push(student);
+            return acc;
+        }, {});
+    }
+
+    // Create a category element
+    function createCategoryElement(category, students) {
+        const categoryDiv = document.createElement('div');
+        categoryDiv.classList.add('category');
+
+        const categoryHeader = document.createElement('h3');
+        categoryHeader.textContent = `Category ${category}`;
+        categoryHeader.addEventListener('click', () => {
+            categoryContent.classList.toggle('hidden');
+        });
+
+        const categoryContent = document.createElement('div');
+        categoryContent.classList.add('hidden', 'category-content');
+
+        students.forEach(student => {
+            const studentElement = createStudentElement(student);
+            categoryContent.appendChild(studentElement);
+        });
+
+        categoryDiv.appendChild(categoryHeader);
+        categoryDiv.appendChild(categoryContent);
+
+        return categoryDiv;
+    }
+
+    // Create a student element
+    function createStudentElement(student) {
+        const studentDiv = document.createElement('div');
+        studentDiv.classList.add('student');
+
+        const studentHeader = document.createElement('h4');
+        studentHeader.textContent = student.Name;
+        studentHeader.addEventListener('click', () => {
+            studentContent.classList.toggle('hidden');
+        });
+
+        const studentContent = document.createElement('div');
+        studentContent.classList.add('hidden', 'student-content');
+        studentContent.innerHTML = `
             R1S - ${student.R1S} / 100<br>
             R2MS - ${student.R2MS} / 100<br>
             R2SS - ${student.R2SS} / 100<br>
             R2CS - ${student.R2CS} / 100<br>
             R2CoS - ${student.R2CoS} / 100
         `;
-        return studentItem;
+
+        studentDiv.appendChild(studentHeader);
+        studentDiv.appendChild(studentContent);
+
+        return studentDiv;
     }
 
     // Fetch the scores from the given URL
@@ -95,7 +146,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Show the announcement content
             announcementElement.innerHTML = `
                 <h2>🎉 The wait is over! The MSC Competition has officially begun, and we are thrilled to have you all participate in the exciting STEM event. 🎉</h2>
-                <h2>Rounds 1 and 2 of the MSC Competition will take place during the week commencing 10th March. If you require a pass for the respective clubs, please reach out to any member of the MSC Team!
+                <h2>Rounds 1 and 2 of the MSC Competition will take place during the week commencing 10th March. If you require a pass for the respective clubs, please reach out to any member of the M[...]
             `;
             announcementElement.style.display = "block"; // Ensure the announcement is visible
 
@@ -119,7 +170,4 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleButton.textContent = 'Switch to Dark Mode';
         }
     });
-
-    // Update the current year in the footer dynamically
-    document.getElementById("currentYear").textContent = new Date().getFullYear();
 });
