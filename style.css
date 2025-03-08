@@ -268,6 +268,7 @@ body.dark-mode .category h3,
 body.dark-mode .student h4 {
     background-color: #444;
     border: 1px solid #666;
+    color: #f4f4f4;
 }
 
 body.dark-mode .category h3:hover,
