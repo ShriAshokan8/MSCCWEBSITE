@@ -74,11 +74,13 @@ document.addEventListener('DOMContentLoaded', () => {
         const studentContent = document.createElement('div');
         studentContent.classList.add('hidden', 'student-content');
         studentContent.innerHTML = `
-            R1S - ${student.R1S} / 100<br>
-            R2MS - ${student.R2MS} / 100<br>
-            R2SS - ${student.R2SS} / 100<br>
-            R2CS - ${student.R2CS} / 100<br>
-            R2CoS - ${student.R2CoS} / 100
+            <span style="color: black;">
+                R1S - ${student.R1S} / 100<br>
+                R2MS - ${student.R2MS} / 100<br>
+                R2SS - ${student.R2SS} / 100<br>
+                R2CS - ${student.R2CS} / 100<br>
+                R2CoS - ${student.R2CoS} / 100
+            </span>
         `;
 
         studentDiv.appendChild(studentHeader);
