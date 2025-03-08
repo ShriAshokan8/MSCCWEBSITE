@@ -152,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
             `;
             announcementElement.style.display = "block"; // Ensure the announcement is visible
 
-            // Optionally, you can add some animation here to make it more exciting.
             announcementElement.classList.add('fade-in');
         } else {
             console.error("❌ Announcement element NOT found!");
