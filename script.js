@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
         categoryDiv.classList.add('category');
 
         const categoryHeader = document.createElement('h3');
-        categoryHeader.textContent = `Category ${category}`;
+        categoryHeader.textContent = category;
         categoryHeader.addEventListener('click', () => {
             categoryContent.classList.toggle('hidden');
         });
