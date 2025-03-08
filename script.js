@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Show the announcement content
             announcementElement.innerHTML = `
                 <h2>🎉 The wait is over! The MSC Competition has officially begun, and we are thrilled to have you all participate in the exciting STEM event. 🎉</h2>
-                <h2>Rounds 1 and 2 of the MSC Competition will take place during the week commencing 10th March. If you require a pass for the respective clubs, please reach out to any member of the M[...]
+                <h2>Rounds 1 and 2 of the MSC Competition will take place during the week commencing 10th March. If you require a pass for the respective clubs, please reach out to any member of the MSC Team!
             `;
             announcementElement.style.display = "block"; // Ensure the announcement is visible
 
