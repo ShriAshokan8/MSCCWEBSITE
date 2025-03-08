@@ -104,4 +104,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     startCountdown(); // Initialize countdown timer
+
+    // Dark/Light Mode Toggle
+    const toggleButton = document.createElement('button');
+    toggleButton.textContent = 'Toggle Dark/Light Mode';
+    document.body.appendChild(toggleButton);
+
+    toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+    });
 });
