@@ -142,24 +142,27 @@ document.addEventListener('DOMContentLoaded', () => {
         return { days, hours, minutes, seconds };
     }
 
-    // Create the event announcements
-    function createAnnouncements(announcementElement) {
-        if (announcementElement) {
-            // Show the announcement content
-            announcementElement.innerHTML = `
-                <h2>🎉 The wait is over! The MSC Competition has officially begun, and we are thrilled to have you all participate in the exciting STEM event. 🎉</h2>
-                <h2>🎉 Rounds 1 and 2 of the MSC Competition will take place during the week commencing 10th March. If you require a pass for the respective clubs, please reach out to any member of the MSC team. 🎉</h2>
-                <h2>🎉 Groups 1 & 2 will be doing the quiz on Tuesday the 11th of March, Groups 4 & 5 will be doing the quiz on Wednesday the 12th of March, and Groups 3 & 6 will be doing the quiz on Thursday the 13th of March, all during Tutor Time! 🎉</h2>
-                <h2>🎉 Coding Club (Computing) will start off the event from Tuesday the 11th of March, Science for Life Club (Science) will be starting off the overall competition from Friday the 14th of March, & STEM Club (Combined) will start off the competition from Wednesday the 19th of March, & all during Lunch Time and starting off with a quiz. 🎉</h2>
-                <h2>🎉 The Maths Section will start off the competition from Thursday the 20th/Friday the 21st of March (for X and Y band), all during Maths Lessons, and starting with the quiz. 🎉</h2>
-            `;
-            announcementElement.style.display = "block"; // Ensure the announcement is visible
+// Create the event announcements
+function createAnnouncements(announcementElement) {
+    if (announcementElement) {
+        // Define the announcements
+        const announcements = [
+            "🎉 The wait is over! The MSC Competition has officially begun, and we are thrilled to have you all participate in the exciting STEM event. 🎉",
+            "🎉 Rounds 1 and 2 of the MSC Competition will take place during the week commencing 10th March. If you require a pass for the respective clubs, please reach out to any member of the MSC team. 🎉",
+            "🎉 Groups 1 & 2 will be doing the quiz on Tuesday the 11th of March, Groups 4 & 5 will be doing the quiz on Wednesday the 12th of March, and Groups 3 & 6 will be doing the quiz on Thursday the 13th of March, all during Tutor Time! 🎉",
+            "🎉 Coding Club (Computing) will start off the event from Tuesday the 11th of March, Science for Life Club (Science) will be starting off the overall competition from Friday the 14th of March, & STEM Club (Combined) will start off the competition from Wednesday the 19th of March, & all during Lunch Time and starting off with a quiz. 🎉",
+            "🎉 The Maths Section will start off the competition from Thursday the 20th/Friday the 21st of March (for X and Y band), all during Maths Lessons, and starting with the quiz. 🎉"
+        ];
 
-            announcementElement.classList.add('fade-in');
-        } else {
-            console.error("❌ Announcement element NOT found!");
-        }
+        // Show the announcement content
+        announcementElement.innerHTML = announcements.map(announcement => `<div class="announcement"><h2>${announcement}</h2></div>`).join('');
+        announcementElement.style.display = "block"; // Ensure the announcement is visible
+
+        announcementElement.classList.add('fade-in');
+    } else {
+        console.error("❌ Announcement element NOT found!");
     }
+}
 
     startCountdown(); // Initialize countdown timer
 
