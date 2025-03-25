@@ -52,6 +52,14 @@ nav.navbar ul.navbar-links {
     display: none; /* Initially hidden */
 }
 
+nav.navbar ul.navbar-links.hidden {
+    display: none;
+}
+
+nav.navbar ul.navbar-links.show {
+    display: flex;
+}
+
 nav.navbar ul.navbar-links li {
     display: block;
 }
