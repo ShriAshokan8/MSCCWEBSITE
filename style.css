@@ -15,6 +15,7 @@ header {
     padding: 1rem 0;
     text-align: center;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
 header h1 {
@@ -23,18 +24,36 @@ header h1 {
     letter-spacing: 1px;
 }
 
+/* Hamburger Menu Styles */
+.hamburger-menu {
+    font-size: 2rem;
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+}
+
 /* Navigation Styles */
 nav.navbar ul.navbar-links {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: flex-start;
     gap: 1rem;
+    position: absolute;
+    top: 3rem;
+    left: 1rem;
+    background-color: #C40036;
+    padding: 1rem;
+    border-radius: 8px;
+    display: none; /* Initially hidden */
 }
 
 nav.navbar ul.navbar-links li {
-    display: inline;
+    display: block;
 }
 
 nav.navbar ul.navbar-links li a {
@@ -139,7 +158,7 @@ footer p span {
 @media (max-width: 768px) {
     nav.navbar ul.navbar-links {
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
     }
 
     main {
