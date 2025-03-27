@@ -212,18 +212,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.startTimer = startTimer;
     window.pauseTimer = pauseTimer;
-    window.resetTimer = resetTimer;
-
-    // Initialize timer display
-    if (timerElement) {
-        resetTimer();
-    }
-
-    // Toggle the navigation menu
-    window.toggleMenu = function() {
-        const navbarLinks = document.querySelector('.navbar-links');
-        if (navbarLinks) {
-            navbarLinks.classList.toggle('hidden');
-        }
-    };
-});
