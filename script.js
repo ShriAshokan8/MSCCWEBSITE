@@ -148,10 +148,7 @@ function createAnnouncements(announcementElement) {
         // Define the announcements
         const announcements = [
             "🎉 The wait is over! The MSC Competition has officially begun, and we are thrilled to have you all participate in the exciting STEM event. 🎉",
-            "🎉 Rounds 1 and 2 of the MSC Competition will take place during the week commencing 10th March. If you require a pass for the respective clubs, please reach out to any member of the MSC team. 🎉",
-            "🎉 Groups 1 & 2 will be doing the quiz on Tuesday the 11th of March, Groups 4 & 5 will be doing the quiz on Wednesday the 12th of March, and Groups 3 & 6 will be doing the quiz on Thursday the 13th of March, all during Tutor Time! 🎉",
-            "🎉 Coding Club (Computing) will start off the event from Tuesday the 11th of March, Science for Life Club (Science) will be starting off the overall competition from Friday the 14th of March, & STEM Club (Combined) will start off the competition from Wednesday the 19th of March, & all during Lunch Time and starting off with a quiz. 🎉",
-            "🎉 The Maths Section will start off the competition from Thursday the 20th/Friday the 21st of March (for X and Y band), all during Maths Lessons, and starting with the quiz. 🎉"
+            "🎉 Rounds 1 and 2 of the MSC Competition will take place during the week commencing 10th March. If you require a pass for the respective clubs, please reach out to any member of the MSC[...]"
         ];
 
         // Show the announcement content
