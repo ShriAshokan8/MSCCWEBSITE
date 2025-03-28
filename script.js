@@ -148,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Define the announcements
             const announcements = [
                 "🎉 The wait is over! The MSC Competition has officially begun, and we are thrilled to have you all participate in the exciting STEM event. 🎉",
-                "🎉 Rounds 1 and 2 of the MSC Competition will take place during the week commencing 10th March. If you require a pass for the respective clubs, please reach out to any member of the MSC Team members!"
+                "🎉 If you require a pass for the respective clubs, please reach out to any member of the MSC Team members! 🎉"
             ];
 
             // Show the announcement content
