@@ -142,24 +142,24 @@ document.addEventListener('DOMContentLoaded', () => {
         return { days, hours, minutes, seconds };
     }
 
-// Create the event announcements
-function createAnnouncements(announcementElement) {
-    if (announcementElement) {
-        // Define the announcements
-        const announcements = [
-            "🎉 The wait is over! The MSC Competition has officially begun, and we are thrilled to have you all participate in the exciting STEM event. 🎉",
-            "🎉 Rounds 1 and 2 of the MSC Competition will take place during the week commencing 10th March. If you require a pass for the respective clubs, please reach out to any member of the MSC[...]"
-        ];
+    // Create the event announcements
+    function createAnnouncements(announcementElement) {
+        if (announcementElement) {
+            // Define the announcements
+            const announcements = [
+                "🎉 The wait is over! The MSC Competition has officially begun, and we are thrilled to have you all participate in the exciting STEM event. 🎉",
+                "🎉 Rounds 1 and 2 of the MSC Competition will take place during the week commencing 10th March. If you require a pass for the respective clubs, please reach out to any member of the MSC[...]"
+            ];
 
-        // Show the announcement content
-        announcementElement.innerHTML = announcements.map(announcement => `<div class="announcement"><h2>${announcement}</h2></div>`).join('');
-        announcementElement.style.display = "block"; // Ensure the announcement is visible
+            // Show the announcement content
+            announcementElement.innerHTML = announcements.map(announcement => `<div class="announcement"><h2>${announcement}</h2></div>`).join('');
+            announcementElement.style.display = "block"; // Ensure the announcement is visible
 
-        announcementElement.classList.add('fade-in');
-    } else {
-        console.error("❌ Announcement element NOT found!");
+            announcementElement.classList.add('fade-in');
+        } else {
+            console.error("❌ Announcement element NOT found!");
+        }
     }
-}
 
     startCountdown(); // Initialize countdown timer
 
@@ -212,3 +212,5 @@ function createAnnouncements(announcementElement) {
 
     window.startTimer = startTimer;
     window.pauseTimer = pauseTimer;
+
+});
