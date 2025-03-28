@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Maths Section</title>
+    <title>Maths</title>
     <link rel="stylesheet" href="style.css">
     <style>
         .timer {
@@ -63,7 +63,7 @@
         <p>Equation Escape is a board game where players solve equations to unlock paths and escape a maze. The challenge is to use mathematical skills strategically to progress and win the game.</p>
 
         <h3>Project Task</h3>
-        <p>Students must modify and adapt the game by introducing new mechanics, increasing difficulty, or adding creative twists. The goal is to make the game more engaging while maintaining its math[...]
+        <p>Students must modify and adapt the game by introducing new mechanics, increasing difficulty, or adding creative twists. The goal is to make the game more engaging while maintaining its mathematical integrity.</p>
 
         <h3>Possible Adaptations</h3>
         <ul>
@@ -76,4 +76,86 @@
         </ul>
 
         <h3>Mini Prototype Before Final Product</h3>
-        <p>Before creating the full board game, students should design a
+        <p>Before creating the full board game, students should design a mini version of their idea on paper or using a simple digital tool. This helps plan the final product before assembling it.</p>
+        <ul>
+            <li>Use drawings and sketches to outline the new board design and rules.</li>
+            <li>Test the mechanics using cut-out pieces on a smaller scale.</li>
+            <li>Optionally, use basic digital tools (Google Drawings, Canva, or PowerPoint) to create a rough version before building the actual game.</li>
+        </ul>
+
+        <h3>Submission & Presentation</h3>
+        <p>Students should submit their adapted version of Equation Escape in one of the following formats:</p>
+        <ul>
+            <li>A written report explaining the changes and their impact on gameplay.</li>
+            <li>A physical prototype of the board game.</li>
+            <li>A short presentation showcasing their version.</li>
+        </ul>
+
+        <h3>Judging Criteria</h3>
+        <p>The projects will be evaluated based on:</p>
+        <ul>
+            <li><strong>Creativity & Originality:</strong> How unique and engaging is the adaptation?</li>
+            <li><strong>Mathematical Accuracy:</strong> Does the game reinforce proper mathematical concepts?</li>
+            <li><strong>Playability & Fun Factor:</strong> Is the game enjoyable and easy to understand?</li>
+            <li><strong>Presentation Quality:</strong> How well is the project explained and demonstrated?</li>
+        </ul>
+
+        <div class="resources">
+            <h4>Resource List (FAO of Teachers):</h4>
+            <p>These materials will assist students in completing their project. These resources are needed for the entire 2 weeks of the event:</p>
+            <ul>
+                <li>Graph Paper – For maze design.</li>
+                <li>Rulers – For precise lines.</li>
+                <li>Compasses – For circular paths.</li>
+                <li>Markers/Pencils – For sketching and labelling.</li>
+                <li>Whiteboards/Markers – For brainstorming (Optional).</li>
+                <li>Stopwatches/Timers – For time limits (Not necessary just yet, if they do want to add time limits).</li>
+                <li>Cardboard – Game Pieces/Tokens – For player movement.</li>
+                <li>Craft Materials – Scissors, glue, etc.</li>
+                <li>A3/A4 Card (Preferably A3 Card) – For the maze board and major game components. (For each student). <strong>192 cards needed in total, 32 per class.</strong></li>
+                <li>A3/A4 Paper – For extra design or puzzle sheets. (Scrap is fine). <strong>192 sheets needed in total, 32 per class.</strong></li>
+                <li>Colouring Equipment – Pens and Pencils.</li>
+                <li>Laptops – Allowed for creating mini versions of the final product before they start making it. (We will likely only have 5 laptops available per class, which will be confirmed!)</li>
+            </ul>
+        </div>
+
+        <h2>Quiz (Conditions/Information)</h2>
+        <ul>
+            <li>Time Limit: Complete the quiz within 30 minutes.</li>
+            <li>Format: 30 multiple-choice questions, each with one correct answer (multiple if specified).</li>
+            <li>Scoring: 1 point per correct answer. No negative marking.</li>
+            <li>Rules: 
+                <ul>
+                    <li>No calculators or external aids unless allowed.</li>
+                    <li>No cheating.</li>
+                </ul>
+            </li>
+            <li>Submission: Answers must be submitted within the time limit and cannot be changed.</li>
+            <li>Results: Scores will be announced the week after. Solutions may be provided afterward.</li>
+        </ul>
+
+        <div class="important-info">
+            <p>∞ = Degrees</p>
+            <p>Ignore the extra slash after each fraction! (2/5/)</p>
+            <p>≤  = Squared</p>
+            <p>There are multiple choiced answers, and if there are any errors, ignore that and put the correct answer!</p>
+        </div>
+
+        <div class="timer" id="timer" data-duration="1800">30:00</div>
+        <button onclick="startTimer()">Start</button>
+        <button onclick="pauseTimer()">Pause</button>
+        <button onclick="resetTimer()">Reset</button>
+    </main>
+
+    <button id="theme-toggle" class="theme-toggle">Switch to Dark Mode</button>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> MSC Competition. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
