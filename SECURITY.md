@@ -1,7 +1,6 @@
 # Security Policy
 
-## Supported Versions
-The MSC Competition website is continuously updated. Below is the support status for different versions:
+The MSC Competition website is continuously updated.
 
 ## Reporting a Vulnerability
 If you identify a security vulnerability, please report it responsibly:
