@@ -12,7 +12,7 @@ If you identify a security vulnerability, please report it responsibly:
   - Steps to reproduce it.
   - Potential impact.
   - Any suggested fixes.
-- **Response Time**: We aim to acknowledge reports within [X] days and provide updates on progress.
+- **Response Time**: We aim to acknowledge reports within 5 days and provide updates on progress.
 - **Resolution**: If accepted, we will work on a fix and notify the reporter before public disclosure.
 
 Thank you for helping keep the MSC Competition website secure!
