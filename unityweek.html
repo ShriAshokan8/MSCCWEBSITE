@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Unity Week Schedule</title>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64," />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;900&family=Noto+Sans:wght@400;500;700;900&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <style>
+      html, body {
+        min-height: 100%;
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        font-family: "Be Vietnam Pro", "Noto Sans", sans-serif;
+        background-color: #180f24;
+      }
+      .tab-active {
+        border-bottom-color: #7300ff !important;
+        color: #fff !important;
+      }
+      .tab-inactive {
+        border-bottom-color: transparent !important;
+        color: #aa8dce !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="relative flex flex-col min-h-screen bg-[#180f24] overflow-x-hidden">
+      <div class="flex flex-col h-full grow layout-container">
+        <!-- World Globe Icon Centered at the Top -->
+        <div class="flex justify-center items-center pt-8 pb-4">
+          <span>
+            <!-- World Globe SVG Icon -->
+            <svg width="64" height="64" fill="none" viewBox="0 0 64 64" aria-hidden="true">
+              <circle cx="32" cy="32" r="30" stroke="#aa8dce" stroke-width="4" fill="#251736"/>
+              <ellipse cx="32" cy="32" rx="18" ry="30" stroke="#7300ff" stroke-width="2" fill="none"/>
+              <ellipse cx="32" cy="32" rx="30" ry="18" stroke="#7300ff" stroke-width="2" fill="none"/>
+              <path d="M2 32h60M32 2v60" stroke="#aa8dce" stroke-width="2"/>
+              <circle cx="32" cy="32" r="8" fill="#7300ff"/>
+            </svg>
+          </span>
+        </div>
+        <!-- Main content -->
+        <main id="protected-content" class="flex-1 flex flex-col items-center px-4 py-8 md:px-32 lg:px-40">
+          <section class="w-full max-w-3xl flex flex-col gap-4">
+            <div class="flex flex-wrap justify-between gap-3 p-4">
+              <div class="min-w-60 flex flex-col gap-2">
+                <h2 class="text-white text-3xl font-bold tracking-tight">Unity Week Schedule</h2>
+                <p class="text-[#aa8dce] text-sm font-normal">View and manage the schedule for the overall event.</p>
+              </div>
+            </div>
+            <p class="text-white text-base font-normal pb-3 pt-1 px-4">
+              All club activities occur at lunchtime from 12:40 to 13:20.
+            </p>
+            <!-- Tabs for days -->
+            <div class="pb-3 overflow-x-auto">
+              <div id="tabs" class="flex border-b border-[#492e6b] px-4 gap-6 md:gap-8">
+                <button class="tab-active flex flex-col items-center border-b-[3px] pb-3 pt-4 text-sm font-bold bg-transparent" data-tab="monday">
+                  Monday <span class="font-normal text-xs text-[#aa8dce]">("Around the World in a Day")</span>
+                </button>
+                <button class="tab-inactive flex flex-col items-center border-b-[3px] pb-3 pt-4 text-sm font-bold bg-transparent" data-tab="tuesday">
+                  Tuesday <span class="font-normal text-xs text-[#aa8dce]">("Voices of Heritage")</span>
+                </button>
+                <button class="tab-inactive flex flex-col items-center border-b-[3px] pb-3 pt-4 text-sm font-bold bg-transparent" data-tab="wednesday">
+                  Wednesday <span class="font-normal text-xs text-[#aa8dce]">("Art, Music & Movement")</span>
+                </button>
+                <button class="tab-inactive flex flex-col items-center border-b-[3px] pb-3 pt-4 text-sm font-bold bg-transparent" data-tab="thursday">
+                  Thursday <span class="font-normal text-xs text-[#aa8dce]">("Cultural Innovations & Traditions" – Cultural Day)</span>
+                </button>
+                <button class="tab-inactive flex flex-col items-center border-b-[3px] pb-3 pt-4 text-sm font-bold bg-transparent" data-tab="friday">
+                  Friday <span class="font-normal text-xs text-[#aa8dce]">("Unity in Diversity")</span>
+                </button>
+              </div>
+            </div>
+            <!-- Club Schedule Tables -->
+            <section>
+              <!-- Monday -->
+              <div id="tab-content-monday" class="tab-content">
+                <div class="px-4 py-3">
+                  <h3 class="text-[#aa8dce] text-lg font-semibold pb-2">Film Club</h3>
+                  <div class="mb-6">
+                    <div class="rounded-xl border border-[#492e6b] bg-[#180f24] p-4 text-white">
+                      Watch short films from different countries, followed by quizzes and optional group discussions.
+                    </div>
+                  </div>
+                  <h3 class="text-[#aa8dce] text-lg font-semibold pb-2">Games Club</h3>
+                  <div>
+                    <div class="rounded-xl border border-[#492e6b] bg-[#180f24] p-4 text-white">
+                      Play traditional games from around the world with trivia about their cultural origins; optional mini-tournament.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Tuesday -->
+              <div id="tab-content-tuesday" class="tab-content hidden">
+                <div class="px-4 py-3">
+                  <h3 class="text-[#aa8dce] text-lg font-semibold pb-2">Coding & Micro:bit Club</h3>
+                  <div class="mb-6">
+                    <div class="rounded-xl border border-[#492e6b] bg-[#180f24] p-4 text-white">
+                      Code digital greeting cards with Micro:bits saying “hello” in different languages and showing cultural symbols.
+                    </div>
+                  </div>
+                  <h3 class="text-[#aa8dce] text-lg font-semibold pb-2">Book Club</h3>
+                  <div class="mb-6">
+                    <div class="rounded-xl border border-[#492e6b] bg-[#180f24] p-4 text-white">
+                      Read and discuss folk tales and short stories from different cultures with creative activities like rewriting stories.
+                    </div>
+                  </div>
+                  <h3 class="text-[#aa8dce] text-lg font-semibold pb-2">Pride Club</h3>
+                  <div>
+                    <div class="rounded-xl border border-[#492e6b] bg-[#180f24] p-4 text-white">
+                      Create a display about global LGBTQ+ figures and stories, with quotes, flags, and timelines.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Wednesday -->
+              <div id="tab-content-wednesday" class="tab-content hidden">
+                <div class="px-4 py-3">
+                  <h3 class="text-[#aa8dce] text-lg font-semibold pb-2">Anime Club</h3>
+                  <div class="mb-6">
+                    <div class="rounded-xl border border-[#492e6b] bg-[#180f24] p-4 text-white">
+                      Set up a display with anime history, character art, and an anime quiz.
+                    </div>
+                  </div>
+                  <h3 class="text-[#aa8dce] text-lg font-semibold pb-2">Geography Eco Club</h3>
+                  <div class="mb-6">
+                    <div class="rounded-xl border border-[#492e6b] bg-[#180f24] p-4 text-white">
+                      Make crafts inspired by Indigenous cultures (e.g., dot painting, weaving) and explore cultural links to the environment.
+                    </div>
+                  </div>
+                  <h3 class="text-[#aa8dce] text-lg font-semibold pb-2">Board Games Club</h3>
+                  <div class="mb-6">
+                    <div class="rounded-xl border border-[#492e6b] bg-[#180f24] p-4 text-white">
+                      Introduce global board games and trivia; learn about the history and culture behind each.
+                    </div>
+                  </div>
+                  <h3 class="text-[#aa8dce] text-lg font-semibold pb-2">Portuguese Club</h3>
+                  <div>
+                    <div class="rounded-xl border border-[#492e6b] bg-[#180f24] p-4 text-white">
+                      Learn traditional Portuguese dances, listen to cultural music, and explore Portuguese art and traditions.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Thursday -->
+              <div id="tab-content-thursday" class="tab-content hidden">
+                <div class="px-4 py-3">
+                  <h3 class="text-[#aa8dce] text-lg font-semibold pb-2">Anime Club</h3>
+                  <div class="mb-6">
+                    <div class="rounded-xl border border-[#492e6b] bg-[#180f24] p-4 text-white">
+                      Explore anime's global impact through posters, innovation-themed quizzes, and scavenger hunts.
+                    </div>
+                  </div>
+                  <h3 class="text-[#aa8dce] text-lg font-semibold pb-2">Reading & Puzzles Club</h3>
+                  <div class="mb-6">
+                    <div class="rounded-xl border border-[#492e6b] bg-[#180f24] p-4 text-white">
+                      Solve puzzles, riddles, and trivia from different cultures; contribute to a shared “puzzle wall.”
+                    </div>
+                  </div>
+                  <h3 class="text-[#aa8dce] text-lg font-semibold pb-2">Japanese Club</h3>
+                  <div class="mb-6">
+                    <div class="rounded-xl border border-[#492e6b] bg-[#180f24] p-4 text-white">
+                      Set up a cultural display about Japanese life, traditions, and inventions with videos and fun quizzes.
+                    </div>
+                  </div>
+                  <h3 class="text-[#aa8dce] text-lg font-semibold pb-2">Company of Entrepreneurs</h3>
+                  <div>
+                    <div class="rounded-xl border border-[#492e6b] bg-[#180f24] p-4 text-white">
+                      Share stories of entrepreneurs from various cultures and present modern ideas inspired by tradition.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Friday -->
+              <div id="tab-content-friday" class="tab-content hidden">
+                <div class="px-4 py-3">
+                  <h3 class="text-[#aa8dce] text-lg font-semibold pb-2">Science for Life Club</h3>
+                  <div class="mb-6">
+                    <div class="rounded-xl border border-[#492e6b] bg-[#180f24] p-4 text-white">
+                      Host a global science and invention quiz (e.g., algebra, astronomy, medicine) with student-led presentations.
+                    </div>
+                  </div>
+                  <h3 class="text-[#aa8dce] text-lg font-semibold pb-2">Choir</h3>
+                  <div class="mb-6">
+                    <div class="rounded-xl border border-[#492e6b] bg-[#180f24] p-4 text-white">
+                      Perform multicultural songs, prepared throughout the week, with cultural background info included.
+                    </div>
+                  </div>
+                  <h3 class="text-[#aa8dce] text-lg font-semibold pb-2">Feel Good Fridays Club</h3>
+                  <div>
+                    <div class="rounded-xl border border-[#492e6b] bg-[#180f24] p-4 text-white">
+                      Create a “Wall of Kindness and Culture,” hand out culture awards, and celebrate learning from the week.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </section>
+          </section>
+        </main>
+      </div>
+    </div>
+    <script>
+      // Tab functionality
+      const tabButtons = document.querySelectorAll("#tabs button");
+      const tabContents = document.querySelectorAll(".tab-content");
+      tabButtons.forEach(btn => {
+        btn.addEventListener("click", function() {
+          tabButtons.forEach(b => b.classList.remove("tab-active"));
+          tabButtons.forEach(b => b.classList.add("tab-inactive"));
+          tabContents.forEach(c => c.classList.add("hidden"));
+          this.classList.add("tab-active");
+          this.classList.remove("tab-inactive");
+          document.getElementById("tab-content-" + this.dataset.tab).classList.remove("hidden");
+        });
+      });
+    </script>
+  </body>
+</html>
