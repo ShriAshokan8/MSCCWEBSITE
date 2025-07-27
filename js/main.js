@@ -19,10 +19,27 @@ function initializeHamburgerMenu() {
     const mobileNav = document.querySelector('.mobile-nav');
     
     if (hamburger && mobileNav) {
+        // Click event
         hamburger.addEventListener('click', function() {
+            toggleMobileNav();
+        });
+        
+        // Keyboard event for accessibility
+        hamburger.addEventListener('keydown', function(event) {
+            if (event.key === 'Enter' || event.key === ' ') {
+                event.preventDefault();
+                toggleMobileNav();
+            }
+        });
+        
+        function toggleMobileNav() {
             hamburger.classList.toggle('active');
             mobileNav.classList.toggle('active');
-        });
+            
+            // Update aria-expanded attribute
+            const isExpanded = hamburger.classList.contains('active');
+            hamburger.setAttribute('aria-expanded', isExpanded);
+        }
         
         // Close mobile menu when clicking on a link
         const mobileNavLinks = mobileNav.querySelectorAll('a');
@@ -30,6 +47,7 @@ function initializeHamburgerMenu() {
             link.addEventListener('click', function() {
                 hamburger.classList.remove('active');
                 mobileNav.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', false);
             });
         });
         
@@ -38,6 +56,17 @@ function initializeHamburgerMenu() {
             if (!hamburger.contains(event.target) && !mobileNav.contains(event.target)) {
                 hamburger.classList.remove('active');
                 mobileNav.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', false);
+            }
+        });
+        
+        // Close mobile menu on Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && hamburger.classList.contains('active')) {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', false);
+                hamburger.focus(); // Return focus to hamburger
             }
         });
     }

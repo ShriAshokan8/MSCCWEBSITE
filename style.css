@@ -48,6 +48,7 @@ header {
     justify-content: space-between;
     align-items: center;
     transition: background-color 0.3s ease;
+    min-height: 70px;
 }
 
 .header-left {
@@ -130,18 +131,23 @@ nav {
 
 /* Mobile Navigation */
 .mobile-nav {
-    display: none;
     position: fixed;
     top: 70px;
     left: 0;
     right: 0;
     background-color: #C40036;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 999;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 998;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
 }
 
 .mobile-nav.active {
-    display: block;
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
 }
 
 .mobile-nav .nav-links {
@@ -154,18 +160,22 @@ nav {
     display: block;
     padding: 1rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease;
 }
 
 /* Adjust main content to accommodate fixed header */
 main {
-    margin-top: 100px;
+    margin-top: 90px;
     padding: 2rem;
     max-width: 1000px;
     margin-left: auto;
     margin-right: auto;
-    background: #fff;
+    background: var(--card-background);
+    color: var(--text-color);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+    transition: all 0.3s ease;
+    min-height: calc(100vh - 200px);
 }
 
 main h2 {
@@ -253,17 +263,32 @@ footer p span {
         display: flex;
     }
 
-    .nav-links {
+    nav .nav-links {
         display: none;
     }
 
     header h1 {
         font-size: 1.5rem;
     }
+    
+    .header-left {
+        flex: 1;
+    }
+    
+    .header-right {
+        gap: 0.5rem;
+    }
+    
+    .theme-toggle {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
 
     main {
-        margin-top: 80px;
+        margin-top: 90px;
         padding: 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
     }
 
     main h2 {
@@ -276,6 +301,31 @@ footer p span {
 
     main ul li {
         font-size: 1rem;
+        padding: 0.5rem;
+    }
+    
+    .mobile-nav {
+        top: 78px; /* Adjust for mobile header height */
+    }
+}
+
+@media (max-width: 480px) {
+    .header-left h1 {
+        font-size: 1.2rem;
+    }
+    
+    .logo {
+        height: 30px;
+    }
+    
+    main {
+        padding: 0.5rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+    
+    .theme-toggle {
+        display: none; /* Hide on very small screens to save space */
     }
 }
 
