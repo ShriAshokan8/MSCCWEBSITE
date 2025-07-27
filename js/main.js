@@ -4,6 +4,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functions
     initializeAnimations();
     initializeNavigation();
+    initializeHamburgerMenu();
+    initializeThemeToggle();
     initializeMottoTransition();
     initializeScrollEffects();
     initializeLoadingAnimations();
@@ -11,7 +13,66 @@ document.addEventListener('DOMContentLoaded', function() {
     console.log('MSC Initiative website loaded successfully!');
 });
 
-// Motto transition animation
+// Hamburger menu functionality
+function initializeHamburgerMenu() {
+    const hamburger = document.querySelector('.hamburger');
+    const mobileNav = document.querySelector('.mobile-nav');
+    
+    if (hamburger && mobileNav) {
+        hamburger.addEventListener('click', function() {
+            hamburger.classList.toggle('active');
+            mobileNav.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on a link
+        const mobileNavLinks = mobileNav.querySelectorAll('a');
+        mobileNavLinks.forEach(link => {
+            link.addEventListener('click', function() {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+            });
+        });
+        
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!hamburger.contains(event.target) && !mobileNav.contains(event.target)) {
+                hamburger.classList.remove('active');
+                mobileNav.classList.remove('active');
+            }
+        });
+    }
+}
+
+// Theme toggle functionality
+function initializeThemeToggle() {
+    const themeToggle = document.querySelector('#theme-toggle');
+    
+    if (themeToggle) {
+        // Check for saved theme preference or default to light mode
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        applyTheme(savedTheme);
+        
+        themeToggle.addEventListener('click', function() {
+            const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            applyTheme(newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    }
+}
+
+function applyTheme(theme) {
+    const themeToggle = document.querySelector('#theme-toggle');
+    
+    if (theme === 'dark') {
+        document.body.classList.add('dark-mode');
+        if (themeToggle) themeToggle.textContent = 'Switch to Light Mode';
+    } else {
+        document.body.classList.remove('dark-mode');
+        if (themeToggle) themeToggle.textContent = 'Switch to Dark Mode';
+    }
+}
 function initializeMottoTransition() {
     const mottoContainer = document.querySelector('.motto-container');
     if (!mottoContainer) return;
@@ -343,9 +404,12 @@ window.addEventListener('scroll', optimizedScrollHandler);
 window.MSC = {
     initializeAnimations,
     initializeNavigation,
+    initializeHamburgerMenu,
+    initializeThemeToggle,
     initializeMottoTransition,
     renderTeamMembers,
     renderTimeline,
     teamData,
-    timelineData
+    timelineData,
+    applyTheme
 };

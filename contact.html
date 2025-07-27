@@ -3,50 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact</title>
+    <title>Contact - MSC Initiative</title>
     
     <link rel="stylesheet" href="style.css">
     
-    <meta name="description" content="Contact the MSC Competition team for any inquiries, feedback, or information regarding the competition.">
+    <meta name="description" content="Contact the MSC Initiative team for any inquiries, feedback, or information about joining our STEM movement.">
 
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "qxg14jbq1d");
-</script>
-
 </head>
 <body>
+    <!-- Header with Navigation -->
     <header>
-        <h1>Contact the MSC Team</h1>
-        <button id="theme-toggle" class="theme-toggle">Switch to Dark Mode</button>
+        <div class="header-left">
+            <img src="images/msc-logo.svg" alt="MSC Initiative Logo" class="logo">
+            <h1>MSC Initiative</h1>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <div class="header-right">
+            <button id="theme-toggle" class="theme-toggle">Switch to Dark Mode</button>
+            
+            <!-- Hamburger Menu -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </header>
 
-    <nav class="sidebar" aria-label="Main Navigation">
-        <ul class="sidebar-links">
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="events.html">Events</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="scores.html">Scores</a></li>
-            <li><a href="future_plans.html">Future Plans</a></li>
-            <li><a href="upload_work.html">Upload Work</a></li>
-            <li><a href="https://status.msccompetition.tech/" target="_blank">Uptime</a></li>
-            <li><a href="https://unity.msccompetition.tech/" target="_blank">Unity Week</a></li>
         </ul>
-    </nav>
-
+    </div>
     <main>
         <section aria-labelledby="contact-heading">
-            <h2 id="contact-heading">Get in Touch</h2>
-            <p>If you have any questions, feedback, or need more information about the MSC Competition, feel free to reach out to us via email or use the contact form below:</p>
+            <h2 id="contact-heading">Contact the MSC Initiative</h2>
+            <p>If you have any questions, feedback, or want to join our STEM movement, feel free to reach out to us via email or use the contact form below:</p>
             <p>
             Email:
-            <a href="mailto:support@msccompetition.live">support@msccompetition.live</a>
+            <a href="mailto:info@mscinitiative.org">info@mscinitiative.org</a>
             </p>
             <form action="https://formspree.io/f/xjkybwaa" method="POST" class="contact-form">
                 <label for="name">Name:</label>
@@ -64,9 +74,14 @@
     </main>
 
     <footer>
-        <p>&copy; <span id="currentYear"></span> MSC Competition. All rights reserved.</p>
+        <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
     </footer>
+    
+    <!-- Custom JS -->
     <script src="script.js"></script>
+    <script src="js/main.js"></script>
+    
+    <!-- Set current year -->
     <script>
         document.getElementById("currentYear").textContent = new Date().getFullYear();
     </script>

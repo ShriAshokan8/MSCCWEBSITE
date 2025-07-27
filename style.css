@@ -12,61 +12,131 @@ body {
 header {
     background-color: #C40036;
     color: #fff;
-    padding: 1rem 0;
-    text-align: center;
+    padding: 1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    position: relative;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
 }
 
 header h1 {
     margin: 0;
-    font-size: 2.5rem;
+    font-size: 2rem;
     letter-spacing: 1px;
 }
 
-/* Sidebar Styles */
-.sidebar {
-    width: 250px;
-    height: 100%;
-    position: fixed;
-    top: 0;
-    left: 0;
-    background-color: #C40036;
-    padding: 1rem;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
-.sidebar-links {
+/* Hamburger Menu Styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Navigation Styles */
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
+    gap: 2rem;
 }
 
-.sidebar-links li {
-    margin: 1rem 0;
-}
-
-.sidebar-links li a {
+.nav-links li a {
     color: #fff;
     text-decoration: none;
     font-weight: bold;
-    display: block;
     padding: 0.5rem 1rem;
+    border-radius: 4px;
     transition: background-color 0.3s ease;
 }
 
-.sidebar-links li a:hover {
+.nav-links li a:hover {
     background-color: #7400FF;
-    border-radius: 4px;
 }
 
-/* Adjust main content to accommodate sidebar */
+/* Mobile Navigation */
+.mobile-nav {
+    display: none;
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background-color: #C40036;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    z-index: 999;
+}
+
+.mobile-nav.active {
+    display: block;
+}
+
+.mobile-nav .nav-links {
+    flex-direction: column;
+    gap: 0;
+    padding: 1rem;
+}
+
+.mobile-nav .nav-links li a {
+    display: block;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Adjust main content to accommodate fixed header */
 main {
-    margin-left: 270px; /* Adjust this value based on the sidebar width */
+    margin-top: 100px;
     padding: 2rem;
     max-width: 1000px;
-    margin-top: 2rem;
+    margin-left: auto;
+    margin-right: auto;
     background: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -131,34 +201,37 @@ footer p span {
 
 /* Theme Toggle Button Styles */
 .theme-toggle {
-    display: block;
-    margin: 20px auto;
-    padding: 10px 20px;
-    background-color: #C40036;
+    padding: 0.5rem 1rem;
+    background-color: #7400FF;
     color: #fff;
     border: none;
-    border-radius: 5px;
+    border-radius: 4px;
     cursor: pointer;
+    font-weight: bold;
     transition: background-color 0.3s ease;
 }
 
 .theme-toggle:hover {
-    background-color: #7400FF;
+    background-color: #5a00cc;
 }
 
 /* Responsive Design */
 @media (max-width: 768px) {
-    .sidebar {
-        width: 200px;
+    .hamburger {
+        display: flex;
     }
 
-    main {
-        margin-left: 220px;
-        padding: 1rem;
+    .nav-links {
+        display: none;
     }
 
     header h1 {
-        font-size: 2rem;
+        font-size: 1.5rem;
+    }
+
+    main {
+        margin-top: 80px;
+        padding: 1rem;
     }
 
     main h2 {
@@ -224,6 +297,10 @@ body.dark-mode header {
     color: #fff;
 }
 
+body.dark-mode .mobile-nav {
+    background-color: #7400FF;
+}
+
 body.dark-mode main {
     background: #555;
     color: #fff;
@@ -234,20 +311,28 @@ body.dark-mode footer {
     color: #f4f4f4;
 }
 
-body.dark-mode .sidebar-links li a {
+body.dark-mode .nav-links li a {
     color: #fff;
 }
 
-body.dark-mode .sidebar-links li a:hover {
+body.dark-mode .nav-links li a:hover {
+    background-color: #C40036;
+}
+
+body.dark-mode .mobile-nav .nav-links li a:hover {
     background-color: #C40036;
 }
 
 body.dark-mode .theme-toggle {
-    background-color: #7400FF;
+    background-color: #C40036;
 }
 
 body.dark-mode .theme-toggle:hover {
-    background-color: #C40036;
+    background-color: #a0002b;
+}
+
+body.dark-mode .hamburger span {
+    background-color: #fff;
 }
 
 /* Accordion styles for categories and students */

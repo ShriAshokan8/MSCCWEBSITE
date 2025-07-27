@@ -13,21 +13,44 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <!-- Header -->
+    <!-- Header with Navigation -->
     <header>
-        <h1>MSC Initiative</h1>
-        <button id="theme-toggle" class="theme-toggle">Switch to Dark Mode</button>
+        <div class="header-left">
+            <img src="images/msc-logo.svg" alt="MSC Initiative Logo" class="logo">
+            <h1>MSC Initiative</h1>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <div class="header-right">
+            <button id="theme-toggle" class="theme-toggle">Switch to Dark Mode</button>
+            
+            <!-- Hamburger Menu -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </header>
 
-    <!-- Sidebar Navigation -->
-    <nav class="sidebar">
-        <ul class="sidebar-links">
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="events.html">Events</a></li>
             <li><a href="contact.html">Contact</a></li>
         </ul>
-    </nav>
+    </div>
 
     <!-- Main Content -->
     <main>
@@ -112,6 +135,7 @@
 
     <!-- Custom JS -->
     <script src="script.js"></script>
+    <script src="js/main.js"></script>
     
     <!-- Set current year -->
     <script>
