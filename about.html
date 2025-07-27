@@ -5,313 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - MSC Initiative</title>
     
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="style.css">
     
     <!-- Meta tags -->
     <meta name="description" content="Learn about the MSC Initiative - a student-led STEM movement that started on 23rd September 2024, fostering innovation in Mathematics, Science, and Computing.">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg fixed-top">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
-                <img src="images/new-logo.svg" alt="MSC Initiative Logo" height="40" class="me-2">
-                MSC Initiative
-            </a>
-            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="about.html">About</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="team.html">Team</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="events.html">Events</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
+    <!-- Header -->
+    <header>
+        <h1>MSC Initiative</h1>
+        <button id="theme-toggle" class="theme-toggle">Switch to Dark Mode</button>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+        <ul class="sidebar-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="content-section" style="margin-top: 80px; padding-top: 40px;">
-        <div class="container">
-            <h1 class="section-title">About the MSC Initiative</h1>
-            <div class="section-divider"></div>
-            <p class="lead text-center mb-5">
-                Discover the story behind our student-led STEM movement and our journey to foster innovation, collaboration, and excellence in Mathematics, Science, and Computing.
-            </p>
-        </div>
-    </section>
-
-    <!-- Our Story Section -->
-    <section class="content-section loading">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h2 class="section-title text-start">Our Story</h2>
-                    <p class="lead">
-                        The MSC Initiative began as an ambitious vision on 23rd September 2024, when a group of passionate students decided to create something extraordinary.
-                    </p>
-                    <p>
-                        What started as a single competition has evolved into a comprehensive student-led STEM movement that encompasses clubs, events, workshops, and collaborative learning experiences. Our initiative represents a new approach to STEM education—one that is driven by students, for students.
-                    </p>
-                    <p>
-                        We believe in the power of peer-to-peer learning, hands-on exploration, and the pursuit of excellence through innovation. Our motto, "Explore, Innovate, Excel," reflects our commitment to pushing boundaries and achieving new heights in Mathematics, Science, and Computing.
-                    </p>
-                </div>
-                <div class="col-lg-6">
-                    <div class="card border-0 shadow-lg">
-                        <div class="card-body text-center p-5">
-                            <img src="images/new-logo.svg" alt="MSC Initiative Logo" class="mb-4" style="max-width: 200px;">
-                            <h4 class="text-primary">Founded</h4>
-                            <h2 class="mb-3">23rd September 2024</h2>
-                            <p class="text-muted">The beginning of our journey to transform STEM education</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section -->
-    <section class="content-section bg-light loading">
-        <div class="container">
-            <h2 class="section-title">Our Journey - 2024-25 Timeline</h2>
-            <div class="section-divider"></div>
-            <p class="text-center mb-5">
-                Follow our progress from inception to our planned expansion, marking key milestones in the development of the MSC Initiative.
-            </p>
-            
-            <div class="timeline" id="timeline">
-                <!-- Timeline items will be populated by JavaScript -->
-            </div>
-        </div>
-    </section>
-
-    <!-- What We Believe Section -->
-    <section class="content-section loading">
-        <div class="container">
-            <h2 class="section-title">What We Believe</h2>
-            <div class="section-divider"></div>
-            
-            <div class="row g-4">
-                <div class="col-md-4">
-                    <div class="card h-100 border-0">
-                        <div class="card-body text-center">
-                            <div class="category-icon">🎯</div>
-                            <h4 class="card-title">Student-Led Excellence</h4>
-                            <p class="card-text">
-                                We believe that students learn best when they take ownership of their education. Our initiative is designed, managed, and delivered by students for students.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="card h-100 border-0">
-                        <div class="card-body text-center">
-                            <div class="category-icon">🤝</div>
-                            <h4 class="card-title">Collaborative Learning</h4>
-                            <p class="card-text">
-                                Through teamwork, peer mentoring, and group challenges, we foster an environment where everyone learns from everyone.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-md-4">
-                    <div class="card h-100 border-0">
-                        <div class="card-body text-center">
-                            <div class="category-icon">🚀</div>
-                            <h4 class="card-title">Innovation Focus</h4>
-                            <p class="card-text">
-                                We encourage creative problem-solving, out-of-the-box thinking, and the application of STEM knowledge to real-world challenges.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Expansion Plans Section -->
-    <section class="content-section bg-light loading">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6">
-                    <h2 class="section-title text-start">Expansion into Clubs & Events</h2>
-                    <p class="lead">
-                        The MSC Initiative is rapidly expanding beyond our initial competition format.
-                    </p>
-                    <p>
-                        Building on the success of our inaugural competition, we are developing specialized clubs for each discipline, organizing regular workshops, hosting guest speakers, and creating opportunities for students to showcase their projects and innovations.
-                    </p>
-                    <p>
-                        Our expansion includes partnerships with local universities, STEM organizations, and industry professionals to provide students with exposure to cutting-edge research and career opportunities.
-                    </p>
-                </div>
-                <div class="col-lg-6">
-                    <div class="row g-3">
-                        <div class="col-12">
-                            <div class="card border-0">
-                                <div class="card-body">
-                                    <h5 class="text-primary">🔢 Mathematics Club</h5>
-                                    <p class="mb-0 small">Advanced problem-solving, competitions, and mathematical exploration</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="card border-0">
-                                <div class="card-body">
-                                    <h5 class="text-primary">🔬 Science for Life Club</h5>
-                                    <p class="mb-0 small">Hands-on experiments, research projects, and scientific discovery</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="card border-0">
-                                <div class="card-body">
-                                    <h5 class="text-primary">💻 Coding Club</h5>
-                                    <p class="mb-0 small">Programming challenges, app development, and technology innovation</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="card border-0">
-                                <div class="card-body">
-                                    <h5 class="text-primary">🌟 STEM Club</h5>
-                                    <p class="mb-0 small">Interdisciplinary projects combining all three core subjects</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Impact & Recognition Section -->
-    <section class="content-section loading">
-        <div class="container">
-            <h2 class="section-title">Impact & Recognition</h2>
-            <div class="section-divider"></div>
-            
-            <div class="row text-center">
-                <div class="col-md-3 mb-4">
-                    <div class="card border-0 h-100">
-                        <div class="card-body">
-                            <h2 class="text-primary">500+</h2>
-                            <h5>Students Engaged</h5>
-                            <p class="small text-muted">Across all year groups and activities</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="card border-0 h-100">
-                        <div class="card-body">
-                            <h2 class="text-primary">25+</h2>
-                            <h5>Events Organized</h5>
-                            <p class="small text-muted">Competitions, workshops, and presentations</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="card border-0 h-100">
-                        <div class="card-body">
-                            <h2 class="text-primary">100+</h2>
-                            <h5>Certificates Awarded</h5>
-                            <p class="small text-muted">Recognizing outstanding participation and achievement</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3 mb-4">
-                    <div class="card border-0 h-100">
-                        <div class="card-body">
-                            <h2 class="text-primary">10+</h2>
-                            <h5>UKMT Candidates</h5>
-                            <p class="small text-muted">Top mathematics participants recommended for national competition</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row justify-content-center mt-5">
-                <div class="col-lg-8 text-center">
-                    <p class="lead">
-                        "The MSC Initiative represents the future of STEM education—student-driven, innovative, and impactful. We're proud to see our students taking leadership in their own learning journey."
-                    </p>
-                    <p class="text-muted">— Head of STEM Department</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <!-- Main Content -->
+    <main>
+        <h2>About the MSC Initiative</h2>
+        
+        <p>The MSC Initiative began on <strong>23rd September 2024</strong> as a student-led STEM movement, initially launching as a competition to engage students in Mathematics, Science, and Computing.</p>
+        
+        <h3>Our Story</h3>
+        <p>What started as a single competition has evolved into a comprehensive STEM movement that aims to inspire, educate, and challenge students across multiple disciplines. We believe in the power of collaborative learning and healthy competition to drive innovation and excellence.</p>
+        
+        <h3>Timeline: 2024-25 Test Run</h3>
+        <ul>
+            <li><strong>September 23, 2024:</strong> MSC Initiative officially launched</li>
+            <li><strong>October 2024:</strong> Team formation and initial planning</li>
+            <li><strong>November 2024:</strong> Event planning and curriculum development</li>
+            <li><strong>March 2025:</strong> STEM Week launch - official start of 2025 test run</li>
+            <li><strong>April 2025:</strong> Competition conclusion and awards ceremony</li>
+        </ul>
+        
+        <h3>Future Expansion</h3>
+        <p>Beyond our initial competition format, we're expanding into:</p>
+        <ul>
+            <li>Subject-specific clubs and societies</li>
+            <li>Regular workshops and masterclasses</li>
+            <li>Collaborative research projects</li>
+            <li>Inter-school competitions and partnerships</li>
+            <li>STEM outreach programs</li>
+        </ul>
+        
+        <h3>Our Values</h3>
+        <ul>
+            <li><strong>Innovation:</strong> Encouraging creative problem-solving and new approaches</li>
+            <li><strong>Collaboration:</strong> Building a supportive community of learners</li>
+            <li><strong>Excellence:</strong> Striving for the highest standards in all we do</li>
+            <li><strong>Inclusivity:</strong> Welcoming students from all backgrounds and skill levels</li>
+        </ul>
+    </main>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-4 mb-4">
-                    <img src="images/new-logo.svg" alt="MSC Initiative Logo" class="footer-logo mb-3">
-                    <p>
-                        Empowering students to explore, innovate, and excel in Mathematics, Science, and Computing.
-                    </p>
-                </div>
-                
-                <div class="col-lg-4 mb-4">
-                    <h5>Quick Links</h5>
-                    <ul class="footer-links">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="team.html">Team</a></li>
-                        <li><a href="events.html">Events</a></li>
-                        <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div class="col-lg-4 mb-4">
-                    <h5>Contact Info</h5>
-                    <p>
-                        <strong>School:</strong> [School Name]<br>
-                        <strong>Email:</strong> msc.initiative@school.edu<br>
-                        <strong>Phone:</strong> +44 (0) 123 456 7890
-                    </p>
-                </div>
-            </div>
-            
-            <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved.</p>
-            </div>
-        </div>
+    <footer>
+        <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
     </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
     <!-- Custom JS -->
-    <script src="js/main.js"></script>
+    <script src="script.js"></script>
     
     <!-- Set current year -->
     <script>
