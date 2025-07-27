@@ -43,18 +43,18 @@ function initializeHamburgerMenu() {
     }
 }
 
-// Theme toggle functionality
+// Day/Night toggle functionality
 function initializeThemeToggle() {
     const themeToggle = document.querySelector('#theme-toggle');
     
     if (themeToggle) {
-        // Check for saved theme preference or default to light mode
-        const savedTheme = localStorage.getItem('theme') || 'light';
+        // Check for saved theme preference or default to day mode
+        const savedTheme = localStorage.getItem('theme') || 'day';
         applyTheme(savedTheme);
         
         themeToggle.addEventListener('click', function() {
-            const currentTheme = document.body.classList.contains('dark-mode') ? 'dark' : 'light';
-            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            const currentTheme = document.body.classList.contains('night-mode') ? 'night' : 'day';
+            const newTheme = currentTheme === 'day' ? 'night' : 'day';
             
             applyTheme(newTheme);
             localStorage.setItem('theme', newTheme);
@@ -65,12 +65,18 @@ function initializeThemeToggle() {
 function applyTheme(theme) {
     const themeToggle = document.querySelector('#theme-toggle');
     
-    if (theme === 'dark') {
-        document.body.classList.add('dark-mode');
-        if (themeToggle) themeToggle.textContent = 'Switch to Light Mode';
+    if (theme === 'night') {
+        document.body.classList.add('night-mode');
+        if (themeToggle) {
+            themeToggle.innerHTML = '🌙 Night Mode';
+            themeToggle.setAttribute('aria-label', 'Switch to Day Mode');
+        }
     } else {
-        document.body.classList.remove('dark-mode');
-        if (themeToggle) themeToggle.textContent = 'Switch to Dark Mode';
+        document.body.classList.remove('night-mode');
+        if (themeToggle) {
+            themeToggle.innerHTML = '☀️ Day Mode';
+            themeToggle.setAttribute('aria-label', 'Switch to Night Mode');
+        }
     }
 }
 function initializeMottoTransition() {

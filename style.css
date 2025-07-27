@@ -1,16 +1,41 @@
 /* General Styles */
+:root {
+    /* Day/Light Mode Colors - Main palette: white, peach, orange, black */
+    --primary-color: #FF6B35; /* Orange */
+    --secondary-color: #FFD5B4; /* Peach */
+    --accent-color: #333333; /* Dark gray/black */
+    --background-color: #FFFFFF; /* White */
+    --text-color: #333333; /* Dark gray/black */
+    --card-background: #FEFEFE; /* Almost white */
+    --border-color: #FFD5B4; /* Peach */
+    --hover-color: #FF5722; /* Darker orange */
+}
+
+/* Night Mode Colors */
+.night-mode {
+    --primary-color: #FF6B35; /* Orange stays */
+    --secondary-color: #FFD5B4; /* Peach stays */
+    --accent-color: #FFFFFF; /* White text */
+    --background-color: #1A1A1A; /* Dark background */
+    --text-color: #FFFFFF; /* White text */
+    --card-background: #2A2A2A; /* Dark gray */
+    --border-color: #FF6B35; /* Orange border */
+    --hover-color: #FF8A65; /* Lighter orange */
+}
+
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Inter', 'Arial', sans-serif;
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Header Styles */
 header {
-    background-color: #C40036;
+    background-color: var(--primary-color);
     color: #fff;
     padding: 1rem;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -22,6 +47,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: background-color 0.3s ease;
 }
 
 .header-left {
@@ -199,20 +225,26 @@ footer p span {
     color: #C40036;
 }
 
-/* Theme Toggle Button Styles */
+/* Day/Night Toggle Button Styles */
 .theme-toggle {
     padding: 0.5rem 1rem;
-    background-color: #7400FF;
-    color: #fff;
-    border: none;
-    border-radius: 4px;
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 25px;
     cursor: pointer;
     font-weight: bold;
-    transition: background-color 0.3s ease;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
 .theme-toggle:hover {
-    background-color: #5a00cc;
+    background-color: var(--primary-color);
+    color: #fff;
+    transform: scale(1.05);
 }
 
 /* Responsive Design */
@@ -247,149 +279,143 @@ footer p span {
     }
 }
 
-/* Countdown Timer Styling */
-#countdown-timer {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(90deg, #ff4b2b, #ff416c);
-    color: white;
-    padding: 15px;
-    border-radius: 10px;
-    display: inline-block;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-    font-size: 26px;
-    font-weight: bold;
-    margin-top: 20px;
+
+
+
+
+/* Night Mode Styles */
+body.night-mode {
+    --primary-color: #FF6B35; /* Orange stays */
+    --secondary-color: #FFD5B4; /* Peach stays */
+    --accent-color: #FFFFFF; /* White text */
+    --background-color: #1A1A1A; /* Dark background */
+    --text-color: #FFFFFF; /* White text */
+    --card-background: #2A2A2A; /* Dark gray */
+    --border-color: #FF6B35; /* Orange border */
+    --hover-color: #FF8A65; /* Lighter orange */
 }
 
-/* Announcement Section */
-#announcement {
-    background-color: #fff3cd;
-    padding: 15px;
-    margin-top: 20px;
-    border-left: 5px solid #C40036;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: opacity 0.3s ease;
-}
-
-#announcement h3 {
-    color: #C40036;
-    margin-bottom: 1rem;
-}
-
-#announcement p {
-    color: #333;
-    font-size: 1rem;
-}
-
-#announcement.hidden {
-    display: none;
-}
-
-/* Dark Mode Styles */
-body.dark-mode {
-    background-color: #333;
-    color: #f4f4f4;
-}
-
-body.dark-mode header {
-    background-color: #7400FF;
+body.night-mode header {
+    background-color: var(--primary-color);
     color: #fff;
 }
 
-body.dark-mode .mobile-nav {
-    background-color: #7400FF;
+body.night-mode .mobile-nav {
+    background-color: var(--primary-color);
 }
 
-body.dark-mode main {
-    background: #555;
-    color: #fff;
+body.night-mode main {
+    background: var(--card-background);
+    color: var(--text-color);
 }
 
-body.dark-mode footer {
+body.night-mode footer {
     background-color: #222;
-    color: #f4f4f4;
+    color: var(--text-color);
 }
 
-body.dark-mode .nav-links li a {
+body.night-mode .nav-links li a {
     color: #fff;
 }
 
-body.dark-mode .nav-links li a:hover {
-    background-color: #C40036;
+body.night-mode .nav-links li a:hover {
+    background-color: var(--hover-color);
 }
 
-body.dark-mode .mobile-nav .nav-links li a:hover {
-    background-color: #C40036;
+body.night-mode .mobile-nav .nav-links li a:hover {
+    background-color: var(--hover-color);
 }
 
-body.dark-mode .theme-toggle {
-    background-color: #C40036;
+body.night-mode .theme-toggle {
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
 }
 
-body.dark-mode .theme-toggle:hover {
-    background-color: #a0002b;
+body.night-mode .theme-toggle:hover {
+    background-color: var(--hover-color);
 }
 
-body.dark-mode .hamburger span {
+body.night-mode .hamburger span {
     background-color: #fff;
 }
 
-/* Accordion styles for categories and students */
-.category h3,
-.student h4 {
+
+
+/* Night Mode specific styles for resources list */
+body.night-mode .resources {
+    background-color: var(--card-background);
+    color: var(--text-color);
+}
+
+body.night-mode .resources h4 {
+    color: var(--text-color);
+}
+
+/* Main content styling */
+main {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 2rem;
+    margin-top: 80px; /* Account for fixed header */
+    min-height: calc(100vh - 160px);
+    transition: all 0.3s ease;
+}
+
+/* Card and content styling */
+.card, .content-section {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card:hover, .content-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 107, 53, 0.2);
+}
+
+/* Button styling */
+button, .btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
     cursor: pointer;
-    background-color: #f1f1f1;
-    padding: 10px;
-    border: 1px solid #ccc;
-    margin: 0;
-    transition: background-color 0.3s ease;
+    font-weight: bold;
+    transition: all 0.3s ease;
 }
 
-.category h3:hover,
-.student h4:hover {
-    background-color: #ddd;
+button:hover, .btn:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-1px);
 }
 
-.category-content,
-.student-content {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-top: none;
-    background-color: #fff;
-    color: #333;
+/* Link styling */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
 
-/* Dark Mode specific styles for categories and students */
-body.dark-mode .category h3,
-body.dark-mode .student h4 {
-    background-color: #444;
-    border: 1px solid #666;
-    color: #f4f4f4;
+a:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
 }
 
-body.dark-mode .category h3:hover,
-body.dark-mode .student h4:hover {
-    background-color: #555;
+/* Footer styling */
+footer {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
 }
 
-body.dark-mode .category-content,
-body.dark-mode .student-content {
-    background-color: #666;
-    color: #f4f4f4;
-}
-
-/* Dark Mode specific styles for resources list */
-body.dark-mode .resources {
-    background-color: #444;
-    color: #f4f4f4;
-}
-
-body.dark-mode .resources h4 {
-    color: #fff;
-}
-
-body.dark-mode .resources ul li {
-    background-color: #555;
-    color: #f4f4f4;
+body.night-mode footer {
+    background-color: #222;
+    color: var(--text-color);
 }
