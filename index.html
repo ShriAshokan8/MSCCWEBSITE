@@ -3,55 +3,104 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MSC Competition</title>
+    <title>MSC Initiative - Explore, Innovate, Excel</title>
+    
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
-    <meta name="description" content="Join the MSC Competition and explore the fascinating world of Mathematics, Science, and Computing.">
+    
+    <!-- Animation Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <!-- Meta tags -->
+    <meta name="description" content="MSC Initiative - A student-led STEM movement exploring Mathematics, Science, and Computing. Join us to Explore, Innovate, and Excel!">
+    <meta name="keywords" content="MSC, Mathematics, Science, Computing, STEM, Initiative, Student-led">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; object-src 'none';">
-
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "qxg14jbq1d");
-</script>
-
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-
+    <!-- Header with Navigation -->
     <header>
-        <h1>MSC Competition</h1>
+        <div class="header-left">
+            <img src="images/msc-logo.svg" alt="MSC Initiative Logo" class="logo">
+            <h1>MSC Initiative</h1>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <div class="header-right">
+            <button id="theme-toggle" class="theme-toggle">☀️ Day Mode</button>
+            
+            <!-- Hamburger Menu -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </header>
-    
-    <nav class="sidebar" aria-label="Main Navigation">
-        <ul class="sidebar-links">
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="events.html">Events</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="future_plans.html">Future Plans</a></li>
-            <li><a href="upload_work.html">Upload Work</a></li>
-            <li><a href="https://status.msccompetition.tech/" target="_blank">Uptime</a></li>
-            <li><a href="https://unity.msccompetition.tech/" target="_blank">Unity Week</a></li>
         </ul>
-    </nav>
+    </div>
 
+    <!-- Main Content -->
     <main>
-     <section aria-labelledby="welcome-heading">
-     <h2 id="welcome-heading">Event Ended</h2>
-     <p>Thank you to everyone who participated! The MSC Competition has now ended.</p>
-    </section>
-
+        <h2>Explore, Innovate, Excel: Maths, Science, Computing</h2>
+        
+        <p>Welcome to the MSC Initiative - a dynamic student-led STEM movement that brings together passionate minds in <strong>Mathematics</strong>, <strong>Science</strong>, and <strong>Computing</strong>.</p>
+        
+        <p>Join our community of innovators, problem-solvers, and future leaders as we explore the frontiers of STEM education through competitions, clubs, events, and collaborative learning experiences.</p>
+        
+        <h3>What We Do</h3>
+        <ul>
+            <li><strong>Mathematics:</strong> Dive deep into mathematical concepts through challenging problems, competitions, and collaborative problem-solving sessions.</li>
+            <li><strong>Science:</strong> Explore scientific phenomena, conduct experiments, and discover the wonders of the natural world through hands-on learning.</li>
+            <li><strong>Computing:</strong> Master programming concepts, develop innovative projects, and explore the digital frontier of technology and innovation.</li>
+        </ul>
+        
+        <h3>Our Mission</h3>
+        <p>To foster a vibrant community of STEM enthusiasts who challenge conventional thinking, create innovative solutions, and compete at the highest levels.</p>
+        
+        <p>Since our launch on 23rd September 2024, we've been building bridges between traditional classroom learning and real-world application, encouraging students to think critically, collaborate effectively, and pursue excellence in all STEM disciplines.</p>
+        
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="about.html" style="background-color: var(--primary-color); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-right: 10px;">Learn More</a>
+            <a href="events.html" style="background-color: var(--accent-color); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Upcoming Events</a>
+        </div>
     </main>
 
-    <button id="theme-toggle" class="theme-toggle">Switch to Dark Mode</button>
-
+    <!-- Footer -->
     <footer>
-        <p>&copy; <span id="currentYear"></span> MSC Competition. All rights reserved.</p>
+        <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
     </footer>
 
-    <!-- Place scripts at the end of body -->
+    <!-- Custom JS -->
     <script src="script.js"></script>
+    <script src="js/main.js"></script>
+    
+    <!-- Set current year -->
+    <script>
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>

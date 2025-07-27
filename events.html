@@ -3,74 +3,146 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Events</title>
+    <title>Events - MSC Initiative</title>
     
+    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
     
-    <meta name="description" content="Explore upcoming events in the MSC Competition and see what exciting challenges await participants.">
-
+    <!-- Animation Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <!-- Meta tags -->
+    <meta name="description" content="Discover upcoming events and the 2025 test run of the MSC Initiative - featuring Mathematics, Science, and Computing competitions, workshops, and activities.">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
-
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "qxg14jbq1d");
-</script>
-
 </head>
 <body>
-
+    <!-- Header with Navigation -->
     <header>
-        <h1>Upcoming Events</h1>
+        <div class="header-left">
+            <img src="images/msc-logo.svg" alt="MSC Initiative Logo" class="logo">
+            <h1>MSC Initiative</h1>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+        
+        <div class="header-right">
+            <button id="theme-toggle" class="theme-toggle">☀️ Day Mode</button>
+            
+            <!-- Hamburger Menu -->
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
     </header>
 
-    <nav class="sidebar" aria-label="Main Navigation">
-        <ul class="sidebar-links">
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="events.html">Events</a></li>
             <li><a href="contact.html">Contact</a></li>
-            <li><a href="scores.html">Scores</a></li>
-            <li><a href="future_plans.html">Future Plans</a></li>
-            <li><a href="upload_work.html">Upload Work</a></li>
-            <li><a href="https://status.msccompetition.tech/" target="_blank">Uptime</a></li>
-            <li><a href="https://unity.msccompetition.tech/" target="_blank">Unity Week</a></li>
         </ul>
-    </nav>
+    </div>
 
+    <!-- Main Content -->
     <main>
-        <section aria-labelledby="events-heading">
-            <h2 id="events-heading">Upcoming Events</h2>
-            <p>The following rounds will happen on the following weeks:</p>
+        <h2>Events & Competitions</h2>
+        
+        <p>Join us for exciting STEM events, competitions, and learning opportunities throughout the 2024-25 academic year.</p>
+        
+        <h3>2025 Test Run Schedule</h3>
+        <ul>
+            <li><strong>March 7, 2025:</strong> STEM Week Launch - Competition begins</li>
+            <li><strong>March 10-14, 2025:</strong> Intensive competition week</li>
+            <li><strong>March 21, 2025:</strong> Results announcement</li>
+            <li><strong>April 4, 2025:</strong> Awards ceremony and celebration</li>
+        </ul>
+        
+        <h3>Subject Categories</h3>
+        
+        <h3>Mathematics</h3>
+        <div class="category-content">
+            <p>Challenge yourself with complex mathematical problems, from pure mathematics to applied problem-solving. Topics include:</p>
             <ul>
-                <li><strong>Event Start:</strong> Friday 7th of March</li>
-                <li><strong>Round 1 & 2 - Week 1:</strong> Quiz: Week Commencing 10th March</li>
-                <li><strong>Round 2 - Week 2:</strong> Project Planning/Making: Week Commencing 17th March</li>
-                <li><strong>Round 2 - Week 3:</strong> Project Making: Week Commencing 24th March</li>
-                <li><strong>Round 2 - Week 4:</strong> Project Judging: Week Commencing 31st March</li>
-                <li><strong>Round 1 & 2 - Week 5:</strong> Award & Recognition: Week Commencing 7th April</li>
-                <li><strong>Maths Section:</strong> Starts on Thursday 20th/Friday 21st March</li>
+                <li>Algebra and number theory</li>
+                <li>Geometry and trigonometry</li>
+                <li>Calculus and advanced mathematics</li>
+                <li>Mathematical modeling and statistics</li>
             </ul>
+        </div>
+        
+        <h3>Science</h3>
+        <div class="category-content">
+            <p>Explore the natural world through hands-on experiments and theoretical challenges. Areas covered:</p>
             <ul>
-                <li><strong>Mixed (Tutor Time):</strong> Tuesday, Wednesday, Thursday, Friday</li>
-                <li><strong>Maths Section (Maths Lessons):</strong> Tuesday, Wednesday, Thursday, Friday</li>
-                <li><strong>Science Section (Science for Life Club):</strong> Friday</li>
-                <li><strong>Computing Section (Coding Club):</strong> Tuesday</li>
-                <li><strong>Combined Section (STEM Club):</strong> Wednesday</li>
+                <li>Physics: Mechanics, thermodynamics, and modern physics</li>
+                <li>Chemistry: Organic, inorganic, and physical chemistry</li>
+                <li>Biology: Cell biology, genetics, and ecology</li>
+                <li>Earth Sciences: Environmental science and geology</li>
             </ul>
-        </section>
+        </div>
+        
+        <h3>Computing</h3>
+        <div class="category-content">
+            <p>Develop programming skills and computational thinking through practical challenges:</p>
+            <ul>
+                <li>Algorithm design and data structures</li>
+                <li>Programming in Python, Java, and C++</li>
+                <li>Web development and app creation</li>
+                <li>Artificial intelligence and machine learning basics</li>
+            </ul>
+        </div>
+        
+        <h3>Combined STEM</h3>
+        <div class="category-content">
+            <p>Interdisciplinary challenges that combine all three subjects:</p>
+            <ul>
+                <li>Mathematical modeling of scientific phenomena</li>
+                <li>Computational solutions to real-world problems</li>
+                <li>Data analysis and visualization projects</li>
+                <li>Innovation challenges and design thinking</li>
+            </ul>
+        </div>
+        
+        <h3>Upcoming Events</h3>
+        <ul>
+            <li><strong>Weekly workshops:</strong> Subject-specific skill-building sessions</li>
+            <li><strong>Guest speakers:</strong> Industry professionals and university researchers</li>
+            <li><strong>Peer tutoring:</strong> Advanced students supporting newcomers</li>
+            <li><strong>Project showcases:</strong> Present your innovations to the community</li>
+        </ul>
+        
+        <h3>How to Participate</h3>
+        <p>Registration for the 2025 test run is now open! Contact any MSC team member or visit the main office to sign up. Whether you're a beginner or advanced student, there's a place for you in our community.</p>
+        
+        <div style="text-align: center; margin-top: 2rem;">
+            <a href="contact.html" style="background-color: #C40036; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Get Involved</a>
+        </div>
     </main>
 
-    <button id="theme-toggle" class="theme-toggle">Switch to Dark Mode</button>
-
+    <!-- Footer -->
     <footer>
-        <p>&copy; <span id="currentYear"></span> MSC Competition. All rights reserved.</p>
+        <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
     </footer>
 
+    <!-- Custom JS -->
     <script src="script.js"></script>
-
+    <script src="js/main.js"></script>
+    
+    <!-- Set current year -->
     <script>
         document.getElementById("currentYear").textContent = new Date().getFullYear();
     </script>
