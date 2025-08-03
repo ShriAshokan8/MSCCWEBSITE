@@ -166,6 +166,7 @@ nav {
 /* Adjust main content to accommodate fixed header */
 main {
     margin-top: 90px;
+    margin-bottom: 80px; /* Add bottom margin for fixed footer */
     padding: 2rem;
     max-width: 1000px;
     margin-left: auto;
@@ -225,6 +226,11 @@ footer {
     text-align: center;
     padding: 1rem 0;
     width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
 }
 
 footer p {
@@ -286,6 +292,7 @@ footer p span {
 
     main {
         margin-top: 90px;
+        margin-bottom: 80px; /* Add bottom margin for fixed footer */
         padding: 1rem;
         margin-left: 1rem;
         margin-right: 1rem;
@@ -322,6 +329,7 @@ footer p span {
         padding: 0.5rem;
         margin-left: 0.5rem;
         margin-right: 0.5rem;
+        margin-bottom: 80px; /* Maintain bottom margin for fixed footer */
     }
     
     .theme-toggle {
@@ -362,6 +370,11 @@ body.night-mode main {
 body.night-mode footer {
     background-color: #222;
     color: var(--text-color);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
 }
 
 body.night-mode .nav-links li a {
@@ -406,8 +419,9 @@ main {
     background-color: var(--background-color);
     color: var(--text-color);
     padding: 2rem;
-    margin-top: 80px; /* Account for fixed header */
-    min-height: calc(100vh - 160px);
+    margin-top: 90px; /* Account for fixed header */
+    margin-bottom: 80px; /* Account for fixed footer */
+    min-height: calc(100vh - 170px); /* Adjust for both header and footer */
     transition: all 0.3s ease;
 }
 
@@ -462,10 +476,20 @@ footer {
     color: var(--background-color);
     text-align: center;
     padding: 1rem;
-    margin-top: auto;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    width: 100%;
 }
 
 body.night-mode footer {
     background-color: #222;
     color: var(--text-color);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
 }
