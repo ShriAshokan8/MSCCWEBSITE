@@ -1,0 +1,471 @@
+/* General Styles */
+:root {
+    /* Day/Light Mode Colors - Main palette: white, peach, orange, black */
+    --primary-color: #FF6B35; /* Orange */
+    --secondary-color: #FFD5B4; /* Peach */
+    --accent-color: #333333; /* Dark gray/black */
+    --background-color: #FFFFFF; /* White */
+    --text-color: #333333; /* Dark gray/black */
+    --card-background: #FEFEFE; /* Almost white */
+    --border-color: #FFD5B4; /* Peach */
+    --hover-color: #FF5722; /* Darker orange */
+}
+
+/* Night Mode Colors */
+.night-mode {
+    --primary-color: #FF6B35; /* Orange stays */
+    --secondary-color: #FFD5B4; /* Peach stays */
+    --accent-color: #FFFFFF; /* White text */
+    --background-color: #1A1A1A; /* Dark background */
+    --text-color: #FFFFFF; /* White text */
+    --card-background: #2A2A2A; /* Dark gray */
+    --border-color: #FF6B35; /* Orange border */
+    --hover-color: #FF8A65; /* Lighter orange */
+}
+
+body {
+    font-family: 'Inter', 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Header Styles */
+header {
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: background-color 0.3s ease;
+    min-height: 70px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.logo {
+    height: 40px;
+    width: auto;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    letter-spacing: 1px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* Hamburger Menu Styles */
+.hamburger {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 5px;
+}
+
+.hamburger span {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 3px 0;
+    transition: 0.3s;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+}
+
+/* Navigation Styles */
+nav {
+    display: flex;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 2rem;
+}
+
+.nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.nav-links li a:hover {
+    background-color: #7400FF;
+}
+
+/* Mobile Navigation */
+.mobile-nav {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    right: 0;
+    background-color: #C40036;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    z-index: 998;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+}
+
+.mobile-nav.active {
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
+}
+
+.mobile-nav .nav-links {
+    flex-direction: column;
+    gap: 0;
+    padding: 1rem;
+}
+
+.mobile-nav .nav-links li a {
+    display: block;
+    padding: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+/* Adjust main content to accommodate fixed header */
+main {
+    margin-top: 90px;
+    padding: 2rem;
+    max-width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    background: var(--card-background);
+    color: var(--text-color);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    min-height: calc(100vh - 200px);
+}
+
+main h2 {
+    color: #C40036;
+    margin-bottom: 1rem;
+    border-bottom: 2px solid #7400FF;
+    padding-bottom: 0.5rem;
+}
+
+main h3 {
+    color: #7400FF;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    background-color: #f1f1f1;
+    padding: 10px;
+    border: 1px solid #ccc;
+}
+
+main h3:hover {
+    background-color: #ddd;
+}
+
+main ul {
+    list-style: none;
+    padding: 0;
+}
+
+main ul li {
+    background: #ffe066;  /* Changed to a brighter background color */
+    margin: 0.5rem 0;
+    padding: 0.75rem;
+    border-left: 4px solid #C40036;
+    border-radius: 4px;
+    font-weight: bold;
+    color: #333;  /* Changed text color for better contrast */
+}
+
+/* Hidden class to hide elements */
+.hidden {
+    display: none;
+}
+
+/* Footer Styles */
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    width: 100%;
+}
+
+footer p {
+    margin: 0;
+}
+
+footer p span {
+    color: #C40036;
+}
+
+/* Day/Night Toggle Button Styles */
+.theme-toggle {
+    padding: 0.5rem 1rem;
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+    border: 2px solid var(--primary-color);
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.theme-toggle:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .hamburger {
+        display: flex;
+    }
+
+    nav .nav-links {
+        display: none;
+    }
+
+    header h1 {
+        font-size: 1.5rem;
+    }
+    
+    .header-left {
+        flex: 1;
+    }
+    
+    .header-right {
+        gap: 0.5rem;
+    }
+    
+    .theme-toggle {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    main {
+        margin-top: 90px;
+        padding: 1rem;
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    main h2 {
+        font-size: 1.5rem;
+    }
+
+    main h3 {
+        font-size: 1.2rem;
+    }
+
+    main ul li {
+        font-size: 1rem;
+        padding: 0.5rem;
+    }
+    
+    .mobile-nav {
+        top: 78px; /* Adjust for mobile header height */
+    }
+}
+
+@media (max-width: 480px) {
+    .header-left h1 {
+        font-size: 1.2rem;
+    }
+    
+    .logo {
+        height: 30px;
+    }
+    
+    main {
+        padding: 0.5rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+    
+    .theme-toggle {
+        display: none; /* Hide on very small screens to save space */
+    }
+}
+
+
+
+
+
+/* Night Mode Styles */
+body.night-mode {
+    --primary-color: #FF6B35; /* Orange stays */
+    --secondary-color: #FFD5B4; /* Peach stays */
+    --accent-color: #FFFFFF; /* White text */
+    --background-color: #1A1A1A; /* Dark background */
+    --text-color: #FFFFFF; /* White text */
+    --card-background: #2A2A2A; /* Dark gray */
+    --border-color: #FF6B35; /* Orange border */
+    --hover-color: #FF8A65; /* Lighter orange */
+}
+
+body.night-mode header {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+body.night-mode .mobile-nav {
+    background-color: var(--primary-color);
+}
+
+body.night-mode main {
+    background: var(--card-background);
+    color: var(--text-color);
+}
+
+body.night-mode footer {
+    background-color: #222;
+    color: var(--text-color);
+}
+
+body.night-mode .nav-links li a {
+    color: #fff;
+}
+
+body.night-mode .nav-links li a:hover {
+    background-color: var(--hover-color);
+}
+
+body.night-mode .mobile-nav .nav-links li a:hover {
+    background-color: var(--hover-color);
+}
+
+body.night-mode .theme-toggle {
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+}
+
+body.night-mode .theme-toggle:hover {
+    background-color: var(--hover-color);
+}
+
+body.night-mode .hamburger span {
+    background-color: #fff;
+}
+
+
+
+/* Night Mode specific styles for resources list */
+body.night-mode .resources {
+    background-color: var(--card-background);
+    color: var(--text-color);
+}
+
+body.night-mode .resources h4 {
+    color: var(--text-color);
+}
+
+/* Main content styling */
+main {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    padding: 2rem;
+    margin-top: 80px; /* Account for fixed header */
+    min-height: calc(100vh - 160px);
+    transition: all 0.3s ease;
+}
+
+/* Card and content styling */
+.card, .content-section {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.card:hover, .content-section:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(255, 107, 53, 0.2);
+}
+
+/* Button styling */
+button, .btn {
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+
+button:hover, .btn:hover {
+    background-color: var(--hover-color);
+    transform: translateY(-1px);
+}
+
+/* Link styling */
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--hover-color);
+    text-decoration: underline;
+}
+
+/* Footer styling */
+footer {
+    background-color: var(--accent-color);
+    color: var(--background-color);
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto;
+}
+
+body.night-mode footer {
+    background-color: #222;
+    color: var(--text-color);
+}
