@@ -181,12 +181,12 @@ main {
 
 /* Bracket-specific layout: Wider main content ONLY for brackets.html */
 body:has(#bracket-content) main {
-    max-width: 1400px; /* Increased width for better bracket display */
+    max-width: 1600px; /* Increased width for better bracket display and new Overall Winner section */
 }
 
 /* Alternative selector for broader browser support */
 main#bracket-content {
-    max-width: 1400px; /* Increased width for better bracket display */
+    max-width: 1600px; /* Increased width for better bracket display and new Overall Winner section */
 }
 
 main h2 {
@@ -1250,4 +1250,139 @@ body.night-mode .bracket-legend {
         font-size: 0.75rem;
         margin-top: 0.3rem;
     }
+}
+
+/* Overall Winner Section Styles - Scoped to brackets.html only */
+.overall-winner-round {
+    min-width: 350px;
+    flex-shrink: 0;
+}
+
+.overall-winner-title {
+    background: linear-gradient(135deg, #FFA500 0%, #FF6B35 100%);
+    color: white;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 15px rgba(255, 165, 0, 0.3);
+    border: none;
+}
+
+.overall-winner-box {
+    background: linear-gradient(135deg, #FFFFFF 0%, #FFDAB9 100%);
+    border: 3px solid #FFA500;
+    border-radius: 15px;
+    padding: 2rem;
+    min-height: 200px;
+    box-shadow: 0 8px 25px rgba(255, 165, 0, 0.2);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.overall-winner-box:hover {
+    transform: translateY(-5px) scale(1.03);
+    box-shadow: 0 12px 35px rgba(255, 165, 0, 0.4);
+    background: linear-gradient(135deg, #FFA500 0%, #FF6B35 100%);
+}
+
+.overall-winner-box:hover .overall-winner-content {
+    color: white;
+}
+
+.overall-winner-content {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    height: 100%;
+    justify-content: center;
+}
+
+.champion-school {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.school-name {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--text-color);
+    transition: color 0.3s ease;
+}
+
+.champion-subtitle {
+    font-size: 1rem;
+    color: #FFA500;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.overall-winner-box:hover .champion-subtitle {
+    color: white;
+}
+
+.achievement-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+}
+
+.achievement-badge {
+    background-color: #FFA500;
+    color: white;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    box-shadow: 0 3px 10px rgba(255, 165, 0, 0.3);
+    transition: all 0.3s ease;
+}
+
+.overall-winner-box:hover .achievement-badge {
+    background-color: white;
+    color: #FFA500;
+}
+
+.tournament-stats {
+    font-style: italic;
+    color: var(--text-color);
+    font-size: 0.9rem;
+    transition: color 0.3s ease;
+}
+
+/* Night mode styles for Overall Winner */
+body.night-mode .overall-winner-box {
+    background: linear-gradient(135deg, #2A2A2A 0%, #3A3A3A 100%);
+    border-color: #FF6B35;
+}
+
+body.night-mode .school-name {
+    color: #FFFFFF;
+}
+
+body.night-mode .tournament-stats {
+    color: #FFFFFF;
+}
+
+/* Match Cluster Styling - Groups within rounds */
+.match-cluster {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background-color: rgba(255, 213, 180, 0.1);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 213, 180, 0.3);
+}
+
+body.night-mode .match-cluster {
+    background-color: rgba(255, 107, 53, 0.1);
+    border-color: rgba(255, 107, 53, 0.3);
+}
 }
