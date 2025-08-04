@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament Brackets - MSC Initiative</title>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Animation Libraries -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <!-- Meta tags -->
+    <meta name="description" content="MSC Competition Tournament Brackets - Track the progress of teams through semi-finals, grand finals, and championship rounds.">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="header-left">
+            <img src="images/msc-logo.svg" alt="MSC Initiative Logo" class="logo">
+            <h1>MSC Initiative</h1>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="events.html">Events</a></li>
+                <li><a href="newsletters.html">Newsletters</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="brackets.html">Brackets</a></li>
+            </ul>
+        </nav>
+        
+        <div class="header-right">
+            <button id="theme-toggle" class="theme-toggle">☀️ Day Mode</button>
+            
+            <!-- Hamburger Menu -->
+            <div class="hamburger" aria-label="Toggle mobile navigation" role="button" tabindex="0" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="newsletters.html">Newsletters</a></li>
+            <li><a href="contact.html">Contact</a></li>
+            <li><a href="brackets.html">Brackets</a></li>
+        </ul>
+    </div>
+
+    <!-- Login Form -->
+    <div id="login-container" class="login-container">
+        <div class="login-form">
+            <h2>Tournament Brackets Access</h2>
+            <p>Please login to view the tournament brackets</p>
+            <form id="bracket-login-form">
+                <div class="form-group">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+                <div id="login-error" class="error-message" style="display: none;">
+                    Invalid credentials. Please try again.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Main Tournament Brackets Content (Hidden by default) -->
+    <main id="bracket-content" style="display: none;">
+        <h2>MSC Competition Tournament Brackets</h2>
+        <p>Track the progress of teams through our three-round tournament format.</p>
+        
+        <!-- Tournament Bracket Container -->
+        <div class="tournament-container">
+            <!-- Round 1: Semi-Finals (10 matches) -->
+            <div class="tournament-round">
+                <h3 class="round-title">Round 1: Semi-Finals</h3>
+                <div class="matches-column">
+                    <!-- Match 1 -->
+                    <div class="match-box" data-match="sf-1">
+                        <div class="team team-a">
+                            <span class="team-name">Greenfield Academy</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Riverside High</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                    
+                    <!-- Match 2 -->
+                    <div class="match-box" data-match="sf-2">
+                        <div class="team team-a">
+                            <span class="team-name">Tech Valley School</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Central College</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                    
+                    <!-- Match 3 -->
+                    <div class="match-box" data-match="sf-3">
+                        <div class="team team-a">
+                            <span class="team-name">Northstar Institute</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Eastside Academy</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                    
+                    <!-- Match 4 -->
+                    <div class="match-box" data-match="sf-4">
+                        <div class="team team-a">
+                            <span class="team-name">Phoenix Grammar</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Westbridge School</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                    
+                    <!-- Match 5 -->
+                    <div class="match-box" data-match="sf-5">
+                        <div class="team team-a">
+                            <span class="team-name">Harmony High</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Sterling Prep</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                    
+                    <!-- Match 6 -->
+                    <div class="match-box" data-match="sf-6">
+                        <div class="team team-a">
+                            <span class="team-name">Clearwater College</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Mountain View School</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                    
+                    <!-- Match 7 -->
+                    <div class="match-box" data-match="sf-7">
+                        <div class="team team-a">
+                            <span class="team-name">Oakwood Academy</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Sunnydale High</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                    
+                    <!-- Match 8 -->
+                    <div class="match-box" data-match="sf-8">
+                        <div class="team team-a">
+                            <span class="team-name">Capitol Prep</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Bayshore School</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                    
+                    <!-- Match 9 -->
+                    <div class="match-box" data-match="sf-9">
+                        <div class="team team-a">
+                            <span class="team-name">Maple Grove Institute</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Hillcrest Academy</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                    
+                    <!-- Match 10 -->
+                    <div class="match-box" data-match="sf-10">
+                        <div class="team team-a">
+                            <span class="team-name">Fairview High</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Lakeside College</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Connection Lines -->
+            <div class="connection-lines">
+                <!-- Future JS: Dynamic connection drawing based on winners -->
+            </div>
+            
+            <!-- Round 2: Grand Finals (5 matches) -->
+            <div class="tournament-round">
+                <h3 class="round-title">Round 2: Grand Finals</h3>
+                <div class="matches-column">
+                    <!-- Grand Final Match 1 -->
+                    <div class="match-box" data-match="gf-1">
+                        <div class="team team-a">
+                            <span class="team-name">Winner SF-1</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Winner SF-2</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                    
+                    <!-- Grand Final Match 2 -->
+                    <div class="match-box" data-match="gf-2">
+                        <div class="team team-a">
+                            <span class="team-name">Winner SF-3</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Winner SF-4</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                    
+                    <!-- Grand Final Match 3 -->
+                    <div class="match-box" data-match="gf-3">
+                        <div class="team team-a">
+                            <span class="team-name">Winner SF-5</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Winner SF-6</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                    
+                    <!-- Grand Final Match 4 -->
+                    <div class="match-box" data-match="gf-4">
+                        <div class="team team-a">
+                            <span class="team-name">Winner SF-7</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Winner SF-8</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                    
+                    <!-- Grand Final Match 5 -->
+                    <div class="match-box" data-match="gf-5">
+                        <div class="team team-a">
+                            <span class="team-name">Winner SF-9</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Winner SF-10</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Connection Lines -->
+            <div class="connection-lines">
+                <!-- Future JS: Dynamic connection drawing based on winners -->
+            </div>
+            
+            <!-- Round 3: Championship -->
+            <div class="tournament-round championship-round">
+                <h3 class="round-title">Round 3: Championship</h3>
+                <div class="matches-column">
+                    <!-- Championship Match -->
+                    <div class="match-box championship-match" data-match="championship">
+                        <div class="team team-a">
+                            <span class="team-name">TBD</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">TBD</span>
+                        </div>
+                        <div class="match-note championship-note">
+                            <strong>MSC Competition 2025 Champion</strong>
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="bracket-legend">
+            <h4>How to read the brackets:</h4>
+            <ul>
+                <li>Round 1: 10 semi-final matches determine initial winners</li>
+                <li>Round 2: 5 grand final matches advance the best teams</li>
+                <li>Round 3: Championship match crowns the MSC Competition winner</li>
+                <li>Hover over match boxes to highlight them</li>
+                <li><em>Note: Winner advancement will be updated dynamically as matches conclude</em></li>
+            </ul>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+    <script src="js/main.js"></script>
+    
+    <!-- Tournament Bracket JS -->
+    <script>
+        // Tournament Bracket Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeBracketLogin();
+            initializeBracketFeatures();
+        });
+        
+        // Login functionality
+        function initializeBracketLogin() {
+            const loginForm = document.getElementById('bracket-login-form');
+            const loginContainer = document.getElementById('login-container');
+            const bracketContent = document.getElementById('bracket-content');
+            const errorMessage = document.getElementById('login-error');
+            
+            // Check if already logged in (simple session storage)
+            if (sessionStorage.getItem('bracket-authenticated') === 'true') {
+                showBrackets();
+                return;
+            }
+            
+            loginForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+                
+                // Simple client-side authentication (as requested)
+                if (username === 'Admin' && password === 'Aderno123!') {
+                    sessionStorage.setItem('bracket-authenticated', 'true');
+                    showBrackets();
+                } else {
+                    errorMessage.style.display = 'block';
+                    // Clear the form
+                    document.getElementById('username').value = '';
+                    document.getElementById('password').value = '';
+                }
+            });
+            
+            function showBrackets() {
+                loginContainer.style.display = 'none';
+                bracketContent.style.display = 'block';
+            }
+        }
+        
+        // Bracket interactive features
+        function initializeBracketFeatures() {
+            // Add hover effects and click handlers for future interactivity
+            const matchBoxes = document.querySelectorAll('.match-box');
+            
+            matchBoxes.forEach(matchBox => {
+                // Hover effect is handled by CSS, but we can add click handlers for future features
+                matchBox.addEventListener('click', function() {
+                    // Future JS: Handle match selection, winner setting, etc.
+                    console.log('Match clicked:', this.dataset.match);
+                });
+            });
+            
+            // Future JS functions to implement:
+            
+            // Function to update match winner
+            function updateMatchWinner(matchId, winnerTeam, notes = '') {
+                // TODO: Implement winner selection logic
+                // This will update the display and cascade to next round
+                console.log('Update winner for match:', matchId, 'Winner:', winnerTeam);
+            }
+            
+            // Function to draw connection lines between rounds
+            function drawConnectionLines() {
+                // TODO: Draw SVG or CSS lines connecting matches to next round
+                console.log('Drawing connection lines between rounds');
+            }
+            
+            // Function to advance winners to next round
+            function advanceWinnersToNextRound(currentRound, nextRound) {
+                // TODO: Take winners from current round and populate next round matches
+                console.log('Advancing winners from', currentRound, 'to', nextRound);
+            }
+            
+            // Function to reset tournament
+            function resetTournament() {
+                // TODO: Clear all winners and reset to initial state
+                console.log('Resetting tournament brackets');
+            }
+            
+            // Function to export bracket results
+            function exportBracketResults() {
+                // TODO: Generate downloadable bracket results
+                console.log('Exporting bracket results');
+            }
+        }
+        
+        // Logout functionality
+        function logoutFromBrackets() {
+            sessionStorage.removeItem('bracket-authenticated');
+            location.reload();
+        }
+        
+        // Set current year
+        document.getElementById("currentYear").textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
