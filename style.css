@@ -1393,6 +1393,71 @@ body.night-mode .tournament-stats {
     color: #FFFFFF;
 }
 
+/* Champion Winner Highlighting - Scoped to brackets.html only */
+.champion-winner {
+    background: #FFD700 !important; /* Gold background */
+    border: 4px solid #FFA500 !important; /* Thick orange border */
+    box-shadow: 0 8px 30px rgba(255, 215, 0, 0.5) !important;
+    position: relative;
+}
+
+.champion-winner:hover {
+    background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%) !important;
+    transform: translateY(-8px) scale(1.05) !important;
+    box-shadow: 0 15px 40px rgba(255, 215, 0, 0.7) !important;
+}
+
+.champion-winner .trophy-icon {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 2rem;
+    animation: trophy-glow 2s ease-in-out infinite alternate;
+}
+
+.champion-winner .school-name {
+    color: #8B4513 !important; /* Dark brown for better contrast on gold */
+    font-weight: bold !important;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.champion-winner .champion-subtitle {
+    color: #B8860B !important; /* Dark golden rod */
+    font-weight: bold !important;
+}
+
+.champion-winner .achievement-badge {
+    background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%) !important;
+    color: #FFD700 !important;
+    border: 2px solid #FFD700 !important;
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.4) !important;
+}
+
+@keyframes trophy-glow {
+    0% {
+        text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700;
+        transform: scale(1);
+    }
+    100% {
+        text-shadow: 0 0 10px #FFA500, 0 0 20px #FFA500, 0 0 30px #FFA500;
+        transform: scale(1.1);
+    }
+}
+
+/* Night mode champion winner styles */
+body.night-mode .champion-winner {
+    background: linear-gradient(135deg, #FFD700 0%, #B8860B 100%) !important;
+    border-color: #FFA500 !important;
+}
+
+body.night-mode .champion-winner .school-name {
+    color: #2A2A2A !important;
+}
+
+body.night-mode .champion-winner .champion-subtitle {
+    color: #654321 !important;
+}
+
 /* Match Cluster Styling - Groups within rounds */
 .match-cluster {
     display: flex;
