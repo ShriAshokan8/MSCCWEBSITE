@@ -821,10 +821,11 @@ body.night-mode .tournament-container {
 
 .matches-column {
     display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
+    flex-direction: row;
+    gap: 1.5rem;
     flex: 1;
-    justify-content: space-around;
+    justify-content: flex-start;
+    flex-wrap: wrap;
 }
 
 .match-box {
@@ -1089,6 +1090,17 @@ body.night-mode .bracket-legend {
         margin-bottom: 1rem;
     }
     
+    .matches-column {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .match-cluster {
+        margin-bottom: 1rem;
+        min-width: auto;
+        max-width: none;
+    }
+    
     .match-box {
         padding: 0.75rem;
         min-height: 80px;
@@ -1158,6 +1170,18 @@ body.night-mode .bracket-legend {
     .round-title {
         font-size: 1rem;
         padding: 0.5rem;
+    }
+    
+    .matches-column {
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .match-cluster {
+        margin-bottom: 0.75rem;
+        padding: 0.75rem;
+        min-width: auto;
+        max-width: none;
     }
     
     .match-box {
@@ -1379,6 +1403,9 @@ body.night-mode .tournament-stats {
     background-color: rgba(255, 213, 180, 0.1);
     border-radius: 8px;
     border: 1px solid rgba(255, 213, 180, 0.3);
+    flex: 1;
+    min-width: 280px;
+    max-width: 350px;
 }
 
 body.night-mode .match-cluster {
