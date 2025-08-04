@@ -179,6 +179,16 @@ main {
     min-height: calc(100vh - 200px);
 }
 
+/* Bracket-specific layout: Wider main content ONLY for brackets.html */
+body:has(#bracket-content) main {
+    max-width: 1400px; /* Increased width for better bracket display */
+}
+
+/* Alternative selector for broader browser support */
+main#bracket-content {
+    max-width: 1400px; /* Increased width for better bracket display */
+}
+
 main h2 {
     color: #C40036;
     margin-bottom: 1rem;
