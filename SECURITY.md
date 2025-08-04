@@ -1,6 +1,6 @@
 # Security Policy
 
-The MSC Competition website is continuously updated.
+The MSC Initiative website is continuously updated.
 
 ## Reporting a Vulnerability
 If you identify a security vulnerability, please report it responsibly:
@@ -14,5 +14,5 @@ If you identify a security vulnerability, please report it responsibly:
 - **Response Time**: We aim to acknowledge reports within 5 days and provide updates on progress.
 - **Resolution**: If accepted, we will work on a fix and notify the reporter before public disclosure.
 
-Thank you for helping keep the MSC Competition website secure!
+Thank you for helping keep the MSC Initiative website secure!
 
