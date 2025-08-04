@@ -127,16 +127,16 @@
     <!-- Main Tournament Brackets Content (Hidden by default) -->
     <main id="bracket-content" style="display: none;">
         <h2>MSC Competition Tournament Brackets</h2>
-        <p>Track the progress of teams through our three-round tournament format.</p>
+        <p>Track the progress of teams through our four-round tournament format.</p>
         
         <!-- Tournament Bracket Container -->
         <div class="tournament-container">
-            <!-- Round 1: Left Semi-Finals (5 matches) -->
+            <!-- Round 1: Semi-Finals (10 matches, 20 schools) -->
             <div class="tournament-round">
-                <h3 class="round-title">Left Semi-Finals</h3>
+                <h3 class="round-title">Semi-Finals</h3>
                 <div class="matches-column">
-                    <!-- Left Semi-Final Match 1 -->
-                    <div class="match-box" data-match="lsf-1">
+                    <!-- Semi-Final Match 1 -->
+                    <div class="match-box" data-match="sf-1">
                         <div class="team team-a">
                             <span class="team-name">Harris City Academy Crystal Palace</span>
                         </div>
@@ -148,8 +148,8 @@
                         </div>
                     </div>
                     
-                    <!-- Left Semi-Final Match 2 -->
-                    <div class="match-box" data-match="lsf-2">
+                    <!-- Semi-Final Match 2 -->
+                    <div class="match-box" data-match="sf-2">
                         <div class="team team-a">
                             <span class="team-name">Harris Academy Beckenham</span>
                         </div>
@@ -161,8 +161,8 @@
                         </div>
                     </div>
                     
-                    <!-- Left Semi-Final Match 3 -->
-                    <div class="match-box" data-match="lsf-3">
+                    <!-- Semi-Final Match 3 -->
+                    <div class="match-box" data-match="sf-3">
                         <div class="team team-a">
                             <span class="team-name">Harris Academy Battersea</span>
                         </div>
@@ -174,8 +174,8 @@
                         </div>
                     </div>
                     
-                    <!-- Left Semi-Final Match 4 -->
-                    <div class="match-box" data-match="lsf-4">
+                    <!-- Semi-Final Match 4 -->
+                    <div class="match-box" data-match="sf-4">
                         <div class="team team-a">
                             <span class="team-name">Harris Academy Purley</span>
                         </div>
@@ -187,8 +187,8 @@
                         </div>
                     </div>
                     
-                    <!-- Left Semi-Final Match 5 -->
-                    <div class="match-box" data-match="lsf-5">
+                    <!-- Semi-Final Match 5 -->
+                    <div class="match-box" data-match="sf-5">
                         <div class="team team-a">
                             <span class="team-name">Harris Academy Orpington</span>
                         </div>
@@ -199,20 +199,9 @@
                             <!-- Future JS: Dynamic winner selection and notes -->
                         </div>
                     </div>
-                </div>
-            </div>
-            
-            <!-- Connection Lines -->
-            <div class="connection-lines">
-                <!-- Future JS: Dynamic connection drawing based on winners -->
-            </div>
-            
-            <!-- Round 1: Right Semi-Finals (5 matches) -->
-            <div class="tournament-round">
-                <h3 class="round-title">Right Semi-Finals</h3>
-                <div class="matches-column">
-                    <!-- Right Semi-Final Match 1 -->
-                    <div class="match-box" data-match="rsf-1">
+                    
+                    <!-- Semi-Final Match 6 -->
+                    <div class="match-box" data-match="sf-6">
                         <div class="team team-a">
                             <span class="team-name">Harris Girls' Academy East Dulwich</span>
                         </div>
@@ -224,8 +213,8 @@
                         </div>
                     </div>
                     
-                    <!-- Right Semi-Final Match 2 -->
-                    <div class="match-box" data-match="rsf-2">
+                    <!-- Semi-Final Match 7 -->
+                    <div class="match-box" data-match="sf-7">
                         <div class="team team-a">
                             <span class="team-name">Harris Academy Peckham</span>
                         </div>
@@ -237,8 +226,8 @@
                         </div>
                     </div>
                     
-                    <!-- Right Semi-Final Match 3 -->
-                    <div class="match-box" data-match="rsf-3">
+                    <!-- Semi-Final Match 8 -->
+                    <div class="match-box" data-match="sf-8">
                         <div class="team team-a">
                             <span class="team-name">Harris Academy Rainham</span>
                         </div>
@@ -250,8 +239,8 @@
                         </div>
                     </div>
                     
-                    <!-- Right Semi-Final Match 4 -->
-                    <div class="match-box" data-match="rsf-4">
+                    <!-- Semi-Final Match 9 -->
+                    <div class="match-box" data-match="sf-9">
                         <div class="team team-a">
                             <span class="team-name">Harris Academy Greenwich</span>
                         </div>
@@ -263,8 +252,8 @@
                         </div>
                     </div>
                     
-                    <!-- Right Semi-Final Match 5 -->
-                    <div class="match-box" data-match="rsf-5">
+                    <!-- Semi-Final Match 10 -->
+                    <div class="match-box" data-match="sf-10">
                         <div class="team team-a">
                             <span class="team-name">Harris Academy Chobham</span>
                         </div>
@@ -283,69 +272,130 @@
                 <!-- Future JS: Dynamic connection drawing based on winners -->
             </div>
             
-            <!-- Round 2: Grand Finals (5 matches) -->
+            <!-- Round 2: Grand Final Round 2 (5 matches, 10 winners → 5 winners + 1 wildcard) -->
             <div class="tournament-round">
-                <h3 class="round-title">Grand Finals</h3>
+                <h3 class="round-title">Grand Final Round 2</h3>
                 <div class="matches-column">
-                    <!-- Grand Final Match 1 -->
-                    <div class="match-box" data-match="gf-1">
+                    <!-- Grand Final Round 2 Match 1 -->
+                    <div class="match-box" data-match="gf2-1">
                         <div class="team team-a">
-                            <span class="team-name">Winner LSF-1</span>
+                            <span class="team-name">Winner SF-1</span>
                         </div>
                         <div class="team team-b">
-                            <span class="team-name">Winner RSF-1</span>
+                            <span class="team-name">Winner SF-2</span>
                         </div>
                         <div class="match-note">
                             <!-- Future JS: Dynamic winner selection and notes -->
                         </div>
                     </div>
                     
-                    <!-- Grand Final Match 2 -->
-                    <div class="match-box" data-match="gf-2">
+                    <!-- Grand Final Round 2 Match 2 -->
+                    <div class="match-box" data-match="gf2-2">
                         <div class="team team-a">
-                            <span class="team-name">Winner LSF-2</span>
+                            <span class="team-name">Winner SF-3</span>
                         </div>
                         <div class="team team-b">
-                            <span class="team-name">Winner RSF-2</span>
+                            <span class="team-name">Winner SF-4</span>
                         </div>
                         <div class="match-note">
                             <!-- Future JS: Dynamic winner selection and notes -->
                         </div>
                     </div>
                     
-                    <!-- Grand Final Match 3 -->
-                    <div class="match-box" data-match="gf-3">
+                    <!-- Grand Final Round 2 Match 3 -->
+                    <div class="match-box" data-match="gf2-3">
                         <div class="team team-a">
-                            <span class="team-name">Winner LSF-3</span>
+                            <span class="team-name">Winner SF-5</span>
                         </div>
                         <div class="team team-b">
-                            <span class="team-name">Winner RSF-3</span>
+                            <span class="team-name">Winner SF-6</span>
                         </div>
                         <div class="match-note">
                             <!-- Future JS: Dynamic winner selection and notes -->
                         </div>
                     </div>
                     
-                    <!-- Grand Final Match 4 -->
-                    <div class="match-box" data-match="gf-4">
+                    <!-- Grand Final Round 2 Match 4 -->
+                    <div class="match-box" data-match="gf2-4">
                         <div class="team team-a">
-                            <span class="team-name">Winner LSF-4</span>
+                            <span class="team-name">Winner SF-7</span>
                         </div>
                         <div class="team team-b">
-                            <span class="team-name">Winner RSF-4</span>
+                            <span class="team-name">Winner SF-8</span>
                         </div>
                         <div class="match-note">
                             <!-- Future JS: Dynamic winner selection and notes -->
                         </div>
                     </div>
                     
-                    <!-- Grand Final Match 5 -->
-                    <div class="match-box" data-match="gf-5">
+                    <!-- Grand Final Round 2 Match 5 -->
+                    <div class="match-box" data-match="gf2-5">
                         <div class="team team-a">
-                            <span class="team-name">Winner LSF-5</span>
+                            <span class="team-name">Winner SF-9</span>
                         </div>
                         <div class="team team-b">
-                            <span class="team-name">Winner RSF-5</span>
+                            <span class="team-name">Winner SF-10</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                    
+                    <!-- Wildcard Selection -->
+                    <div class="match-box wildcard-box" data-match="wildcard">
+                        <div class="team wildcard-team">
+                            <span class="team-name">Best-Performing Round 2 Loser</span>
+                        </div>
+                        <div class="match-note wildcard-note">
+                            <strong>Wildcard Entry</strong>
+                            <!-- Future JS: Dynamic wildcard selection -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Connection Lines -->
+            <div class="connection-lines">
+                <!-- Future JS: Dynamic connection drawing based on winners -->
+            </div>
+            
+            <!-- Round 3: Grand Final Round 3 (3 matches, 6 teams → 3 winners) -->
+            <div class="tournament-round">
+                <h3 class="round-title">Grand Final Round 3</h3>
+                <div class="matches-column">
+                    <!-- Grand Final Round 3 Match 1 -->
+                    <div class="match-box" data-match="gf3-1">
+                        <div class="team team-a">
+                            <span class="team-name">Winner GF2-1</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Winner GF2-2</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                    
+                    <!-- Grand Final Round 3 Match 2 -->
+                    <div class="match-box" data-match="gf3-2">
+                        <div class="team team-a">
+                            <span class="team-name">Winner GF2-3</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Winner GF2-4</span>
+                        </div>
+                        <div class="match-note">
+                            <!-- Future JS: Dynamic winner selection and notes -->
+                        </div>
+                    </div>
+                    
+                    <!-- Grand Final Round 3 Match 3 -->
+                    <div class="match-box" data-match="gf3-3">
+                        <div class="team team-a">
+                            <span class="team-name">Winner GF2-5</span>
+                        </div>
+                        <div class="team team-b">
+                            <span class="team-name">Wildcard Entry</span>
                         </div>
                         <div class="match-note">
                             <!-- Future JS: Dynamic winner selection and notes -->
@@ -359,20 +409,24 @@
                 <!-- Future JS: Dynamic connection drawing based on winners -->
             </div>
             
-            <!-- Round 3: Championship -->
+            <!-- Round 4: Final Faceoff (3-way challenge) -->
             <div class="tournament-round championship-round">
-                <h3 class="round-title">Championship</h3>
+                <h3 class="round-title">Champion</h3>
                 <div class="matches-column">
-                    <!-- Championship Match -->
-                    <div class="match-box championship-match" data-match="championship">
+                    <!-- Final Faceoff -->
+                    <div class="match-box championship-match final-faceoff" data-match="final-faceoff">
                         <div class="team team-a">
-                            <span class="team-name">Left Champion</span>
+                            <span class="team-name">Winner GF3-1</span>
                         </div>
                         <div class="team team-b">
-                            <span class="team-name">Right Champion</span>
+                            <span class="team-name">Winner GF3-2</span>
+                        </div>
+                        <div class="team team-c">
+                            <span class="team-name">Winner GF3-3</span>
                         </div>
                         <div class="match-note championship-note">
                             <strong>MSC Competition 2025 Champion</strong>
+                            <em>3-Way Final Faceoff Challenge</em>
                             <!-- Future JS: Dynamic winner selection and notes -->
                         </div>
                     </div>
@@ -383,12 +437,12 @@
         <div class="bracket-legend">
             <h4>Tournament Structure:</h4>
             <ul>
-                <li><strong>Left Semi-Finals:</strong> 5 matches featuring Harris Academies from the left bracket</li>
-                <li><strong>Right Semi-Finals:</strong> 5 matches featuring Harris Academies from the right bracket</li>
-                <li><strong>Grand Finals:</strong> 5 matches pairing winners from left and right semi-finals</li>
-                <li><strong>Championship:</strong> Final match between the two sides for the MSC Competition crown</li>
+                <li><strong>Semi-Finals:</strong> 20 schools in 10 one-on-one matchups, 10 winners advance</li>
+                <li><strong>Grand Final Round 2:</strong> 10 schools in 5 matchups, 5 winners plus 1 wildcard (best-performing loser) advance</li>
+                <li><strong>Grand Final Round 3:</strong> 6 schools in 3 matchups, 3 winners advance to final faceoff</li>
+                <li><strong>Champion:</strong> 3-way final faceoff challenge to determine the MSC Competition crown</li>
                 <li><strong>Interactive Features:</strong> Hover over match boxes to highlight them in orange</li>
-                <li><em>Note: Winner advancement will be updated dynamically as matches conclude</em></li>
+                <li><em>Note: Winner advancement and wildcard selection will be updated dynamically as matches conclude</em></li>
             </ul>
         </div>
     </main>

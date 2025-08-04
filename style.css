@@ -889,6 +889,73 @@ body.night-mode .tournament-container {
     font-size: 0.9rem;
 }
 
+/* Wildcard specific styles */
+.wildcard-box {
+    background: linear-gradient(145deg, #E6E6FA 0%, #DDA0DD 100%);
+    border: 2px solid #9370DB;
+    margin-top: 1rem;
+}
+
+.wildcard-box:hover {
+    background: linear-gradient(145deg, #DDA0DD 0%, #9370DB 100%);
+    border-color: #8A2BE2;
+}
+
+.wildcard-team {
+    background-color: rgba(221, 160, 221, 0.3);
+    border-color: #9370DB;
+    text-align: center;
+    font-style: italic;
+}
+
+.wildcard-note {
+    color: #8B008B;
+    font-weight: bold;
+    text-align: center;
+}
+
+/* Final Faceoff (3-way challenge) specific styles */
+.final-faceoff {
+    min-height: 180px;
+    background: linear-gradient(145deg, #FFD700 0%, #FF6B35 20%, #FFA500 100%);
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 6px 30px rgba(255, 215, 0, 0.5);
+}
+
+.final-faceoff:hover {
+    background: linear-gradient(145deg, #FFA500 0%, #FF6B35 50%, #FFD700 100%);
+    transform: translateY(-8px) scale(1.08);
+    box-shadow: 0 10px 40px rgba(255, 165, 0, 0.6);
+}
+
+.final-faceoff .team {
+    margin-bottom: 0.3rem;
+    font-size: 0.9rem;
+}
+
+.final-faceoff .team-c {
+    background-color: rgba(255, 215, 0, 0.4);
+    border: 1px solid #FFD700;
+    border-radius: 6px;
+    padding: 0.75rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.final-faceoff .championship-note {
+    margin-top: 1rem;
+    text-align: center;
+    color: #8B4513;
+    font-size: 1rem;
+}
+
+.final-faceoff .championship-note em {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    color: #CD853F;
+}
+
 /* Connection lines placeholder */
 .connection-lines {
     width: 2rem;
@@ -1051,6 +1118,26 @@ body.night-mode .bracket-legend {
     .login-body {
         padding: 1rem 1.5rem 1.5rem;
     }
+    
+    /* Responsive wildcard and final faceoff styles */
+    .wildcard-box {
+        min-height: 80px;
+        padding: 0.75rem;
+    }
+    
+    .final-faceoff {
+        min-height: 150px;
+        padding: 0.75rem;
+    }
+    
+    .final-faceoff .team {
+        font-size: 0.8rem;
+        padding: 0.5rem;
+    }
+    
+    .final-faceoff .championship-note {
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -1116,5 +1203,41 @@ body.night-mode .bracket-legend {
     
     .login-btn {
         padding: 0.875rem 1.5rem;
+    }
+    
+    /* Mobile responsive for new elements */
+    .wildcard-box {
+        min-height: 70px;
+        padding: 0.5rem;
+    }
+    
+    .wildcard-team {
+        padding: 0.4rem;
+        font-size: 0.75rem;
+    }
+    
+    .wildcard-note {
+        font-size: 0.75rem;
+    }
+    
+    .final-faceoff {
+        min-height: 120px;
+        padding: 0.5rem;
+    }
+    
+    .final-faceoff .team {
+        font-size: 0.75rem;
+        padding: 0.4rem;
+        margin-bottom: 0.2rem;
+    }
+    
+    .final-faceoff .championship-note {
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+    }
+    
+    .final-faceoff .championship-note em {
+        font-size: 0.75rem;
+        margin-top: 0.3rem;
     }
 }
