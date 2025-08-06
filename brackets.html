@@ -504,48 +504,65 @@
     
     <!-- Tournament Bracket JS -->
     <script>
-        // Tournament Bracket Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            initializeBracketLogin();
-            initializeBracketFeatures();
-        });
-        
-        // Login functionality
-        function initializeBracketLogin() {
-            const loginForm = document.getElementById('bracket-login-form');
-            const loginContainer = document.getElementById('login-container');
-            const bracketContent = document.getElementById('bracket-content');
-            const errorMessage = document.getElementById('login-error');
-            
-            // Check if already logged in (simple session storage)
-            if (sessionStorage.getItem('bracket-authenticated') === 'true') {
-                showBrackets();
-                return;
-            }
-            
-            loginForm.addEventListener('submit', function(e) {
-                e.preventDefault();
-                
-                const username = document.getElementById('username').value;
-                const password = document.getElementById('password').value;
-                
-                // Simple client-side authentication (as requested)
-                if (username === 'Admin' && password === '18f5646ca5edef1ea8eefdc1ca9211c8cd26bae8892275ab4d922df833a09f17') {
-                    sessionStorage.setItem('bracket-authenticated', 'true');
-                    showBrackets();
-                } else {
-                    errorMessage.style.display = 'block';
-                    // Clear the form
-                    document.getElementById('username').value = '';
-                    document.getElementById('password').value = '';
-                }
-            });
-            
-            function showBrackets() {
-                loginContainer.style.display = 'none';
-                bracketContent.style.display = 'block';
-            }
+    // Tournament Bracket Functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        initializeBracketLogin();
+        initializeBracketFeatures();
+    });
+
+    // Utility: SHA-256 hash function (returns hex string)
+    async function sha256(str) {
+        const encoder = new TextEncoder();
+        const data = encoder.encode(str);
+        const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+        // Convert to hex string
+        return Array.from(new Uint8Array(hashBuffer))
+            .map(b => b.toString(16).padStart(2, '0'))
+            .join('');
+    }
+
+    // Login functionality
+    function initializeBracketLogin() {
+        const loginForm = document.getElementById('bracket-login-form');
+        const loginContainer = document.getElementById('login-container');
+        const bracketContent = document.getElementById('bracket-content');
+        const errorMessage = document.getElementById('login-error');
+
+        // Check if already logged in (simple session storage)
+        if (sessionStorage.getItem('bracket-authenticated') === 'true') {
+            showBrackets();
+            return;
         }
+
+        loginForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // Hash the entered password using SHA-256
+            const passwordHash = await sha256(password);
+
+            // Compare with stored hash (do NOT store the real password in the code!)
+            const storedUsername = 'Admin';
+            const storedPasswordHash = '18f5646ca5edef1ea8eefdc1ca9211c8cd26bae8892275ab4d922df833a09f17';
+
+            if (username === storedUsername && passwordHash === storedPasswordHash) {
+                sessionStorage.setItem('bracket-authenticated', 'true');
+                showBrackets();
+            } else {
+                errorMessage.style.display = 'block';
+                // Clear the form
+                document.getElementById('username').value = '';
+                document.getElementById('password').value = '';
+            }
+        });
+
+        function showBrackets() {
+            loginContainer.style.display = 'none';
+            bracketContent.style.display = 'block';
+        }
+    }
         
         // Bracket interactive features
         function initializeBracketFeatures() {
