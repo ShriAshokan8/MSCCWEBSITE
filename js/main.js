@@ -9,9 +9,18 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeMottoTransition();
     initializeScrollEffects();
     initializeLoadingAnimations();
+    setCurrentYear();
     
     console.log('MSC Initiative website loaded successfully!');
 });
+
+// Set current year in footer
+function setCurrentYear() {
+    const currentYearElement = document.getElementById('currentYear');
+    if (currentYearElement) {
+        currentYearElement.textContent = new Date().getFullYear();
+    }
+}
 
 // Hamburger menu functionality
 function initializeHamburgerMenu() {

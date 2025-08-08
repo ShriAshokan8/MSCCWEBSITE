@@ -6,14 +6,16 @@
     <title>Newsletters - MSC Initiative</title>
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
     
     <!-- Animation Libraries -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <!-- TODO: Audit and remove one of GSAP or Anime.js if unused to reduce bundle size -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" crossorigin="anonymous">
     
     <!-- Meta tags -->
     <meta name="description" content="Access newsletters and updates from the MSC Initiative. Stay informed about our latest activities, achievements, and upcoming events in Mathematics, Science, and Computing.">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <meta name="keywords" content="MSC, Mathematics, Science, Computing, STEM, Initiative">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
     
     <!-- Canonical -->
     <link rel="canonical" href="https://msccompetition.live/newsletters.html">
@@ -24,31 +26,39 @@
     <meta property="og:title" content="Newsletters - MSC Initiative">
     <meta property="og:description" content="Access newsletters and updates from the MSC Initiative. Stay informed about our latest activities, achievements, and upcoming events in Mathematics, Science, and Computing.">
     <meta property="og:url" content="https://msccompetition.live/newsletters.html">
-    <meta property="og:image" content="https://msccompetition.live/images/msc-logo.svg">
+    <meta property="og:image" content="https://msccompetition.live/images/og-default-1200x630.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <!-- Twitter -->
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Newsletters - MSC Initiative">
     <meta name="twitter:description" content="Access newsletters and updates from the MSC Initiative. Stay informed about our latest activities, achievements, and upcoming events in Mathematics, Science, and Computing.">
-    <meta name="twitter:image" content="https://msccompetition.live/images/msc-logo.svg">
+    <meta name="twitter:image" content="https://msccompetition.live/images/og-default-1200x630.png">
 </head>
 <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
     <!-- Header with Navigation -->
     <header>
         <div class="header-left">
-            <img src="images/msc-logo.svg" alt="MSC Initiative Logo" class="logo">
+            <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="logo" width="200" height="120">
             <h1>MSC Initiative</h1>
         </div>
         
         <!-- Desktop Navigation -->
         <nav>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="newsletters.html">Newsletters</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="brackets.html">Brackets</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/events.html">Events</a></li>
+                <li><a href="/newsletters.html">Newsletters</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+                <li><a href="/brackets.html">Brackets</a></li>
             </ul>
         </nav>
         
@@ -67,17 +77,17 @@
     <!-- Mobile Navigation -->
     <div class="mobile-nav">
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="events.html">Events</a></li>
-            <li><a href="newsletters.html">Newsletters</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="brackets.html">Brackets</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/events.html">Events</a></li>
+            <li><a href="/newsletters.html">Newsletters</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/brackets.html">Brackets</a></li>
         </ul>
     </div>
 
     <!-- Main Content -->
-    <main>
+    <main id="main">
         <h2>MSC Initiative Newsletters</h2>
         
         <p>Stay up to date with the latest news, achievements, and updates from the MSC Initiative community. Our newsletters provide insights into ongoing projects, upcoming events, member spotlights, and developments in Mathematics, Science, and Computing.</p>
@@ -98,7 +108,7 @@
         <p>As we continue to grow and develop, this section will contain our complete newsletter archive. Check back regularly for new updates and publications from the MSC Initiative team.</p>
         
         <h3>Subscribe to Updates</h3>
-        <p>To receive notifications about new newsletters and updates, please visit our <a href="contact.html">contact page</a> to get in touch with our team.</p>
+        <p>To receive notifications about new newsletters and updates, please visit our <a href="/contact.html">contact page</a> to get in touch with our team.</p>
     </main>
 
     <!-- Footer -->
@@ -107,16 +117,13 @@
     </footer>
 
     <!-- Animation Libraries -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" defer></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" defer></script>
+    <!-- TODO: Audit and remove one of GSAP or Anime.js if unused to reduce bundle size -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" crossorigin="anonymous" defer></script>
     
     <!-- Custom JS -->
-    <script src="script.js" defer></script>
-    <script src="js/main.js" defer></script>
+    <script src="/script.js" defer></script>
+    <script src="/js/main.js" defer></script>
     
-    <!-- Set current year -->
-    <script>
-        document.getElementById("currentYear").textContent = new Date().getFullYear();
-    </script>
 </body>
 </html>

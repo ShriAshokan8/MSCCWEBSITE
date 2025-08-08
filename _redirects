@@ -2,5 +2,13 @@
 # IMPORTANT: Removed the previous catch-all 404 rule to avoid breaking valid pages.
 # Add any specific path redirects below as needed.
 
+# Extensionless redirects to prevent duplicate content
+/about /about.html 301
+/events /events.html 301
+/newsletters /newsletters.html 301
+/contact /contact.html 301
+/brackets /brackets.html 301
+/tech /tech/ 301
+
 # Example: Redirect old paths if you have them
 # /old-page.html /new-page.html 301

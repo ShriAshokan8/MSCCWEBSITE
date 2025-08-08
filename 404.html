@@ -3,39 +3,70 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Page Not Found</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Page Not Found - MSC Initiative</title>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/style.css">
     
     <!-- Animation Libraries -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-
-<script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "qxg14jbq1d");
-</script>
-
+    <!-- TODO: Audit and remove one of GSAP or Anime.js if unused to reduce bundle size -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" crossorigin="anonymous">
+    
+    <!-- Meta tags -->
+    <meta name="description" content="Page not found - Return to the MSC Initiative homepage to explore our STEM movement.">
+    <meta name="keywords" content="MSC, Mathematics, Science, Computing, STEM, Initiative, 404">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    
+    <!-- Preconnects -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    
+    <!-- Fonts -->
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "MSC Initiative",
+      "description": "MSC Initiative - A student-led STEM movement exploring Maths, Science, and Computing. Join us to Explore, Innovate, and Excel!",
+      "url": "https://msccompetition.live",
+      "sameAs": [],
+      "publisher": {
+        "@type": "Organization",
+        "name": "MSC Initiative",
+        "url": "https://msccompetition.live",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://msccompetition.live/images/msc-logo.svg"
+        }
+      }
+    }
+    </script>    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
     <!-- Header with Navigation -->
     <header>
         <div class="header-left">
-            <img src="images/msc-logo.svg" alt="MSC Initiative Logo" class="logo">
+            <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="logo" width="200" height="120">
             <h1>MSC Initiative</h1>
         </div>
         
-        <!-- Desktop Navigation -->
         <nav>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="newsletters.html">Newsletters</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/events.html">Events</a></li>
+                <li><a href="/newsletters.html">Newsletters</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+                <li><a href="/brackets.html">Brackets</a></li>
             </ul>
         </nav>
         
@@ -54,31 +85,38 @@
     <!-- Mobile Navigation -->
     <div class="mobile-nav">
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="events.html">Events</a></li>
-            <li><a href="newsletters.html">Newsletters</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/events.html">Events</a></li>
+            <li><a href="/newsletters.html">Newsletters</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/brackets.html">Brackets</a></li>
         </ul>
     </div>
 
-    <main>
-        <h2>404 - Page Not Found</h2>
-        <p>Oops! The page you are looking for does not exist. It might have been moved or deleted.</p>
-        <p><a href="index.html" style="background-color: var(--primary-color); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Go back to Home</a></p>
+    <main id="main">
+        <div style="text-align: center; padding: 4rem 2rem;">
+            <h2>404 - Page Not Found</h2>
+            <p style="font-size: 1.2rem; margin: 2rem 0;">Oops! The page you are looking for does not exist.</p>
+            <p>It might have been moved, deleted, or you might have typed the wrong URL.</p>
+            <div class="cta-buttons" style="margin-top: 3rem;">
+                <a href="/" class="btn btn-primary">Go back to Home</a>
+                <a href="/contact.html" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
     </main>
 
     <footer>
         <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
     </footer>
 
-    <!-- Custom JS -->
-    <script src="script.js"></script>
-    <script src="js/main.js"></script>
+    <!-- Animation Libraries -->
+    <!-- TODO: Audit and remove one of GSAP or Anime.js if unused to reduce bundle size -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" crossorigin="anonymous" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" crossorigin="anonymous" defer></script>
     
-    <!-- Set current year -->
-    <script>
-        document.getElementById("currentYear").textContent = new Date().getFullYear();
-    </script>
+    <!-- Custom JS -->
+    <script src="/script.js" defer></script>
+    <script src="/js/main.js" defer></script>
 </body>
 </html>

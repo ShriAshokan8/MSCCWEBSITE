@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Cultural Quiz - MSC Initiative</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/style.css">
     
     <!-- Meta tags -->
     <meta name="description" content="Take the MSC Initiative Tech Cultural Quiz - Test your knowledge of technology and digital culture.">
@@ -30,6 +30,12 @@
 <body>
     <h1>Tech Cultural Quiz</h1>
     <form id="quizForm" action="https://formspree.io/f/mzzvbonq" method="POST">
+        <!-- Honeypot field for spam protection -->
+        <input type="text" name="_honeypot" tabindex="-1" autocomplete="off" class="hidden">
+        
+        <!-- Redirect to thank you page -->
+        <input type="hidden" name="_next" value="/thanks.html">
+        
         <label for="name">Your Name:</label><br>
         <input type="text" id="name" name="name" required><br><br>
 
@@ -157,6 +163,6 @@
         <input type="hidden" id="scoreField" name="score" value="0">
         <button type="submit">Submit Quiz</button>
     </form>
-    <script src="script.js" defer></script>
+    <script src="/script.js" defer></script>
 </body>
 </html>
