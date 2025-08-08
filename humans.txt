@@ -1,0 +1,15 @@
+/* TEAM */
+    Creator: MSC Initiative Team
+    Site: https://msccompetition.live
+    Email: support@msccompetition.live
+    Location: Global
+
+/* THANKS */
+    Student contributors and participants in the MSC Initiative
+    Open source community for tools and libraries
+
+/* SITE */
+    Last update: 2025/01/08
+    Standards: HTML5, CSS3, JavaScript ES6+
+    Components: Progressive Web App, Responsive Design
+    Software: Hand-coded with care by the MSC Initiative team

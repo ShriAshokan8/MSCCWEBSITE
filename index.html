@@ -39,6 +39,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
     <!-- Header with Navigation -->
     <header>
         <div class="header-left">
@@ -49,12 +50,12 @@
         <!-- Desktop Navigation -->
         <nav>
             <ul class="nav-links">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="newsletters.html">Newsletters</a></li>
-                <li><a href="contact.html">Contact</a></li>
-                <li><a href="brackets.html">Brackets</a></li>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about.html">About</a></li>
+                <li><a href="/events.html">Events</a></li>
+                <li><a href="/newsletters.html">Newsletters</a></li>
+                <li><a href="/contact.html">Contact</a></li>
+                <li><a href="/brackets.html">Brackets</a></li>
             </ul>
         </nav>
         
@@ -73,17 +74,17 @@
     <!-- Mobile Navigation -->
     <div class="mobile-nav">
         <ul class="nav-links">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="events.html">Events</a></li>
-            <li><a href="newsletters.html">Newsletters</a></li>
-            <li><a href="contact.html">Contact</a></li>
-            <li><a href="brackets.html">Brackets</a></li>
+            <li><a href="/">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li><a href="/events.html">Events</a></li>
+            <li><a href="/newsletters.html">Newsletters</a></li>
+            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/brackets.html">Brackets</a></li>
         </ul>
     </div>
 
     <!-- Main Content -->
-    <main>
+    <main id="main">
         <h2>Explore, Innovate, Excel: Maths, Science, Computing</h2>
         
         <p>Welcome to the MSC Initiative - a dynamic student-led STEM movement that brings together passionate minds in <strong>Maths</strong>, <strong>Science</strong>, and <strong>Computing</strong>.</p>
@@ -102,9 +103,9 @@
         
         <p>Since our launch on 23rd September 2024, we've been building bridges between traditional classroom learning and real-world application, encouraging students to think critically, collaborate effectively, and pursue excellence in all STEM disciplines.</p>
         
-        <div style="text-align: center; margin-top: 2rem;">
-            <a href="about.html" style="background-color: var(--primary-color); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-right: 10px;">Learn More</a>
-            <a href="events.html" style="background-color: var(--accent-color); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Upcoming Events</a>
+        <div class="cta-buttons">
+            <a href="/about.html" class="btn btn-primary">Learn More</a>
+            <a href="/events.html" class="btn btn-secondary">Upcoming Events</a>
         </div>
     </main>
 
@@ -120,11 +121,6 @@
     <!-- Custom JS -->
     <script src="script.js" defer></script>
     <script src="js/main.js" defer></script>
-    
-    <!-- Set current year -->
-    <script>
-        document.getElementById("currentYear").textContent = new Date().getFullYear();
-    </script>
 </body>
 </html>
 
