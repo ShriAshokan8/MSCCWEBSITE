@@ -1,14 +1,16 @@
 # Cloudflare Pages redirects
-# IMPORTANT: Removed the previous catch-all 404 rule to avoid breaking valid pages.
-# Add any specific path redirects below as needed.
+# IMPORTANT: Only .html -> clean URL redirects to work with Pages Clean URLs setting
+# Avoid clean -> .html redirects that would conflict with Pages settings and cause loops
 
-# Extensionless redirects to prevent duplicate content
-/about /about.html 301
-/events /events.html 301
-/newsletters /newsletters.html 301
-/contact /contact.html 301
-/brackets /brackets.html 301
-/tech /tech/ 301
+# Legacy .html redirects to clean URLs
+/index.html / 301
+/about.html /about 301
+/events.html /events 301
+/newsletters.html /newsletters 301
+/contact.html /contact 301
+/brackets.html /brackets 301
+/tech/index.html /tech/ 301
+/thanks.html /thanks 301
 
-# Example: Redirect old paths if you have them
-# /old-page.html /new-page.html 301
+# Note: Clean URL -> .html redirects are omitted to prevent conflicts
+# with Cloudflare Pages Clean URLs setting which handles this automatically
