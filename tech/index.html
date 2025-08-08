@@ -30,6 +30,12 @@
 <body>
     <h1>Tech Cultural Quiz</h1>
     <form id="quizForm" action="https://formspree.io/f/mzzvbonq" method="POST">
+        <!-- Honeypot field for spam protection -->
+        <input type="text" name="_honeypot" tabindex="-1" autocomplete="off" class="hidden">
+        
+        <!-- Redirect to thank you page -->
+        <input type="hidden" name="_next" value="/thanks.html">
+        
         <label for="name">Your Name:</label><br>
         <input type="text" id="name" name="name" required><br><br>
 
