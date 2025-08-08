@@ -13,6 +13,7 @@
     
     <!-- Meta tags -->
     <meta name="description" content="Discover upcoming events and the 2025 test run of the MSC Initiative - featuring Mathematics, Science, and Computing competitions, workshops, and activities.">
+    <meta name="keywords" content="MSC, Mathematics, Science, Computing, STEM, Initiative, Events, Competitions, Workshops">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     
     <!-- Canonical -->
@@ -25,14 +26,81 @@
     <meta property="og:description" content="Discover upcoming events and the 2025 test run of the MSC Initiative - featuring Mathematics, Science, and Computing competitions, workshops, and activities.">
     <meta property="og:url" content="https://msccompetition.live/events.html">
     <meta property="og:image" content="https://msccompetition.live/images/og-default-1200x630.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Events - MSC Initiative">
     <meta name="twitter:description" content="Discover upcoming events and the 2025 test run of the MSC Initiative - featuring Mathematics, Science, and Computing competitions, workshops, and activities.">
     <meta name="twitter:image" content="https://msccompetition.live/images/og-default-1200x630.png">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    
+    <!-- Preconnects -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    <link rel="dns-prefetch" href="//cdnjs.cloudflare.com">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "MSC Initiative",
+      "description": "MSC Initiative - A student-led STEM movement exploring Maths, Science, and Computing. Join us to Explore, Innovate, and Excel!",
+      "url": "https://msccompetition.live",
+      "sameAs": [],
+      "publisher": {
+        "@type": "Organization",
+        "name": "MSC Initiative",
+        "url": "https://msccompetition.live",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://msccompetition.live/images/msc-logo.svg"
+        }
+      }
+    }
+    </script>
+    
+    <!-- Event JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Event",
+      "name": "MSC Initiative 2025 Test Run",
+      "description": "The inaugural test run of the MSC Initiative featuring Mathematics, Science, and Computing competitions and workshops.",
+      "startDate": "2025-03-01",
+      "endDate": "2025-04-30",
+      "eventAttendanceMode": "https://schema.org/MixedEventAttendanceMode",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "location": {
+        "@type": "VirtualLocation",
+        "url": "https://msccompetition.live"
+      },
+      "organizer": {
+        "@type": "Organization",
+        "name": "MSC Initiative",
+        "url": "https://msccompetition.live"
+      },
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      }
+    }
+    </script>
 </head>
 <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
     <!-- Header with Navigation -->
     <header>
         <div class="header-left">
@@ -77,7 +145,7 @@
     </div>
 
     <!-- Main Content -->
-    <main>
+    <main id="main">
         <h2>Events & Competitions</h2>
         
         <p>Join us for exciting STEM events, competitions, and learning opportunities throughout the 2024-25 academic year.</p>
