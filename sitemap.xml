@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://msccompetition.live/</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <lastmod>2025-01-08</lastmod>
+  </url>
+  <url><loc>https://msccompetition.live/about.html</loc><lastmod>2025-01-08</lastmod></url>
+  <url><loc>https://msccompetition.live/events.html</loc><lastmod>2025-01-08</lastmod></url>
+  <url><loc>https://msccompetition.live/newsletters.html</loc><lastmod>2025-01-08</lastmod></url>
+  <url><loc>https://msccompetition.live/contact.html</loc><lastmod>2025-01-08</lastmod></url>
+  <url><loc>https://msccompetition.live/brackets.html</loc><lastmod>2025-01-08</lastmod></url>
+  <url><loc>https://msccompetition.live/tech/</loc><lastmod>2025-01-08</lastmod></url>
+</urlset>
