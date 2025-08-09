@@ -126,7 +126,7 @@ nav {
 }
 
 .nav-links li a:hover {
-    background-color: #7400FF;
+    background-color: var(--hover-color);
 }
 
 /* Mobile Navigation */
@@ -135,7 +135,7 @@ nav {
     top: 70px;
     left: 0;
     right: 0;
-    background-color: #C40036;
+    background-color: var(--primary-color);
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     z-index: 998;
     transform: translateY(-100%);
@@ -190,23 +190,24 @@ main#bracket-content {
 }
 
 main h2 {
-    color: #C40036;
+    color: var(--primary-color);
     margin-bottom: 1rem;
-    border-bottom: 2px solid #7400FF;
+    border-bottom: 2px solid var(--primary-color);
     padding-bottom: 0.5rem;
 }
 
 main h3 {
-    color: #7400FF;
+    color: var(--primary-color);
     margin-bottom: 0.5rem;
     cursor: pointer;
-    background-color: #f1f1f1;
+    background-color: var(--secondary-color);
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-color);
 }
 
 main h3:hover {
-    background-color: #ddd;
+    background-color: var(--hover-color);
+    color: white;
 }
 
 main ul {
@@ -215,13 +216,13 @@ main ul {
 }
 
 main ul li {
-    background: #ffe066;  /* Changed to a brighter background color */
+    background: var(--secondary-color);
     margin: 0.5rem 0;
     padding: 0.75rem;
-    border-left: 4px solid #C40036;
+    border-left: 4px solid var(--primary-color);
     border-radius: 4px;
     font-weight: bold;
-    color: #333;  /* Changed text color for better contrast */
+    color: var(--accent-color);
 }
 
 /* Hidden class to hide elements */
@@ -248,7 +249,7 @@ footer p {
 }
 
 footer p span {
-    color: #C40036;
+    color: var(--primary-color);
 }
 
 /* Day/Night Toggle Button Styles */
