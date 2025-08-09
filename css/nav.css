@@ -14,7 +14,7 @@
     right: 0;
     z-index: var(--z-fixed);
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     transition: background-color var(--transition-normal);
     min-height: 70px;
@@ -23,8 +23,6 @@
   .header-left {
     display: flex;
     align-items: center;
-    gap: var(--space-md);
-    justify-content: center;
     flex: 1;
   }
   
@@ -32,8 +30,8 @@
     display: flex;
     align-items: center;
     gap: var(--space-md);
-    position: absolute;
-    right: var(--space-md);
+    flex: 1;
+    justify-content: flex-end;
   }
   
   .logo {
@@ -89,6 +87,9 @@
   nav {
     display: flex;
     align-items: center;
+    justify-content: center;
+    gap: var(--space-lg);
+    flex: 2;
   }
   
   .nav-links {
@@ -226,6 +227,19 @@
     /* Show hamburger menu on mobile/tablet */
     [data-nav-toggle] {
       display: flex;
+    }
+    
+    /* Add logo to header-left on mobile */
+    .header-left::before {
+      content: "";
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background-image: url('/images/msc-logo.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      margin-right: var(--space-sm);
     }
     
     header h1 {
