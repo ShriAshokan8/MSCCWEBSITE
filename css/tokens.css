@@ -110,4 +110,27 @@
   :root {
     color-scheme: light dark;
   }
+  
+  /* Automatic system preference detection */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --color-background: #1A1A1A;
+      --color-text: var(--color-white);
+      --color-surface: #2A2A2A;
+      --color-border: var(--color-primary);
+      --color-accent: var(--color-white);
+      --color-primary-hover: #FF8A65;
+    }
+  }
+  
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --color-background: var(--color-white);
+      --color-text: var(--color-black);
+      --color-surface: #FEFEFE;
+      --color-border: var(--color-peach);
+      --color-accent: #333333;
+      --color-primary-hover: #E65F2F;
+    }
+  }
 }

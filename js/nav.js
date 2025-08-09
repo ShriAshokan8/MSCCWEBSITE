@@ -58,8 +58,7 @@
     panel: null,
     body: null,
     html: null,
-    links: [],
-    themeToggles: []
+    links: []
   };
   
   /**
@@ -81,7 +80,6 @@
     elements.body = document.querySelector(CONFIG.selectors.body);
     elements.html = document.querySelector(CONFIG.selectors.html);
     elements.links = Array.from(document.querySelectorAll(CONFIG.selectors.links));
-    elements.themeToggles = Array.from(document.querySelectorAll(CONFIG.selectors.themeToggle));
     
     // Initialize theme system
     initThemeSystem();
@@ -103,104 +101,39 @@
   }
   
   /**
-   * Initialize theme system - User-controlled only (no auto mode)
+   * Initialize theme system - Automatic system preference detection only
    */
   function initThemeSystem() {
-    // Load saved preference or default to light
-    const savedTheme = localStorage.getItem(CONFIG.storage.themeKey);
-    if (savedTheme && (savedTheme === CONFIG.themes.LIGHT || savedTheme === CONFIG.themes.DARK)) {
-      state.currentTheme = savedTheme;
-    } else {
-      // Default to light theme
-      state.currentTheme = CONFIG.themes.LIGHT;
-    }
+    // Detect system preference
+    state.systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Set initial theme based on system preference
+    state.currentTheme = state.systemPrefersDark ? CONFIG.themes.DARK : CONFIG.themes.LIGHT;
     
     // Apply initial theme
     applyTheme();
     
-    // Setup theme toggle listeners
-    elements.themeToggles.forEach(toggle => {
-      toggle.addEventListener('click', handleThemeToggle);
-      
-      // Add keyboard support
-      toggle.addEventListener('keydown', (event) => {
-        if (event.key === ' ' || event.key === 'Enter') {
-          event.preventDefault();
-          handleThemeToggle(event);
-        }
-      });
+    // Listen for system preference changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', (e) => {
+      state.systemPrefersDark = e.matches;
+      state.currentTheme = state.systemPrefersDark ? CONFIG.themes.DARK : CONFIG.themes.LIGHT;
+      applyTheme();
     });
     
-    console.log('Theme system initialized:', state.currentTheme);
+    console.log('Theme system initialized with automatic detection:', state.currentTheme);
   }
-  
+
   /**
-   * Handle theme toggle button click - Simple light/dark toggle
-   */
-  function handleThemeToggle(event) {
-    event.preventDefault();
-    
-    // Simple toggle between light and dark
-    state.currentTheme = state.currentTheme === CONFIG.themes.LIGHT ? CONFIG.themes.DARK : CONFIG.themes.LIGHT;
-    
-    // Save preference
-    localStorage.setItem(CONFIG.storage.themeKey, state.currentTheme);
-    
-    // Apply theme
-    applyTheme();
-    
-    // Announce change to screen readers
-    const themeText = getThemeDisplayText();
-    announceToScreenReader(`Theme changed to ${themeText}`);
-  }
-  
-  /**
-   * Apply the current theme - User-controlled only
+   * Apply the current theme - Automatic system detection
    */
   function applyTheme() {
     if (!elements.html) return;
     
-    // Always set explicit theme (no system fallback)
+    // Apply theme based on current system preference
     elements.html.setAttribute(CONFIG.attributes.dataTheme, state.currentTheme);
-    
-    // Update theme toggle buttons
-    updateThemeToggleUI(state.currentTheme);
   }
-  
-  /**
-   * Update theme toggle button appearance - Simple light/dark
-   */
-  function updateThemeToggleUI(actualTheme) {
-    const themeText = getThemeDisplayText();
-    const icon = actualTheme === CONFIG.themes.DARK ? '☀️' : '🌙';
-    
-    elements.themeToggles.forEach(toggle => {
-      // Update button text and icon
-      toggle.innerHTML = `${icon} ${themeText}`;
-      
-      // Update aria-pressed based on current theme
-      const isPressed = actualTheme === CONFIG.themes.DARK;
-      toggle.setAttribute(CONFIG.attributes.ariaPressed, isPressed.toString());
-      
-      // Update aria-label for accessibility
-      toggle.setAttribute('aria-label', `Switch theme. Current: ${themeText}`);
-    });
-  }
-  
-  /**
-   * Get human-readable theme text - Simple light/dark
-   */
-  function getThemeDisplayText() {
-    switch (state.currentTheme) {
-      case CONFIG.themes.LIGHT:
-        return 'Light';
-      case CONFIG.themes.DARK:
-        return 'Dark';
-      default:
-        return 'Light';
-    }
-  }
-  
+
   /**
    * Setup toggle button attributes and initial state
    */
@@ -576,16 +509,8 @@
     isOpen: () => state.isOpen,
     setCurrentPage: setCurrentPage,
     
-    // Theme controls
-    getTheme: () => state.currentTheme,
-    setTheme: (theme) => {
-      if (Object.values(CONFIG.themes).includes(theme)) {
-        state.currentTheme = theme;
-        localStorage.setItem(CONFIG.storage.themeKey, theme);
-        applyTheme();
-      }
-    },
-    toggleTheme: () => handleThemeToggle({ preventDefault: () => {} })
+    // Theme status (read-only)
+    getTheme: () => state.currentTheme
   };
   
   // Initialize when script loads
