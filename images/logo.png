@@ -1,0 +1,9 @@
+<svg width="200" height="120" viewBox="0 0 200 120" xmlns="http://www.w3.org/2000/svg">
+  <!-- Black background -->
+  <rect width="200" height="120" fill="#000000"/>
+  
+  <!-- MSC Text -->
+  <text x="100" y="75" font-family="Arial, sans-serif" font-size="48" font-weight="bold" text-anchor="middle">
+    <tspan fill="#ffffff">M</tspan><tspan fill="#FFB89D">S</tspan><tspan fill="#FF6B35">C</tspan>
+  </text>
+</svg>

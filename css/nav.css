@@ -316,27 +316,80 @@
       display: none;
     }
     
-    /* Update header layout for desktop - centered navigation */
+    /* Update header layout for desktop - logo left, nav center, theme right */
     header {
-      display: flex;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
       align-items: center;
       padding: var(--space-sm) var(--space-md);
       position: relative;
     }
     
-    /* Show desktop navigation in header */
+    /* Only these 3 elements participate in desktop grid */
+    .header-left {
+      grid-column: 1;
+    }
+    
+    .header-nav {
+      grid-column: 2;
+    }
+    
+    .header-theme-toggle-placeholder {
+      grid-column: 3;
+    }
+    
+    /* Theme toggle positioning for desktop - move to right column */
+    .header-right {
+      display: flex !important; /* Show on desktop too */
+      grid-column: 3; /* Place in 3rd column */
+      align-items: center;
+      justify-content: flex-end;
+    }
+    
+    /* Desktop logo section - left */
+    .header-left {
+      display: flex !important;
+      align-items: center;
+      justify-content: flex-start;
+    }
+    
+    .header-left .hamburger {
+      display: none; /* Hide hamburger on desktop */
+    }
+    
+    .header-left .logo-link {
+      display: flex !important;
+      align-items: center;
+    }
+    
+    .header-left .logo-link.desktop-logo {
+      display: flex !important; /* Show desktop logo in left section */
+    }
+    
+    .header-left .logo {
+      height: 40px;
+      width: auto;
+    }
+    
+    /* Hide mobile sections except left and right on desktop */
+    .header-center {
+      display: none;
+    }
+    
+    /* .header-right now shows on desktop for theme toggle */
+    
+    /* Show desktop navigation in header center */
     .header-nav {
       display: flex;
       align-items: center;
-      gap: var(--space-xl);
+      justify-content: center;
       position: relative;
     }
     
     .header-nav .nav-container {
       display: flex;
       align-items: center;
-      gap: var(--space-xl);
+      gap: var(--space-lg);
     }
     
     .header-nav .nav-links {
@@ -352,13 +405,11 @@
       margin: 0;
     }
     
-    /* Logo in the center of navigation */
+    /* Hide logo in navigation on desktop */
     .header-nav .nav-logo {
-      height: 50px;
-      width: auto;
-      margin: 0 var(--space-lg);
+      display: none;
     }
-    
+    /* Show navigation links on desktop */
     .header-nav .nav-links a {
       color: var(--color-white);
       text-decoration: none;
@@ -396,35 +447,14 @@
       background-color: rgba(255, 255, 255, 0.1);
     }
     
-    /* Theme toggle positioned at far right */
-    .header-theme-toggle {
-      position: absolute;
-      right: 0;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-    
-    /* Hide mobile header sections on desktop */
-    .header-left,
-    .header-center,
-    .header-right {
-      display: none;
-    }
-    
-    /* Hide footer navigation on desktop */
-    footer .footer-nav {
-      display: none;
-    }
-    
-    /* Show header theme toggle on desktop */
-    .header-theme-toggle .theme-toggle {
-      display: flex;
+    /* Desktop theme toggle styling */
+    .header-right .theme-toggle {
       border-color: var(--color-white);
       background-color: rgba(255, 255, 255, 0.1);
       color: var(--color-white);
     }
     
-    .header-theme-toggle .theme-toggle:hover {
+    .header-right .theme-toggle:hover {
       background-color: var(--color-white);
       color: var(--color-primary);
       border-color: var(--color-white);
@@ -433,9 +463,24 @@
   
   /* Mobile/Tablet styles */
   @media (max-width: 768px) {
-    /* Keep header grid layout for mobile */
+    /* Override desktop grid for mobile - use different grid */
     header {
+      display: grid !important;
       grid-template-columns: auto 1fr auto;
+      grid-template-areas: "left center right";
+    }
+    
+    /* Position mobile sections in grid */
+    .header-left {
+      grid-area: left;
+    }
+    
+    .header-center {
+      grid-area: center;
+    }
+    
+    .header-right {
+      grid-area: right;
     }
     
     /* Show mobile header sections */
@@ -443,6 +488,11 @@
     .header-center,
     .header-right {
       display: flex;
+    }
+    
+    /* Hide desktop logo on mobile */
+    .header-left .desktop-logo {
+      display: none !important;
     }
     
     /* Show mobile hamburger */
@@ -455,6 +505,11 @@
       display: none;
     }
     
+    /* Hide placeholder on mobile */
+    .header-theme-toggle-placeholder {
+      display: none;
+    }
+    
     /* Hide footer navigation on mobile */
     footer .footer-nav {
       display: none;
@@ -462,7 +517,7 @@
     
     /* Show header theme toggle on mobile */
     .header-right .theme-toggle {
-      display: flex;
+      display: flex !important; /* Force display on mobile */
       font-size: var(--font-size-xs);
       padding: var(--space-xs) var(--space-sm);
     }
