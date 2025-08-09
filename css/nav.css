@@ -340,8 +340,10 @@
     /* Hide mobile hamburger and center logo on tablet */
     .header-left,
     .header-center,
-    .header-right {
-      display: none;
+    .header-right,
+    .hamburger,
+    [data-nav-toggle] {
+      display: none !important;
     }
     
     /* Hide desktop and mobile navigation */
@@ -414,8 +416,10 @@
     /* Hide hamburger, center logo, and theme toggle */
     .header-left,
     .header-center,
-    .header-right {
-      display: none;
+    .header-right,
+    .hamburger,
+    [data-nav-toggle] {
+      display: none !important;
     }
     
     /* Hide desktop and tablet navigation */
