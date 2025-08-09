@@ -41,9 +41,9 @@
     width: auto;
   }
   
-  /* Navigation toggle button (hamburger) */
+  /* Navigation toggle button (hamburger) - only show on mobile/tablet */
   [data-nav-toggle] {
-    display: flex !important;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
     width: 25px;
@@ -87,7 +87,7 @@
   
   /* Desktop navigation */
   nav {
-    display: none !important; /* Hide desktop nav since we're always using hamburger */
+    display: flex;
     align-items: center;
   }
   
@@ -218,7 +218,15 @@
   
   /* Mobile responsive styles */
   @media (max-width: 768px) {
-    /* Hamburger is always visible now, so no changes needed here */
+    /* Hide desktop navigation on mobile/tablet */
+    nav {
+      display: none;
+    }
+    
+    /* Show hamburger menu on mobile/tablet */
+    [data-nav-toggle] {
+      display: flex;
+    }
     
     header h1 {
       font-size: var(--font-size-xl);
