@@ -218,7 +218,7 @@
    */
   function handleLinkClick(event) {
     // Close navigation on internal link click (mobile-friendly)
-    if (state.isOpen && window.innerWidth < 768) {
+    if (state.isOpen && window.innerWidth <= 768) {
       closeNavigation();
     }
   }
@@ -257,7 +257,7 @@
    */
   function handleResize() {
     // Close mobile navigation if window becomes wide
-    if (state.isOpen && window.innerWidth >= 768) {
+    if (state.isOpen && window.innerWidth > 768) {
       closeNavigation();
     }
   }
