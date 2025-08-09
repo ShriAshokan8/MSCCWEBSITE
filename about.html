@@ -98,8 +98,32 @@
         
         <div class="header-right">
             <button class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
-                🌙 Auto
+                🌙 Light
             </button>
+        </div>
+        
+        <!-- Desktop: Centered navigation with logo in middle -->
+        <div class="header-nav">
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about" aria-current="page">About</a></li>
+                    <li><a href="/events">Events</a></li>
+                </ul>
+                <a href="/" class="logo-link" aria-label="MSC Initiative Home">
+                    <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="nav-logo" width="50" height="50">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/newsletters">Newsletters</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/brackets">Brackets</a></li>
+                </ul>
+            </div>
+            <div class="header-theme-toggle">
+                <button class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
+                    🌙 Light
+                </button>
+            </div>
         </div>
     </header>
 
@@ -154,31 +178,6 @@
 
     <!-- Footer -->
     <footer>
-        <!-- Desktop Navigation -->
-        <div class="footer-nav">
-            <div class="nav-container">
-                <ul class="nav-links">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/events">Events</a></li>
-                </ul>
-                
-                <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="nav-logo" width="50" height="50">
-                
-                <ul class="nav-links">
-                    <li><a href="/newsletters">Newsletters</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                    <li><a href="/brackets">Brackets</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-theme-toggle">
-                <button class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
-                    🌙 Auto
-                </button>
-            </div>
-        </div>
-        
         <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
     </footer>
 
