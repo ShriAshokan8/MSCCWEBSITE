@@ -55,7 +55,7 @@
     justify-content: space-between;
     width: 30px;
     height: 22px;
-    background-color: rgba(255, 255, 255, 0.1);
+    background-color: rgba(255, 255, 255, 0.2);
     border: 2px solid var(--color-white);
     border-radius: var(--radius-sm);
     cursor: pointer;
@@ -66,7 +66,7 @@
   }
   
   [data-nav-toggle]:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.3);
     border-color: var(--color-white);
     transform: scale(1.05);
   }
@@ -77,20 +77,20 @@
     box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
   }
   
-  /* Hamburger Icon - SVG-like lines */
+  /* Hamburger Icon - High contrast lines */
   [data-nav-toggle] span {
     display: block;
-    height: 2px;
+    height: 3px;
     width: 100%;
     background-color: var(--color-white);
-    border-radius: 1px;
+    border-radius: 2px;
     transition: all var(--transition-normal);
     transform-origin: center;
   }
   
   /* Enhanced hamburger animation */
   [data-nav-toggle][aria-expanded="true"] {
-    background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.25);
   }
   
   [data-nav-toggle][aria-expanded="true"] span:nth-child(1) {
@@ -116,90 +116,13 @@
     display: none; /* Hidden on mobile by default */
   }
   
-  /* Footer Navigation for Desktop */
+  /* Footer - No navigation */
   footer {
     background-color: var(--color-surface);
     border-top: 2px solid var(--color-border);
     padding: var(--space-lg) var(--space-md);
     margin-top: auto;
-  }
-  
-  footer .footer-nav {
-    display: none; /* Hidden on mobile */
-    max-width: 1200px;
-    margin: 0 auto;
-    align-items: center;
-    justify-content: center;
-    gap: var(--space-xl);
-    position: relative;
-  }
-  
-  footer .nav-container {
-    display: flex;
-    align-items: center;
-    gap: var(--space-xl);
-  }
-  
-  footer .nav-links {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: var(--space-lg);
-    align-items: center;
-  }
-  
-  footer .nav-links li {
-    margin: 0;
-  }
-  
-  footer .nav-logo {
-    height: 50px;
-    width: auto;
-    margin: 0 var(--space-lg);
-  }
-  
-  footer .nav-links a {
-    color: var(--color-text);
-    text-decoration: none;
-    font-weight: 500;
-    padding: var(--space-sm) var(--space-md);
-    border-radius: var(--radius-sm);
-    transition: all var(--transition-normal);
-    position: relative;
-    display: inline-block;
-  }
-  
-  footer .nav-links a:hover {
-    color: var(--color-primary);
-    transform: translateY(-1px);
-  }
-  
-  footer .nav-links a:focus-visible {
-    outline: 2px solid var(--color-primary);
-    outline-offset: 2px;
-  }
-  
-  /* Active page underline styling - NO background highlight */
-  footer .nav-links a[aria-current="page"] {
-    color: var(--color-primary);
-    font-weight: 600;
-    text-decoration: underline;
-    text-decoration-color: var(--color-primary);
-    text-decoration-thickness: 2px;
-    text-underline-offset: 4px;
-  }
-
-  footer .nav-links a[aria-current="page"]:hover {
-    transform: none;
-  }
-  
-  /* Footer theme toggle positioning */
-  footer .footer-theme-toggle {
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
+    text-align: center;
   }
   
   /* Mobile navigation panel */
@@ -266,7 +189,7 @@
     padding-left: calc(var(--space-lg) - 4px);
   }
   
-  /* Theme toggle button - styled for both header and footer */
+  /* Theme toggle button */
   .theme-toggle {
     padding: var(--space-sm) var(--space-md);
     background-color: var(--color-peach);
@@ -294,19 +217,6 @@
     outline-offset: 2px;
   }
   
-  /* Footer theme toggle specific styling */
-  footer .theme-toggle {
-    border-color: var(--color-border);
-    background-color: var(--color-background);
-    color: var(--color-text);
-  }
-  
-  footer .theme-toggle:hover {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    border-color: var(--color-primary);
-  }
-  
   /* Responsive Design */
   
   /* Desktop styles - show header navigation */
@@ -316,83 +226,43 @@
       display: none;
     }
     
-    /* Update header layout for desktop - logo left, nav center, theme right */
+    /* Update header layout for desktop - single row with centered navigation */
     header {
-      display: grid;
-      grid-template-columns: 1fr 2fr 1fr;
+      display: flex;
       align-items: center;
+      justify-content: center;
       padding: var(--space-sm) var(--space-md);
       position: relative;
     }
     
-    /* Only these 3 elements participate in desktop grid */
-    .header-left {
-      grid-column: 1;
-    }
-    
-    .header-nav {
-      grid-column: 2;
-    }
-    
-    .header-theme-toggle-placeholder {
-      grid-column: 3;
-    }
-    
-    /* Theme toggle positioning for desktop - move to right column */
-    .header-right {
-      display: flex !important; /* Show on desktop too */
-      grid-column: 3; /* Place in 3rd column */
-      align-items: center;
-      justify-content: flex-end;
-    }
-    
-    /* Desktop logo section - left */
-    .header-left {
-      display: flex !important;
-      align-items: center;
-      justify-content: flex-start;
-    }
-    
-    .header-left .hamburger {
-      display: none; /* Hide hamburger on desktop */
-    }
-    
-    .header-left .logo-link {
-      display: flex !important;
-      align-items: center;
-    }
-    
-    .header-left .logo-link.desktop-logo {
-      display: flex !important; /* Show desktop logo in left section */
-    }
-    
-    .header-left .logo {
-      height: 40px;
-      width: auto;
-    }
-    
-    /* Hide mobile sections except left and right on desktop */
+    /* Hide mobile sections on desktop except one theme toggle */
+    .header-left,
     .header-center {
       display: none;
     }
     
-    /* .header-right now shows on desktop for theme toggle */
+    /* Hide mobile theme toggle but keep desktop one */
+    .header-right {
+      display: none;
+    }
     
-    /* Show desktop navigation in header center */
+    /* Show and center desktop navigation */
     .header-nav {
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
+      flex: 1;
     }
     
     .header-nav .nav-container {
       display: flex;
       align-items: center;
-      gap: var(--space-lg);
+      gap: var(--space-xl);
+      position: relative;
     }
     
-    .header-nav .nav-links {
+    /* Left navigation links */
+    .header-nav .nav-left {
       display: flex;
       list-style: none;
       margin: 0;
@@ -401,15 +271,34 @@
       align-items: center;
     }
     
-    .header-nav .nav-links li {
+    /* Right navigation links */
+    .header-nav .nav-right {
+      display: flex;
+      list-style: none;
       margin: 0;
+      padding: 0;
+      gap: var(--space-lg);
+      align-items: center;
     }
     
-    /* Hide logo in navigation on desktop */
-    .header-nav .nav-logo {
-      display: none;
+    /* Center logo */
+    .header-nav .nav-logo-link {
+      display: flex;
+      align-items: center;
+      margin: 0 var(--space-lg);
     }
-    /* Show navigation links on desktop */
+    
+    .header-nav .nav-logo {
+      height: 50px;
+      width: auto;
+      transition: transform var(--transition-normal);
+    }
+    
+    .header-nav .nav-logo-link:hover .nav-logo {
+      transform: scale(1.05);
+    }
+    
+    /* Navigation link styles */
     .header-nav .nav-links a {
       color: var(--color-white);
       text-decoration: none;
@@ -447,23 +336,48 @@
       background-color: rgba(255, 255, 255, 0.1);
     }
     
-    /* Desktop theme toggle styling */
-    .header-right .theme-toggle {
+    /* Desktop theme toggle positioning - absolute right - ONLY ONE */
+    .header-theme-toggle {
+      position: absolute;
+      right: var(--space-md);
+      top: 50%;
+      transform: translateY(-50%);
+      display: block;
+    }
+    
+    .header-theme-toggle .theme-toggle {
       border-color: var(--color-white);
       background-color: rgba(255, 255, 255, 0.1);
       color: var(--color-white);
+      padding: var(--space-sm) var(--space-md);
+      border: 2px solid var(--color-white);
+      border-radius: 25px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: var(--font-size-sm);
+      transition: all var(--transition-normal);
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      white-space: nowrap;
     }
     
-    .header-right .theme-toggle:hover {
+    .header-theme-toggle .theme-toggle:hover {
       background-color: var(--color-white);
       color: var(--color-primary);
       border-color: var(--color-white);
+      transform: scale(1.05);
+    }
+    
+    .header-theme-toggle .theme-toggle:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
     }
   }
   
   /* Mobile/Tablet styles */
   @media (max-width: 768px) {
-    /* Override desktop grid for mobile - use different grid */
+    /* Mobile header grid layout */
     header {
       display: grid !important;
       grid-template-columns: auto 1fr auto;
@@ -473,51 +387,32 @@
     /* Position mobile sections in grid */
     .header-left {
       grid-area: left;
+      display: flex;
+      align-items: center;
     }
     
     .header-center {
       grid-area: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     
     .header-right {
       grid-area: right;
-    }
-    
-    /* Show mobile header sections */
-    .header-left,
-    .header-center,
-    .header-right {
       display: flex;
+      align-items: center;
     }
     
-    /* Hide desktop logo on mobile */
-    .header-left .desktop-logo {
-      display: none !important;
-    }
-    
-    /* Show mobile hamburger */
-    [data-nav-toggle] {
-      /* Already displayed via flex */
-    }
-    
-    /* Hide header navigation on mobile */
-    .header-nav {
-      display: none;
-    }
-    
-    /* Hide placeholder on mobile */
-    .header-theme-toggle-placeholder {
-      display: none;
-    }
-    
-    /* Hide footer navigation on mobile */
-    footer .footer-nav {
+    /* Hide desktop navigation on mobile */
+    .header-nav,
+    .header-theme-toggle {
       display: none;
     }
     
     /* Show header theme toggle on mobile */
     .header-right .theme-toggle {
-      display: flex !important; /* Force display on mobile */
+      display: flex !important;
       font-size: var(--font-size-xs);
       padding: var(--space-xs) var(--space-sm);
     }

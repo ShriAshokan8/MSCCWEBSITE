@@ -33,7 +33,7 @@
       TAB: 'Tab'
     },
     storage: {
-      themeKey: 'msc-theme-preference'
+      themeKey: 'theme'
     },
     themes: {
       LIGHT: 'light',
