@@ -517,7 +517,7 @@
     
     /* Show header theme toggle on mobile */
     .header-right .theme-toggle {
-      display: flex;
+      display: flex !important; /* Force display on mobile */
       font-size: var(--font-size-xs);
       padding: var(--space-xs) var(--space-sm);
     }
