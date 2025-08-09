@@ -106,9 +106,14 @@
     transform: rotate(-45deg) translate(5px, -5px);
   }
   
-  /* Desktop navigation - Hidden on mobile, shown in footer on desktop */
+  /* Desktop navigation - Hidden on mobile, shown in header on desktop */
   nav {
     display: none; /* Hidden on mobile */
+  }
+  
+  /* Desktop header navigation */
+  .header-nav {
+    display: none; /* Hidden on mobile by default */
   }
   
   /* Footer Navigation for Desktop */
@@ -304,21 +309,125 @@
   
   /* Responsive Design */
   
-  /* Desktop styles - show footer navigation */
+  /* Desktop styles - show header navigation */
   @media (min-width: 769px) {
     /* Hide mobile hamburger on desktop */
     [data-nav-toggle] {
       display: none;
     }
     
-    /* Show footer navigation on desktop */
-    footer .footer-nav {
+    /* Update header layout for desktop - centered navigation */
+    header {
       display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: var(--space-sm) var(--space-md);
+      position: relative;
     }
     
-    /* Hide mobile theme toggle on desktop (footer one will be shown) */
-    .header-right .theme-toggle {
+    /* Show desktop navigation in header */
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xl);
+      position: relative;
+    }
+    
+    .header-nav .nav-container {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xl);
+    }
+    
+    .header-nav .nav-links {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      gap: var(--space-lg);
+      align-items: center;
+    }
+    
+    .header-nav .nav-links li {
+      margin: 0;
+    }
+    
+    /* Logo in the center of navigation */
+    .header-nav .nav-logo {
+      height: 50px;
+      width: auto;
+      margin: 0 var(--space-lg);
+    }
+    
+    .header-nav .nav-links a {
+      color: var(--color-white);
+      text-decoration: none;
+      font-weight: 500;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-sm);
+      transition: all var(--transition-normal);
+      position: relative;
+      display: inline-block;
+    }
+    
+    .header-nav .nav-links a:hover {
+      color: var(--color-white);
+      background-color: rgba(255, 255, 255, 0.1);
+      transform: translateY(-1px);
+    }
+    
+    .header-nav .nav-links a:focus-visible {
+      outline: 2px solid var(--color-white);
+      outline-offset: 2px;
+    }
+    
+    /* Active page underline styling - NO background highlight */
+    .header-nav .nav-links a[aria-current="page"] {
+      color: var(--color-white);
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-color: var(--color-white);
+      text-decoration-thickness: 2px;
+      text-underline-offset: 4px;
+    }
+
+    .header-nav .nav-links a[aria-current="page"]:hover {
+      transform: none;
+      background-color: rgba(255, 255, 255, 0.1);
+    }
+    
+    /* Theme toggle positioned at far right */
+    .header-theme-toggle {
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    
+    /* Hide mobile header sections on desktop */
+    .header-left,
+    .header-center,
+    .header-right {
       display: none;
+    }
+    
+    /* Hide footer navigation on desktop */
+    footer .footer-nav {
+      display: none;
+    }
+    
+    /* Show header theme toggle on desktop */
+    .header-theme-toggle .theme-toggle {
+      display: flex;
+      border-color: var(--color-white);
+      background-color: rgba(255, 255, 255, 0.1);
+      color: var(--color-white);
+    }
+    
+    .header-theme-toggle .theme-toggle:hover {
+      background-color: var(--color-white);
+      color: var(--color-primary);
+      border-color: var(--color-white);
     }
   }
   
@@ -329,9 +438,21 @@
       grid-template-columns: auto 1fr auto;
     }
     
+    /* Show mobile header sections */
+    .header-left,
+    .header-center,
+    .header-right {
+      display: flex;
+    }
+    
     /* Show mobile hamburger */
     [data-nav-toggle] {
       /* Already displayed via flex */
+    }
+    
+    /* Hide header navigation on mobile */
+    .header-nav {
+      display: none;
     }
     
     /* Hide footer navigation on mobile */

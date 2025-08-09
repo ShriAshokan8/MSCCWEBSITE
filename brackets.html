@@ -75,8 +75,32 @@
         
         <div class="header-right">
             <button class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
-                🌙 Auto
+                🌙 Light
             </button>
+        </div>
+        
+        <!-- Desktop: Centered navigation with logo in middle -->
+        <div class="header-nav">
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/about">About</a></li>
+                    <li><a href="/events">Events</a></li>
+                </ul>
+                <a href="/" class="logo-link" aria-label="MSC Initiative Home">
+                    <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="nav-logo" width="50" height="50">
+                </a>
+                <ul class="nav-links">
+                    <li><a href="/newsletters">Newsletters</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/brackets" aria-current="page">Brackets</a></li>
+                </ul>
+            </div>
+            <div class="header-theme-toggle">
+                <button class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
+                    🌙 Light
+                </button>
+            </div>
         </div>
     </header>
 
@@ -90,7 +114,7 @@
             <li><a href="/contact">Contact</a></li>
             <li><a href="/brackets">Brackets</a></li>
         </ul>
-    </button>
+    </div>
 
     <!-- Professional Login Menu -->
     <div id="login-container" class="login-container">
@@ -101,10 +125,10 @@
                         <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                         <circle cx="12" cy="7" r="4"></circle>
                     </svg>
-                </button>
+                </div>
                 <h2>Tournament Access</h2>
                 <p class="login-subtitle">MSC Competition Brackets Portal</p>
-            </button>
+            </div>
             
             <div class="login-body">
                 <form id="bracket-login-form" class="login-form">
@@ -114,10 +138,10 @@
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                 <circle cx="12" cy="7" r="4"></circle>
                             </svg>
-                        </button>
+                        </div>
                         <input type="text" id="username" name="username" required placeholder="Enter username">
                         <label for="username">Username</label>
-                    </button>
+                    </div>
                     
                     <div class="input-group">
                         <div class="input-icon">
@@ -126,10 +150,10 @@
                                 <circle cx="12" cy="16" r="1"></circle>
                                 <path d="m7 11 0-5a5 5 0 0 1 10 0l0 5"></path>
                             </svg>
-                        </button>
+                        </div>
                         <input type="password" id="password" name="password" required placeholder="Enter password">
                         <label for="password">Password</label>
-                    </button>
+                    </div>
                     
                     <button type="submit" class="login-btn">
                         <span>Access Tournament</span>
@@ -145,15 +169,15 @@
                             <line x1="9" y1="9" x2="15" y2="15"></line>
                         </svg>
                         <span>Invalid credentials. Please check your username and password.</span>
-                    </button>
+                    </div>
                 </form>
-            </button>
+            </div>
             
             <div class="login-footer">
                 <p>Authorized access only • MSC Initiative © 2025</p>
-            </button>
-        </button>
-    </button>
+            </div>
+        </div>
+    </div>
 
     <!-- Main Tournament Brackets Content (Hidden by default) -->
     <main id="bracket-content" style="display: none;">

@@ -103,17 +103,16 @@
   }
   
   /**
-   * Initialize theme system
+   * Initialize theme system - User-controlled only (no auto mode)
    */
   function initThemeSystem() {
-    // Detect system preference
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    state.systemPrefersDark = mediaQuery.matches;
-    
-    // Load saved preference or use system
+    // Load saved preference or default to light
     const savedTheme = localStorage.getItem(CONFIG.storage.themeKey);
-    if (savedTheme && Object.values(CONFIG.themes).includes(savedTheme)) {
+    if (savedTheme && (savedTheme === CONFIG.themes.LIGHT || savedTheme === CONFIG.themes.DARK)) {
       state.currentTheme = savedTheme;
+    } else {
+      // Default to light theme
+      state.currentTheme = CONFIG.themes.LIGHT;
     }
     
     // Apply initial theme
@@ -132,37 +131,17 @@
       });
     });
     
-    // Listen for system theme changes
-    mediaQuery.addEventListener('change', (e) => {
-      state.systemPrefersDark = e.matches;
-      if (state.currentTheme === CONFIG.themes.SYSTEM) {
-        applyTheme();
-      }
-    });
-    
     console.log('Theme system initialized:', state.currentTheme);
   }
   
   /**
-   * Handle theme toggle button click
+   * Handle theme toggle button click - Simple light/dark toggle
    */
   function handleThemeToggle(event) {
     event.preventDefault();
     
-    // Cycle through themes: system -> light -> dark -> system
-    switch (state.currentTheme) {
-      case CONFIG.themes.SYSTEM:
-        state.currentTheme = CONFIG.themes.LIGHT;
-        break;
-      case CONFIG.themes.LIGHT:
-        state.currentTheme = CONFIG.themes.DARK;
-        break;
-      case CONFIG.themes.DARK:
-        state.currentTheme = CONFIG.themes.SYSTEM;
-        break;
-      default:
-        state.currentTheme = CONFIG.themes.SYSTEM;
-    }
+    // Simple toggle between light and dark
+    state.currentTheme = state.currentTheme === CONFIG.themes.LIGHT ? CONFIG.themes.DARK : CONFIG.themes.LIGHT;
     
     // Save preference
     localStorage.setItem(CONFIG.storage.themeKey, state.currentTheme);
@@ -176,29 +155,20 @@
   }
   
   /**
-   * Apply the current theme
+   * Apply the current theme - User-controlled only
    */
   function applyTheme() {
     if (!elements.html) return;
     
-    let actualTheme;
-    
-    if (state.currentTheme === CONFIG.themes.SYSTEM) {
-      // Use system preference, don't set data-theme (CSS fallback handles it)
-      elements.html.removeAttribute(CONFIG.attributes.dataTheme);
-      actualTheme = state.systemPrefersDark ? CONFIG.themes.DARK : CONFIG.themes.LIGHT;
-    } else {
-      // Set explicit theme
-      elements.html.setAttribute(CONFIG.attributes.dataTheme, state.currentTheme);
-      actualTheme = state.currentTheme;
-    }
+    // Always set explicit theme (no system fallback)
+    elements.html.setAttribute(CONFIG.attributes.dataTheme, state.currentTheme);
     
     // Update theme toggle buttons
-    updateThemeToggleUI(actualTheme);
+    updateThemeToggleUI(state.currentTheme);
   }
   
   /**
-   * Update theme toggle button appearance
+   * Update theme toggle button appearance - Simple light/dark
    */
   function updateThemeToggleUI(actualTheme) {
     const themeText = getThemeDisplayText();
@@ -208,8 +178,8 @@
       // Update button text and icon
       toggle.innerHTML = `${icon} ${themeText}`;
       
-      // Update aria-pressed based on whether it's manually set
-      const isPressed = state.currentTheme !== CONFIG.themes.SYSTEM;
+      // Update aria-pressed based on current theme
+      const isPressed = actualTheme === CONFIG.themes.DARK;
       toggle.setAttribute(CONFIG.attributes.ariaPressed, isPressed.toString());
       
       // Update aria-label for accessibility
@@ -218,19 +188,16 @@
   }
   
   /**
-   * Get human-readable theme text
+   * Get human-readable theme text - Simple light/dark
    */
   function getThemeDisplayText() {
     switch (state.currentTheme) {
       case CONFIG.themes.LIGHT:
-        return 'Light Mode';
+        return 'Light';
       case CONFIG.themes.DARK:
-        return 'Dark Mode';
-      case CONFIG.themes.SYSTEM:
-        const systemText = state.systemPrefersDark ? 'Dark' : 'Light';
-        return `Auto (${systemText})`;
+        return 'Dark';
       default:
-        return 'Auto';
+        return 'Light';
     }
   }
   
