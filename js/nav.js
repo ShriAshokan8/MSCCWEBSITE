@@ -13,12 +13,16 @@
       links: '[data-nav] a',
       allLinks: 'a[href^="/"], a[href^="./"], a[href^="../"]',
       body: 'body',
+      html: 'html',
+      themeToggle: '.theme-toggle',
       focusableElements: 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
     },
     attributes: {
       expanded: 'aria-expanded',
       current: 'aria-current',
-      hidden: 'hidden'
+      hidden: 'hidden',
+      dataTheme: 'data-theme',
+      ariaPressed: 'aria-pressed'
     },
     classes: {
       scrollLock: 'scroll-lock',
@@ -27,6 +31,14 @@
     keys: {
       ESCAPE: 'Escape',
       TAB: 'Tab'
+    },
+    storage: {
+      themeKey: 'msc-theme-preference'
+    },
+    themes: {
+      LIGHT: 'light',
+      DARK: 'dark',
+      SYSTEM: 'system'
     }
   };
   
@@ -35,7 +47,9 @@
     isOpen: false,
     reducedMotion: false,
     focusableElements: [],
-    lastFocusedElement: null
+    lastFocusedElement: null,
+    currentTheme: CONFIG.themes.SYSTEM,
+    systemPrefersDark: false
   };
   
   // DOM references
@@ -43,7 +57,9 @@
     toggle: null,
     panel: null,
     body: null,
-    links: []
+    html: null,
+    links: [],
+    themeToggles: []
   };
   
   /**
@@ -63,22 +79,159 @@
     elements.toggle = document.querySelector(CONFIG.selectors.toggle);
     elements.panel = document.querySelector(CONFIG.selectors.panel);
     elements.body = document.querySelector(CONFIG.selectors.body);
+    elements.html = document.querySelector(CONFIG.selectors.html);
     elements.links = Array.from(document.querySelectorAll(CONFIG.selectors.links));
+    elements.themeToggles = Array.from(document.querySelectorAll(CONFIG.selectors.themeToggle));
     
-    // Validate required elements exist
-    if (!elements.toggle || !elements.panel) {
-      console.warn('Navigation: Required elements not found');
-      return;
+    // Initialize theme system
+    initThemeSystem();
+    
+    // Setup navigation if elements exist
+    if (elements.toggle && elements.panel) {
+      setupToggleButton();
+      setupPanel();
+      setupEventListeners();
+    } else {
+      console.warn('Navigation: Toggle or panel elements not found');
     }
     
-    // Setup navigation
-    setupToggleButton();
-    setupPanel();
-    setupEventListeners();
+    // These always run
     setCurrentPage();
     setupLinkPrefetch();
     
     console.log('Navigation module initialized');
+  }
+  
+  /**
+   * Initialize theme system
+   */
+  function initThemeSystem() {
+    // Detect system preference
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    state.systemPrefersDark = mediaQuery.matches;
+    
+    // Load saved preference or use system
+    const savedTheme = localStorage.getItem(CONFIG.storage.themeKey);
+    if (savedTheme && Object.values(CONFIG.themes).includes(savedTheme)) {
+      state.currentTheme = savedTheme;
+    }
+    
+    // Apply initial theme
+    applyTheme();
+    
+    // Setup theme toggle listeners
+    elements.themeToggles.forEach(toggle => {
+      toggle.addEventListener('click', handleThemeToggle);
+      
+      // Add keyboard support
+      toggle.addEventListener('keydown', (event) => {
+        if (event.key === ' ' || event.key === 'Enter') {
+          event.preventDefault();
+          handleThemeToggle(event);
+        }
+      });
+    });
+    
+    // Listen for system theme changes
+    mediaQuery.addEventListener('change', (e) => {
+      state.systemPrefersDark = e.matches;
+      if (state.currentTheme === CONFIG.themes.SYSTEM) {
+        applyTheme();
+      }
+    });
+    
+    console.log('Theme system initialized:', state.currentTheme);
+  }
+  
+  /**
+   * Handle theme toggle button click
+   */
+  function handleThemeToggle(event) {
+    event.preventDefault();
+    
+    // Cycle through themes: system -> light -> dark -> system
+    switch (state.currentTheme) {
+      case CONFIG.themes.SYSTEM:
+        state.currentTheme = CONFIG.themes.LIGHT;
+        break;
+      case CONFIG.themes.LIGHT:
+        state.currentTheme = CONFIG.themes.DARK;
+        break;
+      case CONFIG.themes.DARK:
+        state.currentTheme = CONFIG.themes.SYSTEM;
+        break;
+      default:
+        state.currentTheme = CONFIG.themes.SYSTEM;
+    }
+    
+    // Save preference
+    localStorage.setItem(CONFIG.storage.themeKey, state.currentTheme);
+    
+    // Apply theme
+    applyTheme();
+    
+    // Announce change to screen readers
+    const themeText = getThemeDisplayText();
+    announceToScreenReader(`Theme changed to ${themeText}`);
+  }
+  
+  /**
+   * Apply the current theme
+   */
+  function applyTheme() {
+    if (!elements.html) return;
+    
+    let actualTheme;
+    
+    if (state.currentTheme === CONFIG.themes.SYSTEM) {
+      // Use system preference, don't set data-theme (CSS fallback handles it)
+      elements.html.removeAttribute(CONFIG.attributes.dataTheme);
+      actualTheme = state.systemPrefersDark ? CONFIG.themes.DARK : CONFIG.themes.LIGHT;
+    } else {
+      // Set explicit theme
+      elements.html.setAttribute(CONFIG.attributes.dataTheme, state.currentTheme);
+      actualTheme = state.currentTheme;
+    }
+    
+    // Update theme toggle buttons
+    updateThemeToggleUI(actualTheme);
+  }
+  
+  /**
+   * Update theme toggle button appearance
+   */
+  function updateThemeToggleUI(actualTheme) {
+    const themeText = getThemeDisplayText();
+    const icon = actualTheme === CONFIG.themes.DARK ? '☀️' : '🌙';
+    
+    elements.themeToggles.forEach(toggle => {
+      // Update button text and icon
+      toggle.innerHTML = `${icon} ${themeText}`;
+      
+      // Update aria-pressed based on whether it's manually set
+      const isPressed = state.currentTheme !== CONFIG.themes.SYSTEM;
+      toggle.setAttribute(CONFIG.attributes.ariaPressed, isPressed.toString());
+      
+      // Update aria-label for accessibility
+      toggle.setAttribute('aria-label', `Switch theme. Current: ${themeText}`);
+    });
+  }
+  
+  /**
+   * Get human-readable theme text
+   */
+  function getThemeDisplayText() {
+    switch (state.currentTheme) {
+      case CONFIG.themes.LIGHT:
+        return 'Light Mode';
+      case CONFIG.themes.DARK:
+        return 'Dark Mode';
+      case CONFIG.themes.SYSTEM:
+        const systemText = state.systemPrefersDark ? 'Dark' : 'Light';
+        return `Auto (${systemText})`;
+      default:
+        return 'Auto';
+    }
   }
   
   /**
@@ -449,11 +602,23 @@
    * Public API
    */
   window.MSCNavigation = {
+    // Navigation controls
     open: openNavigation,
     close: closeNavigation,
     toggle: () => state.isOpen ? closeNavigation() : openNavigation(),
     isOpen: () => state.isOpen,
-    setCurrentPage: setCurrentPage
+    setCurrentPage: setCurrentPage,
+    
+    // Theme controls
+    getTheme: () => state.currentTheme,
+    setTheme: (theme) => {
+      if (Object.values(CONFIG.themes).includes(theme)) {
+        state.currentTheme = theme;
+        localStorage.setItem(CONFIG.storage.themeKey, theme);
+        applyTheme();
+      }
+    },
+    toggleTheme: () => handleThemeToggle({ preventDefault: () => {} })
   };
   
   // Initialize when script loads
