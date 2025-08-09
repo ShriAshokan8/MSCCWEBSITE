@@ -6,9 +6,14 @@
     <title>Tournament Brackets - MSC Initiative</title>
     
     <!-- Custom CSS -->
+    <!-- CSS Architecture -->
+    <link rel="stylesheet" href="/css/tokens.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <!-- Legacy CSS for compatibility -->
     <link rel="stylesheet" href="/style.css">
     
-    <!-- Animation libraries removed - unused in codebase, using native CSS transitions instead -->
+    <!-- Enhanced Navigation Module -->
     
     <!-- Meta tags -->
     <meta name="description" content="MSC Competition Tournament Brackets - Track the progress of teams through semi-finals, grand finals, and championship rounds.">
@@ -46,7 +51,7 @@
         <div class="header-left">
             <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="logo" width="200" height="120">
             <h1>MSC Initiative</h1>
-        </div>
+        </button>
         
         <!-- Desktop Navigation -->
         <nav>
@@ -64,16 +69,16 @@
             <button id="theme-toggle" class="theme-toggle">☀️ Day Mode</button>
             
             <!-- Hamburger Menu -->
-            <div class="hamburger" aria-label="Toggle mobile navigation" role="button" tabindex="0" aria-expanded="false">
+            <button data-nav-toggle class="hamburger" aria-label="Toggle mobile navigation" aria-expanded="false" aria-controls="mobile-navigation">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
-        </div>
+            </button>
+        </button>
     </header>
 
     <!-- Mobile Navigation -->
-    <div class="mobile-nav">
+    <div data-nav class="mobile-nav" id="mobile-navigation" hidden>
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
@@ -82,7 +87,7 @@
             <li><a href="/contact">Contact</a></li>
             <li><a href="/brackets">Brackets</a></li>
         </ul>
-    </div>
+    </button>
 
     <!-- Professional Login Menu -->
     <div id="login-container" class="login-container">
@@ -93,10 +98,10 @@
                         <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"></path>
                         <circle cx="12" cy="7" r="4"></circle>
                     </svg>
-                </div>
+                </button>
                 <h2>Tournament Access</h2>
                 <p class="login-subtitle">MSC Competition Brackets Portal</p>
-            </div>
+            </button>
             
             <div class="login-body">
                 <form id="bracket-login-form" class="login-form">
@@ -106,10 +111,10 @@
                                 <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                                 <circle cx="12" cy="7" r="4"></circle>
                             </svg>
-                        </div>
+                        </button>
                         <input type="text" id="username" name="username" required placeholder="Enter username">
                         <label for="username">Username</label>
-                    </div>
+                    </button>
                     
                     <div class="input-group">
                         <div class="input-icon">
@@ -118,10 +123,10 @@
                                 <circle cx="12" cy="16" r="1"></circle>
                                 <path d="m7 11 0-5a5 5 0 0 1 10 0l0 5"></path>
                             </svg>
-                        </div>
+                        </button>
                         <input type="password" id="password" name="password" required placeholder="Enter password">
                         <label for="password">Password</label>
-                    </div>
+                    </button>
                     
                     <button type="submit" class="login-btn">
                         <span>Access Tournament</span>
@@ -137,15 +142,15 @@
                             <line x1="9" y1="9" x2="15" y2="15"></line>
                         </svg>
                         <span>Invalid credentials. Please check your username and password.</span>
-                    </div>
+                    </button>
                 </form>
-            </div>
+            </button>
             
             <div class="login-footer">
                 <p>Authorized access only • MSC Initiative © 2025</p>
-            </div>
-        </div>
-    </div>
+            </button>
+        </button>
+    </button>
 
     <!-- Main Tournament Brackets Content (Hidden by default) -->
     <main id="bracket-content" style="display: none;">
@@ -164,54 +169,54 @@
                         <div class="match-box" data-match="sf-1">
                             <div class="team team-a">
                                 <span class="team-name">Harris City Academy Crystal Palace</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Harris Academy Sutton</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
+                            </button>
+                        </button>
                         
                         <!-- Semi-Final Match 2 -->
                         <div class="match-box" data-match="sf-2">
                             <div class="team team-a">
                                 <span class="team-name">Harris Academy Beckenham</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Harris Academy Merton</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
+                            </button>
+                        </button>
                         
                         <!-- Semi-Final Match 3 -->
                         <div class="match-box" data-match="sf-3">
                             <div class="team team-a">
                                 <span class="team-name">Harris Academy Battersea</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Harris Academy St John's Wood</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
+                            </button>
+                        </button>
                         
                         <!-- Semi-Final Match 4 -->
                         <div class="match-box" data-match="sf-4">
                             <div class="team team-a">
                                 <span class="team-name">Harris Academy Purley</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Harris Invictus Academy Croydon</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
-                    </div>
+                            </button>
+                        </button>
+                    </button>
                     
                     <!-- Cluster 2: Matches 5-7 -->
                     <div class="match-cluster">
@@ -219,41 +224,41 @@
                         <div class="match-box" data-match="sf-5">
                             <div class="team team-a">
                                 <span class="team-name">Harris Academy Orpington</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Harris Academy South Norwood</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
+                            </button>
+                        </button>
                         
                         <!-- Semi-Final Match 6 -->
                         <div class="match-box" data-match="sf-6">
                             <div class="team team-a">
                                 <span class="team-name">Harris Girls' Academy East Dulwich</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Harris Boys' Academy East Dulwich</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
+                            </button>
+                        </button>
                         
                         <!-- Semi-Final Match 7 -->
                         <div class="match-box" data-match="sf-7">
                             <div class="team team-a">
                                 <span class="team-name">Harris Academy Peckham</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Harris Academy Wimbledon</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
-                    </div>
+                            </button>
+                        </button>
+                    </button>
                     
                     <!-- Cluster 3: Matches 8-10 -->
                     <div class="match-cluster">
@@ -261,48 +266,48 @@
                         <div class="match-box" data-match="sf-8">
                             <div class="team team-a">
                                 <span class="team-name">Harris Academy Rainham</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Harris Science Academy East London</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
+                            </button>
+                        </button>
                         
                         <!-- Semi-Final Match 9 -->
                         <div class="match-box" data-match="sf-9">
                             <div class="team team-a">
                                 <span class="team-name">Harris Academy Greenwich</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Harris Academy Clapham</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
+                            </button>
+                        </button>
                         
                         <!-- Semi-Final Match 10 -->
                         <div class="match-box" data-match="sf-10">
                             <div class="team team-a">
                                 <span class="team-name">Harris Academy Chobham</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Harris Academy Tottenham</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            </button>
+                        </button>
+                    </button>
+                </button>
+            </button>
             
             <!-- Connection Lines -->
             <div class="connection-lines">
                 <!-- Future JS: Dynamic connection drawing based on winners -->
-            </div>
+            </button>
             
             <!-- Round 2: Grand Final 1 (5 matches, 10 winners → 5 winners + 1 wildcard) -->
             <div class="tournament-round">
@@ -314,41 +319,41 @@
                         <div class="match-box" data-match="gf2-1">
                             <div class="team team-a">
                                 <span class="team-name">Winner SF-1</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Winner SF-2</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
+                            </button>
+                        </button>
                         
                         <!-- Grand Final 1 Match 2 -->
                         <div class="match-box" data-match="gf2-2">
                             <div class="team team-a">
                                 <span class="team-name">Winner SF-3</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Winner SF-4</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
+                            </button>
+                        </button>
                         
                         <!-- Grand Final 1 Match 3 -->
                         <div class="match-box" data-match="gf2-3">
                             <div class="team team-a">
                                 <span class="team-name">Winner SF-5</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Winner SF-6</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
-                    </div>
+                            </button>
+                        </button>
+                    </button>
                     
                     <!-- Cluster 2: Matches 4-5 + Wildcard -->
                     <div class="match-cluster">
@@ -356,46 +361,46 @@
                         <div class="match-box" data-match="gf2-4">
                             <div class="team team-a">
                                 <span class="team-name">Winner SF-7</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Winner SF-8</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
+                            </button>
+                        </button>
                         
                         <!-- Grand Final 1 Match 5 -->
                         <div class="match-box" data-match="gf2-5">
                             <div class="team team-a">
                                 <span class="team-name">Winner SF-9</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Winner SF-10</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
+                            </button>
+                        </button>
                         
                         <!-- Wildcard Selection -->
                         <div class="match-box wildcard-box" data-match="wildcard">
                             <div class="team wildcard-team">
                                 <span class="team-name">Best-Performing Round 1 Loser</span>
-                            </div>
+                            </button>
                             <div class="match-note wildcard-note">
                                 <strong>Wildcard Entry</strong>
                                 <!-- Future JS: Dynamic wildcard selection -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            </button>
+                        </button>
+                    </button>
+                </button>
+            </button>
             
             <!-- Connection Lines -->
             <div class="connection-lines">
                 <!-- Future JS: Dynamic connection drawing based on winners -->
-            </div>
+            </button>
             
             <!-- Round 3: Grand Final 2 (3 matches, 6 teams → 3 winners) -->
             <div class="tournament-round">
@@ -407,28 +412,28 @@
                         <div class="match-box" data-match="gf3-1">
                             <div class="team team-a">
                                 <span class="team-name">Winner GF1-1</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Winner GF1-2</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
+                            </button>
+                        </button>
                         
                         <!-- Grand Final 2 Match 2 -->
                         <div class="match-box" data-match="gf3-2">
                             <div class="team team-a">
                                 <span class="team-name">Winner GF1-3</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Winner GF1-4</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
-                    </div>
+                            </button>
+                        </button>
+                    </button>
                     
                     <!-- Cluster 2: Match 3 -->
                     <div class="match-cluster">
@@ -436,22 +441,22 @@
                         <div class="match-box" data-match="gf3-3">
                             <div class="team team-a">
                                 <span class="team-name">Winner GF1-5</span>
-                            </div>
+                            </button>
                             <div class="team team-b">
                                 <span class="team-name">Wildcard Entry</span>
-                            </div>
+                            </button>
                             <div class="match-note">
                                 <!-- Future JS: Dynamic winner selection and notes -->
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                            </button>
+                        </button>
+                    </button>
+                </button>
+            </button>
             
             <!-- Connection Lines -->
             <div class="connection-lines">
                 <!-- Future JS: Dynamic connection drawing based on winners -->
-            </div>
+            </button>
             
             <!-- Round 4: Final Faceoff (3-way challenge) -->
             <div class="tournament-round championship-round">
@@ -461,21 +466,21 @@
                     <div class="match-box championship-match final-faceoff" data-match="final-faceoff">
                         <div class="team team-a">
                             <span class="team-name">Winner GF3-1</span>
-                        </div>
+                        </button>
                         <div class="team team-b">
                             <span class="team-name">Winner GF3-2</span>
-                        </div>
+                        </button>
                         <div class="team team-c">
                             <span class="team-name">Winner GF3-3</span>
-                        </div>
+                        </button>
                         <div class="match-note championship-note">
                             <strong>MSC Competition 2025 Champion</strong>
                             <em>3-Way Final Faceoff Challenge</em>
                             <!-- Future JS: Dynamic winner selection and notes -->
-                        </div>
-                    </div>
-                </div>
-            </div>
+                        </button>
+                    </button>
+                </button>
+            </button>
             
             <!-- Overall Winner Section -->
             <div class="tournament-round overall-winner-round">
@@ -487,20 +492,20 @@
                             <div class="champion-school">
                                 <span class="school-name">Tournament Champion</span>
                                 <span class="champion-subtitle">MSC Competition 2025 Overall Winner</span>
-                            </div>
+                            </button>
                             <div class="achievement-details">
                                 <div class="achievement-badge">
                                     <strong>🏆 CHAMPION</strong>
-                                </div>
+                                </button>
                                 <div class="tournament-stats">
                                     <em>Winner of the 3-Way Final Faceoff Challenge</em>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                </button>
+                            </button>
+                        </button>
+                    </button>
+                </button>
+            </button>
+        </button>
         
         <div class="bracket-legend">
             <h4>Tournament Structure:</h4>
@@ -513,7 +518,7 @@
                 <li><strong>Interactive Features:</strong> Hover over match boxes to highlight them in orange</li>
                 <li><em>Note: Winner advancement and wildcard selection will be updated dynamically as matches conclude</em></li>
             </ul>
-        </div>
+        </button>
     </main>
 
     <!-- Footer -->
@@ -522,8 +527,9 @@
     </footer>
 
     <!-- Animation Libraries -->
-    <!-- Animation libraries removed - unused in codebase, using native CSS transitions instead -->
+    <!-- Enhanced Navigation Module -->
     
+    <script src="/js/nav.js" defer></script>
     <!-- Custom JS -->
     <script src="/script.js" defer></script>
     <script src="/js/main.js" defer></script>

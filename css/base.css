@@ -1,0 +1,210 @@
+/* MSC Initiative Base Styles */
+@layer base;
+
+@layer base {
+  /* Global reset and base styles */
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+  
+  html {
+    font-size: 100%;
+    line-height: 1.6;
+    scroll-behavior: smooth;
+  }
+  
+  /* Respect reduced motion preference */
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+    
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-base);
+    line-height: 1.6;
+    color: var(--color-text);
+    background-color: var(--color-background);
+    transition: background-color var(--transition-normal), color var(--transition-normal);
+    min-height: 100vh;
+  }
+  
+  /* Headings */
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 var(--space-md) 0;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--color-text);
+  }
+  
+  h1 {
+    font-size: var(--font-size-3xl);
+    letter-spacing: 0.5px;
+  }
+  
+  h2 {
+    font-size: var(--font-size-2xl);
+    color: var(--color-primary);
+    border-bottom: 2px solid var(--color-primary);
+    padding-bottom: var(--space-sm);
+  }
+  
+  h3 {
+    font-size: var(--font-size-xl);
+    color: var(--color-primary);
+  }
+  
+  h4 {
+    font-size: var(--font-size-lg);
+  }
+  
+  h5, h6 {
+    font-size: var(--font-size-base);
+  }
+  
+  /* Paragraphs and text */
+  p {
+    margin: 0 0 var(--space-md) 0;
+  }
+  
+  /* Links */
+  a {
+    color: var(--color-primary);
+    text-decoration: none;
+    transition: color var(--transition-normal);
+  }
+  
+  a:hover {
+    color: var(--color-primary-hover);
+    text-decoration: underline;
+  }
+  
+  /* Focus styles for accessibility */
+  :focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+  
+  /* Remove default focus styles for mouse users */
+  :focus:not(:focus-visible) {
+    outline: none;
+  }
+  
+  /* Lists */
+  ul, ol {
+    margin: 0 0 var(--space-md) 0;
+    padding-left: var(--space-lg);
+  }
+  
+  li {
+    margin-bottom: var(--space-xs);
+  }
+  
+  /* Images */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  /* Buttons */
+  button {
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition: all var(--transition-normal);
+  }
+  
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+  /* Form elements */
+  input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: var(--space-sm) var(--space-md);
+    background-color: var(--color-background);
+    color: var(--color-text);
+    transition: border-color var(--transition-normal);
+  }
+  
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--color-primary);
+    outline: none;
+  }
+  
+  /* Skip link for accessibility */
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: var(--color-primary);
+    color: var(--color-white);
+    padding: var(--space-sm);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    z-index: var(--z-toast);
+    transition: top var(--transition-normal);
+  }
+  
+  .skip-link:focus {
+    top: 6px;
+  }
+  
+  /* Body scroll lock utility */
+  .scroll-lock {
+    overflow: hidden;
+    height: 100vh;
+  }
+  
+  /* Screen reader only content */
+  .sr-only {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
+  
+  /* Hidden utility */
+  .hidden {
+    display: none !important;
+  }
+  
+  /* Visually hidden but accessible */
+  .visually-hidden {
+    position: absolute !important;
+    left: -9999px !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 1px !important;
+    width: 1px !important;
+    overflow: hidden !important;
+    clip: rect(1px, 1px, 1px, 1px) !important;
+  }
+}

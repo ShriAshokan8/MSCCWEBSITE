@@ -6,9 +6,14 @@
     <title>Events - MSC Initiative</title>
     
     <!-- Custom CSS -->
+    <!-- CSS Architecture -->
+    <link rel="stylesheet" href="/css/tokens.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <!-- Legacy CSS for compatibility -->
     <link rel="stylesheet" href="/style.css">
     
-    <!-- Animation libraries removed - unused in codebase, using native CSS transitions instead -->
+    <!-- Enhanced Navigation Module -->
     
     <!-- Meta tags -->
     <meta name="description" content="Discover upcoming events and the 2025 test run of the MSC Initiative - featuring Mathematics, Science, and Computing competitions, workshops, and activities.">
@@ -105,7 +110,7 @@
         <div class="header-left">
             <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="logo" width="200" height="120">
             <h1>MSC Initiative</h1>
-        </div>
+        </button>
         
         <!-- Desktop Navigation -->
         <nav>
@@ -123,16 +128,16 @@
             <button id="theme-toggle" class="theme-toggle">☀️ Day Mode</button>
             
             <!-- Hamburger Menu -->
-            <div class="hamburger" aria-label="Toggle mobile navigation" role="button" tabindex="0" aria-expanded="false">
+            <button data-nav-toggle class="hamburger" aria-label="Toggle mobile navigation" aria-expanded="false" aria-controls="mobile-navigation">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </header>
 
     <!-- Mobile Navigation -->
-    <div class="mobile-nav">
+    <div data-nav class="mobile-nav" id="mobile-navigation" hidden>
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
             <li><a href="/about">About</a></li>
@@ -141,7 +146,7 @@
             <li><a href="/contact">Contact</a></li>
             <li><a href="/brackets">Brackets</a></li>
         </ul>
-    </div>
+    </button>
 
     <!-- Main Content -->
     <main id="main">
@@ -166,7 +171,7 @@
                 <li>Calculus and advanced mathematics</li>
                 <li>Mathematical modeling and statistics</li>
             </ul>
-        </div>
+        </button>
         
         <h3>Science</h3>
         <div class="category-content">
@@ -176,7 +181,7 @@
                 <li>Chemistry: Organic, inorganic, and physical chemistry</li>
                 <li>Biology: Cell biology, genetics, and ecology</li>
             </ul>
-        </div>
+        </button>
         
         <h3>Computing</h3>
         <div class="category-content">
@@ -187,7 +192,7 @@
                 <li>Web development and app creation</li>
                 <li>Artificial intelligence</li>
             </ul>
-        </div>
+        </button>
         
         <h3>Combined/STEM</h3>
         <div class="category-content">
@@ -198,14 +203,14 @@
                 <li>Data analysis and visualization projects</li>
                 <li>Innovation challenges and design thinking</li>
             </ul>
-        </div>
+        </button>
         
         <h3>How to Participate</h3>
         <p>Your school/tutor group will be spoken to or emailed by the MSC Team.</p>
         
         <div style="text-align: center; margin-top: 2rem;">
             <a href="/contact" style="background-color: #C40036; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Get Involved</a>
-        </div>
+        </button>
     </main>
 
     <!-- Footer -->
@@ -213,8 +218,9 @@
         <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
     </footer>
 
-    <!-- Animation libraries removed - unused in codebase, using native CSS transitions instead -->
+    <!-- Enhanced Navigation Module -->
     
+    <script src="/js/nav.js" defer></script>
     <!-- Custom JS -->
     <script src="/script.js" defer></script>
     <script src="/js/main.js" defer></script>
