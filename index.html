@@ -74,8 +74,7 @@
     </script>
 </head>
 <body>
-    <a href="#main" class="skip-link">Skip to main content</a>
-    <!-- Header with Navigation -->
+    <a href="#main" class="skip-link">Skip to main content</a>    <!-- Header with Navigation -->
     <header>
         <!-- Mobile: Hamburger left, Logo center, Theme toggle right -->
         <div class="header-left">
@@ -84,31 +83,32 @@
                 <span aria-hidden="true"></span>
                 <span aria-hidden="true"></span>
             </button>
-            <!-- Desktop logo goes here too -->
-            <a href="/" class="logo-link desktop-logo" aria-label="MSC Initiative Home">
-                <img src="/images/logo.png" alt="MSC Initiative Logo" class="logo" width="40" height="40">
-            </a>
         </div>
         
         <div class="header-center">
             <a href="/" class="logo-link" aria-label="MSC Initiative Home">
-                <img src="/images/logo.png" alt="MSC Initiative Logo" class="logo" width="40" height="40">
+                <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="logo" width="40" height="30">
             </a>
         </div>
         
         <div class="header-right">
-            <button class="theme-toggle" aria-label="Toggle theme" aria-pressed="false">
-                🌙 Light
-            </button>
+            <!-- Theme handled automatically via system preference -->
         </div>
         
-        <!-- Desktop: Centered navigation -->
+        <!-- Desktop: Centered navigation with logo in exact center -->
         <div class="header-nav">
             <div class="nav-container">
-                <ul class="nav-links">
-                    <li><a href="/">Home</a></li>
+                <ul class="nav-links nav-left">
+                    <li><a href="/" aria-current="page">Home</a></li>
                     <li><a href="/about">About</a></li>
                     <li><a href="/events">Events</a></li>
+                </ul>
+                
+                <a href="/" class="nav-logo-link" aria-label="MSC Initiative Home">
+                    <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="nav-logo" width="50" height="38">
+                </a>
+                
+                <ul class="nav-links nav-right">
                     <li><a href="/newsletters">Newsletters</a></li>
                     <li><a href="/contact">Contact</a></li>
                     <li><a href="/brackets">Brackets</a></li>
@@ -116,8 +116,35 @@
             </div>
         </div>
         
-        <!-- Placeholder for grid layout -->
-        <div class="header-theme-toggle-placeholder"></div>
+        <!-- Tablet: Tabbed Navigation -->
+        <div class="tablet-nav">
+            <a href="/" class="logo-link" aria-label="MSC Initiative Home">
+                <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="logo" width="40" height="30">
+            </a>
+            <ul class="nav-tabs">
+                <li><a href="/" aria-current="page">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/newsletters">Newsletters</a></li>
+                <li><a href="/brackets">Brackets</a></li>
+            </ul>
+        </div>
+        
+        <!-- Mobile: Tabbed Navigation -->
+        <div class="mobile-tab-nav">
+            <a href="/" class="logo-link" aria-label="MSC Initiative Home">
+                <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="logo" width="35" height="26">
+            </a>
+            <ul class="nav-tabs">
+                <li><a href="/" aria-current="page">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/newsletters">Newsletters</a></li>
+                <li><a href="/brackets">Brackets</a></li>
+            </ul>
+        </div>
     </header>
 
     <!-- Mobile Navigation -->

@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function() {
     initializeAnimations();
     initializeNavigation();
     initializeHamburgerMenu();
-    initializeThemeToggle();
     initializeMottoTransition();
     initializeScrollEffects();
     initializeLoadingAnimations();
@@ -81,42 +80,6 @@ function initializeHamburgerMenu() {
     }
 }
 
-// Day/Night toggle functionality
-function initializeThemeToggle() {
-    const themeToggle = document.querySelector('#theme-toggle');
-    
-    if (themeToggle) {
-        // Check for saved theme preference or default to day mode
-        const savedTheme = localStorage.getItem('theme') || 'day';
-        applyTheme(savedTheme);
-        
-        themeToggle.addEventListener('click', function() {
-            const currentTheme = document.body.classList.contains('night-mode') ? 'night' : 'day';
-            const newTheme = currentTheme === 'day' ? 'night' : 'day';
-            
-            applyTheme(newTheme);
-            localStorage.setItem('theme', newTheme);
-        });
-    }
-}
-
-function applyTheme(theme) {
-    const themeToggle = document.querySelector('#theme-toggle');
-    
-    if (theme === 'night') {
-        document.body.classList.add('night-mode');
-        if (themeToggle) {
-            themeToggle.innerHTML = '🌙 Night Mode';
-            themeToggle.setAttribute('aria-label', 'Switch to Day Mode');
-        }
-    } else {
-        document.body.classList.remove('night-mode');
-        if (themeToggle) {
-            themeToggle.innerHTML = '☀️ Day Mode';
-            themeToggle.setAttribute('aria-label', 'Switch to Night Mode');
-        }
-    }
-}
 function initializeMottoTransition() {
     const mottoContainer = document.querySelector('.motto-container');
     if (!mottoContainer) return;
@@ -449,11 +412,9 @@ window.MSC = {
     initializeAnimations,
     initializeNavigation,
     initializeHamburgerMenu,
-    initializeThemeToggle,
     initializeMottoTransition,
     renderTeamMembers,
     renderTimeline,
     teamData,
-    timelineData,
-    applyTheme
+    timelineData
 };

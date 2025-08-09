@@ -15,7 +15,12 @@
       body: 'body',
       html: 'html',
       themeToggle: '.theme-toggle',
-      focusableElements: 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      focusableElements: 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      // New selectors for tabbed navigation
+      tabletMoreToggle: '.tablet-more-toggle',
+      tabletMoreDropdown: '.tablet-more-dropdown',
+      mobileMoreToggle: '.mobile-more-toggle',
+      mobileMoreDropdown: '.mobile-more-dropdown'
     },
     attributes: {
       expanded: 'aria-expanded',
@@ -33,7 +38,7 @@
       TAB: 'Tab'
     },
     storage: {
-      themeKey: 'msc-theme-preference'
+      themeKey: 'theme'
     },
     themes: {
       LIGHT: 'light',
@@ -49,7 +54,10 @@
     focusableElements: [],
     lastFocusedElement: null,
     currentTheme: CONFIG.themes.SYSTEM,
-    systemPrefersDark: false
+    systemPrefersDark: false,
+    // New state for dropdown menus
+    tabletMoreOpen: false,
+    mobileMoreOpen: false
   };
   
   // DOM references
@@ -59,7 +67,11 @@
     body: null,
     html: null,
     links: [],
-    themeToggles: []
+    // New DOM references for tabbed navigation
+    tabletMoreToggle: null,
+    tabletMoreDropdown: null,
+    mobileMoreToggle: null,
+    mobileMoreDropdown: null
   };
   
   /**
@@ -81,7 +93,12 @@
     elements.body = document.querySelector(CONFIG.selectors.body);
     elements.html = document.querySelector(CONFIG.selectors.html);
     elements.links = Array.from(document.querySelectorAll(CONFIG.selectors.links));
-    elements.themeToggles = Array.from(document.querySelectorAll(CONFIG.selectors.themeToggle));
+    
+    // Get new tabbed navigation elements
+    elements.tabletMoreToggle = document.querySelector(CONFIG.selectors.tabletMoreToggle);
+    elements.tabletMoreDropdown = document.querySelector(CONFIG.selectors.tabletMoreDropdown);
+    elements.mobileMoreToggle = document.querySelector(CONFIG.selectors.mobileMoreToggle);
+    elements.mobileMoreDropdown = document.querySelector(CONFIG.selectors.mobileMoreDropdown);
     
     // Initialize theme system
     initThemeSystem();
@@ -95,6 +112,9 @@
       console.warn('Navigation: Toggle or panel elements not found');
     }
     
+    // Setup tabbed navigation dropdowns
+    setupTabbedNavigation();
+    
     // These always run
     setCurrentPage();
     setupLinkPrefetch();
@@ -103,104 +123,39 @@
   }
   
   /**
-   * Initialize theme system - User-controlled only (no auto mode)
+   * Initialize theme system - Automatic system preference detection only
    */
   function initThemeSystem() {
-    // Load saved preference or default to light
-    const savedTheme = localStorage.getItem(CONFIG.storage.themeKey);
-    if (savedTheme && (savedTheme === CONFIG.themes.LIGHT || savedTheme === CONFIG.themes.DARK)) {
-      state.currentTheme = savedTheme;
-    } else {
-      // Default to light theme
-      state.currentTheme = CONFIG.themes.LIGHT;
-    }
+    // Detect system preference
+    state.systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    // Set initial theme based on system preference
+    state.currentTheme = state.systemPrefersDark ? CONFIG.themes.DARK : CONFIG.themes.LIGHT;
     
     // Apply initial theme
     applyTheme();
     
-    // Setup theme toggle listeners
-    elements.themeToggles.forEach(toggle => {
-      toggle.addEventListener('click', handleThemeToggle);
-      
-      // Add keyboard support
-      toggle.addEventListener('keydown', (event) => {
-        if (event.key === ' ' || event.key === 'Enter') {
-          event.preventDefault();
-          handleThemeToggle(event);
-        }
-      });
+    // Listen for system preference changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', (e) => {
+      state.systemPrefersDark = e.matches;
+      state.currentTheme = state.systemPrefersDark ? CONFIG.themes.DARK : CONFIG.themes.LIGHT;
+      applyTheme();
     });
     
-    console.log('Theme system initialized:', state.currentTheme);
+    console.log('Theme system initialized with automatic detection:', state.currentTheme);
   }
-  
+
   /**
-   * Handle theme toggle button click - Simple light/dark toggle
-   */
-  function handleThemeToggle(event) {
-    event.preventDefault();
-    
-    // Simple toggle between light and dark
-    state.currentTheme = state.currentTheme === CONFIG.themes.LIGHT ? CONFIG.themes.DARK : CONFIG.themes.LIGHT;
-    
-    // Save preference
-    localStorage.setItem(CONFIG.storage.themeKey, state.currentTheme);
-    
-    // Apply theme
-    applyTheme();
-    
-    // Announce change to screen readers
-    const themeText = getThemeDisplayText();
-    announceToScreenReader(`Theme changed to ${themeText}`);
-  }
-  
-  /**
-   * Apply the current theme - User-controlled only
+   * Apply the current theme - Automatic system detection
    */
   function applyTheme() {
     if (!elements.html) return;
     
-    // Always set explicit theme (no system fallback)
+    // Apply theme based on current system preference
     elements.html.setAttribute(CONFIG.attributes.dataTheme, state.currentTheme);
-    
-    // Update theme toggle buttons
-    updateThemeToggleUI(state.currentTheme);
   }
-  
-  /**
-   * Update theme toggle button appearance - Simple light/dark
-   */
-  function updateThemeToggleUI(actualTheme) {
-    const themeText = getThemeDisplayText();
-    const icon = actualTheme === CONFIG.themes.DARK ? '☀️' : '🌙';
-    
-    elements.themeToggles.forEach(toggle => {
-      // Update button text and icon
-      toggle.innerHTML = `${icon} ${themeText}`;
-      
-      // Update aria-pressed based on current theme
-      const isPressed = actualTheme === CONFIG.themes.DARK;
-      toggle.setAttribute(CONFIG.attributes.ariaPressed, isPressed.toString());
-      
-      // Update aria-label for accessibility
-      toggle.setAttribute('aria-label', `Switch theme. Current: ${themeText}`);
-    });
-  }
-  
-  /**
-   * Get human-readable theme text - Simple light/dark
-   */
-  function getThemeDisplayText() {
-    switch (state.currentTheme) {
-      case CONFIG.themes.LIGHT:
-        return 'Light';
-      case CONFIG.themes.DARK:
-        return 'Dark';
-      default:
-        return 'Light';
-    }
-  }
-  
+
   /**
    * Setup toggle button attributes and initial state
    */
@@ -278,6 +233,168 @@
     ).filter(el => !el.hasAttribute('disabled') && !el.classList.contains('focus-trap-start') && !el.classList.contains('focus-trap-end'));
   }
   
+  /**
+   * Setup tabbed navigation dropdowns
+   */
+  function setupTabbedNavigation() {
+    // Setup tablet more dropdown
+    if (elements.tabletMoreToggle && elements.tabletMoreDropdown) {
+      elements.tabletMoreToggle.addEventListener('click', handleTabletMoreToggle);
+      elements.tabletMoreToggle.addEventListener('keydown', handleDropdownKeydown);
+    }
+    
+    // Setup mobile more dropdown
+    if (elements.mobileMoreToggle && elements.mobileMoreDropdown) {
+      elements.mobileMoreToggle.addEventListener('click', handleMobileMoreToggle);
+      elements.mobileMoreToggle.addEventListener('keydown', handleDropdownKeydown);
+    }
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', handleDropdownOutsideClick);
+    
+    // Close dropdowns on escape key
+    document.addEventListener('keydown', handleDropdownEscape);
+  }
+  
+  /**
+   * Handle tablet more dropdown toggle
+   */
+  function handleTabletMoreToggle(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    // Close mobile dropdown if open
+    if (state.mobileMoreOpen) {
+      closeMobileMoreDropdown();
+    }
+    
+    if (state.tabletMoreOpen) {
+      closeTabletMoreDropdown();
+    } else {
+      openTabletMoreDropdown();
+    }
+  }
+  
+  /**
+   * Handle mobile more dropdown toggle
+   */
+  function handleMobileMoreToggle(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    // Close tablet dropdown if open
+    if (state.tabletMoreOpen) {
+      closeTabletMoreDropdown();
+    }
+    
+    if (state.mobileMoreOpen) {
+      closeMobileMoreDropdown();
+    } else {
+      openMobileMoreDropdown();
+    }
+  }
+  
+  /**
+   * Handle dropdown keyboard events
+   */
+  function handleDropdownKeydown(event) {
+    if (event.key === ' ' || event.key === 'Enter') {
+      event.preventDefault();
+      event.target.click();
+    }
+  }
+  
+  /**
+   * Handle clicks outside dropdowns
+   */
+  function handleDropdownOutsideClick(event) {
+    // Close tablet dropdown if clicking outside
+    if (state.tabletMoreOpen && 
+        elements.tabletMoreDropdown && 
+        !elements.tabletMoreDropdown.contains(event.target)) {
+      closeTabletMoreDropdown();
+    }
+    
+    // Close mobile dropdown if clicking outside
+    if (state.mobileMoreOpen && 
+        elements.mobileMoreDropdown && 
+        !elements.mobileMoreDropdown.contains(event.target)) {
+      closeMobileMoreDropdown();
+    }
+  }
+  
+  /**
+   * Handle escape key for dropdowns
+   */
+  function handleDropdownEscape(event) {
+    if (event.key === CONFIG.keys.ESCAPE) {
+      if (state.tabletMoreOpen) {
+        closeTabletMoreDropdown();
+        elements.tabletMoreToggle.focus();
+      }
+      if (state.mobileMoreOpen) {
+        closeMobileMoreDropdown();
+        elements.mobileMoreToggle.focus();
+      }
+    }
+  }
+  
+  /**
+   * Open tablet more dropdown
+   */
+  function openTabletMoreDropdown() {
+    if (!elements.tabletMoreDropdown || state.tabletMoreOpen) return;
+    
+    state.tabletMoreOpen = true;
+    elements.tabletMoreDropdown.classList.add(CONFIG.classes.active);
+    elements.tabletMoreToggle.setAttribute(CONFIG.attributes.expanded, 'true');
+    
+    // Announce to screen readers
+    announceToScreenReader('More navigation options expanded');
+  }
+  
+  /**
+   * Close tablet more dropdown
+   */
+  function closeTabletMoreDropdown() {
+    if (!elements.tabletMoreDropdown || !state.tabletMoreOpen) return;
+    
+    state.tabletMoreOpen = false;
+    elements.tabletMoreDropdown.classList.remove(CONFIG.classes.active);
+    elements.tabletMoreToggle.setAttribute(CONFIG.attributes.expanded, 'false');
+    
+    // Announce to screen readers
+    announceToScreenReader('More navigation options collapsed');
+  }
+  
+  /**
+   * Open mobile more dropdown
+   */
+  function openMobileMoreDropdown() {
+    if (!elements.mobileMoreDropdown || state.mobileMoreOpen) return;
+    
+    state.mobileMoreOpen = true;
+    elements.mobileMoreDropdown.classList.add(CONFIG.classes.active);
+    elements.mobileMoreToggle.setAttribute(CONFIG.attributes.expanded, 'true');
+    
+    // Announce to screen readers
+    announceToScreenReader('More navigation options expanded');
+  }
+  
+  /**
+   * Close mobile more dropdown
+   */
+  function closeMobileMoreDropdown() {
+    if (!elements.mobileMoreDropdown || !state.mobileMoreOpen) return;
+    
+    state.mobileMoreOpen = false;
+    elements.mobileMoreDropdown.classList.remove(CONFIG.classes.active);
+    elements.mobileMoreToggle.setAttribute(CONFIG.attributes.expanded, 'false');
+    
+    // Announce to screen readers
+    announceToScreenReader('More navigation options collapsed');
+  }
+
   /**
    * Setup event listeners
    */
@@ -379,6 +496,14 @@
     // Close mobile navigation if window becomes wide
     if (state.isOpen && window.innerWidth > 768) {
       closeNavigation();
+    }
+    
+    // Close dropdowns on resize
+    if (state.tabletMoreOpen) {
+      closeTabletMoreDropdown();
+    }
+    if (state.mobileMoreOpen) {
+      closeMobileMoreDropdown();
     }
   }
   
@@ -576,16 +701,19 @@
     isOpen: () => state.isOpen,
     setCurrentPage: setCurrentPage,
     
-    // Theme controls
-    getTheme: () => state.currentTheme,
-    setTheme: (theme) => {
-      if (Object.values(CONFIG.themes).includes(theme)) {
-        state.currentTheme = theme;
-        localStorage.setItem(CONFIG.storage.themeKey, theme);
-        applyTheme();
-      }
-    },
-    toggleTheme: () => handleThemeToggle({ preventDefault: () => {} })
+    // Dropdown controls
+    openTabletMore: openTabletMoreDropdown,
+    closeTabletMore: closeTabletMoreDropdown,
+    toggleTabletMore: () => state.tabletMoreOpen ? closeTabletMoreDropdown() : openTabletMoreDropdown(),
+    isTabletMoreOpen: () => state.tabletMoreOpen,
+    
+    openMobileMore: openMobileMoreDropdown,
+    closeMobileMore: closeMobileMoreDropdown,
+    toggleMobileMore: () => state.mobileMoreOpen ? closeMobileMoreDropdown() : openMobileMoreDropdown(),
+    isMobileMoreOpen: () => state.mobileMoreOpen,
+    
+    // Theme status (read-only)
+    getTheme: () => state.currentTheme
   };
   
   // Initialize when script loads
