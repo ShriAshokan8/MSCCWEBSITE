@@ -15,7 +15,12 @@
       body: 'body',
       html: 'html',
       themeToggle: '.theme-toggle',
-      focusableElements: 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      focusableElements: 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
+      // New selectors for tabbed navigation
+      tabletMoreToggle: '.tablet-more-toggle',
+      tabletMoreDropdown: '.tablet-more-dropdown',
+      mobileMoreToggle: '.mobile-more-toggle',
+      mobileMoreDropdown: '.mobile-more-dropdown'
     },
     attributes: {
       expanded: 'aria-expanded',
@@ -49,7 +54,10 @@
     focusableElements: [],
     lastFocusedElement: null,
     currentTheme: CONFIG.themes.SYSTEM,
-    systemPrefersDark: false
+    systemPrefersDark: false,
+    // New state for dropdown menus
+    tabletMoreOpen: false,
+    mobileMoreOpen: false
   };
   
   // DOM references
@@ -58,7 +66,12 @@
     panel: null,
     body: null,
     html: null,
-    links: []
+    links: [],
+    // New DOM references for tabbed navigation
+    tabletMoreToggle: null,
+    tabletMoreDropdown: null,
+    mobileMoreToggle: null,
+    mobileMoreDropdown: null
   };
   
   /**
@@ -81,6 +94,12 @@
     elements.html = document.querySelector(CONFIG.selectors.html);
     elements.links = Array.from(document.querySelectorAll(CONFIG.selectors.links));
     
+    // Get new tabbed navigation elements
+    elements.tabletMoreToggle = document.querySelector(CONFIG.selectors.tabletMoreToggle);
+    elements.tabletMoreDropdown = document.querySelector(CONFIG.selectors.tabletMoreDropdown);
+    elements.mobileMoreToggle = document.querySelector(CONFIG.selectors.mobileMoreToggle);
+    elements.mobileMoreDropdown = document.querySelector(CONFIG.selectors.mobileMoreDropdown);
+    
     // Initialize theme system
     initThemeSystem();
     
@@ -92,6 +111,9 @@
     } else {
       console.warn('Navigation: Toggle or panel elements not found');
     }
+    
+    // Setup tabbed navigation dropdowns
+    setupTabbedNavigation();
     
     // These always run
     setCurrentPage();
@@ -212,6 +234,168 @@
   }
   
   /**
+   * Setup tabbed navigation dropdowns
+   */
+  function setupTabbedNavigation() {
+    // Setup tablet more dropdown
+    if (elements.tabletMoreToggle && elements.tabletMoreDropdown) {
+      elements.tabletMoreToggle.addEventListener('click', handleTabletMoreToggle);
+      elements.tabletMoreToggle.addEventListener('keydown', handleDropdownKeydown);
+    }
+    
+    // Setup mobile more dropdown
+    if (elements.mobileMoreToggle && elements.mobileMoreDropdown) {
+      elements.mobileMoreToggle.addEventListener('click', handleMobileMoreToggle);
+      elements.mobileMoreToggle.addEventListener('keydown', handleDropdownKeydown);
+    }
+    
+    // Close dropdowns when clicking outside
+    document.addEventListener('click', handleDropdownOutsideClick);
+    
+    // Close dropdowns on escape key
+    document.addEventListener('keydown', handleDropdownEscape);
+  }
+  
+  /**
+   * Handle tablet more dropdown toggle
+   */
+  function handleTabletMoreToggle(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    // Close mobile dropdown if open
+    if (state.mobileMoreOpen) {
+      closeMobileMoreDropdown();
+    }
+    
+    if (state.tabletMoreOpen) {
+      closeTabletMoreDropdown();
+    } else {
+      openTabletMoreDropdown();
+    }
+  }
+  
+  /**
+   * Handle mobile more dropdown toggle
+   */
+  function handleMobileMoreToggle(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    
+    // Close tablet dropdown if open
+    if (state.tabletMoreOpen) {
+      closeTabletMoreDropdown();
+    }
+    
+    if (state.mobileMoreOpen) {
+      closeMobileMoreDropdown();
+    } else {
+      openMobileMoreDropdown();
+    }
+  }
+  
+  /**
+   * Handle dropdown keyboard events
+   */
+  function handleDropdownKeydown(event) {
+    if (event.key === ' ' || event.key === 'Enter') {
+      event.preventDefault();
+      event.target.click();
+    }
+  }
+  
+  /**
+   * Handle clicks outside dropdowns
+   */
+  function handleDropdownOutsideClick(event) {
+    // Close tablet dropdown if clicking outside
+    if (state.tabletMoreOpen && 
+        elements.tabletMoreDropdown && 
+        !elements.tabletMoreDropdown.contains(event.target)) {
+      closeTabletMoreDropdown();
+    }
+    
+    // Close mobile dropdown if clicking outside
+    if (state.mobileMoreOpen && 
+        elements.mobileMoreDropdown && 
+        !elements.mobileMoreDropdown.contains(event.target)) {
+      closeMobileMoreDropdown();
+    }
+  }
+  
+  /**
+   * Handle escape key for dropdowns
+   */
+  function handleDropdownEscape(event) {
+    if (event.key === CONFIG.keys.ESCAPE) {
+      if (state.tabletMoreOpen) {
+        closeTabletMoreDropdown();
+        elements.tabletMoreToggle.focus();
+      }
+      if (state.mobileMoreOpen) {
+        closeMobileMoreDropdown();
+        elements.mobileMoreToggle.focus();
+      }
+    }
+  }
+  
+  /**
+   * Open tablet more dropdown
+   */
+  function openTabletMoreDropdown() {
+    if (!elements.tabletMoreDropdown || state.tabletMoreOpen) return;
+    
+    state.tabletMoreOpen = true;
+    elements.tabletMoreDropdown.classList.add(CONFIG.classes.active);
+    elements.tabletMoreToggle.setAttribute(CONFIG.attributes.expanded, 'true');
+    
+    // Announce to screen readers
+    announceToScreenReader('More navigation options expanded');
+  }
+  
+  /**
+   * Close tablet more dropdown
+   */
+  function closeTabletMoreDropdown() {
+    if (!elements.tabletMoreDropdown || !state.tabletMoreOpen) return;
+    
+    state.tabletMoreOpen = false;
+    elements.tabletMoreDropdown.classList.remove(CONFIG.classes.active);
+    elements.tabletMoreToggle.setAttribute(CONFIG.attributes.expanded, 'false');
+    
+    // Announce to screen readers
+    announceToScreenReader('More navigation options collapsed');
+  }
+  
+  /**
+   * Open mobile more dropdown
+   */
+  function openMobileMoreDropdown() {
+    if (!elements.mobileMoreDropdown || state.mobileMoreOpen) return;
+    
+    state.mobileMoreOpen = true;
+    elements.mobileMoreDropdown.classList.add(CONFIG.classes.active);
+    elements.mobileMoreToggle.setAttribute(CONFIG.attributes.expanded, 'true');
+    
+    // Announce to screen readers
+    announceToScreenReader('More navigation options expanded');
+  }
+  
+  /**
+   * Close mobile more dropdown
+   */
+  function closeMobileMoreDropdown() {
+    if (!elements.mobileMoreDropdown || !state.mobileMoreOpen) return;
+    
+    state.mobileMoreOpen = false;
+    elements.mobileMoreDropdown.classList.remove(CONFIG.classes.active);
+    elements.mobileMoreToggle.setAttribute(CONFIG.attributes.expanded, 'false');
+    
+    // Announce to screen readers
+    announceToScreenReader('More navigation options collapsed');
+  }
+
+  /**
    * Setup event listeners
    */
   function setupEventListeners() {
@@ -312,6 +496,14 @@
     // Close mobile navigation if window becomes wide
     if (state.isOpen && window.innerWidth > 768) {
       closeNavigation();
+    }
+    
+    // Close dropdowns on resize
+    if (state.tabletMoreOpen) {
+      closeTabletMoreDropdown();
+    }
+    if (state.mobileMoreOpen) {
+      closeMobileMoreDropdown();
     }
   }
   
@@ -508,6 +700,17 @@
     toggle: () => state.isOpen ? closeNavigation() : openNavigation(),
     isOpen: () => state.isOpen,
     setCurrentPage: setCurrentPage,
+    
+    // Dropdown controls
+    openTabletMore: openTabletMoreDropdown,
+    closeTabletMore: closeTabletMoreDropdown,
+    toggleTabletMore: () => state.tabletMoreOpen ? closeTabletMoreDropdown() : openTabletMoreDropdown(),
+    isTabletMoreOpen: () => state.tabletMoreOpen,
+    
+    openMobileMore: openMobileMoreDropdown,
+    closeMobileMore: closeMobileMoreDropdown,
+    toggleMobileMore: () => state.mobileMoreOpen ? closeMobileMoreDropdown() : openMobileMoreDropdown(),
+    isMobileMoreOpen: () => state.mobileMoreOpen,
     
     // Theme status (read-only)
     getTheme: () => state.currentTheme

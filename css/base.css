@@ -41,7 +41,20 @@
     background-color: var(--color-background);
     transition: background-color var(--transition-normal), color var(--transition-normal);
     min-height: 100vh;
-    padding-top: 90px; /* Account for fixed header */
+    padding-top: 90px; /* Account for fixed header - desktop */
+  }
+  
+  /* Responsive header spacing */
+  @media (max-width: 1024px) and (min-width: 769px) {
+    body {
+      padding-top: 90px; /* Tablet header height */
+    }
+  }
+  
+  @media (max-width: 768px) {
+    body {
+      padding-top: 85px; /* Mobile header height */
+    }
   }
   
   /* Headings */
