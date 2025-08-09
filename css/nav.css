@@ -14,24 +14,22 @@
     right: 0;
     z-index: var(--z-fixed);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     transition: background-color var(--transition-normal);
     min-height: 70px;
   }
   
   .header-left {
-    display: flex;
-    align-items: center;
-    flex: 1;
+    display: none; /* Hidden since no title needed */
   }
   
   .header-right {
     display: flex;
     align-items: center;
     gap: var(--space-md);
-    flex: 1;
-    justify-content: flex-end;
+    position: absolute;
+    right: var(--space-md);
   }
   
   .logo {
@@ -219,39 +217,47 @@
   
   /* Mobile responsive styles */
   @media (max-width: 768px) {
+    /* Mobile header layout: hamburger left, logo center, theme toggle right */
+    header {
+      justify-content: center;
+      position: relative;
+    }
+    
     /* Hide desktop navigation on mobile/tablet */
     nav {
       display: none;
     }
     
-    /* Show hamburger menu on mobile/tablet */
+    /* Show hamburger menu on mobile/tablet - positioned on left */
     [data-nav-toggle] {
       display: flex;
+      position: absolute;
+      left: var(--space-md);
+      top: 50%;
+      transform: translateY(-50%);
     }
     
-    /* Add logo to header-left on mobile */
-    .header-left::before {
+    /* Center logo on mobile */
+    header::before {
       content: "";
       display: inline-block;
-      width: 30px;
-      height: 30px;
+      width: 40px;
+      height: 40px;
       background-image: url('/images/msc-logo.svg');
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
-      margin-right: var(--space-sm);
-    }
-    
-    header h1 {
-      font-size: var(--font-size-xl);
     }
     
     .header-left {
-      flex: 1;
+      display: none;
     }
     
     .header-right {
-      gap: var(--space-sm);
+      position: absolute;
+      right: var(--space-md);
+      top: 50%;
+      transform: translateY(-50%);
     }
     
     .theme-toggle {
@@ -265,16 +271,13 @@
   }
   
   @media (max-width: 480px) {
-    .logo {
-      height: 30px;
+    header::before {
+      width: 35px;
+      height: 35px;
     }
     
     .theme-toggle {
       display: none; /* Hide on very small screens to save space */
-    }
-    
-    header h1 {
-      font-size: var(--font-size-lg);
     }
   }
   
