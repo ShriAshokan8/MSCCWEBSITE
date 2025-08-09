@@ -21,7 +21,7 @@
         <div class="header-left">
             <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="logo" width="200" height="120">
             <h1>MSC Initiative</h1>
-        </div>
+        </button>
         
         <!-- Desktop Navigation -->
         <nav>
@@ -38,16 +38,16 @@
             <button id="theme-toggle" class="theme-toggle">☀️ Day Mode</button>
             
             <!-- Hamburger Menu -->
-            <div class="hamburger" aria-label="Toggle mobile navigation" role="button" tabindex="0" aria-expanded="false">
+            <button data-nav-toggle class="hamburger" aria-label="Toggle mobile navigation" aria-expanded="false" aria-controls="mobile-navigation">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
-        </div>
+            </button>
+        </button>
     </header>
 
     <!-- Mobile Navigation -->
-    <div class="mobile-nav">
+    <div data-nav class="mobile-nav" id="mobile-navigation" hidden>
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
             <li><a href="/about.html">About</a></li>
@@ -55,7 +55,7 @@
             <li><a href="/newsletters.html">Newsletters</a></li>
             <li><a href="/contact.html">Contact</a></li>
         </ul>
-    </div>
+    </button>
 
     <main>
         <h2>An Error Occurred</h2>
@@ -67,6 +67,7 @@
         <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
     </footer>
 
+    <script src="/js/nav.js" defer></script>
     <!-- Custom JS -->
     <script src="script.js"></script>
     <script src="js/main.js"></script>
