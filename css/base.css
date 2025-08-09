@@ -41,6 +41,7 @@
     background-color: var(--color-background);
     transition: background-color var(--transition-normal), color var(--transition-normal);
     min-height: 100vh;
+    padding-top: 90px; /* Account for fixed header */
   }
   
   /* Headings */

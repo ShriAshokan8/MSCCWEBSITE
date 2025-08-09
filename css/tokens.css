@@ -35,7 +35,7 @@
     --font-size-3xl: clamp(2rem, 5vw, 2.5rem);
     
     /* Font family tokens */
-    --font-primary: 'Inter', 'Arial', sans-serif;
+    --font-primary: 'Outfit', 'Inter', 'Arial', sans-serif;
     
     /* Border radius tokens */
     --radius-sm: 4px;

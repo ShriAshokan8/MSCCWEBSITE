@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tech Cultural Quiz - MSC Initiative</title>
+    
+    <!-- CSS Architecture -->
+    <link rel="stylesheet" href="/css/tokens.css">
+    <link rel="stylesheet" href="/css/base.css">
+    <link rel="stylesheet" href="/css/nav.css">
+    <!-- Legacy CSS for compatibility -->
     <link rel="stylesheet" href="/style.css">
     
     <!-- Meta tags -->
@@ -26,9 +32,69 @@
     <meta name="twitter:title" content="Tech Cultural Quiz - MSC Initiative">
     <meta name="twitter:description" content="Take the MSC Initiative Tech Cultural Quiz - Test your knowledge of technology and digital culture.">
     <meta name="twitter:image" content="https://msccompetition.live/images/msc-logo.svg">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    
+    <!-- Preconnects and DNS prefetch for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Tech Cultural Quiz</h1>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <!-- Header with Navigation -->
+    <header>
+        <div class="header-left">
+            <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="logo" width="200" height="120">
+            <h1>MSC Initiative</h1>
+        </div>
+        
+        <!-- Desktop Navigation -->
+        <nav>
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/events">Events</a></li>
+                <li><a href="/newsletters">Newsletters</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/brackets">Brackets</a></li>
+            </ul>
+        </nav>
+        
+        <div class="header-right">
+            <button id="theme-toggle" class="theme-toggle">☀️ Day Mode</button>
+            
+            <!-- Hamburger Menu -->
+            <button data-nav-toggle class="hamburger" aria-label="Toggle mobile navigation" aria-expanded="false" aria-controls="mobile-navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div data-nav class="mobile-nav" id="mobile-navigation" hidden>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/newsletters">Newsletters</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/brackets">Brackets</a></li>
+        </ul>
+    </div>
+
+    <main id="main">
+        <div style="padding-top: 100px;">
+            <h2>Tech Cultural Quiz</h2>
     <form id="quizForm" action="https://formspree.io/f/mzzvbonq" method="POST">
         <!-- Honeypot field for spam protection -->
         <input type="text" name="_honeypot" tabindex="-1" autocomplete="off" class="hidden">
@@ -163,6 +229,17 @@
         <input type="hidden" id="scoreField" name="score" value="0">
         <button type="submit">Submit Quiz</button>
     </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
+    </footer>
+
+    <!-- Enhanced Navigation Module -->
+    <script src="/js/nav.js" defer></script>
+    <!-- Custom JS -->
     <script src="/script.js" defer></script>
+    <script src="/js/main.js" defer></script>
 </body>
 </html>

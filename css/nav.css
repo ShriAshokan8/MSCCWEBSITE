@@ -14,7 +14,7 @@
     right: 0;
     z-index: var(--z-fixed);
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
     transition: background-color var(--transition-normal);
     min-height: 70px;
@@ -24,12 +24,16 @@
     display: flex;
     align-items: center;
     gap: var(--space-md);
+    justify-content: center;
+    flex: 1;
   }
   
   .header-right {
     display: flex;
     align-items: center;
     gap: var(--space-md);
+    position: absolute;
+    right: var(--space-md);
   }
   
   .logo {
@@ -39,7 +43,7 @@
   
   /* Navigation toggle button (hamburger) */
   [data-nav-toggle] {
-    display: none;
+    display: flex !important;
     flex-direction: column;
     justify-content: space-between;
     width: 25px;
@@ -83,7 +87,7 @@
   
   /* Desktop navigation */
   nav {
-    display: flex;
+    display: none !important; /* Hide desktop nav since we're always using hamburger */
     align-items: center;
   }
   
@@ -124,26 +128,15 @@
   
   /* Current page indicator */
   .nav-links a[aria-current="page"] {
-    background-color: var(--color-white);
-    color: var(--color-primary);
+    color: var(--color-white);
     font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
   }
-  
-  .nav-links a[aria-current="page"]::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80%;
-    height: 3px;
-    background-color: var(--color-primary);
-    border-radius: var(--radius-sm);
-  }
-  
+
   .nav-links a[aria-current="page"]:hover {
-    background-color: var(--color-peach);
-    color: var(--color-primary);
+    color: var(--color-white);
     transform: none;
   }
   
@@ -191,7 +184,11 @@
   }
   
   [data-nav] .nav-links a[aria-current="page"] {
-    background-color: rgba(255, 255, 255, 0.15);
+    color: var(--color-white);
+    font-weight: 600;
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
     border-left: 4px solid var(--color-white);
     text-align: left;
     padding-left: calc(var(--space-lg) - 4px);
@@ -221,13 +218,7 @@
   
   /* Mobile responsive styles */
   @media (max-width: 768px) {
-    [data-nav-toggle] {
-      display: flex;
-    }
-    
-    nav .nav-links {
-      display: none;
-    }
+    /* Hamburger is always visible now, so no changes needed here */
     
     header h1 {
       font-size: var(--font-size-xl);
