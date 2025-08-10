@@ -32,23 +32,17 @@ header {
     left: 0;
     right: 0;
     z-index: 1000;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
     transition: background-color 0.3s ease;
     min-height: 70px;
 }
 
-.header-center {
-    justify-self: center;
-}
-
-.nav-left {
-    justify-self: start;
-}
-
-.nav-right {
-    justify-self: end;
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 .logo {
@@ -56,22 +50,24 @@ header {
     width: auto;
 }
 
-/* Desktop navigation styling */
-.desktop-only {
-    display: block;
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    letter-spacing: 1px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
 }
 
 /* Hamburger Menu Styles */
 .hamburger {
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
     display: none;
     flex-direction: column;
     cursor: pointer;
     padding: 5px;
-    z-index: 1001;
 }
 
 .hamburger span {
@@ -250,17 +246,20 @@ footer p span {
         display: flex;
     }
 
-    .desktop-only {
+    nav .nav-links {
         display: none;
     }
 
-    header {
-        grid-template-columns: 1fr;
-        justify-items: center;
+    header h1 {
+        font-size: 1.5rem;
     }
-
-    .header-center {
-        justify-self: center;
+    
+    .header-left {
+        flex: 1;
+    }
+    
+    .header-right {
+        gap: 0.5rem;
     }
 
     main {
@@ -290,6 +289,10 @@ footer p span {
 }
 
 @media (max-width: 480px) {
+    .header-left h1 {
+        font-size: 1.2rem;
+    }
+    
     .logo {
         height: 30px;
     }
@@ -306,6 +309,8 @@ footer p span {
 
 
 
+/* Night Mode Styles */
+body.night-mode {
     --primary-color: #FF6B35; /* Orange stays */
     --secondary-color: #FFD5B4; /* Peach stays */
     --accent-color: #FFFFFF; /* White text */
@@ -316,16 +321,66 @@ footer p span {
     --hover-color: #FF8A65; /* Lighter orange */
 }
 
+body.night-mode header {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+body.night-mode .mobile-nav {
+    background-color: var(--primary-color);
+}
+
+body.night-mode main {
+    background: var(--card-background);
+    color: var(--text-color);
+}
+
+body.night-mode footer {
+    background-color: #222;
+    color: var(--text-color);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+
+body.night-mode .nav-links li a {
+    color: #fff;
+}
+
+body.night-mode .nav-links li a:hover {
+    background-color: var(--hover-color);
+}
+
+body.night-mode .mobile-nav .nav-links li a:hover {
+    background-color: var(--hover-color);
+}
+
+body.night-mode .theme-toggle {
+    background-color: var(--secondary-color);
+    color: var(--accent-color);
+}
+
+body.night-mode .theme-toggle:hover {
+    background-color: var(--hover-color);
+}
+
+body.night-mode .hamburger span {
+    background-color: #fff;
+}
 
 
 
+/* Night Mode specific styles for resources list */
+body.night-mode .resources {
+    background-color: var(--card-background);
+    color: var(--text-color);
+}
 
-
-
-
-
-
-
+body.night-mode .resources h4 {
+    color: var(--text-color);
+}
 
 /* Main content styling */
 main {
@@ -397,6 +452,20 @@ footer {
     width: 100%;
 }
 
+body.night-mode footer {
+    background-color: #222;
+    color: var(--text-color);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+}
+
+/* Newsletter-specific styles */
+.newsletter-list {
+    margin: 2rem 0;
+}
 
 .newsletter-item {
     background-color: var(--card-background);
@@ -442,7 +511,14 @@ footer {
 }
 
 /* Night mode newsletter styles */
+body.night-mode .newsletter-item {
+    background-color: var(--card-background);
+    border-color: var(--border-color);
+}
 
+body.night-mode .newsletter-item h4 {
+    color: var(--primary-color);
+}
 
 /* Tournament Bracket Styles - Professional Login Menu */
 .login-container {
@@ -677,6 +753,9 @@ footer {
     position: relative;
 }
 
+body.night-mode .tournament-container {
+    background: linear-gradient(135deg, #2a2a2a 0%, #3a3a3a 100%);
+}
 
 .tournament-round {
     display: flex;
@@ -895,16 +974,61 @@ footer {
 }
 
 /* Night mode bracket styles */
+body.night-mode .login-card {
+    background-color: var(--card-background);
+    border-color: var(--border-color);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
 
+body.night-mode .login-header {
+    background: linear-gradient(135deg, rgba(255, 107, 53, 0.05) 0%, rgba(255, 213, 180, 0.02) 100%);
+}
 
+body.night-mode .login-subtitle {
+    color: var(--text-color);
+}
 
+body.night-mode .input-group input {
+    background-color: var(--card-background);
+    color: var(--text-color);
+    border-color: var(--border-color);
+}
 
+body.night-mode .input-group label {
+    background-color: var(--card-background);
+    color: var(--text-color);
+}
 
+body.night-mode .error-alert {
+    background: linear-gradient(135deg, #5d1a1a, #4a1515);
+    border-color: #8b0000;
+    color: #ffaaaa;
+}
 
+body.night-mode .login-footer {
+    background: rgba(255, 107, 53, 0.05);
+    border-top-color: rgba(255, 107, 53, 0.15);
+}
 
+body.night-mode .round-title {
+    background-color: var(--card-background);
+    color: var(--primary-color);
+}
 
+body.night-mode .match-box {
+    background-color: var(--card-background);
+    border-color: var(--border-color);
+}
 
+body.night-mode .team {
+    background-color: rgba(255, 107, 53, 0.1);
+    border-color: var(--border-color);
+}
 
+body.night-mode .bracket-legend {
+    background-color: var(--card-background);
+    border-color: var(--border-color);
+}
 
 /* Responsive Design for Brackets */
 @media (max-width: 768px) {
@@ -1214,8 +1338,18 @@ footer {
 }
 
 /* Night mode styles for Overall Winner */
+body.night-mode .overall-winner-box {
+    background: linear-gradient(135deg, #2A2A2A 0%, #3A3A3A 100%);
+    border-color: #FF6B35;
+}
 
+body.night-mode .school-name {
+    color: #FFFFFF;
+}
 
+body.night-mode .tournament-stats {
+    color: #FFFFFF;
+}
 
 /* Match Cluster Styling - Groups within rounds */
 .match-cluster {
@@ -1232,6 +1366,10 @@ footer {
     max-width: 350px;
 }
 
+body.night-mode .match-cluster {
+    background-color: rgba(255, 107, 53, 0.1);
+    border-color: rgba(255, 107, 53, 0.3);
+}
 
 /* Button Styles */
 .btn {
