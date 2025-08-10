@@ -41,7 +41,7 @@
     width: auto;
   }
   
-  /* Header right section - theme toggle */
+  /* Header right section */
   .header-right {
     display: flex;
     align-items: center;
@@ -112,58 +112,6 @@
   [data-nav-toggle][aria-expanded="true"] span:nth-child(3),
   .hamburger-btn[aria-expanded="true"] span:nth-child(3) {
     transform: rotate(-45deg) translate(5px, -5px);
-  }
-  
-  /* Theme Toggle Button */
-  .theme-toggle-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: var(--space-sm);
-    background-color: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.3);
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: all var(--transition-normal);
-    width: 44px;
-    height: 44px;
-    font-size: 18px;
-    position: relative;
-  }
-  
-  .theme-toggle-btn:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    border-color: var(--color-white);
-    transform: scale(1.05);
-  }
-  
-  .theme-toggle-btn:focus-visible {
-    outline: 2px solid var(--color-white);
-    outline-offset: 2px;
-    box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.3);
-  }
-  
-  .theme-icon {
-    position: absolute;
-    transition: opacity var(--transition-normal);
-  }
-  
-  /* Default: show light icon (sun) */
-  .theme-icon.light-icon {
-    opacity: 1;
-  }
-  
-  .theme-icon.dark-icon {
-    opacity: 0;
-  }
-  
-  /* When dark theme is active */
-  [data-theme="dark"] .theme-icon.light-icon {
-    opacity: 0;
-  }
-  
-  [data-theme="dark"] .theme-icon.dark-icon {
-    opacity: 1;
   }
   
   /* Desktop navigation - Hidden on mobile, shown in header on desktop */
@@ -301,7 +249,7 @@
   /* Responsive Design */
   
   /* Mobile styles (default) */
-  @media (max-width: 768px) {
+  @media (max-width: 1023px) {
     /* Ensure mobile header elements are visible */
     header .header-left,
     header .header-center,
@@ -314,16 +262,15 @@
       display: none !important;
     }
     
-    /* Ensure mobile hamburger and theme toggle are visible */
+    /* Ensure mobile hamburger is visible */
     header [data-nav-toggle],
-    header .hamburger-btn,
-    header .theme-toggle-btn {
+    header .hamburger-btn {
       display: inline-flex !important;
     }
   }
 
   /* Desktop styles - show header navigation */
-  @media (min-width: 769px) {
+  @media (min-width: 1024px) {
     /* Update header layout for desktop - single row with centered navigation */
     header {
       display: flex;
@@ -344,7 +291,7 @@
       display: none !important;
     }
     
-    /* Position desktop theme toggle on the right */
+    /* Header right section can be used for other elements if needed */
     .header-right {
       position: absolute;
       right: var(--space-md);
@@ -443,169 +390,7 @@
     }
     
   }
-  
-  /* Tablet Navigation - All 6 tabs visible */
-  @media (max-width: 1024px) and (min-width: 769px) {
-    /* Tablet header - simplified single row with tabs */
-    header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: var(--space-sm) var(--space-md);
-      min-height: 80px;
-    }
-    
-    /* Hide mobile hamburger and center logo on tablet */
-    .header-left,
-    .header-center,
-    .header-right,
-    .hamburger,
-    [data-nav-toggle] {
-      display: none !important;
-    }
-    
-    /* Hide desktop and mobile navigation */
-    .header-nav,
-    .mobile-tab-nav {
-      display: none;
-    }
-    
-    /* Show tablet tabbed navigation */
-    .tablet-nav {
-      display: flex;
-      width: 100%;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-md);
-      flex-wrap: wrap;
-    }
-    
-    .tablet-nav .logo {
-      height: 40px;
-      width: auto;
-      margin-right: var(--space-lg);
-    }
-    
-    .tablet-nav .nav-tabs {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      gap: var(--space-xs);
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    
-    .tablet-nav .nav-tabs a {
-      color: var(--color-white);
-      text-decoration: none;
-      font-weight: 500;
-      padding: var(--space-xs) var(--space-sm);
-      border-radius: var(--radius-sm);
-      transition: all var(--transition-normal);
-      white-space: nowrap;
-      font-size: var(--font-size-sm);
-    }
-    
-    .tablet-nav .nav-tabs a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .tablet-nav .nav-tabs a[aria-current="page"] {
-      font-weight: 600;
-      text-decoration: underline;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 4px;
-    }
-  }
 
-  /* Mobile Navigation - All 6 tabs visible */
-  @media (max-width: 768px) {
-    /* Mobile header - simplified single row with tabs */
-    header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: var(--space-sm) var(--space-md);
-      min-height: 75px;
-    }
-    
-    /* Hide hamburger, center logo, and theme toggle */
-    .header-left,
-    .header-center,
-    .header-right,
-    .hamburger,
-    [data-nav-toggle] {
-      display: none !important;
-    }
-    
-    /* Hide desktop and tablet navigation */
-    .header-nav,
-    .tablet-nav {
-      display: none;
-    }
-    
-    /* Show mobile tabbed navigation */
-    .mobile-tab-nav {
-      display: flex;
-      width: 100%;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-sm);
-      flex-wrap: wrap;
-    }
-    
-    .mobile-tab-nav .logo {
-      height: 35px;
-      width: auto;
-      margin-right: var(--space-md);
-      margin-bottom: var(--space-xs);
-    }
-    
-    .mobile-tab-nav .nav-tabs {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      gap: var(--space-xs);
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
-    }
-    
-    .mobile-tab-nav .nav-tabs a {
-      color: var(--color-white);
-      text-decoration: none;
-      font-weight: 500;
-      padding: var(--space-xs) var(--space-xs);
-      border-radius: var(--radius-sm);
-      transition: all var(--transition-normal);
-      font-size: var(--font-size-xs);
-      white-space: nowrap;
-      flex: 1;
-      text-align: center;
-      min-width: 0;
-    }
-    
-    .mobile-tab-nav .nav-tabs a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .mobile-tab-nav .nav-tabs a[aria-current="page"] {
-      font-weight: 600;
-      text-decoration: underline;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 3px;
-    }
-    
-    /* Hide old mobile navigation */
-    [data-nav-toggle],
-    [data-nav] {
-      display: none;
-    }
-  }
   
   /* Very small screens */
   @media (max-width: 480px) {

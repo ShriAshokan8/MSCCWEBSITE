@@ -225,8 +225,8 @@
     display: none;
   }
 
-  /* Mobile styles - show tabs navigation */
-  @media (max-width: 768px) {
+  /* Mobile/Tablet styles - show tabs navigation below 1024px */
+  @media (max-width: 1023px) {
     .tabs-nav {
       display: block;
     }
@@ -237,10 +237,15 @@
     }
   }
 
-  /* Desktop - hide tabs navigation */
-  @media (min-width: 769px) {
+  /* Desktop - hide tabs navigation at 1024px and above */
+  @media (min-width: 1024px) {
     .tabs-nav {
       display: none !important;
+    }
+    
+    /* Remove extra body padding on desktop */
+    body {
+      padding-top: 70px; /* Just header height */
     }
   }
 
