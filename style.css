@@ -129,39 +129,7 @@ nav {
     background-color: var(--hover-color);
 }
 
-/* Mobile Navigation */
-.mobile-nav {
-    position: fixed;
-    top: 70px;
-    left: 0;
-    right: 0;
-    background-color: var(--primary-color);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    z-index: 998;
-    transform: translateY(-100%);
-    transition: transform 0.3s ease;
-    opacity: 0;
-    visibility: hidden;
-}
-
-.mobile-nav.active {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-}
-
-.mobile-nav .nav-links {
-    flex-direction: column;
-    gap: 0;
-    padding: 1rem;
-}
-
-.mobile-nav .nav-links li a {
-    display: block;
-    padding: 1rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    transition: background-color 0.3s ease;
-}
+/* Old mobile navigation styles removed - now handled by new nav system */
 
 /* Adjust main content to accommodate fixed header */
 main {
@@ -294,10 +262,6 @@ footer p span {
         font-size: 1rem;
         padding: 0.5rem;
     }
-    
-    .mobile-nav {
-        top: 78px; /* Adjust for mobile header height */
-    }
 }
 
 @media (max-width: 480px) {
@@ -338,10 +302,6 @@ body.night-mode header {
     color: #fff;
 }
 
-body.night-mode .mobile-nav {
-    background-color: var(--primary-color);
-}
-
 body.night-mode main {
     background: var(--card-background);
     color: var(--text-color);
@@ -362,10 +322,6 @@ body.night-mode .nav-links li a {
 }
 
 body.night-mode .nav-links li a:hover {
-    background-color: var(--hover-color);
-}
-
-body.night-mode .mobile-nav .nav-links li a:hover {
     background-color: var(--hover-color);
 }
 
