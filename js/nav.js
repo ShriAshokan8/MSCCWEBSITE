@@ -1,6 +1,6 @@
 /**
- * MSC Initiative Navigation Module
- * Self-contained IIFE for accessible navigation functionality
+ * MSC Initiative Navigation Module - Minimal Implementation
+ * Handles active state detection and mobile scroll-to-active functionality
  */
 (function() {
   'use strict';
@@ -8,50 +8,17 @@
   // Configuration
   const CONFIG = {
     selectors: {
-      toggle: '[data-nav-toggle]',
-      panel: '[data-nav-panel]',
-      themeToggle: '[data-theme-toggle]',
-      links: '[data-nav-panel] a',
-      allLinks: 'a[href^="/"], a[href^="./"], a[href^="../"]',
-      body: 'body',
-      html: 'html',
-      focusableElements: 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
+      navLinks: '.desktop-nav a, .mobile-nav a',
+      mobileNav: '.mobile-nav',
+      navList: '.nav-list'
     },
     attributes: {
-      expanded: 'aria-expanded',
-      current: 'aria-current',
-      hidden: 'hidden',
-      dataTheme: 'data-theme',
-      ariaPressed: 'aria-pressed'
-    },
-    classes: {
-      scrollLock: 'scroll-lock',
-      active: 'active'
-    },
-    keys: {
-      ESCAPE: 'Escape',
-      TAB: 'Tab'
+      current: 'aria-current'
     }
   };
   
   // State
-  let state = {
-    isOpen: false,
-    reducedMotion: false,
-    focusableElements: [],
-    lastFocusedElement: null,
-    theme: 'auto' // Start with auto theme detection
-  };
-  
-  // DOM references
-  let elements = {
-    toggle: null,
-    panel: null,
-    themeToggle: null,
-    body: null,
-    html: null,
-    links: []
-  };
+  let reducedMotion = false;
   
   /**
    * Initialize the navigation module
@@ -64,511 +31,150 @@
     }
     
     // Check for reduced motion preference
-    state.reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     
-    // Get DOM elements
-    elements.toggle = document.querySelector(CONFIG.selectors.toggle);
-    elements.panel = document.querySelector(CONFIG.selectors.panel);
-    elements.themeToggle = document.querySelector(CONFIG.selectors.themeToggle);
-    elements.body = document.querySelector(CONFIG.selectors.body);
-    elements.html = document.querySelector(CONFIG.selectors.html);
-    elements.links = Array.from(document.querySelectorAll(CONFIG.selectors.links));
-    
-    // Initialize theme system
-    initThemeSystem();
-    
-    // Setup navigation if elements exist
-    if (elements.toggle && elements.panel) {
-      setupToggleButton();
-      setupPanel();
-      setupEventListeners();
-    } else {
-      console.warn('Navigation: Toggle or panel elements not found');
-    }
-    
-    // These always run
-    setCurrentPage();
-    setupLinkPrefetch();
+    // Setup navigation
+    setActiveState();
+    setupMobileScrollHints();
+    scrollActiveIntoView();
     
     console.log('Navigation module initialized');
   }
   
   /**
-   * Initialize theme system with manual toggle support
+   * Set active state based on current URL
    */
-  function initThemeSystem() {
-    if (!elements.html) return;
-    
-    // Load saved theme preference or use system default
-    const savedTheme = localStorage.getItem('msc-theme');
-    if (savedTheme && ['light', 'dark'].includes(savedTheme)) {
-      state.theme = savedTheme;
-      applyTheme(savedTheme);
-    } else {
-      // Use system preference as default
-      state.theme = 'auto';
-      applySystemTheme();
-    }
-    
-    // Setup theme toggle button
-    if (elements.themeToggle) {
-      elements.themeToggle.addEventListener('click', handleThemeToggle);
-      updateThemeButtonState();
-    }
-    
-    // Listen for system preference changes when in auto mode
-    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    mediaQuery.addEventListener('change', () => {
-      if (state.theme === 'auto') {
-        applySystemTheme();
-      }
-    });
-    
-    console.log('Theme system initialized');
-  }
-  
-  /**
-   * Handle theme toggle button click
-   */
-  function handleThemeToggle(event) {
-    event.preventDefault();
-    
-    // Cycle through themes: light -> dark -> light
-    if (state.theme === 'light') {
-      state.theme = 'dark';
-    } else {
-      state.theme = 'light';
-    }
-    
-    // Save preference and apply theme
-    localStorage.setItem('msc-theme', state.theme);
-    applyTheme(state.theme);
-    updateThemeButtonState();
-    
-    // Announce theme change
-    announceToScreenReader(`Theme changed to ${state.theme} mode`);
-  }
-  
-  /**
-   * Apply specific theme
-   */
-  function applyTheme(theme) {
-    if (!elements.html) return;
-    elements.html.setAttribute('data-theme', theme);
-  }
-  
-  /**
-   * Update theme button state
-   */
-  function updateThemeButtonState() {
-    if (!elements.themeToggle) return;
-    
-    const isDark = state.theme === 'dark';
-    elements.themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
-    elements.themeToggle.setAttribute('aria-label', 
-      isDark ? 'Switch to light theme' : 'Switch to dark theme'
-    );
-  }
-  
-  /**
-   * Apply theme based on system preferences
-   */
-  function applySystemTheme() {
-    if (!elements.html) return;
-    
-    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-    const theme = systemPrefersDark ? 'dark' : 'light';
-    
-    // Apply theme to HTML element
-    elements.html.setAttribute('data-theme', theme);
-  }
-
-  /**
-   * Setup toggle button attributes and initial state
-   */
-  function setupToggleButton() {
-    // Ensure proper ARIA attributes
-    elements.toggle.setAttribute(CONFIG.attributes.expanded, 'false');
-    elements.toggle.setAttribute('aria-controls', elements.panel.id || 'navigation-panel');
-    
-    // Set ID on panel if not present
-    if (!elements.panel.id) {
-      elements.panel.id = 'navigation-panel';
-    }
-    
-    // Add spans for hamburger if not present
-    if (elements.toggle.children.length === 0) {
-      for (let i = 0; i < 3; i++) {
-        const span = document.createElement('span');
-        span.setAttribute('aria-hidden', 'true');
-        elements.toggle.appendChild(span);
-      }
-    }
-  }
-  
-  /**
-   * Setup navigation panel
-   */
-  function setupPanel() {
-    // Ensure panel is hidden initially
-    elements.panel.setAttribute(CONFIG.attributes.hidden, '');
-    
-    // Get focusable elements within panel
-    updateFocusableElements();
-    
-    // Add focus trap elements
-    addFocusTrap();
-  }
-  
-  /**
-   * Add invisible focus trap elements
-   */
-  function addFocusTrap() {
-    const startTrap = document.createElement('div');
-    startTrap.className = 'focus-trap-start';
-    startTrap.tabIndex = 0;
-    startTrap.setAttribute('aria-hidden', 'true');
-    
-    const endTrap = document.createElement('div');
-    endTrap.className = 'focus-trap-end';
-    endTrap.tabIndex = 0;
-    endTrap.setAttribute('aria-hidden', 'true');
-    
-    elements.panel.insertBefore(startTrap, elements.panel.firstChild);
-    elements.panel.appendChild(endTrap);
-    
-    // Handle focus wrapping
-    startTrap.addEventListener('focus', () => {
-      if (state.focusableElements.length > 0) {
-        state.focusableElements[state.focusableElements.length - 1].focus();
-      }
-    });
-    
-    endTrap.addEventListener('focus', () => {
-      if (state.focusableElements.length > 0) {
-        state.focusableElements[0].focus();
-      }
-    });
-  }
-  
-  /**
-   * Update list of focusable elements within panel
-   */
-  function updateFocusableElements() {
-    state.focusableElements = Array.from(
-      elements.panel.querySelectorAll(CONFIG.selectors.focusableElements)
-    ).filter(el => !el.hasAttribute('disabled') && !el.classList.contains('focus-trap-start') && !el.classList.contains('focus-trap-end'));
-  }
-  
-  /**
-   * Setup event listeners
-   */
-  function setupEventListeners() {
-    // Toggle button click
-    elements.toggle.addEventListener('click', handleToggleClick);
-    
-    // Toggle button keyboard
-    elements.toggle.addEventListener('keydown', handleToggleKeydown);
-    
-    // Panel link clicks
-    elements.links.forEach(link => {
-      link.addEventListener('click', handleLinkClick);
-    });
-    
-    // Global keyboard events
-    document.addEventListener('keydown', handleGlobalKeydown);
-    
-    // Click outside to close
-    document.addEventListener('click', handleOutsideClick);
-    
-    // Handle reduced motion changes
-    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    mediaQuery.addEventListener('change', (e) => {
-      state.reducedMotion = e.matches;
-    });
-    
-    // Handle resize
-    window.addEventListener('resize', debounce(handleResize, 250));
-  }
-  
-  /**
-   * Handle toggle button click
-   */
-  function handleToggleClick(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    
-    if (state.isOpen) {
-      closeNavigation();
-    } else {
-      openNavigation();
-    }
-  }
-  
-  /**
-   * Handle toggle button keyboard events
-   */
-  function handleToggleKeydown(event) {
-    if (event.key === ' ' || event.key === 'Enter') {
-      event.preventDefault();
-      handleToggleClick(event);
-    }
-  }
-  
-  /**
-   * Handle navigation link clicks
-   */
-  function handleLinkClick(event) {
-    // Close navigation on link click for better UX
-    if (state.isOpen) {
-      closeNavigation();
-    }
-  }
-  
-  /**
-   * Handle global keyboard events
-   */
-  function handleGlobalKeydown(event) {
-    if (!state.isOpen) return;
-    
-    if (event.key === CONFIG.keys.ESCAPE) {
-      event.preventDefault();
-      closeNavigation();
-      elements.toggle.focus();
-    }
-    
-    // Trap focus within panel
-    if (event.key === CONFIG.keys.TAB) {
-      trapFocus(event);
-    }
-  }
-  
-  /**
-   * Handle clicks outside navigation
-   */
-  function handleOutsideClick(event) {
-    if (!state.isOpen) return;
-    
-    if (!elements.panel.contains(event.target) && !elements.toggle.contains(event.target)) {
-      closeNavigation();
-    }
-  }
-  
-  /**
-   * Handle window resize
-   */
-  function handleResize() {
-    // Close navigation if window becomes wide
-    if (state.isOpen && window.innerWidth > 1024) {
-      closeNavigation();
-    }
-  }
-  
-  /**
-   * Open navigation panel
-   */
-  function openNavigation() {
-    if (state.isOpen) return;
-    
-    state.isOpen = true;
-    state.lastFocusedElement = document.activeElement;
-    
-    // Update attributes
-    elements.toggle.setAttribute(CONFIG.attributes.expanded, 'true');
-    elements.panel.removeAttribute(CONFIG.attributes.hidden);
-    
-    // Lock body scroll
-    elements.body.classList.add(CONFIG.classes.scrollLock);
-    
-    // Update focusable elements
-    updateFocusableElements();
-    
-    // Focus first element or toggle
-    setTimeout(() => {
-      if (state.focusableElements.length > 0) {
-        state.focusableElements[0].focus();
-      } else {
-        elements.toggle.focus();
-      }
-    }, state.reducedMotion ? 0 : 100);
-    
-    // Announce to screen readers
-    announceToScreenReader('Navigation menu opened');
-  }
-  
-  /**
-   * Close navigation panel
-   */
-  function closeNavigation() {
-    if (!state.isOpen) return;
-    
-    state.isOpen = false;
-    
-    // Update attributes
-    elements.toggle.setAttribute(CONFIG.attributes.expanded, 'false');
-    elements.panel.setAttribute(CONFIG.attributes.hidden, '');
-    
-    // Unlock body scroll
-    elements.body.classList.remove(CONFIG.classes.scrollLock);
-    
-    // Restore focus
-    if (state.lastFocusedElement) {
-      state.lastFocusedElement.focus();
-      state.lastFocusedElement = null;
-    }
-    
-    // Announce to screen readers
-    announceToScreenReader('Navigation menu closed');
-  }
-  
-  /**
-   * Trap focus within navigation panel
-   */
-  function trapFocus(event) {
-    if (state.focusableElements.length === 0) {
-      event.preventDefault();
-      return;
-    }
-    
-    const firstElement = state.focusableElements[0];
-    const lastElement = state.focusableElements[state.focusableElements.length - 1];
-    
-    if (event.shiftKey) {
-      // Shift + Tab
-      if (document.activeElement === firstElement) {
-        event.preventDefault();
-        lastElement.focus();
-      }
-    } else {
-      // Tab
-      if (document.activeElement === lastElement) {
-        event.preventDefault();
-        firstElement.focus();
-      }
-    }
-  }
-  
-  /**
-   * Set current page indicator
-   */
-  function setCurrentPage() {
+  function setActiveState() {
     const currentPath = window.location.pathname;
-    const allNavLinks = document.querySelectorAll('nav a, [data-nav] a');
+    const navLinks = document.querySelectorAll(CONFIG.selectors.navLinks);
     
-    allNavLinks.forEach(link => {
+    navLinks.forEach(link => {
       // Remove existing aria-current
       link.removeAttribute(CONFIG.attributes.current);
       
       // Get link path
       const linkPath = new URL(link.href, window.location.origin).pathname;
       
-      // Normalize paths for comparison (handle both clean URLs and .html extensions)
-      const normalizedCurrentPath = currentPath.replace(/\.html$/, '');
-      const normalizedLinkPath = linkPath.replace(/\.html$/, '');
+      // Normalize paths for comparison (handle clean URLs)
+      const normalizedCurrentPath = currentPath.replace(/\.html$/, '').replace(/\/$/, '') || '/';
+      const normalizedLinkPath = linkPath.replace(/\.html$/, '').replace(/\/$/, '') || '/';
       
       // Check if this is the current page
-      if (normalizedLinkPath === normalizedCurrentPath || 
-          (normalizedCurrentPath === '/' && normalizedLinkPath === '/') ||
-          (normalizedCurrentPath !== '/' && normalizedLinkPath !== '/' && normalizedCurrentPath.startsWith(normalizedLinkPath))) {
+      if (normalizedLinkPath === normalizedCurrentPath) {
         link.setAttribute(CONFIG.attributes.current, 'page');
       }
     });
   }
   
   /**
-   * Setup link prefetching for performance
+   * Setup mobile navigation scroll hints
    */
-  function setupLinkPrefetch() {
-    if (!('IntersectionObserver' in window) || state.reducedMotion) {
-      return;
-    }
+  function setupMobileScrollHints() {
+    const mobileNav = document.querySelector(CONFIG.selectors.mobileNav);
+    if (!mobileNav) return;
     
-    let prefetched = new Set();
-    let prefetchTimeout;
-    
-    // Prefetch on hover with delay
-    function prefetchLink(url) {
-      if (prefetched.has(url)) return;
+    function updateScrollHints() {
+      const scrollLeft = mobileNav.scrollLeft;
+      const scrollWidth = mobileNav.scrollWidth;
+      const clientWidth = mobileNav.clientWidth;
       
-      prefetched.add(url);
-      
-      const link = document.createElement('link');
-      link.rel = 'prefetch';
-      link.href = url;
-      document.head.appendChild(link);
-    }
-    
-    // Add hover listeners to internal links
-    document.querySelectorAll(CONFIG.selectors.allLinks).forEach(link => {
-      if (link.hostname === window.location.hostname) {
-        link.addEventListener('mouseenter', () => {
-          clearTimeout(prefetchTimeout);
-          prefetchTimeout = setTimeout(() => {
-            prefetchLink(link.href);
-          }, 100);
-        });
-        
-        link.addEventListener('mouseleave', () => {
-          clearTimeout(prefetchTimeout);
-        });
+      // Check if content is scrollable
+      if (scrollWidth <= clientWidth) {
+        mobileNav.classList.remove('scrollable-left', 'scrollable-right');
+        return;
       }
-    });
+      
+      // Update left hint
+      if (scrollLeft > 10) {
+        mobileNav.classList.add('scrollable-left');
+      } else {
+        mobileNav.classList.remove('scrollable-left');
+      }
+      
+      // Update right hint
+      if (scrollLeft < scrollWidth - clientWidth - 10) {
+        mobileNav.classList.add('scrollable-right');
+      } else {
+        mobileNav.classList.remove('scrollable-right');
+      }
+    }
+    
+    // Initial check
+    updateScrollHints();
+    
+    // Update on scroll
+    mobileNav.addEventListener('scroll', updateScrollHints);
+    
+    // Update on resize
+    window.addEventListener('resize', updateScrollHints);
   }
   
   /**
-   * Announce message to screen readers
+   * Scroll active link into view on mobile
    */
-  function announceToScreenReader(message) {
-    const announcement = document.createElement('div');
-    announcement.setAttribute('aria-live', 'polite');
-    announcement.setAttribute('aria-atomic', 'true');
-    announcement.className = 'sr-only';
-    announcement.textContent = message;
+  function scrollActiveIntoView() {
+    if (window.innerWidth >= 768) return; // Desktop only
     
-    document.body.appendChild(announcement);
+    const mobileNav = document.querySelector(CONFIG.selectors.mobileNav);
+    const activeLink = document.querySelector('.mobile-nav a[aria-current="page"]');
     
+    if (!mobileNav || !activeLink) return;
+    
+    // Use timeout to ensure layout is complete
     setTimeout(() => {
-      document.body.removeChild(announcement);
-    }, 1000);
+      const navRect = mobileNav.getBoundingClientRect();
+      const linkRect = activeLink.getBoundingClientRect();
+      
+      // Calculate if link is fully visible
+      const linkLeft = linkRect.left - navRect.left + mobileNav.scrollLeft;
+      const linkRight = linkLeft + linkRect.width;
+      const visibleLeft = mobileNav.scrollLeft;
+      const visibleRight = visibleLeft + mobileNav.clientWidth;
+      
+      // Scroll if link is not fully visible
+      if (linkLeft < visibleLeft || linkRight > visibleRight) {
+        const scrollTo = linkLeft - (mobileNav.clientWidth / 2) + (linkRect.width / 2);
+        
+        if (reducedMotion) {
+          mobileNav.scrollLeft = Math.max(0, scrollTo);
+        } else {
+          mobileNav.scrollTo({
+            left: Math.max(0, scrollTo),
+            behavior: 'smooth'
+          });
+        }
+      }
+    }, 100);
   }
   
   /**
-   * Debounce utility function
+   * Handle window resize
    */
-  function debounce(func, wait) {
-    let timeout;
-    return function executedFunction(...args) {
-      const later = () => {
-        clearTimeout(timeout);
-        func(...args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
+  function handleResize() {
+    // Re-setup scroll hints for mobile
+    setupMobileScrollHints();
+    
+    // Re-scroll active into view if switching to mobile
+    if (window.innerWidth < 768) {
+      scrollActiveIntoView();
+    }
   }
+  
+  // Listen for resize events
+  window.addEventListener('resize', handleResize);
+  
+  // Listen for reduced motion changes
+  const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+  mediaQuery.addEventListener('change', (e) => {
+    reducedMotion = e.matches;
+  });
   
   /**
    * Public API
    */
   window.MSCNavigation = {
-    // Navigation controls
-    open: openNavigation,
-    close: closeNavigation,
-    toggle: () => state.isOpen ? closeNavigation() : openNavigation(),
-    isOpen: () => state.isOpen,
-    setCurrentPage: setCurrentPage,
-    
-    // Theme controls
-    setTheme: (theme) => {
-      if (['light', 'dark'].includes(theme)) {
-        state.theme = theme;
-        localStorage.setItem('msc-theme', theme);
-        applyTheme(theme);
-        updateThemeButtonState();
-      }
-    },
-    getTheme: () => state.theme,
-    toggleTheme: handleThemeToggle
+    setActiveState: setActiveState,
+    scrollActiveIntoView: scrollActiveIntoView
   };
   
   // Initialize when script loads
