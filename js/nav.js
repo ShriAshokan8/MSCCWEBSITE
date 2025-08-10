@@ -14,7 +14,6 @@
       allLinks: 'a[href^="/"], a[href^="./"], a[href^="../"]',
       body: 'body',
       html: 'html',
-      themeToggle: '#theme-toggle',
       focusableElements: 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
       // New selectors for tabbed navigation
       tabletMoreToggle: '.tablet-more-toggle',
@@ -36,14 +35,6 @@
     keys: {
       ESCAPE: 'Escape',
       TAB: 'Tab'
-    },
-    storage: {
-      themeKey: 'theme'
-    },
-    themes: {
-      LIGHT: 'light',
-      DARK: 'dark',
-      SYSTEM: 'system'
     }
   };
   
@@ -53,8 +44,6 @@
     reducedMotion: false,
     focusableElements: [],
     lastFocusedElement: null,
-    currentTheme: CONFIG.themes.SYSTEM,
-    systemPrefersDark: false,
     // New state for dropdown menus
     tabletMoreOpen: false,
     mobileMoreOpen: false
@@ -67,7 +56,6 @@
     body: null,
     html: null,
     links: [],
-    themeToggle: null,
     // New DOM references for tabbed navigation
     tabletMoreToggle: null,
     tabletMoreDropdown: null,
@@ -101,8 +89,8 @@
     elements.mobileMoreToggle = document.querySelector(CONFIG.selectors.mobileMoreToggle);
     elements.mobileMoreDropdown = document.querySelector(CONFIG.selectors.mobileMoreDropdown);
     
-    // Initialize theme system
-    initThemeSystem();
+    // Initialize automatic theme detection based on system preferences
+    initAutoThemeSystem();
     
     // Setup navigation if elements exist
     if (elements.toggle && elements.panel) {
@@ -124,73 +112,32 @@
   }
   
   /**
-   * Initialize theme system - Manual toggle with localStorage persistence
+   * Initialize automatic theme system - Uses system preferences only
    */
-  function initThemeSystem() {
-    // Get theme toggle button
-    elements.themeToggle = document.querySelector(CONFIG.selectors.themeToggle);
+  function initAutoThemeSystem() {
+    if (!elements.html) return;
     
-    // Check for saved theme preference
-    const savedTheme = localStorage.getItem(CONFIG.storage.themeKey);
+    // Apply theme based on system preference
+    applySystemTheme();
     
-    if (savedTheme) {
-      // Use saved preference
-      state.currentTheme = savedTheme;
-    } else {
-      // Fall back to system preference
-      state.systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      state.currentTheme = state.systemPrefersDark ? CONFIG.themes.DARK : CONFIG.themes.LIGHT;
-    }
+    // Listen for system preference changes
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+    mediaQuery.addEventListener('change', applySystemTheme);
     
-    // Apply initial theme
-    applyTheme();
-    
-    // Setup theme toggle button
-    if (elements.themeToggle) {
-      elements.themeToggle.addEventListener('click', toggleTheme);
-      elements.themeToggle.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          toggleTheme();
-        }
-      });
-    }
-    
-    // Listen for system preference changes (only if no saved preference)
-    if (!savedTheme) {
-      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-      mediaQuery.addEventListener('change', (e) => {
-        // Only apply system changes if user hasn't manually set a preference
-        if (!localStorage.getItem(CONFIG.storage.themeKey)) {
-          state.systemPrefersDark = e.matches;
-          state.currentTheme = state.systemPrefersDark ? CONFIG.themes.DARK : CONFIG.themes.LIGHT;
-          applyTheme();
-        }
-      });
-    }
-    
-    console.log('Theme system initialized with manual toggle:', state.currentTheme);
+    console.log('Automatic theme system initialized - follows system preferences');
   }
   
   /**
-   * Toggle between light and dark themes
+   * Apply theme based on system preferences
    */
-  function toggleTheme() {
-    state.currentTheme = state.currentTheme === CONFIG.themes.LIGHT ? CONFIG.themes.DARK : CONFIG.themes.LIGHT;
-    applyTheme();
-    
-    // Save preference to localStorage
-    localStorage.setItem(CONFIG.storage.themeKey, state.currentTheme);
-  }
-
-  /**
-   * Apply the current theme - Automatic system detection
-   */
-  function applyTheme() {
+  function applySystemTheme() {
     if (!elements.html) return;
     
-    // Apply theme based on current system preference
-    elements.html.setAttribute(CONFIG.attributes.dataTheme, state.currentTheme);
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    const theme = systemPrefersDark ? 'dark' : 'light';
+    
+    // Apply theme to HTML element
+    elements.html.setAttribute('data-theme', theme);
   }
 
   /**
@@ -747,10 +694,7 @@
     openMobileMore: openMobileMoreDropdown,
     closeMobileMore: closeMobileMoreDropdown,
     toggleMobileMore: () => state.mobileMoreOpen ? closeMobileMoreDropdown() : openMobileMoreDropdown(),
-    isMobileMoreOpen: () => state.mobileMoreOpen,
-    
-    // Theme status (read-only)
-    getTheme: () => state.currentTheme
+    isMobileMoreOpen: () => state.mobileMoreOpen
   };
   
   // Initialize when script loads
