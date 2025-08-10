@@ -301,7 +301,7 @@
   /* Responsive Design */
   
   /* Mobile styles (default) */
-  @media (max-width: 768px) {
+  @media (max-width: 1023px) {
     /* Ensure mobile header elements are visible */
     header .header-left,
     header .header-center,
@@ -323,7 +323,7 @@
   }
 
   /* Desktop styles - show header navigation */
-  @media (min-width: 769px) {
+  @media (min-width: 1024px) {
     /* Update header layout for desktop - single row with centered navigation */
     header {
       display: flex;
@@ -443,169 +443,7 @@
     }
     
   }
-  
-  /* Tablet Navigation - All 6 tabs visible */
-  @media (max-width: 1024px) and (min-width: 769px) {
-    /* Tablet header - simplified single row with tabs */
-    header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: var(--space-sm) var(--space-md);
-      min-height: 80px;
-    }
-    
-    /* Hide mobile hamburger and center logo on tablet */
-    .header-left,
-    .header-center,
-    .header-right,
-    .hamburger,
-    [data-nav-toggle] {
-      display: none !important;
-    }
-    
-    /* Hide desktop and mobile navigation */
-    .header-nav,
-    .mobile-tab-nav {
-      display: none;
-    }
-    
-    /* Show tablet tabbed navigation */
-    .tablet-nav {
-      display: flex;
-      width: 100%;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-md);
-      flex-wrap: wrap;
-    }
-    
-    .tablet-nav .logo {
-      height: 40px;
-      width: auto;
-      margin-right: var(--space-lg);
-    }
-    
-    .tablet-nav .nav-tabs {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      gap: var(--space-xs);
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    
-    .tablet-nav .nav-tabs a {
-      color: var(--color-white);
-      text-decoration: none;
-      font-weight: 500;
-      padding: var(--space-xs) var(--space-sm);
-      border-radius: var(--radius-sm);
-      transition: all var(--transition-normal);
-      white-space: nowrap;
-      font-size: var(--font-size-sm);
-    }
-    
-    .tablet-nav .nav-tabs a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .tablet-nav .nav-tabs a[aria-current="page"] {
-      font-weight: 600;
-      text-decoration: underline;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 4px;
-    }
-  }
 
-  /* Mobile Navigation - All 6 tabs visible */
-  @media (max-width: 768px) {
-    /* Mobile header - simplified single row with tabs */
-    header {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: var(--space-sm) var(--space-md);
-      min-height: 75px;
-    }
-    
-    /* Hide hamburger, center logo, and theme toggle */
-    .header-left,
-    .header-center,
-    .header-right,
-    .hamburger,
-    [data-nav-toggle] {
-      display: none !important;
-    }
-    
-    /* Hide desktop and tablet navigation */
-    .header-nav,
-    .tablet-nav {
-      display: none;
-    }
-    
-    /* Show mobile tabbed navigation */
-    .mobile-tab-nav {
-      display: flex;
-      width: 100%;
-      align-items: center;
-      justify-content: center;
-      gap: var(--space-sm);
-      flex-wrap: wrap;
-    }
-    
-    .mobile-tab-nav .logo {
-      height: 35px;
-      width: auto;
-      margin-right: var(--space-md);
-      margin-bottom: var(--space-xs);
-    }
-    
-    .mobile-tab-nav .nav-tabs {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      gap: var(--space-xs);
-      align-items: center;
-      flex-wrap: wrap;
-      justify-content: center;
-      width: 100%;
-    }
-    
-    .mobile-tab-nav .nav-tabs a {
-      color: var(--color-white);
-      text-decoration: none;
-      font-weight: 500;
-      padding: var(--space-xs) var(--space-xs);
-      border-radius: var(--radius-sm);
-      transition: all var(--transition-normal);
-      font-size: var(--font-size-xs);
-      white-space: nowrap;
-      flex: 1;
-      text-align: center;
-      min-width: 0;
-    }
-    
-    .mobile-tab-nav .nav-tabs a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .mobile-tab-nav .nav-tabs a[aria-current="page"] {
-      font-weight: 600;
-      text-decoration: underline;
-      text-decoration-thickness: 2px;
-      text-underline-offset: 3px;
-    }
-    
-    /* Hide old mobile navigation */
-    [data-nav-toggle],
-    [data-nav] {
-      display: none;
-    }
-  }
   
   /* Very small screens */
   @media (max-width: 480px) {
