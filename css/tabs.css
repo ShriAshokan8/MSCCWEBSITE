@@ -238,16 +238,9 @@
   }
 
   /* Desktop - hide tabs navigation */
-  @media (min-width: 1025px) {
+  @media (min-width: 769px) {
     .tabs-nav {
-      display: none;
-    }
-  }
-
-  /* Tablet - decide whether to show or hide based on preference */
-  @media (min-width: 769px) and (max-width: 1024px) {
-    .tabs-nav {
-      display: none; /* Hidden on tablet, using existing tablet nav */
+      display: none !important;
     }
   }
 
