@@ -9,17 +9,13 @@
   const CONFIG = {
     selectors: {
       toggle: '[data-nav-toggle]',
-      panel: '[data-nav]',
-      links: '[data-nav] a',
+      panel: '[data-nav-panel]',
+      themeToggle: '[data-theme-toggle]',
+      links: '[data-nav-panel] a',
       allLinks: 'a[href^="/"], a[href^="./"], a[href^="../"]',
       body: 'body',
       html: 'html',
-      focusableElements: 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])',
-      // New selectors for tabbed navigation
-      tabletMoreToggle: '.tablet-more-toggle',
-      tabletMoreDropdown: '.tablet-more-dropdown',
-      mobileMoreToggle: '.mobile-more-toggle',
-      mobileMoreDropdown: '.mobile-more-dropdown'
+      focusableElements: 'a[href], button:not([disabled]), input:not([disabled]), textarea:not([disabled]), select:not([disabled]), [tabindex]:not([tabindex="-1"])'
     },
     attributes: {
       expanded: 'aria-expanded',
@@ -44,23 +40,17 @@
     reducedMotion: false,
     focusableElements: [],
     lastFocusedElement: null,
-    // New state for dropdown menus
-    tabletMoreOpen: false,
-    mobileMoreOpen: false
+    theme: 'auto' // Start with auto theme detection
   };
   
   // DOM references
   let elements = {
     toggle: null,
     panel: null,
+    themeToggle: null,
     body: null,
     html: null,
-    links: [],
-    // New DOM references for tabbed navigation
-    tabletMoreToggle: null,
-    tabletMoreDropdown: null,
-    mobileMoreToggle: null,
-    mobileMoreDropdown: null
+    links: []
   };
   
   /**
@@ -79,18 +69,13 @@
     // Get DOM elements
     elements.toggle = document.querySelector(CONFIG.selectors.toggle);
     elements.panel = document.querySelector(CONFIG.selectors.panel);
+    elements.themeToggle = document.querySelector(CONFIG.selectors.themeToggle);
     elements.body = document.querySelector(CONFIG.selectors.body);
     elements.html = document.querySelector(CONFIG.selectors.html);
     elements.links = Array.from(document.querySelectorAll(CONFIG.selectors.links));
     
-    // Get new tabbed navigation elements
-    elements.tabletMoreToggle = document.querySelector(CONFIG.selectors.tabletMoreToggle);
-    elements.tabletMoreDropdown = document.querySelector(CONFIG.selectors.tabletMoreDropdown);
-    elements.mobileMoreToggle = document.querySelector(CONFIG.selectors.mobileMoreToggle);
-    elements.mobileMoreDropdown = document.querySelector(CONFIG.selectors.mobileMoreDropdown);
-    
-    // Initialize automatic theme detection based on system preferences
-    initAutoThemeSystem();
+    // Initialize theme system
+    initThemeSystem();
     
     // Setup navigation if elements exist
     if (elements.toggle && elements.panel) {
@@ -101,9 +86,6 @@
       console.warn('Navigation: Toggle or panel elements not found');
     }
     
-    // Setup tabbed navigation dropdowns
-    setupTabbedNavigation();
-    
     // These always run
     setCurrentPage();
     setupLinkPrefetch();
@@ -112,19 +94,80 @@
   }
   
   /**
-   * Initialize automatic theme system - Uses system preferences only
+   * Initialize theme system with manual toggle support
    */
-  function initAutoThemeSystem() {
+  function initThemeSystem() {
     if (!elements.html) return;
     
-    // Apply theme based on system preference
-    applySystemTheme();
+    // Load saved theme preference or use system default
+    const savedTheme = localStorage.getItem('msc-theme');
+    if (savedTheme && ['light', 'dark'].includes(savedTheme)) {
+      state.theme = savedTheme;
+      applyTheme(savedTheme);
+    } else {
+      // Use system preference as default
+      state.theme = 'auto';
+      applySystemTheme();
+    }
     
-    // Listen for system preference changes
+    // Setup theme toggle button
+    if (elements.themeToggle) {
+      elements.themeToggle.addEventListener('click', handleThemeToggle);
+      updateThemeButtonState();
+    }
+    
+    // Listen for system preference changes when in auto mode
     const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
-    mediaQuery.addEventListener('change', applySystemTheme);
+    mediaQuery.addEventListener('change', () => {
+      if (state.theme === 'auto') {
+        applySystemTheme();
+      }
+    });
     
-    console.log('Automatic theme system initialized - follows system preferences');
+    console.log('Theme system initialized');
+  }
+  
+  /**
+   * Handle theme toggle button click
+   */
+  function handleThemeToggle(event) {
+    event.preventDefault();
+    
+    // Cycle through themes: light -> dark -> light
+    if (state.theme === 'light') {
+      state.theme = 'dark';
+    } else {
+      state.theme = 'light';
+    }
+    
+    // Save preference and apply theme
+    localStorage.setItem('msc-theme', state.theme);
+    applyTheme(state.theme);
+    updateThemeButtonState();
+    
+    // Announce theme change
+    announceToScreenReader(`Theme changed to ${state.theme} mode`);
+  }
+  
+  /**
+   * Apply specific theme
+   */
+  function applyTheme(theme) {
+    if (!elements.html) return;
+    elements.html.setAttribute('data-theme', theme);
+  }
+  
+  /**
+   * Update theme button state
+   */
+  function updateThemeButtonState() {
+    if (!elements.themeToggle) return;
+    
+    const isDark = state.theme === 'dark';
+    elements.themeToggle.setAttribute('aria-pressed', isDark ? 'true' : 'false');
+    elements.themeToggle.setAttribute('aria-label', 
+      isDark ? 'Switch to light theme' : 'Switch to dark theme'
+    );
   }
   
   /**
@@ -218,168 +261,6 @@
   }
   
   /**
-   * Setup tabbed navigation dropdowns
-   */
-  function setupTabbedNavigation() {
-    // Setup tablet more dropdown
-    if (elements.tabletMoreToggle && elements.tabletMoreDropdown) {
-      elements.tabletMoreToggle.addEventListener('click', handleTabletMoreToggle);
-      elements.tabletMoreToggle.addEventListener('keydown', handleDropdownKeydown);
-    }
-    
-    // Setup mobile more dropdown
-    if (elements.mobileMoreToggle && elements.mobileMoreDropdown) {
-      elements.mobileMoreToggle.addEventListener('click', handleMobileMoreToggle);
-      elements.mobileMoreToggle.addEventListener('keydown', handleDropdownKeydown);
-    }
-    
-    // Close dropdowns when clicking outside
-    document.addEventListener('click', handleDropdownOutsideClick);
-    
-    // Close dropdowns on escape key
-    document.addEventListener('keydown', handleDropdownEscape);
-  }
-  
-  /**
-   * Handle tablet more dropdown toggle
-   */
-  function handleTabletMoreToggle(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    
-    // Close mobile dropdown if open
-    if (state.mobileMoreOpen) {
-      closeMobileMoreDropdown();
-    }
-    
-    if (state.tabletMoreOpen) {
-      closeTabletMoreDropdown();
-    } else {
-      openTabletMoreDropdown();
-    }
-  }
-  
-  /**
-   * Handle mobile more dropdown toggle
-   */
-  function handleMobileMoreToggle(event) {
-    event.preventDefault();
-    event.stopPropagation();
-    
-    // Close tablet dropdown if open
-    if (state.tabletMoreOpen) {
-      closeTabletMoreDropdown();
-    }
-    
-    if (state.mobileMoreOpen) {
-      closeMobileMoreDropdown();
-    } else {
-      openMobileMoreDropdown();
-    }
-  }
-  
-  /**
-   * Handle dropdown keyboard events
-   */
-  function handleDropdownKeydown(event) {
-    if (event.key === ' ' || event.key === 'Enter') {
-      event.preventDefault();
-      event.target.click();
-    }
-  }
-  
-  /**
-   * Handle clicks outside dropdowns
-   */
-  function handleDropdownOutsideClick(event) {
-    // Close tablet dropdown if clicking outside
-    if (state.tabletMoreOpen && 
-        elements.tabletMoreDropdown && 
-        !elements.tabletMoreDropdown.contains(event.target)) {
-      closeTabletMoreDropdown();
-    }
-    
-    // Close mobile dropdown if clicking outside
-    if (state.mobileMoreOpen && 
-        elements.mobileMoreDropdown && 
-        !elements.mobileMoreDropdown.contains(event.target)) {
-      closeMobileMoreDropdown();
-    }
-  }
-  
-  /**
-   * Handle escape key for dropdowns
-   */
-  function handleDropdownEscape(event) {
-    if (event.key === CONFIG.keys.ESCAPE) {
-      if (state.tabletMoreOpen) {
-        closeTabletMoreDropdown();
-        elements.tabletMoreToggle.focus();
-      }
-      if (state.mobileMoreOpen) {
-        closeMobileMoreDropdown();
-        elements.mobileMoreToggle.focus();
-      }
-    }
-  }
-  
-  /**
-   * Open tablet more dropdown
-   */
-  function openTabletMoreDropdown() {
-    if (!elements.tabletMoreDropdown || state.tabletMoreOpen) return;
-    
-    state.tabletMoreOpen = true;
-    elements.tabletMoreDropdown.classList.add(CONFIG.classes.active);
-    elements.tabletMoreToggle.setAttribute(CONFIG.attributes.expanded, 'true');
-    
-    // Announce to screen readers
-    announceToScreenReader('More navigation options expanded');
-  }
-  
-  /**
-   * Close tablet more dropdown
-   */
-  function closeTabletMoreDropdown() {
-    if (!elements.tabletMoreDropdown || !state.tabletMoreOpen) return;
-    
-    state.tabletMoreOpen = false;
-    elements.tabletMoreDropdown.classList.remove(CONFIG.classes.active);
-    elements.tabletMoreToggle.setAttribute(CONFIG.attributes.expanded, 'false');
-    
-    // Announce to screen readers
-    announceToScreenReader('More navigation options collapsed');
-  }
-  
-  /**
-   * Open mobile more dropdown
-   */
-  function openMobileMoreDropdown() {
-    if (!elements.mobileMoreDropdown || state.mobileMoreOpen) return;
-    
-    state.mobileMoreOpen = true;
-    elements.mobileMoreDropdown.classList.add(CONFIG.classes.active);
-    elements.mobileMoreToggle.setAttribute(CONFIG.attributes.expanded, 'true');
-    
-    // Announce to screen readers
-    announceToScreenReader('More navigation options expanded');
-  }
-  
-  /**
-   * Close mobile more dropdown
-   */
-  function closeMobileMoreDropdown() {
-    if (!elements.mobileMoreDropdown || !state.mobileMoreOpen) return;
-    
-    state.mobileMoreOpen = false;
-    elements.mobileMoreDropdown.classList.remove(CONFIG.classes.active);
-    elements.mobileMoreToggle.setAttribute(CONFIG.attributes.expanded, 'false');
-    
-    // Announce to screen readers
-    announceToScreenReader('More navigation options collapsed');
-  }
-
-  /**
    * Setup event listeners
    */
   function setupEventListeners() {
@@ -438,8 +319,8 @@
    * Handle navigation link clicks
    */
   function handleLinkClick(event) {
-    // Close navigation on internal link click (mobile-friendly)
-    if (state.isOpen && window.innerWidth <= 768) {
+    // Close navigation on link click for better UX
+    if (state.isOpen) {
       closeNavigation();
     }
   }
@@ -477,17 +358,9 @@
    * Handle window resize
    */
   function handleResize() {
-    // Close mobile navigation if window becomes wide
-    if (state.isOpen && window.innerWidth > 768) {
+    // Close navigation if window becomes wide
+    if (state.isOpen && window.innerWidth > 1024) {
       closeNavigation();
-    }
-    
-    // Close dropdowns on resize
-    if (state.tabletMoreOpen) {
-      closeTabletMoreDropdown();
-    }
-    if (state.mobileMoreOpen) {
-      closeMobileMoreDropdown();
     }
   }
   
@@ -685,16 +558,17 @@
     isOpen: () => state.isOpen,
     setCurrentPage: setCurrentPage,
     
-    // Dropdown controls
-    openTabletMore: openTabletMoreDropdown,
-    closeTabletMore: closeTabletMoreDropdown,
-    toggleTabletMore: () => state.tabletMoreOpen ? closeTabletMoreDropdown() : openTabletMoreDropdown(),
-    isTabletMoreOpen: () => state.tabletMoreOpen,
-    
-    openMobileMore: openMobileMoreDropdown,
-    closeMobileMore: closeMobileMoreDropdown,
-    toggleMobileMore: () => state.mobileMoreOpen ? closeMobileMoreDropdown() : openMobileMoreDropdown(),
-    isMobileMoreOpen: () => state.mobileMoreOpen
+    // Theme controls
+    setTheme: (theme) => {
+      if (['light', 'dark'].includes(theme)) {
+        state.theme = theme;
+        localStorage.setItem('msc-theme', theme);
+        applyTheme(theme);
+        updateThemeButtonState();
+      }
+    },
+    getTheme: () => state.theme,
+    toggleTheme: handleThemeToggle
   };
   
   // Initialize when script loads

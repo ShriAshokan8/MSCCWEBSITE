@@ -79,9 +79,11 @@
     <meta name="twitter:image" content="https://msccompetition.live/images/og-default-1200x630.png">
 </head>
 <body>
-    <a href="#main" class="skip-link">Skip to main content</a>    <!-- Header with Navigation -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+    
+    <!-- Header with Navigation -->
     <header>
-        <!-- Mobile: Hamburger left, Logo center, Theme toggle right -->
+        <!-- Header Layout: [hamburger] [centered MSC logo] [theme toggle] -->
         <div class="header-left">
             <button 
                 type="button"
@@ -91,9 +93,9 @@
                 aria-controls="main-nav"
                 class="hamburger-btn"
             >
-                <span></span>
-                <span></span>
-                <span></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
             </button>
         </div>
         
@@ -104,39 +106,32 @@
         </div>
         
         <div class="header-right">
-            <!-- Theme automatically adapts to system preferences -->
+            <button 
+                type="button"
+                data-theme-toggle
+                aria-label="Toggle theme"
+                aria-pressed="false"
+                class="theme-toggle-btn"
+                title="Toggle light/dark theme"
+            >
+                <svg class="theme-icon theme-icon-sun" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
+                </svg>
+                <svg class="theme-icon theme-icon-moon" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"/>
+                </svg>
+            </button>
         </div>
         
-        <!-- Desktop: Centered navigation with logo in exact center -->
-        <div class="header-nav">
-            <div class="nav-container">
-                <ul class="nav-links nav-left">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/about" aria-current="page">About</a></li>
-                    <li><a href="/events">Events</a></li>
-                </ul>
-                
-                <a href="/" class="nav-logo-link" aria-label="MSC Initiative Home">
-                    <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="nav-logo" width="50" height="38">
-                </a>
-                
-                <ul class="nav-links nav-right">
-                    <li><a href="/newsletters">Newsletters</a></li>
-                    <li><a href="/contact">Contact</a></li>
-                    <li><a href="/brackets">Brackets</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <!-- Mobile Navigation Panel (shown when hamburger is clicked) -->
-        <nav id="main-nav" data-nav aria-hidden="true" class="mobile-nav-panel">
-            <ul class="mobile-nav-list">
+        <!-- Navigation Panel (shown when hamburger is clicked) -->
+        <nav id="main-nav" data-nav data-nav-panel aria-hidden="true" class="nav-panel" role="navigation" aria-label="Main navigation">
+            <ul class="nav-list" role="list">
                 <li><a href="/">Home</a></li>
-                <li><a href="/about" aria-current="page">About</a></li>
+                <li><a href="/about">About</a></li>
                 <li><a href="/events">Events</a></li>
                 <li><a href="/newsletters">Newsletters</a></li>
-                <li><a href="/contact">Contact</a></li>
                 <li><a href="/brackets">Brackets</a></li>
+                <li><a href="/contact">Contact</a></li>
             </ul>
         </nav>
     </header>
