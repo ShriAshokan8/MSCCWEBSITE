@@ -15,9 +15,9 @@
     transition: background-color var(--transition-normal);
     min-height: 70px;
     
-    /* Mobile-first: Grid layout with 3 columns */
+    /* Mobile-first: Grid layout with 2 columns (no hamburger) */
     display: grid;
-    grid-template-columns: auto 1fr auto;
+    grid-template-columns: 1fr auto;
     align-items: center;
     padding: var(--space-sm) var(--space-md);
     gap: var(--space-md);
@@ -29,16 +29,15 @@
     justify-content: center;
     align-items: center;
   }
-  
+
   .header-center .logo {
     height: 40px;
     width: auto;
   }
-  
-  /* Header left section - hamburger on mobile */
+
+  /* Header left section - no hamburger on mobile, remove this section */
   .header-left {
-    display: flex;
-    align-items: center;
+    display: none;
   }
   
   /* Header right section - theme toggle */
@@ -48,21 +47,9 @@
     gap: var(--space-sm);
   }
   
-  /* Hamburger Menu Button - High Contrast */
+  /* Hamburger Menu Button - Hidden on mobile */
   [data-nav-toggle] {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 22px;
-    background-color: rgba(255, 255, 255, 0.2);
-    border: 2px solid var(--color-white);
-    border-radius: var(--radius-sm);
-    cursor: pointer;
-    padding: var(--space-xs);
-    z-index: var(--z-modal);
-    position: relative;
-    transition: all var(--transition-normal);
+    display: none; /* Hidden on mobile since we're using tabs */
   }
   
   [data-nav-toggle]:hover {
@@ -135,21 +122,9 @@
     text-align: center;
   }
   
-  /* Mobile navigation panel */
+  /* Mobile navigation panel - Hidden since using tabs */
   [data-nav] {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: var(--color-primary);
-    z-index: var(--z-modal);
-    padding-top: 80px; /* Account for header height */
-    overflow-y: auto;
-    transition: transform var(--transition-normal), opacity var(--transition-normal);
-    transform: translateY(-100%);
-    opacity: 0;
-    visibility: hidden;
+    display: none; /* Hidden since we're using tabbed navigation instead */
   }
   
   [data-nav]:not([hidden]) {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newsletters - MSC Initiative</title>
+    <title>Contact - MSC Initiative</title>
     
     <!-- Custom CSS -->
     <!-- CSS Architecture -->
@@ -18,25 +18,28 @@
     <!-- Tabbed Navigation Module -->
     <script src="/js/tabs.js" defer></script>
     
-    <!-- Meta tags -->
-    <meta name="description" content="Access newsletters and updates from the MSC Initiative. Stay informed about our latest activities, achievements, and upcoming events in Mathematics, Science, and Computing.">
-    <meta name="keywords" content="MSC, Mathematics, Science, Computing, STEM, Initiative">
+    <meta name="description" content="Contact the MSC Initiative team for any inquiries, feedback, or information about joining our STEM movement.">
+    <meta name="keywords" content="MSC, Mathematics, Science, Computing, STEM, Initiative, Contact">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     
     <!-- Canonical -->
-    <link rel="canonical" href="https://msccompetition.live/newsletters">
+    <link rel="canonical" href="https://msccompetition.live/contact">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="MSC Initiative">
-    <meta property="og:title" content="Newsletters - MSC Initiative">
-    <meta property="og:description" content="Access newsletters and updates from the MSC Initiative. Stay informed about our latest activities, achievements, and upcoming events in Mathematics, Science, and Computing.">
-    <meta property="og:url" content="https://msccompetition.live/newsletters">
+    <meta property="og:title" content="Contact - MSC Initiative">
+    <meta property="og:description" content="Contact the MSC Initiative team for any inquiries, feedback, or information about joining our STEM movement.">
+    <meta property="og:url" content="https://msccompetition.live/contact">
     <meta property="og:image" content="https://msccompetition.live/images/og-default-1200x630.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
     <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Contact - MSC Initiative">
+    <meta name="twitter:description" content="Contact the MSC Initiative team for any inquiries, feedback, or information about joining our STEM movement.">
+    <meta name="twitter:image" content="https://msccompetition.live/images/og-default-1200x630.png">
     
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
@@ -52,10 +55,26 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
     
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Newsletters - MSC Initiative">
-    <meta name="twitter:description" content="Access newsletters and updates from the MSC Initiative. Stay informed about our latest activities, achievements, and upcoming events in Mathematics, Science, and Computing.">
-    <meta name="twitter:image" content="https://msccompetition.live/images/og-default-1200x630.png">
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "MSC Initiative",
+      "description": "MSC Initiative - A student-led STEM movement exploring Maths, Science, and Computing. Join us to Explore, Innovate, and Excel!",
+      "url": "https://msccompetition.live",
+      "sameAs": [],
+      "publisher": {
+        "@type": "Organization",
+        "name": "MSC Initiative",
+        "url": "https://msccompetition.live",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://msccompetition.live/images/msc-logo.svg"
+        }
+      }
+    }
+    </script>
 </head>
 <body>
     <a href="#main" class="skip-link">Skip to main content</a>    <!-- Header with Navigation -->
@@ -93,8 +112,8 @@
                 </a>
                 
                 <ul class="nav-links nav-right">
-                    <li><a href="/newsletters" aria-current="page">Newsletters</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/newsletters">Newsletters</a></li>
+                    <li><a href="/contact" aria-current="page">Contact</a></li>
                     <li><a href="/brackets">Brackets</a></li>
                 </ul>
             </div>
@@ -109,8 +128,8 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/events">Events</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/newsletters" aria-current="page">Newsletters</a></li>
+                <li><a href="/contact" aria-current="page">Contact</a></li>
+                <li><a href="/newsletters">Newsletters</a></li>
                 <li><a href="/brackets">Brackets</a></li>
             </ul>
         </div>
@@ -124,43 +143,57 @@
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
                 <li><a href="/events">Events</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/newsletters" aria-current="page">Newsletters</a></li>
+                <li><a href="/contact" aria-current="page">Contact</a></li>
+                <li><a href="/newsletters">Newsletters</a></li>
                 <li><a href="/brackets">Brackets</a></li>
             </ul>
         </div>
     </header>
 
-    <!-- Main Content -->
+    <!-- Mobile Navigation -->
+    <div data-nav class="mobile-nav" id="mobile-navigation" hidden>
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/newsletters">Newsletters</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/brackets">Brackets</a></li>
+        </ul>
+    </div>
     <main id="main">
-        <h2>MSC Initiative Newsletters</h2>
-        
-        <p>Stay up to date with the latest news, achievements, and updates from the MSC Initiative community. Our newsletters provide insights into ongoing projects, upcoming events, member spotlights, and developments in Mathematics, Science, and Computing.</p>
-        
-        <h3>Available Newsletters</h3>
-        <p>Download our newsletters to learn more about our activities and community progress:</p>
-        
-        <div class="newsletter-list">
-            <div class="newsletter-item">
-                <h4>Sample Newsletter</h4>
-                <p>This is a placeholder newsletter demonstrating the format and content structure for future MSC Initiative newsletters.</p>
-                <p><strong>Format:</strong> PDF | <strong>Size:</strong> Sample</p>
-                <a href="newsletters/Sample-Newsletter.pdf" class="download-link" target="_blank" rel="noopener noreferrer">📄 Download PDF</a>
-            </div>
-        </div>
-        
-        <h3>Newsletter Archive</h3>
-        <p>As we continue to grow and develop, this section will contain our complete newsletter archive. Check back regularly for new updates and publications from the MSC Initiative team.</p>
-        
-        <h3>Subscribe to Updates</h3>
-        <p>To receive notifications about new newsletters and updates, please visit our <a href="/contact">contact page</a> to get in touch with our team.</p>
+        <section aria-labelledby="contact-heading">
+            <h2 id="contact-heading">Contact the MSC Initiative</h2>
+            <p>If you have any questions, feedback, or want to join our STEM movement, feel free to reach out to us via email or use the contact form below:</p>
+            <p>
+            Email:
+            <a href="mailto:support@msccompetition.live">support@msccompetition.live</a>
+            </p>
+            <form action="https://formspree.io/f/xjkybwaa" method="POST" class="contact-form">
+                <!-- Honeypot field for spam protection -->
+                <input type="text" name="_honeypot" tabindex="-1" autocomplete="off" class="hidden">
+                
+                <!-- Redirect to thank you page -->
+                <input type="hidden" name="_next" value="/thanks">
+                
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
+        </section>
     </main>
 
-    <!-- Footer -->
     <footer>
         <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
     </footer>
-
+    
     <!-- Enhanced Navigation Module -->
     <!-- Tabbed Navigation Module -->
     <script src="/js/tabs.js" defer></script>
@@ -169,6 +202,5 @@
     <!-- Custom JS -->
     <script src="/script.js" defer></script>
     <script src="/js/main.js" defer></script>
-    
 </body>
 </html>
