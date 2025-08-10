@@ -79,15 +79,7 @@
 <body>
     <a href="#main" class="skip-link">Skip to main content</a>    <!-- Header with Navigation -->
     <header>
-        <!-- Mobile: Hamburger left, Logo center, Theme toggle right -->
-        <div class="header-left">
-            <button data-nav-toggle class="hamburger" aria-label="Toggle mobile navigation" aria-expanded="false" aria-controls="mobile-navigation">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-            </button>
-        </div>
-        
+        <!-- Mobile: Logo center, Theme toggle right (no hamburger) -->
         <div class="header-center">
             <a href="/" class="logo-link" aria-label="MSC Initiative Home">
                 <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="logo" width="40" height="30">
@@ -118,49 +110,70 @@
                 </ul>
             </div>
         </div>
-        
-        <!-- Tablet: Tabbed Navigation -->
-        <div class="tablet-nav">
-            <a href="/" class="logo-link" aria-label="MSC Initiative Home">
-                <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="logo" width="40" height="30">
-            </a>
-            <ul class="nav-tabs">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/events">Events</a></li>
-                <li><a href="/contact" aria-current="page">Contact</a></li>
-                <li><a href="/newsletters">Newsletters</a></li>
-                <li><a href="/brackets">Brackets</a></li>
-            </ul>
-        </div>
-        
-        <!-- Mobile: Tabbed Navigation -->
-        <div class="mobile-tab-nav">
-            <a href="/" class="logo-link" aria-label="MSC Initiative Home">
-                <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="logo" width="35" height="26">
-            </a>
-            <ul class="nav-tabs">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/events">Events</a></li>
-                <li><a href="/contact" aria-current="page">Contact</a></li>
-                <li><a href="/newsletters">Newsletters</a></li>
-                <li><a href="/brackets">Brackets</a></li>
-            </ul>
-        </div>
     </header>
 
-    <!-- Mobile Navigation -->
-    <div data-nav class="mobile-nav" id="mobile-navigation" hidden>
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/events">Events</a></li>
-            <li><a href="/newsletters">Newsletters</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/brackets">Brackets</a></li>
-        </ul>
-    </div>
+    <!-- Include Tabbed Navigation for Mobile -->
+    <nav class="tabs-nav" role="tablist" aria-label="Main navigation">
+        <div class="tabs-container">
+            <div class="tabs-scroll" role="none">
+                <ul class="tabs-list" role="none">
+                    <li role="none">
+                        <a href="/" role="tab" aria-controls="home-content" class="tab-link">
+                            Home
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="/about" role="tab" aria-controls="about-content" class="tab-link">
+                            About
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="/events" role="tab" aria-controls="events-content" class="tab-link">
+                            Events
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="/newsletters" role="tab" aria-controls="newsletters-content" class="tab-link">
+                            Newsletters
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="/brackets" role="tab" aria-controls="brackets-content" class="tab-link">
+                            Brackets
+                        </a>
+                    </li>
+                    <li role="none">
+                        <a href="/contact" role="tab" aria-controls="contact-content" class="tab-link">
+                            Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="tabs-more">
+                <button 
+                    class="more-button" 
+                    aria-expanded="false" 
+                    aria-haspopup="menu" 
+                    aria-controls="more-menu"
+                    aria-label="More navigation options"
+                >
+                    More
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="currentColor" aria-hidden="true">
+                        <path d="M6 8.5L2.5 5h7L6 8.5z"/>
+                    </svg>
+                </button>
+                
+                <ul class="more-menu" id="more-menu" role="menu" aria-label="Additional navigation options" hidden>
+                    <!-- Overflow items will be moved here by JavaScript -->
+                </ul>
+            </div>
+        </div>
+        
+        <div class="tabs-fade-left" aria-hidden="true"></div>
+        <div class="tabs-fade-right" aria-hidden="true"></div>
+    </nav>
+
     <main id="main">
         <section aria-labelledby="contact-heading">
             <h2 id="contact-heading">Contact the MSC Initiative</h2>
