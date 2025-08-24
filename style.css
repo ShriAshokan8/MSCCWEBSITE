@@ -1309,4 +1309,56 @@ footer {
 .skip-link:focus {
     top: 6px;
 }
+
+/* Responsive iframe container for embedded content */
+.responsive-iframe-container {
+    position: relative;
+    width: 100%;
+    height: 0;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    margin: 2rem 0;
+}
+
+.responsive-iframe-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+/* Duration page specific styles */
+.duration-main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.duration-main h2 {
+    text-align: center;
+    color: var(--primary-color);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+/* Mobile responsive adjustments for iframe */
+@media (max-width: 768px) {
+    .responsive-iframe-container {
+        padding-bottom: 75%; /* Adjust aspect ratio for mobile */
+        margin: 1rem 0;
+    }
+    
+    .duration-main {
+        padding: 1rem 0.5rem;
+    }
+    
+    .duration-main h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+}
 }
