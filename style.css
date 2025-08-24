@@ -1362,4 +1362,7 @@ main.duration-main {
 @media (max-width: 900px) {
   main.duration-main { max-width: 98vw; padding: 1rem 0.5rem; }
   .duration-main .responsive-iframe-container iframe { height: 400px; }
-@media (max-width: 600px) { .duration-main .responsive-iframe-container iframe { height: 300px; } }
+}
+@media (max-width: 600px) { 
+  .duration-main .responsive-iframe-container iframe { height: 300px; } 
+}
