@@ -8,24 +8,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/style.css">
     
-    <!-- Stopwatch styles -->
-    <style>
-        .msc-stopwatch {
-            text-align: center;
-            margin: 1rem auto 2rem;
-        }
-        .msc-stopwatch .stopwatch-label {
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 0.25rem;
-        }
-        .msc-stopwatch .stopwatch-time {
-            font-variant-numeric: tabular-nums;
-            font-size: 1.125rem;
-            color: #FF6B35;
-        }
-    </style>
-    
     <!-- Animation libraries removed - unused in codebase, using native CSS transitions instead -->
     
     <!-- Meta tags -->
@@ -119,6 +101,29 @@
         </div>
     </header>
 
+    <!-- Stopwatch directly under the logo (outside the header) -->
+    <section class="msc-stopwatch-card" aria-live="polite" role="timer" aria-label="MSC running time">
+        <div class="msc-stopwatch-heading">MSC has been running for</div>
+        <div class="msc-stopwatch-grid" id="mscStopwatch">
+            <div class="unit">
+                <div class="value" data-unit="days">0</div>
+                <div class="label">Days</div>
+            </div>
+            <div class="unit">
+                <div class="value" data-unit="hours">00</div>
+                <div class="label">Hours</div>
+            </div>
+            <div class="unit">
+                <div class="value" data-unit="minutes">00</div>
+                <div class="label">Minutes</div>
+            </div>
+            <div class="unit">
+                <div class="value" data-unit="seconds">00</div>
+                <div class="label">Seconds</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Mobile Navigation -->
     <div class="mobile-nav">
         <ul class="nav-links">
@@ -133,12 +138,6 @@
 
     <!-- Main Content -->
     <main id="main">
-        <!-- Stopwatch under the logo but outside the header -->
-        <section class="msc-stopwatch" aria-live="polite">
-            <div class="stopwatch-label">MSC has been running for</div>
-            <div id="mscStopwatch" class="stopwatch-time" aria-label="MSC running time">0 days 00:00:00</div>
-        </section>
-
         <h2>Explore, Innovate, Excel: Maths, Science, Computing</h2>
         
         <p>Welcome to the MSC Initiative - an exciting & comprehensive student-led STEM initiative that brings together enthusiastic students interested in <strong>Maths</strong>, <strong>Science</strong>, and <strong>Computing</strong>.</p>
@@ -173,39 +172,5 @@
     <!-- Custom JS -->
     <script src="/script.js" defer></script>
     <script src="/js/main.js" defer></script>
-
-    <!-- Stopwatch logic -->
-    <script>
-    (function () {
-        // Start time in UTC to keep it consistent globally
-        const startUTC = '2024-09-23T17:14:37Z';
-        const start = new Date(startUTC).getTime();
-        const el = document.getElementById('mscStopwatch');
-
-        if (!el || Number.isNaN(start)) return;
-
-        function pad(n) {
-            return String(n).padStart(2, '0');
-        }
-
-        function update() {
-            const now = Date.now();
-            let diff = Math.max(0, Math.floor((now - start) / 1000)); // seconds
-            const days = Math.floor(diff / 86400);
-            diff -= days * 86400;
-            const hours = Math.floor(diff / 3600);
-            diff -= hours * 3600;
-            const minutes = Math.floor(diff / 60);
-            diff -= minutes * 60;
-            const seconds = diff;
-
-            el.textContent = days + ' day' + (days === 1 ? '' : 's') + ' ' +
-                             pad(hours) + ':' + pad(minutes) + ':' + pad(seconds);
-        }
-
-        update();
-        setInterval(update, 1000);
-    })();
-    </script>
 </body>
 </html>
