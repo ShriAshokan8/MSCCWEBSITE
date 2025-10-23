@@ -244,6 +244,84 @@ footer p span {
     color: var(--primary-color);
 }
 
+/* Stopwatch Card (directly under header/logo) */
+.msc-stopwatch-card {
+    /* Sit below fixed header; keep spacing tight so it feels 'under the logo' */
+    margin-top: 90px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+    max-width: 720px;
+    padding: 1rem 1.25rem;
+    background-color: var(--card-background);
+    border: 2px solid var(--border-color);
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+}
+
+.msc-stopwatch-heading {
+    color: var(--primary-color);
+    font-weight: 700;
+    letter-spacing: 0.2px;
+    text-align: center;
+}
+
+.msc-stopwatch-grid {
+    display: grid;
+    grid-auto-flow: column;
+    gap: 0.75rem;
+    align-items: stretch;
+}
+
+.msc-stopwatch-grid .unit {
+    background: linear-gradient(145deg, var(--secondary-color) 0%, #FFE8D9 100%);
+    border: 2px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 0.6rem 0.9rem;
+    min-width: 84px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(255, 107, 53, 0.15);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.msc-stopwatch-grid .unit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 107, 53, 0.25);
+}
+
+.msc-stopwatch-grid .value {
+    font-variant-numeric: tabular-nums;
+    font-size: 1.6rem;
+    font-weight: 800;
+    color: var(--primary-color);
+    line-height: 1.1;
+}
+
+.msc-stopwatch-grid .label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-top: 0.2rem;
+    letter-spacing: 0.2px;
+}
+
+/* Responsive layout for stopwatch */
+@media (max-width: 560px) {
+    .msc-stopwatch-grid {
+        grid-auto-flow: row;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .msc-stopwatch-card {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .desktop-only { 
@@ -303,10 +381,7 @@ footer p span {
     }
 }
 
-
-
-
-
+/* Dark theme variables (retain your existing block if intended) */
     --primary-color: #FF6B35; /* Orange stays */
     --secondary-color: #FFD5B4; /* Peach stays */
     --accent-color: #FFFFFF; /* White text */
@@ -316,17 +391,6 @@ footer p span {
     --border-color: #FF6B35; /* Orange border */
     --hover-color: #FF8A65; /* Lighter orange */
 }
-
-
-
-
-
-
-
-
-
-
-
 
 /* Main content styling */
 main {
