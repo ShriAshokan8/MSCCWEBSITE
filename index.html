@@ -8,8 +8,6 @@
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/style.css">
     
-    <!-- Animation libraries removed - unused in codebase, using native CSS transitions instead -->
-    
     <!-- Meta tags -->
     <meta name="description" content="MSC Initiative - A student-led STEM movement exploring Maths, Science, and Computing. Join us to Explore, Innovate, and Excel!">
     <meta name="keywords" content="MSC, Mathematics, Science, Computing, STEM, Initiative, Student-led">
@@ -69,7 +67,7 @@
     }
     </script>
 </head>
-<body>
+<body class="has-stopwatch">
     <a href="#main" class="skip-link">Skip to main content</a>
     <!-- Header with Navigation -->
     <header>
@@ -102,25 +100,28 @@
     </header>
 
     <!-- Stopwatch directly under the logo (outside the header) -->
-    <section class="msc-stopwatch-card" aria-live="polite" role="timer" aria-label="MSC running time">
-        <div class="msc-stopwatch-heading">MSC has been running for</div>
-        <div class="msc-stopwatch-grid" id="mscStopwatch">
-            <div class="unit">
-                <div class="value" data-unit="days">0</div>
-                <div class="label">Days</div>
+    <section class="msc-stopwatch-wrap" aria-live="polite">
+        <div class="msc-stopwatch-card" role="timer" aria-label="MSC running time">
+            <div class="msc-stopwatch-heading">MSC has been running for</div>
+            <div class="msc-stopwatch-grid" id="mscStopwatch">
+                <div class="unit">
+                    <div class="value" data-unit="days">1</div>
+                    <div class="label">Days</div>
+                </div>
+                <div class="unit">
+                    <div class="value" data-unit="hours">00</div>
+                    <div class="label">Hours</div>
+                </div>
+                <div class="unit">
+                    <div class="value" data-unit="minutes">00</div>
+                    <div class="label">Minutes</div>
+                </div>
+                <div class="unit">
+                    <div class="value" data-unit="seconds">00</div>
+                    <div class="label">Seconds</div>
+                </div>
             </div>
-            <div class="unit">
-                <div class="value" data-unit="hours">00</div>
-                <div class="label">Hours</div>
-            </div>
-            <div class="unit">
-                <div class="value" data-unit="minutes">00</div>
-                <div class="label">Minutes</div>
-            </div>
-            <div class="unit">
-                <div class="value" data-unit="seconds">00</div>
-                <div class="label">Seconds</div>
-            </div>
+            <div class="msc-uktime" id="mscUKTime" aria-label="Current UK time (GMT/BST)">UK time: --:--:--</div>
         </div>
     </section>
 
@@ -167,8 +168,6 @@
         <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
     </footer>
 
-    <!-- Animation libraries removed - unused in codebase, using native CSS transitions instead -->
-    
     <!-- Custom JS -->
     <script src="/script.js" defer></script>
     <script src="/js/main.js" defer></script>
