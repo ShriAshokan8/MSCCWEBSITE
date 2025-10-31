@@ -324,12 +324,13 @@ footer p span {
     text-transform: uppercase;
 }
 
-.msc-uktime {
+.msc-start-note {
     margin-top: 0.75rem;
     text-align: center;
     color: var(--accent-color, #333333);
     font-weight: 700;
     opacity: 0.85;
+    font-size: 0.9rem;
 }
 
 /* Reduce extra vertical gap for pages with the stopwatch present */
@@ -1462,4 +1463,5 @@ main.duration-main {
 @media (max-width: 600px) { 
   .duration-main .responsive-iframe-container iframe { height: 300px; } 
 }
+
 
