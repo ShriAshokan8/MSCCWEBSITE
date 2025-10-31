@@ -48,7 +48,6 @@ function zonedUKToUtc({ year, month, day, hour = 0, minute = 0, second = 0 }) {
  */
 function initMSCRunningStopwatch() {
     const root = document.getElementById('mscStopwatch');
-    const ukTimeEl = document.getElementById('mscUKTime');
     if (!root) return;
 
     // Start from: 23rd September 2024 at 17:03:37 (UK time)
@@ -59,11 +58,6 @@ function initMSCRunningStopwatch() {
     const hoursEl = root.querySelector('.value[data-unit="hours"]');
     const minsEl  = root.querySelector('.value[data-unit="minutes"]');
     const secsEl  = root.querySelector('.value[data-unit="seconds"]');
-
-    const ukFormatter = new Intl.DateTimeFormat('en-GB', {
-        hour: '2-digit', minute: '2-digit', second: '2-digit',
-        hour12: false, timeZone: 'Europe/London', timeZoneName: 'short'
-    });
 
     const pad2 = (n) => String(n).padStart(2, '0');
 
@@ -91,13 +85,6 @@ function initMSCRunningStopwatch() {
         if (hoursEl) hoursEl.textContent = pad2(hours);
         if (minsEl) minsEl.textContent  = pad2(minutes);
         if (secsEl) secsEl.textContent  = pad2(seconds);
-
-        if (ukTimeEl) {
-            const parts = ukFormatter.formatToParts(new Date());
-            const time = parts.filter(p => ['hour','minute','second'].includes(p.type)).map(p => p.value).join(':');
-            const tz = (parts.find(p => p.type === 'timeZoneName') || { value: '' }).value;
-            ukTimeEl.textContent = `UK time: ${time} ${tz}`;
-        }
     }
 
     update();
