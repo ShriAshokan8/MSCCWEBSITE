@@ -450,9 +450,6 @@ body.dark-mode {
     --card-background: #2A2A2A; /* Dark gray */
     --border-color: #FF6B35; /* Orange border */
     --hover-color: #FF8A65; /* Lighter orange */
-}
-
-body.dark-mode {
     background-color: var(--background-color);
     color: var(--text-color);
 }
