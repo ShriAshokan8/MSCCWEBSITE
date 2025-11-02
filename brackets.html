@@ -34,6 +34,20 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="theme-color" content="#FF6B35">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    
+    <!-- Preconnects and DNS prefetch for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/images/msc-logo.svg" as="image" type="image/svg+xml">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Tournament Brackets - MSC Initiative">
     <meta name="twitter:description" content="MSC Competition Tournament Brackets - Track the progress of teams through semi-finals, grand finals, and championship rounds.">
@@ -148,7 +162,7 @@
 
     <!-- Main Tournament Brackets Content (Hidden by default) -->
     <main id="bracket-content" style="display: none;">
-        <h2>MSC Competition Tournament Brackets</h2>
+        <h1>MSC Competition Tournament Brackets</h1>
         <p>Track the progress of teams through our four-round tournament format.</p>
         
         <!-- Tournament Bracket Container -->
