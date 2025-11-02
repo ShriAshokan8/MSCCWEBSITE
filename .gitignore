@@ -1,1 +1,11 @@
 style.css.backup
+
+# Node modules
+node_modules/
+
+# NPM lock file
+package-lock.json
+
+# Build artifacts
+*.log
+.DS_Store
