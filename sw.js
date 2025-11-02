@@ -6,7 +6,6 @@ const OFFLINE_URL = '/offline.html';
 
 // Assets to cache on install
 const STATIC_ASSETS = [
-  '/',
   '/index.html',
   '/about.html',
   '/events.html',
