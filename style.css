@@ -1441,7 +1441,17 @@ footer {
 
 /* Focus styles for accessibility */
 *:focus {
-    outline: 2px solid var(--primary-color);
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Remove default outline for mouse users but keep for keyboard */
+*:focus:not(:focus-visible) {
+    outline: none;
+}
+
+*:focus-visible {
+    outline: 3px solid var(--primary-color);
     outline-offset: 2px;
 }
 
@@ -1449,6 +1459,43 @@ footer {
 .cta-buttons {
     text-align: center;
     margin-top: 2rem;
+}
+
+/* Contact form styles */
+.contact-form {
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.contact-form label {
+    display: block;
+    margin-block-start: var(--spacing-md);
+    margin-block-end: var(--spacing-sm);
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+.contact-form button {
+    margin-block-start: var(--spacing-md);
 }
 
 /* Skip link styles */
