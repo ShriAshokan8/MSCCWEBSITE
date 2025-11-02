@@ -9,6 +9,13 @@
     --card-background: #FEFEFE; /* Almost white */
     --border-color: #FFD5B4; /* Peach */
     --hover-color: #FF5722; /* Darker orange */
+    
+    /* Spacing tokens for consistency */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
 }
 
 body {
@@ -19,13 +26,30 @@ body {
     background-color: var(--background-color);
     color: var(--text-color);
     transition: background-color 0.3s ease, color 0.3s ease;
+    /* Fluid typography */
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
+}
+
+h1 {
+    font-size: clamp(1.75rem, 1.5rem + 1.25vw, 2.5rem);
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: clamp(1.5rem, 1.3rem + 1vw, 2rem);
+    line-height: 1.3;
+}
+
+h3 {
+    font-size: clamp(1.25rem, 1.15rem + 0.5vw, 1.5rem);
+    line-height: 1.4;
 }
 
 /* Header Styles */
 header {
     background-color: var(--primary-color);
     color: #fff;
-    padding: 1rem;
+    padding: var(--spacing-md);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: fixed;
     top: 0;
@@ -157,12 +181,12 @@ nav {
 
 /* Adjust main content to accommodate fixed header */
 main {
-    margin-top: 90px;
-    margin-bottom: 80px; /* Add bottom margin for fixed footer */
-    padding: 2rem;
+    margin-block-start: 90px;
+    margin-block-end: 80px; /* Add bottom margin for fixed footer */
+    padding-inline: var(--spacing-lg);
+    padding-block: var(--spacing-lg);
     max-width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
+    margin-inline: auto;
     background: var(--card-background);
     color: var(--text-color);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -183,14 +207,14 @@ main#bracket-content {
 
 main h2 {
     color: var(--primary-color);
-    margin-bottom: 1rem;
+    margin-block-end: var(--spacing-md);
     border-bottom: 2px solid var(--primary-color);
-    padding-bottom: 0.5rem;
+    padding-block-end: var(--spacing-sm);
 }
 
 main h3 {
     color: var(--primary-color);
-    margin-bottom: 0.5rem;
+    margin-block-end: var(--spacing-sm);
     cursor: pointer;
     background-color: var(--secondary-color);
     padding: 10px;
@@ -209,8 +233,9 @@ main ul {
 
 main ul li {
     background: var(--secondary-color);
-    margin: 0.5rem 0;
-    padding: 0.75rem;
+    margin-block: var(--spacing-sm);
+    padding-inline: 0.75rem;
+    padding-block: 0.75rem;
     border-left: 4px solid var(--primary-color);
     border-radius: 4px;
     font-weight: bold;
@@ -415,7 +440,9 @@ body.has-stopwatch main {
 }
 
 /* Dark theme variables (retain your existing block if intended) */
-    --primary-color: #FF6B35; /* Orange stays */
+@media (prefers-color-scheme: dark) {
+:root {
+    --primary-color: #FF8A65; /* Lighter orange for dark mode */
     --secondary-color: #FFD5B4; /* Peach stays */
     --accent-color: #FFFFFF; /* White text */
     --background-color: #1A1A1A; /* Dark background */
@@ -423,6 +450,40 @@ body.has-stopwatch main {
     --card-background: #2A2A2A; /* Dark gray */
     --border-color: #FF6B35; /* Orange border */
     --hover-color: #FF8A65; /* Lighter orange */
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+header {
+    background-color: #2A2A2A;
+}
+
+footer {
+    background-color: #2A2A2A;
+}
+
+.mobile-nav {
+    background-color: #2A2A2A;
+}
+
+main {
+    background: var(--card-background);
+    color: var(--text-color);
+}
+}
+
+/* Reduced motion support for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0s !important;
+        transition-duration: 0s !important;
+        scroll-behavior: auto !important;
+    }
 }
 
 /* Main content styling */
@@ -1379,7 +1440,17 @@ footer {
 
 /* Focus styles for accessibility */
 *:focus {
-    outline: 2px solid var(--primary-color);
+    outline: 3px solid var(--primary-color);
+    outline-offset: 2px;
+}
+
+/* Remove default outline for mouse users but keep for keyboard */
+*:focus:not(:focus-visible) {
+    outline: none;
+}
+
+*:focus-visible {
+    outline: 3px solid var(--primary-color);
     outline-offset: 2px;
 }
 
@@ -1387,6 +1458,43 @@ footer {
 .cta-buttons {
     text-align: center;
     margin-top: 2rem;
+}
+
+/* Contact form styles */
+.contact-form {
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.contact-form label {
+    display: block;
+    margin-block-start: var(--spacing-md);
+    margin-block-end: var(--spacing-sm);
+    font-weight: 600;
+    color: var(--text-color);
+}
+
+.contact-form input,
+.contact-form textarea {
+    width: 100%;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border: 2px solid var(--border-color);
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 1rem;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
+}
+
+.contact-form button {
+    margin-block-start: var(--spacing-md);
 }
 
 /* Skip link styles */
