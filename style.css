@@ -440,6 +440,50 @@ body.has-stopwatch main {
 }
 
 /* Dark theme variables (retain your existing block if intended) */
+/* Class-based dark mode (for manual toggle) */
+body.dark-mode {
+    --primary-color: #FF8A65; /* Lighter orange for dark mode */
+    --secondary-color: #FFD5B4; /* Peach stays */
+    --accent-color: #FFFFFF; /* White text */
+    --background-color: #1A1A1A; /* Dark background */
+    --text-color: #FFFFFF; /* White text */
+    --card-background: #2A2A2A; /* Dark gray */
+    --border-color: #FF6B35; /* Orange border */
+    --hover-color: #FF8A65; /* Lighter orange */
+}
+
+body.dark-mode {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+body.dark-mode header {
+    background-color: #2A2A2A;
+}
+
+body.dark-mode footer {
+    background-color: #2A2A2A;
+}
+
+body.dark-mode .mobile-nav {
+    background-color: #2A2A2A;
+}
+
+body.dark-mode main {
+    background: var(--card-background);
+    color: var(--text-color);
+}
+
+body.dark-mode h2,
+body.dark-mode h3 {
+    color: var(--primary-color);
+}
+
+body.dark-mode a {
+    color: var(--primary-color);
+}
+
+/* System preference dark mode fallback */
 @media (prefers-color-scheme: dark) {
 :root {
     --primary-color: #FF8A65; /* Lighter orange for dark mode */
@@ -1497,24 +1541,6 @@ footer {
     margin-block-start: var(--spacing-md);
 }
 
-/* Skip link styles */
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: 6px;
-    background: var(--primary-color);
-    color: white;
-    padding: 8px;
-    text-decoration: none;
-    border-radius: 4px;
-    z-index: 10000;
-    transition: top 0.3s;
-}
-
-.skip-link:focus {
-    top: 6px;
-}
-
 /* Responsive iframe container for embedded content */
 .responsive-iframe-container {
     position: relative;
@@ -1570,6 +1596,78 @@ main.duration-main {
 }
 @media (max-width: 600px) { 
   .duration-main .responsive-iframe-container iframe { height: 300px; } 
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    position: fixed;
+    bottom: 70px; /* Above the footer */
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--primary-color);
+    border: 2px solid var(--border-color);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    font-size: 1.5rem;
+}
+
+.theme-toggle:hover {
+    transform: translateY(-3px) scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+    background-color: var(--hover-color);
+}
+
+.theme-toggle:active {
+    transform: translateY(-1px) scale(1.02);
+}
+
+/* Icons for theme toggle */
+.theme-toggle .sun-icon,
+.theme-toggle .moon-icon {
+    display: none;
+    width: 24px;
+    height: 24px;
+}
+
+.theme-toggle .sun-icon {
+    display: block;
+}
+
+body.dark-mode .theme-toggle .sun-icon {
+    display: none;
+}
+
+body.dark-mode .theme-toggle .moon-icon {
+    display: block;
+}
+
+/* Responsive positioning for mobile */
+@media (max-width: 768px) {
+    .theme-toggle {
+        bottom: 65px;
+        right: 15px;
+        width: 45px;
+        height: 45px;
+        font-size: 1.3rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .theme-toggle {
+        bottom: 60px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+    }
 }
 
 
