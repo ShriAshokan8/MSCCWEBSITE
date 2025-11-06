@@ -269,13 +269,14 @@ footer p span {
     color: var(--primary-color);
 }
 
-/* =========================
+/* ============================
    Stopwatch (MSC)
-   ========================= */
+   ============================ */
 
 /* Wrapper */
 .msc-stopwatch-wrap {
     padding: 0 1rem;
+    margin-top: 90px;
 }
 
 /* Card */
@@ -576,7 +577,7 @@ footer {
 /* Night mode newsletter styles */
 
 
-/* Tournament Bracket Styles - Professional Login Menu */
+/* Tournament Bracket Styles - Professisonal Login Menu */
 .login-container {
     display: flex;
     justify-content: center;
@@ -1034,10 +1035,6 @@ footer {
 
 
 
-
-
-
-
 /* Responsive Design for Brackets */
 @media (max-width: 768px) {
     .tournament-container {
@@ -1348,7 +1345,6 @@ footer {
 /* Night mode styles for Overall Winner */
 
 
-
 /* Match Cluster Styling - Groups within rounds */
 .match-cluster {
     display: flex;
@@ -1526,8 +1522,6 @@ main.duration-main {
 @media (max-width: 600px) { 
   .duration-main .responsive-iframe-container iframe { height: 300px; } 
 }
-
-
 
 
 
