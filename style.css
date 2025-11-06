@@ -274,7 +274,7 @@ nav {
 
 /* Main Content - Adjusted for repositioned stopwatch */
 body.has-stopwatch main {
-    margin-top: 240px !important;
+    margin-top: 240px;
 }
 
 main {
@@ -823,10 +823,6 @@ header.scrolled + .msc-stopwatch-wrap {
     .msc-stopwatch-heading {
         font-size: 1rem;
     }
-    
-    body.has-stopwatch main {
-        margin-top: 220px !important;
-    }
 }
 
 @media (max-width: 560px) {
@@ -948,9 +944,9 @@ header.scrolled + .msc-stopwatch-wrap {
     *,
     *::before,
     *::after {
-        animation-duration: 0.01ms !important;
+        animation-duration: 0s !important;
         animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        transition-duration: 0s !important;
         scroll-behavior: auto !important;
     }
 }
