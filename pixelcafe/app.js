@@ -1,19 +1,6 @@
 (function(){
-  const root = document.documentElement;
   const nav = document.querySelector('.nav');
   const toggle = document.querySelector('.nav-toggle');
-  const themeBtn = document.querySelector('.theme-toggle');
-
-  // Theme persistence
-  const saved = localStorage.getItem('pc-theme') || 'light';
-  if(saved === 'dark'){ root.removeAttribute('data-theme'); }
-  else { root.setAttribute('data-theme', 'light'); }
-
-  themeBtn?.addEventListener('click', () => {
-    const isLight = root.getAttribute('data-theme') === 'light';
-    if(isLight){ root.removeAttribute('data-theme'); localStorage.setItem('pc-theme','dark'); themeBtn.textContent = '☀️'; }
-    else { root.setAttribute('data-theme','light'); localStorage.setItem('pc-theme','light'); themeBtn.textContent = '🌙'; }
-  });
 
   // Mobile nav
   toggle?.addEventListener('click', () => {
