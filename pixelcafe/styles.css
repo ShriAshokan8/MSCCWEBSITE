@@ -47,7 +47,6 @@ img{display:block;max-width:100%;height:auto;border-radius:14px}
 .btn-primary{color:#fff; background:linear-gradient(135deg, var(--primary), var(--primary-2)); box-shadow: 0 6px 20px rgba(155,92,246,.35)}
 .btn-ghost{color:var(--text); background:transparent; border:1px solid rgba(255,255,255,.12)}
 .btn-pill{border-radius:999px; padding:8px 12px; background:rgba(255,255,255,.08); color:var(--text)}
-.theme-toggle{font-size:14px; line-height:1}
 
 .nav-toggle{display:none;flex-direction:column;gap:4px;background:transparent;border:0;cursor:pointer}
 .nav-toggle .bar{width:24px;height:2px;background:var(--text);opacity:.7;border-radius:2px}

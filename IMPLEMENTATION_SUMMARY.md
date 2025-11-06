@@ -180,7 +180,6 @@ This document summarizes all the improvements made to the MSC Initiative website
 - No image lazy loading
 - No minification
 - No service worker
-- No dark mode
 - Basic focus styles
 
 ### After Optimizations
@@ -188,7 +187,6 @@ This document summarizes all the improvements made to the MSC Initiative website
 - ✅ Lazy loading on below-the-fold images
 - ✅ 34-54% file size reduction through minification
 - ✅ Offline support via service worker
-- ✅ Automatic dark mode
 - ✅ Enhanced accessibility features
 
 ### Expected Improvements
@@ -233,7 +231,6 @@ This document summarizes all the improvements made to the MSC Initiative website
 - Touch-friendly interactive elements (already good)
 - Service worker for offline mobile use
 - Faster load times (minification)
-- Better dark mode support
 
 ## ♿ Accessibility Score
 
@@ -248,7 +245,6 @@ This document summarizes all the improvements made to the MSC Initiative website
 
 ### New Additions
 - Enhanced focus styles
-- Dark mode support
 - Reduced motion support
 - Better form styling
 - Logical properties for i18n
@@ -290,7 +286,7 @@ This document summarizes all the improvements made to the MSC Initiative website
 
 The MSC Initiative website now implements **industry-leading** web standards for:
 - ✅ **Performance**: Minified assets, preloading, lazy loading, service worker
-- ✅ **Accessibility**: ARIA, semantic HTML, keyboard navigation, dark mode, reduced motion
+- ✅ **Accessibility**: ARIA, semantic HTML, keyboard navigation, reduced motion
 - ✅ **SEO**: Structured data, proper headings, metadata, sitemap
 - ✅ **Security**: CSP, HSTS, secure headers, CORS
 - ✅ **Maintainability**: Build system, EditorConfig, documentation
