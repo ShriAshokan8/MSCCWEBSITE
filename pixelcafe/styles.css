@@ -1,18 +1,4 @@
 :root{
-  --bg: #0f0a1f;
-  --bg-2: #1a1035;
-  --surface: #19122c;
-  --surface-2: #20163f;
-  --text: #e8e6f2;
-  --muted: #bdb8d6;
-  --primary: #9b5cf6;
-  --primary-2: #7b3ff0;
-  --accent: #00e7ff;
-  --success: #18d47b;
-  --shadow: 0 10px 30px rgba(0,0,0,.35);
-}
-
-[data-theme="light"]{
   --bg: #f7f3ff;
   --bg-2: #ede6ff;
   --surface: #ffffff;
@@ -47,12 +33,9 @@ img{display:block;max-width:100%;height:auto;border-radius:14px}
 /* Header / Nav */
 .site-header{
   position:sticky;top:0;z-index:50;
-  background:linear-gradient(180deg, rgba(15,10,31,.9), rgba(15,10,31,.6));
+  background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.6));
   backdrop-filter:saturate(140%) blur(8px);
   border-bottom:1px solid rgba(255,255,255,.06);
-}
-[data-theme="light"] .site-header{
-  background:linear-gradient(180deg, rgba(255,255,255,.85), rgba(255,255,255,.6));
 }
 .nav-wrap{display:flex;align-items:center;justify-content:space-between;height:64px;gap:12px}
 .logo{font-family:"Press Start 2P", monospace; font-size:16px; letter-spacing:.5px; display:flex; align-items:center; gap:10px}

@@ -88,14 +88,6 @@ This document summarizes all the improvements made to the MSC Initiative website
   ```
 - **Impact**: Better readability across all screen sizes
 
-#### Dark Mode Support
-- **Added**: Automatic dark mode using `prefers-color-scheme`
-- **Features**:
-  - Adjusted color palette for dark backgrounds
-  - Lighter primary colors for better contrast
-  - Maintains brand identity in both modes
-- **Impact**: Better user experience, reduced eye strain
-
 #### Reduced Motion Support
 - **Added**: Respects user's motion preferences
   ```css
@@ -207,11 +199,6 @@ This document summarizes all the improvements made to the MSC Initiative website
 - **Lighthouse Score**: Expected 90+ (was already good)
 
 ## 🎨 Visual Changes
-
-### Dark Mode
-- Automatically activates when user's system is in dark mode
-- Maintains brand colors (orange/peach) with adjusted brightness
-- Better contrast for text readability
 
 ### Typography
 - Scales smoothly between mobile and desktop
