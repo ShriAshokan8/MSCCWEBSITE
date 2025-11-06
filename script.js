@@ -57,7 +57,7 @@ function zonedUKToUtc({ year, month, day, hour = 0, minute = 0, second = 0 }) {
 
 /**
  * Initialize the count-up stopwatch from UK start time.
- * Includes the start day in the day count (inclusive).
+ * Day counter now shows fully elapsed whole days (Day 0 at the start moment).
  */
 function initMSCRunningStopwatch() {
     const root = document.getElementById('mscStopwatch');
@@ -83,23 +83,23 @@ function initMSCRunningStopwatch() {
             diffSec = 0;
         }
 
-        // Inclusive day count: show 1 on the start day
-        const baseDays = Math.floor(diffSec / 86400);
-        const inclusiveDays = (diffSec >= 0) ? (baseDays + 1) : 0;
+        // Elapsed whole days (Day 0 at the exact start timestamp)
+        const elapsedDays = Math.floor(diffSec / 86400);
 
-        // Remainder within the current day
+        // Remainder within current (partial) day
         const rem = diffSec % 86400;
         const hours = Math.floor(rem / 3600);
         const rem2 = rem - hours * 3600;
         const minutes = Math.floor(rem2 / 60);
         const seconds = rem2 - minutes * 60;
 
-        if (daysEl) daysEl.textContent = String(inclusiveDays);
+        if (daysEl)  daysEl.textContent = String(elapsedDays);
         if (hoursEl) hoursEl.textContent = pad2(hours);
-        if (minsEl) minsEl.textContent  = pad2(minutes);
-        if (secsEl) secsEl.textContent  = pad2(seconds);
+        if (minsEl)  minsEl.textContent = pad2(minutes);
+        if (secsEl)  secsEl.textContent = pad2(seconds);
     }
 
     update();
+    // Update every second
     setInterval(update, 1000);
 }
