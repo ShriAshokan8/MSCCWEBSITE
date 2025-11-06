@@ -269,26 +269,26 @@ footer p span {
     color: var(--primary-color);
 }
 
-/* Stopwatch Card (directly under header/logo) */
+/* =========================
+   Stopwatch (MSC)
+   ========================= */
+
+/* Wrapper */
 .msc-stopwatch-wrap {
-    margin-top: 90px; /* clear the fixed header height */
-    display: flex;
-    justify-content: center;
     padding: 0 1rem;
 }
 
+/* Card */
 .msc-stopwatch-card {
-    max-width: 720px;
-    width: 100%;
-    background: var(--card-background, #FEFEFE);
-    border: 2px solid var(--border-color, #FFD5B4);
-    border-radius: 14px;
-    box-shadow: 0 6px 20px rgba(255, 107, 53, 0.15);
     padding: 1rem 1.25rem;
     position: relative;
     overflow: hidden;
+    display: flex;              /* Center contents horizontally via flex */
+    flex-direction: column;     /* Stack heading, grid, and note vertically */
+    align-items: center;        /* Center child blocks inside the card */
 }
 
+/* Decorative top bar on the card */
 .msc-stopwatch-card::before {
     content: "";
     position: absolute;
@@ -299,6 +299,7 @@ footer p span {
     background: linear-gradient(90deg, var(--primary-color, #FF6B35), var(--secondary-color, #FFD5B4), var(--primary-color, #FF6B35));
 }
 
+/* Heading */
 .msc-stopwatch-heading {
     color: var(--primary-color, #FF6B35);
     font-weight: 800;
@@ -307,6 +308,7 @@ footer p span {
     margin-bottom: 0.5rem;
 }
 
+/* Grid with day/hour/min/sec */
 .msc-stopwatch-grid {
     display: grid;
     grid-auto-flow: column;
@@ -315,6 +317,7 @@ footer p span {
     justify-content: center;
 }
 
+/* Each unit box */
 .msc-stopwatch-grid .unit {
     background: linear-gradient(145deg, var(--secondary-color, #FFD5B4) 0%, #FFE8D9 100%);
     border: 2px solid var(--primary-color, #FF6B35);
@@ -331,6 +334,7 @@ footer p span {
     box-shadow: 0 6px 18px rgba(255, 107, 53, 0.25);
 }
 
+/* Numeric value */
 .msc-stopwatch-grid .value {
     font-variant-numeric: tabular-nums;
     font-size: 1.8rem;
@@ -339,6 +343,7 @@ footer p span {
     line-height: 1.06;
 }
 
+/* Label text */
 .msc-stopwatch-grid .label {
     font-size: 0.78rem;
     font-weight: 700;
@@ -349,6 +354,7 @@ footer p span {
     text-transform: uppercase;
 }
 
+/* Start note (centered inside the card) */
 .msc-start-note {
     margin-top: 0.75rem;
     text-align: center;
@@ -356,6 +362,7 @@ footer p span {
     font-weight: 700;
     opacity: 0.85;
     font-size: 0.9rem;
+    width: 100%; /* ensures full width for natural centering */
 }
 
 /* Reduce extra vertical gap for pages with the stopwatch present */
@@ -1666,5 +1673,6 @@ body.dark-mode .theme-toggle .moon-icon {
         font-size: 1.2rem;
     }
 }
+
 
 
