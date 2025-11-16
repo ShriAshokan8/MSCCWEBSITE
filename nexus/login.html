@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MSC Nexus – Login</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body class="auth-body">
+  <div class="auth-container">
+    <h1 class="auth-title">Sign in to MSC Nexus</h1>
+    <form id="login-form">
+      <label for="login-email">Email</label>
+      <input
+        id="login-email"
+        name="email"
+        type="email"
+        required
+        autocomplete="email"
+      />
+
+      <label for="login-password">Password</label>
+      <input
+        id="login-password"
+        name="password"
+        type="password"
+        required
+        autocomplete="current-password"
+      />
+
+      <button id="login-submit" type="submit">Sign In</button>
+    </form>
+
+    <div id="login-error" class="auth-message auth-error" aria-live="polite">
+      <!-- Error messages will appear here -->
+    </div>
+  </div>
+
+  <script type="module" src="./auth.js"></script>
+</body>
+</html>
