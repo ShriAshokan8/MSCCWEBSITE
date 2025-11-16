@@ -1,0 +1,282 @@
+:root {
+  --color-bg: #0f172a;
+  --color-bg-elevated: #111827;
+  --color-border: #1f2937;
+  --color-text: #e5e7eb;
+  --color-text-muted: #9ca3af;
+  --color-accent: #3b82f6;
+  --color-accent-soft: rgba(59, 130, 246, 0.1);
+  --sidebar-width: 280px;
+  --topbar-height: 56px;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+}
+
+/* Root layout */
+
+#nexus-root {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}
+
+/* Sidebar */
+
+#nexus-sidebar {
+  width: var(--sidebar-width);
+  background-color: #020617;
+  border-right: 1px solid var(--color-border);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow-y: auto;
+}
+
+.sidebar-section {
+  padding: 8px;
+  border-radius: 6px;
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(31, 41, 55, 0.9);
+}
+
+.sidebar-title {
+  margin: 0 0 4px;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-muted);
+}
+
+.sidebar-placeholder {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* Main column */
+
+#nexus-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  background: radial-gradient(circle at top, #1e293b 0%, #020617 55%);
+}
+
+/* Top bar */
+
+#nexus-topbar {
+  height: var(--topbar-height);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--color-border);
+  background: linear-gradient(to right, #020617, #030712);
+}
+
+.app-title {
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.topbar-left,
+.topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#btn-new-page,
+#btn-sign-out {
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  background: #020617;
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+#btn-new-page {
+  border-color: var(--color-accent-soft);
+  background: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+#btn-new-page:hover {
+  background: rgba(59, 130, 246, 0.18);
+}
+
+#btn-sign-out:hover {
+  background: #111827;
+}
+
+#user-profile-placeholder {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+/* Editor */
+
+#nexus-editor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: 16px 24px;
+  overflow: auto;
+}
+
+#editor-title-bar {
+  margin-bottom: 16px;
+}
+
+#page-title-input {
+  width: 100%;
+  max-width: 720px;
+  font-size: 1.6rem;
+  font-weight: 500;
+  padding: 4px 0;
+  border: none;
+  outline: none;
+  background: transparent;
+  color: var(--color-text);
+}
+
+#page-title-input::placeholder {
+  color: var(--color-text-muted);
+}
+
+#editor-blocks {
+  max-width: 720px;
+}
+
+.editor-placeholder {
+  padding: 12px 10px;
+  border-radius: 8px;
+  border: 1px dashed rgba(75, 85, 99, 0.7);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+}
+
+/* Auth pages (login + change password) */
+
+.auth-body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1e293b 0%, #020617 60%);
+}
+
+.auth-container {
+  width: 100%;
+  max-width: 360px;
+  padding: 24px 20px;
+  border-radius: 12px;
+  background-color: #020617;
+  border: 1px solid var(--color-border);
+  box-shadow: 0 18px 45px rgba(15, 23, 42, 0.65);
+}
+
+.auth-title {
+  margin: 0 0 16px;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.auth-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth-container label {
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+}
+
+.auth-container input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  background-color: #020617;
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+.auth-container input:focus {
+  outline: 1px solid var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.auth-container button {
+  margin-top: 6px;
+  padding: 8px 10px;
+  border-radius: 999px;
+  border: none;
+  background-color: var(--color-accent);
+  color: white;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.auth-container button:hover {
+  background-color: #2563eb;
+}
+
+.auth-message {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  min-height: 1.2em;
+}
+
+.auth-error {
+  color: #fca5a5;
+}
+
+/* Basic responsiveness */
+
+@media (max-width: 800px) {
+  #nexus-root {
+    flex-direction: column;
+  }
+
+  #nexus-sidebar {
+    width: 100%;
+    flex-direction: row;
+    overflow-x: auto;
+  }
+
+  #nexus-main {
+    flex: 1;
+  }
+
+  #nexus-topbar {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+  }
+}

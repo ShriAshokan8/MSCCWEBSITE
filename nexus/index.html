@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>MSC Nexus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div id="nexus-root">
+    <!-- Sidebar: workspaces, search, page tree -->
+    <aside id="nexus-sidebar">
+      <div class="sidebar-section">
+        <h2 class="sidebar-title">Workspaces</h2>
+        <div class="sidebar-placeholder">Workspace list goes here</div>
+      </div>
+      <div class="sidebar-section">
+        <h2 class="sidebar-title">Search</h2>
+        <div class="sidebar-placeholder">Search input and results go here</div>
+      </div>
+      <div class="sidebar-section">
+        <h2 class="sidebar-title">Pages</h2>
+        <div class="sidebar-placeholder">Page tree goes here</div>
+      </div>
+    </aside>
+
+    <div id="nexus-main">
+      <!-- Top bar: user profile, sign out, new page -->
+      <header id="nexus-topbar">
+        <div class="topbar-left">
+          <span class="app-title">MSC Nexus</span>
+        </div>
+        <div class="topbar-right">
+          <button id="btn-new-page" type="button">New Page</button>
+          <button id="btn-sign-out" type="button">Sign Out</button>
+          <div id="user-profile-placeholder">User profile info</div>
+        </div>
+      </header>
+
+      <!-- Main editor area -->
+      <main id="nexus-editor">
+        <div id="editor-title-bar">
+          <input
+            id="page-title-input"
+            type="text"
+            placeholder="Untitled page"
+            aria-label="Page title"
+          />
+        </div>
+        <section id="editor-blocks">
+          <div class="editor-placeholder">
+            Block editor will be rendered here.
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
