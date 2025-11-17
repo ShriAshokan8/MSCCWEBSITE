@@ -1,22 +1,30 @@
 // UI helpers for MSC Nexus.
 
 import { createPage, loadPagesTree, loadPageWithBlocks } from "./pages.js";
-import { createEmptyBlockDocument, renderBlocks, saveBlocks } from "./blocks.js";
+import {
+  createEmptyBlockDocument,
+  renderBlocks,
+  saveBlocks,
+} from "./blocks.js";
 import { canEditPage } from "./permissions.js";
 
 /**
- * Compute depth of a page by walking up parentId links.
+ * Build a parent->children map from pages.
  */
-function computeDepth(page, allPagesMap, maxDepth = 10) {
-  let depth = 0;
-  let current = page;
-  while (current.parentId && depth < maxDepth) {
-    const parent = allPagesMap.get(current.parentId);
-    if (!parent) break;
-    depth += 1;
-    current = parent;
-  }
-  return depth;
+function buildChildrenMap(pages) {
+  const childrenMap = new Map();
+  pages.forEach((p) => {
+    const parentId = p.parentId || null;
+    if (!childrenMap.has(parentId)) {
+      childrenMap.set(parentId, []);
+    }
+    childrenMap.get(parentId).push(p);
+  });
+  // sort children per parent by title
+  childrenMap.forEach((arr) => {
+    arr.sort((a, b) => (a.title || "").localeCompare(b.title || ""));
+  });
+  return childrenMap;
 }
 
 /**
@@ -25,10 +33,11 @@ function computeDepth(page, allPagesMap, maxDepth = 10) {
 function groupPagesByWorkspace(pages) {
   const map = new Map();
   for (const page of pages) {
-    if (!map.has(page.workspace)) {
-      map.set(page.workspace, []);
+    const ws = page.workspace || "MSC Docs";
+    if (!map.has(ws)) {
+      map.set(ws, []);
     }
-    map.get(page.workspace).push(page);
+    map.get(ws).push(page);
   }
   return map;
 }
@@ -56,26 +65,46 @@ function renderWorkspaceList(workspaces, currentWorkspace) {
 }
 
 /**
- * Render page tree for the current workspace.
+ * Recursively render the page tree for a given workspace, using parentId relationships.
  */
-function renderPageTree(pages, currentWorkspace, onSelectPage) {
-  const container = document.getElementById("page-tree");
-  if (!container) return;
-
-  container.innerHTML = "";
-
-  const filtered = pages.filter((p) => p.workspace === currentWorkspace);
-  const map = new Map(filtered.map((p) => [p.id, p]));
-
-  filtered.forEach((page) => {
-    const depth = computeDepth(page, map);
+function renderPageTreeHierarchy(container, childrenMap, parentId, depth, onSelectPage) {
+  const children = childrenMap.get(parentId) || [];
+  children.forEach((page) => {
     const item = document.createElement("div");
-    item.className = `sidebar-item page-level-${Math.min(depth, 3)}`;
+    const clampedDepth = Math.min(depth, 3);
+    item.className = `sidebar-item page-level-${clampedDepth}`;
     item.textContent = page.title || "Untitled";
     item.dataset.pageId = page.id;
     item.addEventListener("click", () => onSelectPage(page.id));
     container.appendChild(item);
+
+    // Recurse into children of this page.
+    renderPageTreeHierarchy(
+      container,
+      childrenMap,
+      page.id,
+      depth + 1,
+      onSelectPage,
+    );
   });
+}
+
+/**
+ * Render the page tree for the current workspace.
+ */
+function renderPageTree(pages, currentWorkspace, onSelectPage) {
+  const container = document.getElementById("page-tree");
+  if (!container) return;
+  container.innerHTML = "";
+
+  const pagesInWorkspace = pages.filter(
+    (p) => (p.workspace || "MSC Docs") === currentWorkspace,
+  );
+
+  const childrenMap = buildChildrenMap(pagesInWorkspace);
+
+  // Start from root nodes (parentId == null)
+  renderPageTreeHierarchy(container, childrenMap, null, 1, onSelectPage);
 }
 
 /**
@@ -115,20 +144,20 @@ async function renderPageEditor(user, pageId) {
       }
     }
 
+    // Render blocks, passing page so code blocks can show sourcePath label.
     const collect = renderBlocks(blocksContainer, blocks, {
       readOnly: !editable,
+      page,
     });
 
-    // For Step 4 we do not wire auto-save; but we can keep a simple
-    // explicit save hook later (e.g. keyboard shortcut); left as TODO.
-    // void collect;
+    // NOTE: In Step 6 we are not yet wiring auto-save.
+    // collect() can be used later to persist edits via saveBlocks().
+    void collect;
   } catch (err) {
     console.error("Failed to load page:", err);
     titleInput.value = "Error loading page";
-    if (blocksContainer) {
-      blocksContainer.innerHTML =
-        "<div class='editor-placeholder'>Unable to load this page.</div>";
-    }
+    blocksContainer.innerHTML =
+      "<div class='editor-placeholder'>Unable to load this page.</div>";
   }
 }
 
@@ -144,14 +173,13 @@ export async function setupBaseUI(user) {
   const allPages = await loadPagesTree();
   const wsMap = groupPagesByWorkspace(allPages);
   const workspaces = Array.from(wsMap.keys()).sort();
-  const currentWorkspace = workspaces[0] || "MSC Docs";
+  let currentWorkspace = workspaces[0] || "MSC Docs";
 
   renderWorkspaceList(workspaces, currentWorkspace);
   renderPageTree(allPages, currentWorkspace, (pageId) =>
     renderPageEditor(user, pageId),
   );
 
-  // Workspace switching
   const workspaceListEl = document.getElementById("workspace-list");
   if (workspaceListEl) {
     workspaceListEl.addEventListener("click", (e) => {
@@ -159,8 +187,11 @@ export async function setupBaseUI(user) {
       if (!(target instanceof HTMLElement)) return;
       const ws = target.dataset.workspace;
       if (!ws) return;
-      renderWorkspaceList(workspaces, ws);
-      renderPageTree(allPages, ws, (pageId) => renderPageEditor(user, pageId));
+      currentWorkspace = ws;
+      renderWorkspaceList(workspaces, currentWorkspace);
+      renderPageTree(allPages, currentWorkspace, (pageId) =>
+        renderPageEditor(user, pageId),
+      );
     });
   }
 
@@ -175,11 +206,9 @@ export async function setupBaseUI(user) {
         userId: user.uid,
       });
 
-      // For now, we create empty blocks for a new page.
       const blocks = createEmptyBlockDocument();
       await saveBlocks(page.id, blocks);
 
-      // Refresh tree and open the new page.
       const updatedPages = await loadPagesTree();
       renderPageTree(updatedPages, currentWorkspace, (pageId) =>
         renderPageEditor(user, pageId),
