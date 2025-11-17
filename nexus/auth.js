@@ -43,8 +43,7 @@ export async function login(email, password) {
     );
   }
 
-  const credential = await signInWithEmailAndPassword(auth, email, password);
-  return credential;
+  return signInWithEmailAndPassword(auth, email, password);
 }
 
 /**
@@ -84,6 +83,7 @@ export function observeAuthState(onUser, onNoUser) {
       if (snap.exists()) {
         userData = snap.data();
       } else {
+        // If no document exists, create a minimal profile entry.
         userData = {
           email,
           role: null,
@@ -124,14 +124,10 @@ export async function forcePasswordChangeIfNeeded(user, newPassword) {
   const userRef = doc(db, "users", user.uid);
   const snap = await getDoc(userRef);
 
-  if (!snap.exists()) {
-    return;
-  }
+  if (!snap.exists()) return;
 
   const data = snap.data();
-  if (!data || data.mustChangePassword !== true) {
-    return;
-  }
+  if (!data || data.mustChangePassword !== true) return;
 
   await updatePassword(user, newPassword);
   await updateDoc(userRef, { mustChangePassword: false });
@@ -144,15 +140,8 @@ export async function logout() {
   await signOut(auth);
 }
 
-/**
- * LOGIN PAGE HANDLER
- *
- * On submit:
- * - Calls login(email, password)
- * - On success, we use observeAuthState once to check mustChangePassword:
- *   - If true -> redirect to change-password.html
- *   - Else -> redirect to index.html
- */
+// LOGIN AND CHANGE-PASSWORD HANDLERS (unchanged in behaviour, minor text polish)
+
 export async function handleLoginFormSubmit(event) {
   event.preventDefault();
   const form = event.currentTarget;
@@ -198,17 +187,6 @@ export async function handleLoginFormSubmit(event) {
   }
 }
 
-/**
- * CHANGE PASSWORD PAGE HANDLER
- *
- * Only makes sense when logged in. If no user is logged in, we redirect
- * back to login.html.
- *
- * On submit:
- * - Validates new vs confirm password
- * - Calls forcePasswordChangeIfNeeded(user, newPassword)
- * - On success -> redirect to index.html
- */
 export async function handleChangePasswordFormSubmit(event) {
   event.preventDefault();
   const form = event.currentTarget;
@@ -247,7 +225,6 @@ export async function handleChangePasswordFormSubmit(event) {
     if (statusContainer) {
       statusContainer.textContent = "Password updated successfully.";
     }
-    // Redirect to main app after successful update.
     setTimeout(() => {
       window.location.href = "./index.html";
     }, 800);
@@ -276,7 +253,7 @@ document.addEventListener("DOMContentLoaded", () => {
     observeAuthState(
       (userWithData) => {
         if (!userWithData.mustChangePassword) {
-          // If they somehow reach this page but don't need a password change,
+          // If they reach this page but don't need a password change,
           // send them to the main app.
           window.location.href = "./index.html";
         }
