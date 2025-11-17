@@ -310,6 +310,50 @@ body {
   font-weight: 500;
 }
 
+.block-callout {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background-color: rgba(15, 23, 42, 0.95);
+}
+
+.block-callout-icon {
+  font-size: 1rem;
+  margin-top: 2px;
+}
+
+.block-callout-text {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  white-space: pre-wrap;
+}
+
+.block-code-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.block-code-label {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+.block-code-view {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+  max-height: 60vh;
+  overflow: auto;
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  background-color: #020617;
+  font-size: 0.85rem;
+}
+
 /* Auth pages (login + change password) */
 
 .auth-body {
