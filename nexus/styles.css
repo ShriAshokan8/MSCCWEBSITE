@@ -68,6 +68,43 @@ body {
   color: var(--color-text-muted);
 }
 
+/* Sidebar lists */
+
+.sidebar-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.86rem;
+}
+
+.sidebar-item {
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  color: var(--color-text-muted);
+}
+
+.sidebar-item:hover {
+  background-color: rgba(15, 23, 42, 0.9);
+  color: var(--color-text);
+}
+
+.sidebar-item.active {
+  background-color: var(--color-accent-soft);
+  color: var(--color-accent);
+}
+
+/* Indent for tree structure */
+.sidebar-item.page-level-1 {
+  padding-left: 12px;
+}
+.sidebar-item.page-level-2 {
+  padding-left: 20px;
+}
+.sidebar-item.page-level-3 {
+  padding-left: 28px;
+}
+
 .sidebar-placeholder {
   font-size: 0.85rem;
   color: var(--color-text-muted);
@@ -105,6 +142,39 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+/* Top bar additions */
+
+#topbar-search {
+  margin-left: 16px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background-color: #020617;
+  color: var(--color-text);
+  font-size: 0.85rem;
+  min-width: 180px;
+}
+
+#topbar-search::placeholder {
+  color: var(--color-text-muted);
+}
+
+#user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  margin-right: 8px;
+}
+
+.user-email {
+  font-size: 0.8rem;
+}
+
+.user-role {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
 }
 
 #btn-new-page,
@@ -152,6 +222,12 @@ body {
   margin-bottom: 16px;
 }
 
+#page-title-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 #page-title-input {
   width: 100%;
   max-width: 720px;
@@ -168,6 +244,26 @@ body {
   color: var(--color-text-muted);
 }
 
+/* Page badges */
+
+.page-badge {
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  color: var(--color-text-muted);
+}
+
+.page-badge-readonly {
+  border-color: #f97373;
+  color: #fecaca;
+}
+
+.page-badge-editable {
+  border-color: #4ade80;
+  color: #bbf7d0;
+}
+
 #editor-blocks {
   max-width: 720px;
 }
@@ -178,6 +274,40 @@ body {
   border: 1px dashed rgba(75, 85, 99, 0.7);
   color: var(--color-text-muted);
   font-size: 0.9rem;
+}
+
+/* Block editor basic styling */
+
+.block-row {
+  margin-bottom: 8px;
+}
+
+.block-paragraph,
+.block-code,
+.block-heading1,
+.block-heading2 {
+  width: 100%;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  background-color: rgba(15, 23, 42, 0.9);
+  color: var(--color-text);
+  font-size: 0.92rem;
+  padding: 6px 8px;
+}
+
+.block-paragraph,
+.block-code {
+  min-height: 60px;
+}
+
+.block-heading1 {
+  font-size: 1.3rem;
+  font-weight: 600;
+}
+
+.block-heading2 {
+  font-size: 1.1rem;
+  font-weight: 500;
 }
 
 /* Auth pages (login + change password) */
