@@ -3,21 +3,11 @@
 /**
  * MSC Nexus – Import Script
  *
- * Step 5: Import ALL MSC folders & files into Firestore as nexusPages and nexusBlocks.
+ * Imports all MSC folders & files into Firestore as:
+ * - nexusPages (folders and files mapped to pages)
+ * - nexusBlocks (imported document content as code or callout blocks)
  *
- * Responsibilities:
- * - Read the on-disk MSC directory tree (matching MSC_TREE.txt).
- * - Read MSC_PART3_EXTRACTED.txt (supplied outside the repo) to get per-file extracted content.
- * - For every FOLDER -> create a nexusPages document (workspace + hierarchy derived from path).
- * - For every FILE  -> create a nexusPages child under its folder page, plus nexusBlocks content:
- *   - If extracted text exists -> a single "code" block with full text (truncated if needed).
- *   - If "[NO TEXT CONTENT]" -> a single "callout" block noting non-text file + sourcePath + extension.
- *
- * Collections:
- * - nexusPages
- * - nexusBlocks
- *
- * NOTE: This script is intended to be run once to seed Firebase.
+ * This script is intended to be run once to seed Firebase.
  */
 
 import fs from "fs";
@@ -83,18 +73,6 @@ const db = admin.firestore();
 /**
  * Map a relative path under MSC root to a workspace name.
  * The mapping is based on the Part 2 tree and Part 1 workspace names.
- *
- * Examples:
- * - "MSC/MSC/2024-25/..."         -> "MSC Archive 2024–25"
- * - "MSC/MSC/2025-26/..."         -> "MSC Archive 2025–26"
- * - "MSC/MSC/Announcements-Clubs" -> "Announcements / Clubs"
- * - "MSC/MSC/Quiz"                -> "Quiz Materials"
- * - "MSC/MSC/Slides"              -> "Slides"
- * - "MSC/MSC/Supported Events"    -> "Supported Events"
- * - "MSC/MSC/Letters to Teachers" -> "Letters to Teachers"
- * - "MSC/MSC/Logos"               -> "Logo Assets"
- * - "MSC/MSC/Photos-Files of Projects" -> "Photos & Projects"
- * - default                       -> "MSC Docs"
  */
 function deriveWorkspaceFromRelativePath(relPathSegments) {
   // relPathSegments is an array like ["MSC", "MSC", "2024-25", ...]
@@ -115,7 +93,6 @@ function deriveWorkspaceFromRelativePath(relPathSegments) {
   if (afterMsc[0] === "slides") return "Slides";
   if (afterMsc[0] === "supported events") return "Supported Events";
 
-  // Jobs given to MSC Team
   if (afterMsc[0] === "jobs given to msc team") return "Jobs Given to MSC Team";
 
   // Fallback workspace
@@ -126,12 +103,8 @@ function deriveWorkspaceFromRelativePath(relPathSegments) {
 
 /**
  * Parse MSC_PART3_EXTRACTED.txt into a map:
- *   key: absolute file path or normalized key
+ *   key: normalized MSC path (e.g. "MSC/MSC/2024-25/..."),
  *   value: { hasText: boolean, text: string }
- *
- * The file uses markers:
- *   ----- FILE: /mnt/data/MSC/... -----
- *   [NO TEXT CONTENT] or actual text
  */
 function parseExtractedTextFile(extractedFilePath) {
   if (!fs.existsSync(extractedFilePath)) {
@@ -151,9 +124,7 @@ function parseExtractedTextFile(extractedFilePath) {
   const flush = () => {
     if (!currentFileKey) return;
     const content = buffer.join("\n").trim();
-    if (!content) {
-      map.set(currentFileKey, { hasText: false, text: "" });
-    } else if (content === "[NO TEXT CONTENT]") {
+    if (!content || content === "[NO TEXT CONTENT]") {
       map.set(currentFileKey, { hasText: false, text: "" });
     } else {
       map.set(currentFileKey, { hasText: true, text: content });
@@ -163,7 +134,7 @@ function parseExtractedTextFile(extractedFilePath) {
   for (const line of lines) {
     const match = line.match(/^----- FILE:\s*(.+?)\s*-----$/);
     if (match) {
-      // New file boundary.
+      // Start of a new file section.
       flush();
       buffer = [];
       const pathInExtract = match[1]; // e.g. /mnt/data/MSC/MSC/2024-25/...
@@ -181,7 +152,7 @@ function parseExtractedTextFile(extractedFilePath) {
  * Normalise the path key as stored in the extracted text file.
  *
  * Example input: "/mnt/data/MSC/MSC/2024-25/Quiz/Combined.docx"
- * We normalise to a relative MSC path: "MSC/MSC/2024-25/Quiz/Combined.docx"
+ * Result: "MSC/MSC/2024-25/Quiz/Combined.docx"
  */
 function normalizeExtractedPathKey(fullPathFromExtract) {
   const normalized = fullPathFromExtract.replace(/\\/g, "/");
@@ -203,9 +174,7 @@ function makeExtractKeyFromLocalPath(absFilePath) {
     normalizedRoot.toLowerCase().replace(/\\/g, "/"),
   );
   if (idx >= 0) {
-    // we want path starting from ".../MSC/..."
     const relativeFromRoot = normalizedFile.slice(idx);
-    // Ensure it starts with "MSC/"
     if (!relativeFromRoot.toLowerCase().startsWith("msc/")) {
       const msci = relativeFromRoot.toLowerCase().indexOf("msc/");
       if (msci >= 0) {
@@ -220,15 +189,7 @@ function makeExtractKeyFromLocalPath(absFilePath) {
 // ---------- HELPERS: FILESYSTEM WALK ----------
 
 /**
- * Recursively walk the MSC directory tree.
- *
- * Returns an array of items:
- * {
- *   type: "folder" | "file",
- *   absPath: string,
- *   relPath: string,      // relative to MSC_ROOT_DIR
- *   name: string
- * }
+ * Recursively walk the MSC directory tree and collect folders + files.
  */
 function walkMscTree(rootDir) {
   /** @type {Array<{type:"folder"|"file",absPath:string,relPath:string,name:string}>} */
@@ -334,7 +295,6 @@ async function createBlockDocsForFile(pageId, fileInfo, extractedMap) {
       },
     };
   } else {
-    // Non-text file or missing entry
     const ext = path.extname(fileInfo.absPath) || "(no extension)";
     const sourcePath = fileInfo.relPath.replace(/\\/g, "/");
     const message = `This page represents a non-text or non-extractable file.\n\nSource path: ${sourcePath}\nExtension: ${ext}`;
@@ -356,9 +316,9 @@ async function createBlockDocsForFile(pageId, fileInfo, extractedMap) {
 // ---------- MAIN IMPORT LOGIC ----------
 
 async function main() {
-  console.log("MSC Nexus import script starting...");
-  console.log("MSC_ROOT_DIR:", MSC_ROOT_DIR);
-  console.log("EXTRACTED_TEXT_FILE:", EXTRACTED_TEXT_FILE);
+  console.log("MSC Nexus import starting...");
+  console.log(`Using MSC root: ${MSC_ROOT_DIR}`);
+  console.log(`Using extracted text file: ${EXTRACTED_TEXT_FILE}`);
 
   if (!fs.existsSync(MSC_ROOT_DIR)) {
     console.error(`MSC root directory not found at ${MSC_ROOT_DIR}`);
@@ -366,24 +326,15 @@ async function main() {
   }
 
   const extractedMap = parseExtractedTextFile(EXTRACTED_TEXT_FILE);
-  console.log(`Parsed extracted text entries: ${extractedMap.size}`);
-
   const items = walkMscTree(MSC_ROOT_DIR);
-  console.log(`Discovered ${items.length} filesystem items under MSC root.`);
 
-  // First pass: create pages for ALL folders and remember their IDs by relPath.
+  // First pass: create pages for all folders and remember their IDs by relPath.
   /** @type {Map<string, string>} */
   const folderPageIdByRelPath = new Map();
 
-  console.log("Creating pages for folders...");
-
   for (const item of items.filter((i) => i.type === "folder")) {
     const relPath = item.relPath; // "" for root, or "MSC/..." etc.
-
-    const segments = relPath
-      ? relPath.replace(/\\/g, "/").split("/")
-      : [];
-
+    const segments = relPath ? relPath.replace(/\\/g, "/").split("/") : [];
     const workspace = deriveWorkspaceFromRelativePath(segments);
 
     let parentRelPath = "";
@@ -391,8 +342,6 @@ async function main() {
       parentRelPath = relPath.substring(0, relPath.lastIndexOf(path.sep));
     } else if (relPath && relPath.includes("/")) {
       parentRelPath = relPath.substring(0, relPath.lastIndexOf("/"));
-    } else {
-      parentRelPath = "";
     }
 
     const parentId =
@@ -400,13 +349,9 @@ async function main() {
 
     const pageId = await createPageDocForFolder(relPath, parentId, workspace);
     folderPageIdByRelPath.set(relPath, pageId);
-
-    console.log(`Created folder page: [${pageId}]`, relPath || "(root)");
   }
 
-  console.log("Creating pages and blocks for files...");
-
-  // Second pass: files
+  // Second pass: create pages + blocks for files.
   for (const item of items.filter((i) => i.type === "file")) {
     const relPath = item.relPath;
     const segments = relPath.replace(/\\/g, "/").split("/");
@@ -420,19 +365,12 @@ async function main() {
 
     const pageId = await createPageDocForFile(relPath, parentId, workspace);
     await createBlockDocsForFile(pageId, item, extractedMap);
-
-    console.log(`Imported file -> page [${pageId}]:`, relPath);
   }
 
-  console.log("MSC Nexus import script completed.");
+  console.log("MSC Nexus import completed.");
 }
 
-main()
-  .then(() => {
-    console.log("Done.");
-    process.exit(0);
-  })
-  .catch((err) => {
-    console.error("Fatal error during import:", err);
-    process.exit(1);
-  });
+main().catch((err) => {
+  console.error("Fatal error during import:", err);
+  process.exit(1);
+});
