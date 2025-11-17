@@ -4,7 +4,7 @@
 // - Login via email/password
 // - Auth state observation + user document loading
 // - Force password change flow
-// - Logout
+// - Logout and simple redirects between login / change-password / index
 
 import {
   auth,
@@ -34,9 +34,7 @@ function isAllowedDomain(email) {
 
 /**
  * Login with email/password enforcing domain restriction.
- * @param {string} email
- * @param {string} password
- * @returns {Promise<import("firebase/auth").UserCredential>}
+ * Throws on invalid domain or auth error.
  */
 export async function login(email, password) {
   if (!isAllowedDomain(email)) {
@@ -45,7 +43,6 @@ export async function login(email, password) {
     );
   }
 
-  // signInWithEmailAndPassword will throw if credentials are invalid
   const credential = await signInWithEmailAndPassword(auth, email, password);
   return credential;
 }
@@ -54,11 +51,11 @@ export async function login(email, password) {
  * Observe auth state and provide enriched user data including Firestore
  * user document fields: role, mustChangePassword, etc.
  *
- * @param {(userWithData: any) => void} onUser
- * @param {(reason?: string) => void} onNoUser
+ * onUser(userWithData): called when logged-in user is available
+ * onNoUser(reason?): called when there is no valid user
  */
 export function observeAuthState(onUser, onNoUser) {
-  onAuthStateChanged(auth, async (user) => {
+  return onAuthStateChanged(auth, async (user) => {
     if (!user) {
       if (typeof onNoUser === "function") {
         onNoUser();
@@ -68,11 +65,10 @@ export function observeAuthState(onUser, onNoUser) {
 
     const email = user.email || "";
     if (!isAllowedDomain(email)) {
-      // Immediately sign out if email domain is not permitted.
       try {
         await signOut(auth);
       } catch {
-        // ignore sign-out errors here
+        // ignore sign-out errors
       }
       if (typeof onNoUser === "function") {
         onNoUser("Invalid domain");
@@ -88,7 +84,6 @@ export function observeAuthState(onUser, onNoUser) {
       if (snap.exists()) {
         userData = snap.data();
       } else {
-        // If no user doc exists yet, create a minimal default document.
         userData = {
           email,
           role: null,
@@ -110,7 +105,6 @@ export function observeAuthState(onUser, onNoUser) {
         onUser(userWithData);
       }
     } catch (error) {
-      // If we cannot load user data, treat as no user.
       console.error("Failed to load user profile:", error);
       if (typeof onNoUser === "function") {
         onNoUser("Failed to load user profile");
@@ -121,11 +115,6 @@ export function observeAuthState(onUser, onNoUser) {
 
 /**
  * Force password change if mustChangePassword is true.
- * - Reads users/{uid}.mustChangePassword
- * - If true, updates Firebase Auth password and sets mustChangePassword to false.
- *
- * @param {import("firebase/auth").User} user
- * @param {string} newPassword
  */
 export async function forcePasswordChangeIfNeeded(user, newPassword) {
   if (!user) {
@@ -136,20 +125,15 @@ export async function forcePasswordChangeIfNeeded(user, newPassword) {
   const snap = await getDoc(userRef);
 
   if (!snap.exists()) {
-    // If no doc, nothing to enforce.
     return;
   }
 
   const data = snap.data();
   if (!data || data.mustChangePassword !== true) {
-    // No forced password change required.
     return;
   }
 
-  // Update auth password first
   await updatePassword(user, newPassword);
-
-  // Then clear mustChangePassword flag
   await updateDoc(userRef, { mustChangePassword: false });
 }
 
@@ -161,11 +145,14 @@ export async function logout() {
 }
 
 /**
- * Attach form handlers for login and change-password pages.
- * This keeps the same basic DOM wiring as the initial scaffold
- * but delegates the main behaviour to the functions above.
+ * LOGIN PAGE HANDLER
+ *
+ * On submit:
+ * - Calls login(email, password)
+ * - On success, we use observeAuthState once to check mustChangePassword:
+ *   - If true -> redirect to change-password.html
+ *   - Else -> redirect to index.html
  */
-
 export async function handleLoginFormSubmit(event) {
   event.preventDefault();
   const form = event.currentTarget;
@@ -182,7 +169,25 @@ export async function handleLoginFormSubmit(event) {
 
   try {
     await login(email, password);
-    // Actual redirection logic will be implemented later in app.js
+
+    // One-shot auth state observer to decide where to go next.
+    const unsubscribe = observeAuthState(
+      (userWithData) => {
+        unsubscribe?.();
+        if (userWithData.mustChangePassword) {
+          window.location.href = "./change-password.html";
+        } else {
+          window.location.href = "./index.html";
+        }
+      },
+      (reason) => {
+        unsubscribe?.();
+        if (errorContainer) {
+          errorContainer.textContent =
+            reason || "Unable to complete sign in. Please try again.";
+        }
+      },
+    );
   } catch (err) {
     if (errorContainer) {
       errorContainer.textContent =
@@ -193,10 +198,20 @@ export async function handleLoginFormSubmit(event) {
   }
 }
 
+/**
+ * CHANGE PASSWORD PAGE HANDLER
+ *
+ * Only makes sense when logged in. If no user is logged in, we redirect
+ * back to login.html.
+ *
+ * On submit:
+ * - Validates new vs confirm password
+ * - Calls forcePasswordChangeIfNeeded(user, newPassword)
+ * - On success -> redirect to index.html
+ */
 export async function handleChangePasswordFormSubmit(event) {
   event.preventDefault();
   const form = event.currentTarget;
-  const currentPasswordInput = form.querySelector("#current-password");
   const newPasswordInput = form.querySelector("#new-password");
   const confirmPasswordInput = form.querySelector("#confirm-new-password");
   const statusContainer = document.getElementById("change-password-status");
@@ -205,7 +220,6 @@ export async function handleChangePasswordFormSubmit(event) {
     statusContainer.textContent = "";
   }
 
-  const currentPassword = currentPasswordInput?.value || "";
   const newPassword = newPasswordInput?.value || "";
   const confirmPassword = confirmPasswordInput?.value || "";
 
@@ -219,18 +233,24 @@ export async function handleChangePasswordFormSubmit(event) {
   const user = auth.currentUser;
   if (!user) {
     if (statusContainer) {
-      statusContainer.textContent = "No authenticated user.";
+      statusContainer.textContent =
+        "You are not signed in. Redirecting to login...";
     }
+    setTimeout(() => {
+      window.location.href = "./login.html";
+    }, 1000);
     return;
   }
 
-  // For this step, we only implement the forced-change logic;
-  // re-auth with currentPassword will be added later if needed.
   try {
     await forcePasswordChangeIfNeeded(user, newPassword);
     if (statusContainer) {
       statusContainer.textContent = "Password updated successfully.";
     }
+    // Redirect to main app after successful update.
+    setTimeout(() => {
+      window.location.href = "./index.html";
+    }, 800);
   } catch (err) {
     if (statusContainer) {
       statusContainer.textContent =
@@ -241,7 +261,9 @@ export async function handleChangePasswordFormSubmit(event) {
   }
 }
 
-// Attach listeners when on login or change-password pages.
+/**
+ * DOM wiring for login, change-password, and index logout button.
+ */
 document.addEventListener("DOMContentLoaded", () => {
   const loginForm = document.getElementById("login-form");
   if (loginForm) {
@@ -250,9 +272,35 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const changePasswordForm = document.getElementById("change-password-form");
   if (changePasswordForm) {
+    // If there is no authenticated user, redirect to login.
+    observeAuthState(
+      (userWithData) => {
+        if (!userWithData.mustChangePassword) {
+          // If they somehow reach this page but don't need a password change,
+          // send them to the main app.
+          window.location.href = "./index.html";
+        }
+      },
+      () => {
+        // No user -> go to login
+        window.location.href = "./login.html";
+      },
+    );
+
     changePasswordForm.addEventListener(
       "submit",
       handleChangePasswordFormSubmit,
     );
+  }
+
+  const logoutButton = document.getElementById("btn-sign-out");
+  if (logoutButton) {
+    logoutButton.addEventListener("click", async () => {
+      try {
+        await logout();
+      } finally {
+        window.location.href = "./login.html";
+      }
+    });
   }
 });
