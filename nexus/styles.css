@@ -454,3 +454,39 @@ body {
     z-index: 10;
   }
 }
+
+/* Extra small screen tweaks */
+@media (max-width: 600px) {
+  #nexus-topbar {
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 8px 12px;
+  }
+
+  .topbar-left {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .topbar-right {
+    width: 100%;
+    justify-content: flex-end;
+  }
+
+  #topbar-search {
+    flex: 1;
+    min-width: 0;
+  }
+
+  #nexus-editor {
+    padding: 12px 12px;
+  }
+
+  #editor-blocks {
+    max-width: 100%;
+  }
+
+  .block-code-view {
+    max-height: 50vh;
+  }
+}
