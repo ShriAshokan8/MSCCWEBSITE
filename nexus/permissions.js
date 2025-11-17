@@ -1,6 +1,5 @@
 // Permissions module for MSC Nexus.
-// This will hold the MSC roles and permission helpers described
-// in the MSC Nexus Master Prompt (Part 1).
+// Implements the MSC roles and permission checks as per the spec.
 
 export const MSC_ROLES = {
   DIRECTOR: "Director",
@@ -12,30 +11,36 @@ export const MSC_ROLES = {
 };
 
 /**
- * Determine whether the given user can change a page's access mode.
- * Placeholder implementation: replace with real logic later.
+ * Return true if the user can change a page's access mode.
+ * Only Director, DeputyDirector, and StaffCoordinator are allowed.
  */
 export function canChangeAccessMode(user) {
   if (!user) return false;
+
+  const role = user.role;
   return (
-    user.role === MSC_ROLES.DIRECTOR ||
-    user.role === MSC_ROLES.DEPUTY_DIRECTOR ||
-    user.role === MSC_ROLES.STAFF_COORDINATOR
+    role === MSC_ROLES.DIRECTOR ||
+    role === MSC_ROLES.DEPUTY_DIRECTOR ||
+    role === MSC_ROLES.STAFF_COORDINATOR
   );
 }
 
 /**
- * Determine whether the given user can edit a page.
- * Placeholder implementation aligned with the spec.
+ * Return true if the user can edit the given page.
+ *
+ * Spec behaviour:
+ * - If page.accessMode === "readOnly": only users who can change
+ *   access mode (Director/DeputyDirector/StaffCoordinator) can edit.
+ * - Otherwise (editable): return true for now (later we can refine
+ *   per-role behaviour; for Step 2, all roles may edit editable pages).
  */
 export function canEditPage(user, page) {
   if (!user || !page) return false;
+
   if (page.accessMode === "readOnly") {
     return canChangeAccessMode(user);
   }
-  // For editable pages, all roles except Staff can edit.
-  if (user.role === MSC_ROLES.STAFF) {
-    return false;
-  }
+
+  // For editable pages, allow editing for all roles (spec for now).
   return true;
 }
