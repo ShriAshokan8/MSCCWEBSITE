@@ -12,15 +12,15 @@
     <aside id="nexus-sidebar">
       <div class="sidebar-section">
         <h2 class="sidebar-title">Workspaces</h2>
-        <div class="sidebar-placeholder">Workspace list goes here</div>
-      </div>
-      <div class="sidebar-section">
-        <h2 class="sidebar-title">Search</h2>
-        <div class="sidebar-placeholder">Search input and results go here</div>
+        <div id="workspace-list" class="sidebar-list">
+          <!-- Workspaces will be rendered here -->
+        </div>
       </div>
       <div class="sidebar-section">
         <h2 class="sidebar-title">Pages</h2>
-        <div class="sidebar-placeholder">Page tree goes here</div>
+        <div id="page-tree" class="sidebar-list">
+          <!-- Page tree will be rendered here -->
+        </div>
       </div>
     </aside>
 
@@ -28,28 +28,41 @@
       <!-- Top bar -->
       <header id="nexus-topbar">
         <div class="topbar-left">
-          <span class="app-title">MSC Nexus</span>
+          <span id="current-workspace-name" class="app-title">MSC Nexus</span>
+          <input
+            id="topbar-search"
+            type="search"
+            placeholder="Search pages (coming soon)"
+            aria-label="Search pages"
+          />
         </div>
         <div class="topbar-right">
+          <div id="user-info">
+            <span id="user-email" class="user-email">user@domain</span>
+            <span id="user-role" class="user-role">Role</span>
+          </div>
           <button id="btn-new-page" type="button">New Page</button>
           <button id="btn-sign-out" type="button">Sign Out</button>
-          <div id="user-profile-placeholder">User profile info</div>
         </div>
       </header>
 
       <!-- Editor -->
       <main id="nexus-editor">
         <div id="editor-title-bar">
-          <input
-            id="page-title-input"
-            type="text"
-            placeholder="Untitled page"
-            aria-label="Page title"
-          />
+          <div id="page-title-row">
+            <input
+              id="page-title-input"
+              type="text"
+              placeholder="Untitled page"
+              aria-label="Page title"
+            />
+            <span id="page-access-mode" class="page-badge"></span>
+            <span id="page-editability" class="page-badge page-badge-readonly"></span>
+          </div>
         </div>
         <section id="editor-blocks">
-          <div class="editor-placeholder">
-            Block editor will be rendered here.
+          <div id="blocks-container">
+            <!-- Blocks will be rendered here -->
           </div>
         </section>
       </main>
