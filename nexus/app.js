@@ -1,24 +1,22 @@
 // MSC Nexus main application entry point.
-// In later steps, this file will:
-// - Initialize Firebase (via firebase.js)
-// - Handle auth state
-// - Load pages and blocks
-// - Wire UI interactions
 
-import { initializeFirebaseApp } from "./firebase.js";
-import { setupAuthStateListener } from "./auth.js";
+import { observeAuthState } from "./auth.js";
 import { setupBaseUI } from "./ui.js";
 
-// Placeholder bootstrap to ensure imports are valid.
-// Detailed logic will be added in later steps.
 export function bootstrapNexusApp() {
-  // TODO: Implement full bootstrap logic.
-  void initializeFirebaseApp;
-  void setupAuthStateListener;
-  void setupBaseUI;
+  observeAuthState(
+    async (userWithData) => {
+      // We are on index.html, so a valid user is required.
+      await setupBaseUI(userWithData);
+    },
+    () => {
+      // No user -> go to login.
+      window.location.href = "./login.html";
+    },
+  );
 }
 
-// Automatically call bootstrap once DOM is ready (placeholder).
+// Automatically call bootstrap once DOM is ready.
 document.addEventListener("DOMContentLoaded", () => {
   bootstrapNexusApp();
 });
