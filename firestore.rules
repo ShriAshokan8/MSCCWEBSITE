@@ -1,0 +1,251 @@
+rules_version = '2';
+
+/**
+ * MSC Nexus - Firestore Security Rules
+ * 
+ * This ruleset enforces backend security for the MSC Nexus application.
+ * 
+ * Collections:
+ * - users: Main user data keyed by sharedUid (managed by Admin, read-only for clients)
+ * - usersAuth: Auth UID to sharedUid/role mapping (managed by Admin, read-only for clients)
+ * - workspaces: Organizational workspaces (read by all, write by creator or leadership)
+ * - folders: Document containers (read by all, write by owner/shared users/leadership)
+ * - documents: Editable content (read by all, write by owner/shared users/leadership)
+ * 
+ * Authentication Model:
+ * - All access requires Firebase Authentication
+ * - Email must end with @hfed.net or @harrispurley.org.uk
+ * - usersAuth collection maps auth.uid -> { sharedUid, role }
+ * - sharedUid links multiple auth accounts to same user identity
+ * 
+ * Roles:
+ * - Director, DeputyDirector, StaffCoordinator (leadership roles with elevated permissions)
+ * - Core, Support, Staff (regular roles with standard permissions)
+ * 
+ * Permission Model:
+ * - Leadership roles can modify most resources
+ * - Owners can manage their own resources
+ * - Shared users can collaborate on folders and documents
+ * - All authenticated school users can create new resources
+ */
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ============================================================
+    // HELPER FUNCTIONS
+    // ============================================================
+    
+    /**
+     * Check if user is signed in with valid auth
+     */
+    function isSignedIn() {
+      return request.auth != null 
+        && request.auth.token.email != null;
+    }
+    
+    /**
+     * Check if email domain is allowed
+     * Valid domains: @hfed.net, @harrispurley.org.uk
+     */
+    function isAllowedDomain() {
+      return request.auth.token.email.matches(".*@hfed\\.net$")
+        || request.auth.token.email.matches(".*@harrispurley\\.org\\.uk$");
+    }
+    
+    /**
+     * Check if user passes basic authentication requirements
+     * Used as gate for all collection access
+     */
+    function isAuthenticated() {
+      return isSignedIn() && isAllowedDomain();
+    }
+    
+    /**
+     * Get the sharedUid for the current authenticated user
+     * Reads from usersAuth/{auth.uid}.sharedUid
+     */
+    function userSharedUid() {
+      return get(/databases/$(database)/documents/usersAuth/$(request.auth.uid)).data.sharedUid;
+    }
+    
+    /**
+     * Get the role for the current authenticated user
+     * Reads from usersAuth/{auth.uid}.role
+     */
+    function userRole() {
+      return get(/databases/$(database)/documents/usersAuth/$(request.auth.uid)).data.role;
+    }
+    
+    /**
+     * Check if user has a leadership role
+     * Leadership: Director, DeputyDirector, StaffCoordinator
+     */
+    function isLeadership() {
+      return userRole() in ["Director", "DeputyDirector", "StaffCoordinator"];
+    }
+    
+    // ============================================================
+    // USERS COLLECTION
+    // ============================================================
+    // Collection: users/{sharedUid}
+    // Purpose: Main user data keyed by sharedUid
+    // Fields: email, primaryEmail, linkedEmails[], role, mustChangePassword, sharedUid
+    // 
+    // Access:
+    // - Read: User can read their own user document (matched by email in linkedEmails)
+    // - Write: Completely blocked for clients (managed by Admin/backend only)
+    // 
+    // This prevents privilege escalation while allowing users to see their role.
+    // ============================================================
+    
+    match /users/{sharedUid} {
+      // Allow read if user's email is in the user document's linkedEmails array
+      allow read: if isAuthenticated()
+        && (
+          request.auth.token.email == resource.data.email
+          || request.auth.token.email == resource.data.primaryEmail
+          || request.auth.token.email in resource.data.linkedEmails
+        );
+      
+      // Deny all writes - users collection is managed by Admin only
+      allow write: if false;
+    }
+    
+    // ============================================================
+    // USERSAUTH COLLECTION
+    // ============================================================
+    // Collection: usersAuth/{authUid}
+    // Purpose: Maps Firebase Auth UID to sharedUid and role for efficient lookups
+    // Fields: sharedUid, role
+    // 
+    // Access:
+    // - Read: User can read their own usersAuth document
+    // - Write: Completely blocked for clients (managed by Admin/backend only)
+    // 
+    // This collection enables efficient role/sharedUid lookups in security rules.
+    // ============================================================
+    
+    match /usersAuth/{authUid} {
+      // Allow user to read their own auth mapping
+      allow read: if isAuthenticated() && request.auth.uid == authUid;
+      
+      // Deny all writes - usersAuth is managed by Admin only
+      allow write: if false;
+    }
+    
+    // ============================================================
+    // WORKSPACES COLLECTION
+    // ============================================================
+    // Collection: workspaces/{workspaceId}
+    // Purpose: Top-level organizational containers
+    // Fields: name, createdBy (sharedUid), createdAt
+    // 
+    // Access:
+    // - Read: All authenticated school users
+    // - Create: All authenticated school users
+    // - Update/Delete: Only creator (by sharedUid) or leadership roles
+    // ============================================================
+    
+    match /workspaces/{workspaceId} {
+      // All authenticated users can read workspaces
+      allow read: if isAuthenticated();
+      
+      // All authenticated users can create workspaces
+      allow create: if isAuthenticated();
+      
+      // Only creator or leadership can update/delete
+      allow update, delete: if isAuthenticated()
+        && (
+          resource.data.createdBy == userSharedUid()
+          || isLeadership()
+        );
+    }
+    
+    // ============================================================
+    // FOLDERS COLLECTION
+    // ============================================================
+    // Collection: folders/{folderId}
+    // Purpose: Document organization containers within workspaces
+    // Fields: name, workspaceId, owner (sharedUid), sharedWith (sharedUid[]), createdAt
+    // 
+    // Access:
+    // - Read: All authenticated school users
+    // - Create: All authenticated school users
+    // - Update/Delete: Owner, users in sharedWith, or leadership
+    // ============================================================
+    
+    match /folders/{folderId} {
+      // All authenticated users can read folders
+      allow read: if isAuthenticated();
+      
+      // All authenticated users can create folders
+      allow create: if isAuthenticated();
+      
+      // Owner, shared users, or leadership can update/delete
+      allow update, delete: if isAuthenticated()
+        && (
+          resource.data.owner == userSharedUid()
+          || userSharedUid() in resource.data.sharedWith
+          || isLeadership()
+        );
+    }
+    
+    // ============================================================
+    // DOCUMENTS COLLECTION
+    // ============================================================
+    // Collection: documents/{documentId}
+    // Purpose: Collaborative content editing
+    // Fields: title, folderId, workspaceId, content, owner (sharedUid),
+    //         sharedWith (sharedUid[]), createdAt, updatedAt
+    // 
+    // Access:
+    // - Read: All authenticated school users
+    // - Create: All authenticated school users
+    // - Update: Owner, users in document.sharedWith, users in folder.sharedWith, or leadership
+    // - Delete: Owner or leadership only
+    // 
+    // Note: Update rules check both document-level and folder-level sharing.
+    // ============================================================
+    
+    match /documents/{documentId} {
+      // Helper function to get the folder's sharedWith list
+      function folderSharedWith() {
+        return get(/databases/$(database)/documents/folders/$(resource.data.folderId)).data.sharedWith;
+      }
+      
+      // All authenticated users can read documents
+      allow read: if isAuthenticated();
+      
+      // All authenticated users can create documents
+      allow create: if isAuthenticated();
+      
+      // Update allowed for owner, document shared users, folder shared users, or leadership
+      allow update: if isAuthenticated()
+        && (
+          resource.data.owner == userSharedUid()
+          || userSharedUid() in resource.data.sharedWith
+          || userSharedUid() in folderSharedWith()
+          || isLeadership()
+        );
+      
+      // Delete allowed only for owner or leadership
+      allow delete: if isAuthenticated()
+        && (
+          resource.data.owner == userSharedUid()
+          || isLeadership()
+        );
+    }
+    
+    // ============================================================
+    // DEFAULT DENY
+    // ============================================================
+    // Deny access to any collections not explicitly listed above.
+    // This prevents accidental exposure of new collections.
+    // ============================================================
+    
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
