@@ -215,7 +215,7 @@
   </div>
 
   <script type="module">
-    import { auth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from './firebase.js';
+    import { login, logout, observeUserState } from './auth.js';
 
     const loginScreen = document.getElementById('login-screen');
     const editorWrapper = document.getElementById('editor-wrapper');
@@ -226,14 +226,6 @@
     const logoutButton = document.getElementById('logout-button');
     const errorMessage = document.getElementById('error-message');
     const userEmailDisplay = document.getElementById('user-email');
-
-    // Allowed email domains
-    const ALLOWED_DOMAINS = ['@hfed.net', '@harrispurley.org.uk'];
-
-    // Helper function to validate email domain
-    function isValidDomain(email) {
-      return ALLOWED_DOMAINS.some(domain => email.toLowerCase().endsWith(domain));
-    }
 
     // Helper function to show error
     function showError(message) {
@@ -267,36 +259,24 @@
       const email = emailInput.value.trim();
       const password = passwordInput.value;
 
-      // Validate email domain before attempting sign-in
-      if (!isValidDomain(email)) {
-        showError('Access restricted. Please use an authorized email domain (@hfed.net or @harrispurley.org.uk).');
-        return;
-      }
-
       // Disable button during sign-in
       loginButton.disabled = true;
       loginButton.textContent = 'Signing in...';
 
       try {
-        await signInWithEmailAndPassword(auth, email, password);
-        // Success - onAuthStateChanged will handle UI update
-      } catch (error) {
-        console.error('Sign-in error:', error);
+        const userData = await login(email, password);
         
-        // Show user-friendly error messages
-        let errorMsg = 'Sign-in failed. Please check your credentials.';
-        
-        if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password') {
-          errorMsg = 'Invalid email or password. Please try again.';
-        } else if (error.code === 'auth/user-not-found') {
-          errorMsg = 'No account found with this email address.';
-        } else if (error.code === 'auth/too-many-requests') {
-          errorMsg = 'Too many failed attempts. Please try again later.';
-        } else if (error.code === 'auth/network-request-failed') {
-          errorMsg = 'Network error. Please check your connection.';
+        // Check if user must change password
+        if (userData.mustChangePassword) {
+          // Redirect to password change page
+          window.location.href = './change-password.html';
+          return;
         }
         
-        showError(errorMsg);
+        // Success - observeUserState will handle UI update
+      } catch (error) {
+        console.error('Sign-in error:', error);
+        showError(error.message || 'Sign-in failed. Please check your credentials.');
       } finally {
         loginButton.disabled = false;
         loginButton.textContent = 'Sign In';
@@ -306,7 +286,7 @@
     // Handle sign-out
     logoutButton.addEventListener('click', async () => {
       try {
-        await signOut(auth);
+        await logout();
         // Clear form
         emailInput.value = '';
         passwordInput.value = '';
@@ -318,17 +298,19 @@
     });
 
     // Monitor authentication state
-    onAuthStateChanged(auth, (user) => {
-      if (user && isValidDomain(user.email)) {
-        // User is signed in with valid domain
+    observeUserState((user) => {
+      if (user) {
+        // Check if user must change password
+        if (user.mustChangePassword) {
+          // Redirect to password change page
+          window.location.href = './change-password.html';
+          return;
+        }
+        
+        // User is signed in with valid credentials and has changed password
         showEditor(user);
       } else {
-        // User is not signed in or has invalid domain
-        if (user && !isValidDomain(user.email)) {
-          // Sign out users with invalid domains
-          signOut(auth);
-          showError('Access restricted to authorized domains only.');
-        }
+        // User is not signed in
         showLoginScreen();
       }
     });

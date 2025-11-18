@@ -4,8 +4,16 @@ import {
   getAuth,
   onAuthStateChanged,
   signInWithEmailAndPassword,
-  signOut
+  signOut,
+  updatePassword
 } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAT3OZyWzxQ9NhL_bwNVes22pCGipiLg2U",
@@ -20,5 +28,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
+const db = getFirestore(app);
 
-export { app, analytics, auth, onAuthStateChanged, signInWithEmailAndPassword, signOut };
+export { 
+  app, 
+  analytics, 
+  auth, 
+  db,
+  onAuthStateChanged, 
+  signInWithEmailAndPassword, 
+  signOut,
+  updatePassword,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc
+};
