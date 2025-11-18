@@ -260,6 +260,17 @@
         const roleLabel = getRoleLabel(user.role);
         userRoleDisplay.textContent = `(${roleLabel})`;
       }
+      
+      // Pass user context to editor iframe via query parameters
+      const editorFrame = document.getElementById('editor-frame');
+      if (editorFrame) {
+        const params = new URLSearchParams({
+          email: user.email || '',
+          role: user.role || '',
+          sharedUid: user.sharedUid || ''
+        });
+        editorFrame.src = `./editor/index.html?${params.toString()}`;
+      }
     }
 
     // Handle form submission
