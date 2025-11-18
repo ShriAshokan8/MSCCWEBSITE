@@ -1,0 +1,157 @@
+/* MSC Nexus Editor - Layout and Structure */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  background: #ffffff;
+}
+
+/* Topbar Layout */
+.msc-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 16px;
+  background: #2c3e50;
+  color: #ffffff;
+  border-bottom: 1px solid #34495e;
+  flex-shrink: 0;
+  z-index: 100;
+}
+
+.msc-topbar-left,
+.msc-topbar-center,
+.msc-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.msc-topbar-left {
+  flex: 0 0 auto;
+}
+
+.msc-topbar-center {
+  flex: 1 1 auto;
+  justify-content: center;
+}
+
+.msc-topbar-right {
+  flex: 0 0 auto;
+}
+
+.msc-logo {
+  width: 32px;
+  height: 32px;
+}
+
+.msc-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Main Container Layout */
+.msc-main-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Sidebar Layout */
+.msc-sidebar {
+  width: 260px;
+  background: #f8f9fa;
+  border-right: 1px solid #e1e4e8;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.msc-sidebar-nav {
+  padding: 16px;
+}
+
+/* Main Content Region */
+.msc-editor-root {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+  background: #ffffff;
+}
+
+/* Engine Container */
+#msc-engine-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Loading State */
+.msc-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  gap: 16px;
+}
+
+.msc-loading-spinner {
+  width: 48px;
+  height: 48px;
+  border: 4px solid #e1e4e8;
+  border-top-color: #667eea;
+  border-radius: 50%;
+  animation: msc-spin 1s linear infinite;
+}
+
+@keyframes msc-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.msc-loading p {
+  color: #586069;
+  font-size: 14px;
+}
+
+/* User Menu */
+.msc-user-menu {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .msc-sidebar {
+    position: absolute;
+    left: -260px;
+    height: 100%;
+    transition: left 0.3s ease;
+    z-index: 50;
+  }
+
+  .msc-sidebar.is-open {
+    left: 0;
+  }
+
+  .msc-title {
+    font-size: 16px;
+  }
+}
