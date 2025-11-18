@@ -1,221 +1,308 @@
-Step 6 – Integrate MSC content, file/folder creation, permissions, sharing, and search into the MSC Nexus Editor
+Step 7 – Connect MSC Nexus to Firebase + Firestore for login and full storage
 
 Context:
-- Step 5 built the MSC Nexus Editor scaffolding inside /nexus/editor/.
-- The wrapper (login, roles, password reset) already works.
-- Now begin adding:
-  - MSC content (workspaces, pages, documents)
-  - File and folder creation system
-  - Owner-based folder permissions (share with UUIDs)
-  - Role-based editing rules
-  - Global search
+- Firebase Auth is already being used in the MSC Nexus wrapper for login.
+- MSC roles, sharedUid, and dual-email logic are already present.
+- MSC Nexus Editor structure (workspaces/folders/files) is being built in /nexus/editor/.
+- Now I want ALL data (users, workspaces, folders, files, content, sharing) to be persisted in Firestore.
 
-No AppFlowy branding will appear anywhere. All UI must use MSC Nexus naming only.
+Very important:
+- Use my Firebase config (below).
+- Use ES modules, not inline <script> tags.
+- Firestore must be the single source of truth for:
+  - users
+  - workspaces
+  - folders
+  - pages/documents
+  - content
+  - sharing rules
 
-Your tasks for Step 6:
+Here is my Firebase configuration (you MUST use this):
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAT3OZyWzxQ9NhL_bwNVes22pCGipiLg2U",
+  authDomain: "mscnexus-1.firebaseapp.com",
+  projectId: "mscnexus-1",
+  storageBucket: "mscnexus-1.firebasestorage.app",
+  messagingSenderId: "725398471808",
+  appId: "1:725398471808:web:08c2ac317534907a841265",
+  measurementId: "G-15CGMZBHDC"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+
+Your tasks for Step 7:
 
 ------------------------------------------------------------
-1. Add MSC content structure files
+1. Update /nexus/firebase.js to include Firestore
 ------------------------------------------------------------
 
-Create:
+In /nexus/firebase.js:
 
-/nexus/editor/data/msc_structure.json
-/nexus/editor/data/msc_content.json
+- Keep using ES module imports from the CDN.
+- Add Firestore imports and exports.
 
-msc_structure.json defines:
+Example shape (adapt it cleanly):
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-app.js";
+import {
+  getAnalytics
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-analytics.js";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+  updatePassword
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-auth.js";
+import {
+  getFirestore,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where
+} from "https://www.gstatic.com/firebasejs/12.6.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAT3OZyWzxQ9NhL_bwNVes22pCGipiLg2U",
+  authDomain: "mscnexus-1.firebaseapp.com",
+  projectId: "mscnexus-1",
+  storageBucket: "mscnexus-1.firebasestorage.app",
+  messagingSenderId: "725398471808",
+  appId: "1:725398471808:web:08c2ac317534907a841265",
+  measurementId: "G-15CGMZBHDC"
+};
+
+const app = initializeApp(firebaseConfig);
+const analytics = getAnalytics(app);
+const auth = getAuth(app);
+const db = getFirestore(app);
+
+export {
+  app,
+  analytics,
+  auth,
+  db,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+  signOut,
+  updatePassword,
+  doc,
+  getDoc,
+  setDoc,
+  updateDoc,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  where
+};
+
+Do NOT use inline <script> tags. Only ES modules.
+
+------------------------------------------------------------
+2. Define Firestore collections and document shapes
+------------------------------------------------------------
+
+Use these Firestore collections:
+
+- users
 - workspaces
 - folders
-- pages (documents)
-- unique IDs for each workspace, folder, and page
+- documents
 
-Example structure to expand:
+Document shapes:
 
+users/{sharedUid}:
 {
-  "workspaces": [
-    {
-      "id": "w_2024_25_archive",
-      "name": "Archive 2024–25",
-      "folders": [
-        {
-          "id": "f_roadmaps",
-          "name": "Roadmaps",
-          "owner": "user_shri",
-          "sharedWith": ["user_atene", "user_jay", "user_jhanavi"],
-          "pages": [
-            {
-              "id": "p_roadmap_2024",
-              "title": "MSC Roadmap 2024–25",
-              "contentKey": "doc_roadmap_2024_25"
-            }
-          ]
-        }
-      ]
-    }
-  ]
+  email: string,
+  primaryEmail: string,
+  linkedEmails: string[],
+  role: string,
+  mustChangePassword: boolean,
+  sharedUid: string
 }
 
-Important rules:
-- Every folder must include:
-  - id
-  - name
-  - owner (sharedUid key)
-  - sharedWith (array of sharedUid keys)
-  - pages (array)
-- Owner can always edit everything inside the folder.
-- Anyone in sharedWith can edit the folder/pages.
-- Everyone else can view but cannot edit.
-
-------------------------------------------------------------
-2. Add MSC content text in msc_content.json
-------------------------------------------------------------
-
-Example:
-
+workspaces/{workspaceId}:
 {
-  "doc_roadmap_2024_25": {
-    "title": "MSC Roadmap 2024–25",
-    "body": "Detailed or summarised version of the roadmap."
-  }
+  name: string,
+  createdBy: string,        // sharedUid of creator (e.g. user_shri)
+  createdAt: timestamp
 }
 
-Use placeholder text if needed. It can be expanded later.
+folders/{folderId}:
+{
+  name: string,
+  workspaceId: string,
+  owner: string,            // sharedUid
+  sharedWith: string[],     // sharedUid array
+  createdAt: timestamp
+}
+
+documents/{documentId}:
+{
+  title: string,
+  folderId: string,
+  workspaceId: string,
+  content: string,          // full document content for now
+  owner: string,            // owner sharedUid
+  sharedWith: string[],     // extra document-level shares if needed
+  createdAt: timestamp,
+  updatedAt: timestamp
+}
 
 ------------------------------------------------------------
-3. Add file and folder creation in the editor
+3. Connect the editor to Firestore for loading structure
 ------------------------------------------------------------
 
-Inside /nexus/editor/editor.js and/or msc-ui.js, implement:
+In /nexus/editor/editor.js (and/or msc-ui.js):
 
-3A. Create new workspace items:
-- New Folder
-- New Document
+- Remove hard-coded JSON for MSC structure if you created any in Step 6.
+- Instead, fetch everything from Firestore.
 
-3B. New Folder creation fields:
-- name
-- owner = currentUser.sharedUid
-- sharedWith = [] initially
-- pages = []
+Loading logic:
+- Load all workspaces for this user:
+  - For now, load all documents and folders; later we can filter by role if needed.
+- For each workspace:
+  - Query folders where workspaceId == that workspace’s id.
+- For each folder:
+  - Query documents where folderId == folder.id.
 
-3C. New Document creation fields:
-- id (auto-generated)
-- title
-- contentKey (auto-generated: doc_<uuid>)
-- body = "New empty document."
-- Belongs inside a selected folder
+Then build the sidebar tree:
+- Workspaces
+  - Folders under each workspace
+    - Documents under each folder
 
-Everyone can create:
-- Folders
-- Documents
-
-But editing access inside a folder depends on:
-- folder.owner
-- folder.sharedWith
-- user role (still applies)
+This must use the Firestore db exports from /nexus/firebase.js.
 
 ------------------------------------------------------------
-4. Add folder-level sharing controls
+4. Connect file/folder creation to Firestore
 ------------------------------------------------------------
 
-In folder sidebar UI:
-- Add a “Sharing Settings” button for folders.
-- Only visible to folder.owner.
+When the user creates:
+- A new folder:
+  - Add a document to folders collection with owner = currentUser.sharedUid.
 
-Sharing UI must allow:
-- Add user by sharedUid
-- Remove user by sharedUid
+- A new document:
+  - Add a document to documents collection with:
+    - title
+    - folderId
+    - workspaceId
+    - content (initial blank or template)
+    - owner = currentUser.sharedUid
+    - sharedWith = []
 
-Modify msc_structure.json in-memory and save changes to editor state.
+Make sure:
+- UI updates after creation by re-querying Firestore or updating state in memory.
 
 ------------------------------------------------------------
-5. Role + permission logic inside the editor
+5. Permissions enforced from Firestore data
 ------------------------------------------------------------
 
-Using the role sent via query parameter from the wrapper and the folder permission system:
+In the editor permission checks:
 
-A user has editing permission on a folder or page if:
-- They are the folder owner
+A user can edit a document if:
+- They are the document.owner
 OR
-- Their sharedUid is inside folder.sharedWith
+- Their sharedUid is in document.sharedWith
+OR
+- Their sharedUid is in the folder.sharedWith for that document’s folder
 OR
 - Their role is Director, DeputyDirector, or StaffCoordinator
 
-Editing is disabled if:
-- User role is Staff
-- AND user.sharedUid is not the owner or sharedWith
+Otherwise:
+- Show the document in read-only mode.
+- Disable save/edit controls.
 
-Make these rules run on:
-- Page load
-- When selecting a folder
-- When selecting a page
-
-Editor must:
-- Disable editing UI when user does not have permission
-- Show badge: “Read-only mode”
+Make sure:
+- These checks use real Firestore data.
+- You don’t rely on any local-only mock structure.
 
 ------------------------------------------------------------
-6. Integrate real-time or session-based saving
+6. Saving document content to Firestore
 ------------------------------------------------------------
 
-For now:
-- Save edits in memory or local browser storage.
-- Later we can add Firestore sync (Step 7).
+Implement in editor.js:
 
-Add:
-- saveDocument(contentKey, body)
-- loadDocument(contentKey)
+- loadDocument(documentId):
+  - Reads documents/{documentId} from Firestore.
+  - Populates the editor area with document.content.
 
-------------------------------------------------------------
-7. Add global search function
-------------------------------------------------------------
+- saveDocument(documentId, newContent):
+  - Checks if the current user has edit permission.
+  - If allowed:
+    - updateDoc(documents/{documentId}, {
+        content: newContent,
+        updatedAt: serverTimestamp()
+      });
 
-Inside /nexus/editor/editor.js, implement global search:
-
-Search must:
-- Search across all workspace names
-- Search across all folder names
-- Search across all page titles
-- Search across all page bodies (from msc_content.json)
-
-Search behavior:
-- Provide a search bar at top-left of editor window
-- Show a dropdown of matching results
-- Clicking a result:
-  - Opens the corresponding page
-  - Highlights matches inside the document
+Hook saveDocument:
+- To a “Save” button
+- Or to Ctrl+S / Cmd+S keybinding
+- Only enabled if editing is allowed
 
 ------------------------------------------------------------
-8. Pass role and sharedUid into the editor
+7. Hook global search into Firestore
 ------------------------------------------------------------
 
-Wrapper must send:
-?role=RoleName&sharedUid=user_xxx&email=email@domain
+Update search to work across Firestore data:
 
-Editor must:
-- Parse query parameters
-- Apply permissions based on role AND folder sharing
+- When user types in the search bar:
+  - Search across:
+    - document title
+    - document content
+    - folder name
+    - workspace name
+
+You can:
+- Either fetch documents and filter client-side, or
+- Use very simple queries (Firestore is limited for full text)
+
+For now, implement:
+- Client-side filtering:
+  - Load documents into memory
+  - Filter by .title or .content containing the search query (case-insensitive)
+
+Show results:
+- As a list (Workspace > Folder > Document)
+- Clicking a result opens that document.
 
 ------------------------------------------------------------
-9. Commit everything required for Step 6
+8. Ensure login and roles are the single entry point
+------------------------------------------------------------
+
+All Firestore access in the editor must:
+- Assume a user is already logged in via the wrapper (index.html).
+- Use the role and sharedUid passed via query parameters.
+- Never attempt to log in directly inside the editor.
+- Never bypass role or domain checks.
+
+------------------------------------------------------------
+9. Commit for Step 7
 ------------------------------------------------------------
 
 Commit:
 
-- /nexus/editor/data/msc_structure.json
-- /nexus/editor/data/msc_content.json
-- Updates to editor.js and msc-ui.js for:
-  - workspace loading
-  - folder creation
-  - document creation
-  - permission checks
-  - sharing UI
-  - search bar
-- Updates to index.html to include new editor features
+- Updated /nexus/firebase.js (with Firestore support)
+- Updates to /nexus/editor/editor.js and/or msc-ui.js for:
+  - Loading from Firestore
+  - Creating folders/documents in Firestore
+  - Permission checks based on Firestore
+  - Saving edited content back to Firestore
+  - Search across Firestore-backed documents
 
-PR description must explain:
-- How permission system works
-- How folder sharing is implemented
-- How search works
-- How MSC content is structured and loaded
-
-End of Step 6.
+Update the PR description to explain:
+- Firestore schema
+- How login and roles integrate with saving/loading
+- How permissions and sharing now work using Firestore
