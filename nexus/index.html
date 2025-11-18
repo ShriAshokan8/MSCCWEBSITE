@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MSC Nexus</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .login-container {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+      width: 100%;
+      max-width: 400px;
+      margin: 1rem;
+    }
+
+    .login-container h1 {
+      color: #333;
+      margin-bottom: 0.5rem;
+      font-size: 2rem;
+      text-align: center;
+    }
+
+    .login-container p {
+      color: #666;
+      margin-bottom: 2rem;
+      text-align: center;
+      font-size: 0.95rem;
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      color: #333;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid #e0e0e0;
+      border-radius: 6px;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #667eea;
+    }
+
+    .error-message {
+      background: #fee;
+      color: #c33;
+      padding: 0.75rem;
+      border-radius: 6px;
+      margin-bottom: 1rem;
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+    }
+
+    .btn {
+      width: 100%;
+      padding: 0.875rem;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: linear-gradient(135deg, #5568d3 0%, #63408a 100%);
+    }
+
+    .btn-primary:disabled {
+      background: #ccc;
+      cursor: not-allowed;
+    }
+
+    .editor-wrapper {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #f5f5f5;
+      flex-direction: column;
+    }
+
+    .editor-wrapper.show {
+      display: flex;
+    }
+
+    .editor-header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 1rem 1.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .editor-header h1 {
+      font-size: 1.25rem;
+      font-weight: 600;
+    }
+
+    .editor-header-right {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .user-info {
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.2);
+      color: white;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 0.5rem 1rem;
+      border-radius: 6px;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.3);
+    }
+
+    .editor-frame {
+      flex: 1;
+      border: none;
+      width: 100%;
+      height: 100%;
+    }
+
+    .loading {
+      text-align: center;
+      color: #666;
+      padding: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <!-- Login Screen -->
+  <div class="login-container" id="login-screen">
+    <h1>MSC Nexus</h1>
+    <p>Sign in to access the editor</p>
+    
+    <div class="error-message" id="error-message"></div>
+    
+    <form id="login-form">
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" required placeholder="your.email@hfed.net">
+      </div>
+      
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password" required placeholder="Enter your password">
+      </div>
+      
+      <button type="submit" class="btn btn-primary" id="login-button">Sign In</button>
+    </form>
+  </div>
+
+  <!-- Editor Wrapper (shown after authentication) -->
+  <div class="editor-wrapper" id="editor-wrapper">
+    <div class="editor-header">
+      <h1>MSC Nexus</h1>
+      <div class="editor-header-right">
+        <span class="user-info" id="user-email"></span>
+        <button class="btn-secondary" id="logout-button">Sign Out</button>
+      </div>
+    </div>
+    <iframe class="editor-frame" id="editor-frame" src="./editor/index.html" title="MSC Nexus Editor"></iframe>
+  </div>
+
+  <script type="module">
+    import { auth, onAuthStateChanged, signInWithEmailAndPassword, signOut } from './firebase.js';
+
+    const loginScreen = document.getElementById('login-screen');
+    const editorWrapper = document.getElementById('editor-wrapper');
+    const loginForm = document.getElementById('login-form');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+    const loginButton = document.getElementById('login-button');
+    const logoutButton = document.getElementById('logout-button');
+    const errorMessage = document.getElementById('error-message');
+    const userEmailDisplay = document.getElementById('user-email');
+
+    // Allowed email domains
+    const ALLOWED_DOMAINS = ['@hfed.net', '@harrispurley.org.uk'];
+
+    // Helper function to validate email domain
+    function isValidDomain(email) {
+      return ALLOWED_DOMAINS.some(domain => email.toLowerCase().endsWith(domain));
+    }
+
+    // Helper function to show error
+    function showError(message) {
+      errorMessage.textContent = message;
+      errorMessage.classList.add('show');
+    }
+
+    // Helper function to hide error
+    function hideError() {
+      errorMessage.classList.remove('show');
+    }
+
+    // Helper function to show login screen
+    function showLoginScreen() {
+      loginScreen.style.display = 'block';
+      editorWrapper.classList.remove('show');
+    }
+
+    // Helper function to show editor
+    function showEditor(user) {
+      loginScreen.style.display = 'none';
+      editorWrapper.classList.add('show');
+      userEmailDisplay.textContent = user.email;
+    }
+
+    // Handle form submission
+    loginForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      hideError();
+
+      const email = emailInput.value.trim();
+      const password = passwordInput.value;
+
+      // Validate email domain before attempting sign-in
+      if (!isValidDomain(email)) {
+        showError('Access restricted. Please use an authorized email domain (@hfed.net or @harrispurley.org.uk).');
+        return;
+      }
+
+      // Disable button during sign-in
+      loginButton.disabled = true;
+      loginButton.textContent = 'Signing in...';
+
+      try {
+        await signInWithEmailAndPassword(auth, email, password);
+        // Success - onAuthStateChanged will handle UI update
+      } catch (error) {
+        console.error('Sign-in error:', error);
+        
+        // Show user-friendly error messages
+        let errorMsg = 'Sign-in failed. Please check your credentials.';
+        
+        if (error.code === 'auth/invalid-credential' || error.code === 'auth/wrong-password') {
+          errorMsg = 'Invalid email or password. Please try again.';
+        } else if (error.code === 'auth/user-not-found') {
+          errorMsg = 'No account found with this email address.';
+        } else if (error.code === 'auth/too-many-requests') {
+          errorMsg = 'Too many failed attempts. Please try again later.';
+        } else if (error.code === 'auth/network-request-failed') {
+          errorMsg = 'Network error. Please check your connection.';
+        }
+        
+        showError(errorMsg);
+      } finally {
+        loginButton.disabled = false;
+        loginButton.textContent = 'Sign In';
+      }
+    });
+
+    // Handle sign-out
+    logoutButton.addEventListener('click', async () => {
+      try {
+        await signOut(auth);
+        // Clear form
+        emailInput.value = '';
+        passwordInput.value = '';
+        hideError();
+      } catch (error) {
+        console.error('Sign-out error:', error);
+        showError('Failed to sign out. Please try again.');
+      }
+    });
+
+    // Monitor authentication state
+    onAuthStateChanged(auth, (user) => {
+      if (user && isValidDomain(user.email)) {
+        // User is signed in with valid domain
+        showEditor(user);
+      } else {
+        // User is not signed in or has invalid domain
+        if (user && !isValidDomain(user.email)) {
+          // Sign out users with invalid domains
+          signOut(auth);
+          showError('Access restricted to authorized domains only.');
+        }
+        showLoginScreen();
+      }
+    });
+  </script>
+</body>
+</html>
