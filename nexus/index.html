@@ -207,7 +207,10 @@
     <div class="editor-header">
       <h1>MSC Nexus</h1>
       <div class="editor-header-right">
-        <span class="user-info" id="user-email"></span>
+        <span class="user-info">
+          <span id="user-email"></span>
+          <span id="user-role" style="opacity: 0.8; margin-left: 0.5rem;"></span>
+        </span>
         <button class="btn-secondary" id="logout-button">Sign Out</button>
       </div>
     </div>
@@ -216,6 +219,7 @@
 
   <script type="module">
     import { login, logout, observeUserState } from './auth.js';
+    import { canAccessNexus, getRoleLabel } from './permissions.js';
 
     const loginScreen = document.getElementById('login-screen');
     const editorWrapper = document.getElementById('editor-wrapper');
@@ -226,6 +230,7 @@
     const logoutButton = document.getElementById('logout-button');
     const errorMessage = document.getElementById('error-message');
     const userEmailDisplay = document.getElementById('user-email');
+    const userRoleDisplay = document.getElementById('user-role');
 
     // Helper function to show error
     function showError(message) {
@@ -249,6 +254,12 @@
       loginScreen.style.display = 'none';
       editorWrapper.classList.add('show');
       userEmailDisplay.textContent = user.email;
+      
+      // Display user-friendly role label
+      if (user.role) {
+        const roleLabel = getRoleLabel(user.role);
+        userRoleDisplay.textContent = `(${roleLabel})`;
+      }
     }
 
     // Handle form submission
@@ -299,20 +310,29 @@
 
     // Monitor authentication state
     observeUserState((user) => {
-      if (user) {
-        // Check if user must change password
-        if (user.mustChangePassword) {
-          // Redirect to password change page
-          window.location.href = './change-password.html';
-          return;
-        }
-        
-        // User is signed in with valid credentials and has changed password
-        showEditor(user);
-      } else {
+      if (!user) {
         // User is not signed in
         showLoginScreen();
+        return;
       }
+
+      // Check if user must change password
+      if (user.mustChangePassword) {
+        // Redirect to password change page
+        window.location.href = './change-password.html';
+        return;
+      }
+
+      // Check if user has permission to access MSC Nexus
+      const hasAccess = canAccessNexus(user);
+      if (!hasAccess) {
+        // User does not have valid role or permissions
+        window.location.href = './access-denied.html';
+        return;
+      }
+
+      // All checks passed - user is fully authenticated and authorized
+      showEditor(user);
     });
   </script>
 </body>
