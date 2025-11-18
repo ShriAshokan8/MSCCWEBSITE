@@ -1,0 +1,221 @@
+Step 6 – Integrate MSC content, file/folder creation, permissions, sharing, and search into the MSC Nexus Editor
+
+Context:
+- Step 5 built the MSC Nexus Editor scaffolding inside /nexus/editor/.
+- The wrapper (login, roles, password reset) already works.
+- Now begin adding:
+  - MSC content (workspaces, pages, documents)
+  - File and folder creation system
+  - Owner-based folder permissions (share with UUIDs)
+  - Role-based editing rules
+  - Global search
+
+No AppFlowy branding will appear anywhere. All UI must use MSC Nexus naming only.
+
+Your tasks for Step 6:
+
+------------------------------------------------------------
+1. Add MSC content structure files
+------------------------------------------------------------
+
+Create:
+
+/nexus/editor/data/msc_structure.json
+/nexus/editor/data/msc_content.json
+
+msc_structure.json defines:
+- workspaces
+- folders
+- pages (documents)
+- unique IDs for each workspace, folder, and page
+
+Example structure to expand:
+
+{
+  "workspaces": [
+    {
+      "id": "w_2024_25_archive",
+      "name": "Archive 2024–25",
+      "folders": [
+        {
+          "id": "f_roadmaps",
+          "name": "Roadmaps",
+          "owner": "user_shri",
+          "sharedWith": ["user_atene", "user_jay", "user_jhanavi"],
+          "pages": [
+            {
+              "id": "p_roadmap_2024",
+              "title": "MSC Roadmap 2024–25",
+              "contentKey": "doc_roadmap_2024_25"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+
+Important rules:
+- Every folder must include:
+  - id
+  - name
+  - owner (sharedUid key)
+  - sharedWith (array of sharedUid keys)
+  - pages (array)
+- Owner can always edit everything inside the folder.
+- Anyone in sharedWith can edit the folder/pages.
+- Everyone else can view but cannot edit.
+
+------------------------------------------------------------
+2. Add MSC content text in msc_content.json
+------------------------------------------------------------
+
+Example:
+
+{
+  "doc_roadmap_2024_25": {
+    "title": "MSC Roadmap 2024–25",
+    "body": "Detailed or summarised version of the roadmap."
+  }
+}
+
+Use placeholder text if needed. It can be expanded later.
+
+------------------------------------------------------------
+3. Add file and folder creation in the editor
+------------------------------------------------------------
+
+Inside /nexus/editor/editor.js and/or msc-ui.js, implement:
+
+3A. Create new workspace items:
+- New Folder
+- New Document
+
+3B. New Folder creation fields:
+- name
+- owner = currentUser.sharedUid
+- sharedWith = [] initially
+- pages = []
+
+3C. New Document creation fields:
+- id (auto-generated)
+- title
+- contentKey (auto-generated: doc_<uuid>)
+- body = "New empty document."
+- Belongs inside a selected folder
+
+Everyone can create:
+- Folders
+- Documents
+
+But editing access inside a folder depends on:
+- folder.owner
+- folder.sharedWith
+- user role (still applies)
+
+------------------------------------------------------------
+4. Add folder-level sharing controls
+------------------------------------------------------------
+
+In folder sidebar UI:
+- Add a “Sharing Settings” button for folders.
+- Only visible to folder.owner.
+
+Sharing UI must allow:
+- Add user by sharedUid
+- Remove user by sharedUid
+
+Modify msc_structure.json in-memory and save changes to editor state.
+
+------------------------------------------------------------
+5. Role + permission logic inside the editor
+------------------------------------------------------------
+
+Using the role sent via query parameter from the wrapper and the folder permission system:
+
+A user has editing permission on a folder or page if:
+- They are the folder owner
+OR
+- Their sharedUid is inside folder.sharedWith
+OR
+- Their role is Director, DeputyDirector, or StaffCoordinator
+
+Editing is disabled if:
+- User role is Staff
+- AND user.sharedUid is not the owner or sharedWith
+
+Make these rules run on:
+- Page load
+- When selecting a folder
+- When selecting a page
+
+Editor must:
+- Disable editing UI when user does not have permission
+- Show badge: “Read-only mode”
+
+------------------------------------------------------------
+6. Integrate real-time or session-based saving
+------------------------------------------------------------
+
+For now:
+- Save edits in memory or local browser storage.
+- Later we can add Firestore sync (Step 7).
+
+Add:
+- saveDocument(contentKey, body)
+- loadDocument(contentKey)
+
+------------------------------------------------------------
+7. Add global search function
+------------------------------------------------------------
+
+Inside /nexus/editor/editor.js, implement global search:
+
+Search must:
+- Search across all workspace names
+- Search across all folder names
+- Search across all page titles
+- Search across all page bodies (from msc_content.json)
+
+Search behavior:
+- Provide a search bar at top-left of editor window
+- Show a dropdown of matching results
+- Clicking a result:
+  - Opens the corresponding page
+  - Highlights matches inside the document
+
+------------------------------------------------------------
+8. Pass role and sharedUid into the editor
+------------------------------------------------------------
+
+Wrapper must send:
+?role=RoleName&sharedUid=user_xxx&email=email@domain
+
+Editor must:
+- Parse query parameters
+- Apply permissions based on role AND folder sharing
+
+------------------------------------------------------------
+9. Commit everything required for Step 6
+------------------------------------------------------------
+
+Commit:
+
+- /nexus/editor/data/msc_structure.json
+- /nexus/editor/data/msc_content.json
+- Updates to editor.js and msc-ui.js for:
+  - workspace loading
+  - folder creation
+  - document creation
+  - permission checks
+  - sharing UI
+  - search bar
+- Updates to index.html to include new editor features
+
+PR description must explain:
+- How permission system works
+- How folder sharing is implemented
+- How search works
+- How MSC content is structured and loaded
+
+End of Step 6.
