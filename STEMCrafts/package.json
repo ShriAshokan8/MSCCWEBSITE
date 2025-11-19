@@ -1,0 +1,24 @@
+{
+  "name": "stem-crafts-club-website",
+  "version": "1.0.0",
+  "description": "STEM Crafts Club - A fun after-school club making creative DIY projects",
+  "scripts": {
+    "minify:css": "cleancss -o style.min.css style.css",
+    "minify:js": "terser script.js -o script.min.js --compress --mangle && terser js/main.js -o js/main.min.js --compress --mangle && terser sw.js -o sw.min.js --compress --mangle",
+    "minify": "npm run minify:css && npm run minify:js",
+    "build": "npm run minify"
+  },
+  "keywords": [
+    "STEM",
+    "education",
+    "mathematics",
+    "science",
+    "computing"
+  ],
+  "author": "STEM Crafts Club",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "clean-css-cli": "^5.6.3",
+    "terser": "^5.27.0"
+  }
+}

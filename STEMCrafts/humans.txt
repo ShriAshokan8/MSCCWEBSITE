@@ -1,0 +1,15 @@
+/* TEAM */
+    Creator: STEM Crafts Club Team
+    Site: https://mscinitiative.app/stemcrafts
+    Email: contact@mscinitiative.app
+    Location: Global
+
+/* THANKS */
+    Student contributors and participants in the STEM Crafts Club
+    Open source community for tools and libraries
+
+/* SITE */
+    Last update: 2025/01/08
+    Standards: HTML5, CSS3, JavaScript ES6+
+    Components: Progressive Web App, Responsive Design
+    Software: Hand-coded with care by the STEM Crafts Club team
