@@ -13,18 +13,18 @@
 
 :root {
     /* Nature-Inspired Color Palette */
-    --primary-color: #D4A373;      /* Warm tan/brown - primary emphasis */
-    --secondary-color: #CCD5AE;    /* Sage green - secondary emphasis */
-    --accent-color: #CCD5AE;       /* Sage green - accents */
+    --primary-color: #8B6F47;      /* Dark tan/brown - primary emphasis */
+    --secondary-color: #9BAE7E;    /* Darker sage green - secondary emphasis */
+    --accent-color: #9BAE7E;       /* Darker sage green - accents */
     --soft-peach: #FAEDCD;         /* Pale peach - soft backgrounds */
     --light-cream: #E9EDC9;        /* Light cream - subtle backgrounds */
     --pure-white: #FEFAE0;         /* Ivory - main backgrounds */
     --off-white: #FEFAE0;          /* Ivory - alternate backgrounds */
-    --text-dark: #D4A373;          /* Warm tan - primary text */
-    --text-gray: #8B7355;          /* Medium brown - secondary text */
+    --text-dark: #5C4A33;          /* Dark brown - primary text */
+    --text-gray: #6B5744;          /* Medium dark brown - secondary text */
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, #D4A373 0%, #CCD5AE 100%);
+    --gradient-primary: linear-gradient(135deg, #8B6F47 0%, #9BAE7E 100%);
     --gradient-warm: linear-gradient(135deg, #E9EDC9 0%, #FAEDCD 100%);
     
     /* Spacing System */
@@ -36,9 +36,9 @@
     --space-xxl: 4rem;
     
     /* Shadows */
-    --shadow-sm: 0 2px 8px rgba(212, 163, 115, 0.1);
-    --shadow-md: 0 4px 16px rgba(212, 163, 115, 0.15);
-    --shadow-lg: 0 8px 24px rgba(212, 163, 115, 0.2);
+    --shadow-sm: 0 2px 8px rgba(92, 74, 51, 0.1);
+    --shadow-md: 0 4px 16px rgba(92, 74, 51, 0.15);
+    --shadow-lg: 0 8px 24px rgba(92, 74, 51, 0.2);
     
     /* Transitions */
     --transition-fast: 0.2s ease;
@@ -114,7 +114,7 @@ header {
 header.scrolled {
     min-height: 60px;
     padding: var(--space-xs) var(--space-md);
-    background: rgba(212, 163, 115, 0.95);
+    background: rgba(139, 111, 71, 0.95);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     box-shadow: var(--shadow-lg);
@@ -309,7 +309,7 @@ main::before {
 }
 
 main:hover {
-    box-shadow: 0 12px 40px rgba(212, 163, 115, 0.3);
+    box-shadow: 0 12px 40px rgba(92, 74, 51, 0.3);
 }
 
 /* Bracket-specific layout */
@@ -327,7 +327,7 @@ main h2 {
     margin-bottom: var(--space-md);
     border-bottom: 3px solid var(--primary-color);
     padding-bottom: var(--space-sm);
-    text-shadow: 0 2px 4px rgba(212, 163, 115, 0.1);
+    text-shadow: 0 2px 4px rgba(92, 74, 51, 0.1);
 }
 
 main h2:first-child {
@@ -420,7 +420,7 @@ button:hover::before, .btn:hover::before {
 button:hover, .btn:hover {
     background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
     transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 8px 24px rgba(212, 163, 115, 0.3);
+    box-shadow: 0 8px 24px rgba(92, 74, 51, 0.3);
 }
 
 button:active, .btn:active {
@@ -467,7 +467,7 @@ button:active, .btn:active {
 
 .card:hover, .content-section:hover {
     transform: translateY(-8px) scale(1.02);
-    box-shadow: 0 12px 32px rgba(212, 163, 115, 0.25);
+    box-shadow: 0 12px 32px rgba(92, 74, 51, 0.25);
     border-color: var(--soft-peach);
 }
 
@@ -495,7 +495,7 @@ button:active, .btn:active {
 
 .newsletter-item:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 32px rgba(212, 163, 115, 0.25);
+    box-shadow: 0 12px 32px rgba(92, 74, 51, 0.25);
 }
 
 .newsletter-item h4 {
@@ -649,7 +649,7 @@ a:not(.btn):not(.download-link):hover {
 .contact-form textarea:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(212, 163, 115, 0.15);
+    box-shadow: 0 0 0 4px rgba(92, 74, 51, 0.15);
     transform: translateY(-2px);
 }
 
@@ -810,7 +810,7 @@ a:not(.btn):not(.download-link):hover {
     margin-top: 90px;
     margin-bottom: 80px;
     padding: 2rem;
-    background: linear-gradient(135deg, rgba(250, 237, 205, 0.1) 0%, rgba(212, 163, 115, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(250, 237, 205, 0.1) 0%, rgba(92, 74, 51, 0.05) 100%);
 }
 
 .login-card {
@@ -819,7 +819,7 @@ a:not(.btn):not(.download-link):hover {
     border-radius: 20px;
     max-width: 450px;
     width: 100%;
-    box-shadow: 0 10px 40px rgba(212, 163, 115, 0.15);
+    box-shadow: 0 10px 40px rgba(92, 74, 51, 0.15);
     overflow: hidden;
     position: relative;
     backdrop-filter: blur(10px);
@@ -838,7 +838,7 @@ a:not(.btn):not(.download-link):hover {
 .login-header {
     text-align: center;
     padding: 2rem 2rem 1rem;
-    background: linear-gradient(135deg, rgba(212, 163, 115, 0.02) 0%, rgba(250, 237, 205, 0.05) 100%);
+    background: linear-gradient(135deg, rgba(92, 74, 51, 0.02) 0%, rgba(250, 237, 205, 0.05) 100%);
 }
 
 .login-icon {
@@ -851,7 +851,7 @@ a:not(.btn):not(.download-link):hover {
     align-items: center;
     justify-content: center;
     color: white;
-    box-shadow: 0 4px 20px rgba(212, 163, 115, 0.3);
+    box-shadow: 0 4px 20px rgba(92, 74, 51, 0.3);
 }
 
 .login-header h2 {
@@ -899,7 +899,7 @@ a:not(.btn):not(.download-link):hover {
 .input-group input:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 4px rgba(212, 163, 115, 0.1);
+    box-shadow: 0 0 0 4px rgba(92, 74, 51, 0.1);
     transform: translateY(-1px);
 }
 
@@ -952,7 +952,7 @@ a:not(.btn):not(.download-link):hover {
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    box-shadow: 0 4px 15px rgba(212, 163, 115, 0.3);
+    box-shadow: 0 4px 15px rgba(92, 74, 51, 0.3);
     position: relative;
     overflow: hidden;
 }
@@ -975,7 +975,7 @@ a:not(.btn):not(.download-link):hover {
 .login-btn:hover {
     background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
     transform: translateY(-2px);
-    box-shadow: 0 6px 25px rgba(212, 163, 115, 0.4);
+    box-shadow: 0 6px 25px rgba(92, 74, 51, 0.4);
 }
 
 .login-btn:active {
@@ -1004,7 +1004,7 @@ a:not(.btn):not(.download-link):hover {
     padding: 1rem 2rem 1.5rem;
     text-align: center;
     background: rgba(250, 237, 205, 0.1);
-    border-top: 1px solid rgba(212, 163, 115, 0.1);
+    border-top: 1px solid rgba(92, 74, 51, 0.1);
 }
 
 .login-footer p {
@@ -1052,7 +1052,7 @@ a:not(.btn):not(.download-link):hover {
     padding: 1rem;
     border-radius: 8px;
     border: 2px solid var(--primary-color);
-    box-shadow: 0 2px 8px rgba(212, 163, 115, 0.2);
+    box-shadow: 0 2px 8px rgba(92, 74, 51, 0.2);
 }
 
 .matches-column {
@@ -1077,10 +1077,10 @@ a:not(.btn):not(.download-link):hover {
 }
 
 .match-box:hover {
-    background-color: #CCD5AE !important; /* Sage green hover effect */
-    border-color: #D4A373;
+    background-color: #9BAE7E !important; /* Sage green hover effect */
+    border-color: #8B6F47;
     transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 20px rgba(204, 213, 174, 0.3);
+    box-shadow: 0 6px 20px rgba(155, 174, 126, 0.3);
     color: white;
 }
 
@@ -1120,13 +1120,13 @@ a:not(.btn):not(.download-link):hover {
 }
 
 .championship-match {
-    background: linear-gradient(145deg, #E9EDC9 0%, #CCD5AE 100%);
+    background: linear-gradient(145deg, #E9EDC9 0%, #9BAE7E 100%);
     border: 3px solid var(--primary-color);
-    box-shadow: 0 4px 20px rgba(204, 213, 174, 0.4);
+    box-shadow: 0 4px 20px rgba(155, 174, 126, 0.4);
 }
 
 .championship-match:hover {
-    background: linear-gradient(145deg, #CCD5AE 0%, #D4A373 100%);
+    background: linear-gradient(145deg, #9BAE7E 0%, #8B6F47 100%);
     transform: translateY(-5px) scale(1.05);
 }
 
@@ -1164,15 +1164,15 @@ a:not(.btn):not(.download-link):hover {
 /* Final Faceoff (3-way challenge) specific styles */
 .final-faceoff {
     min-height: 180px;
-    background: linear-gradient(145deg, #E9EDC9 0%, #D4A373 20%, #CCD5AE 100%);
+    background: linear-gradient(145deg, #E9EDC9 0%, #8B6F47 20%, #9BAE7E 100%);
     border: 3px solid var(--primary-color);
-    box-shadow: 0 6px 30px rgba(204, 213, 174, 0.5);
+    box-shadow: 0 6px 30px rgba(155, 174, 126, 0.5);
 }
 
 .final-faceoff:hover {
-    background: linear-gradient(145deg, #CCD5AE 0%, #D4A373 50%, #E9EDC9 100%);
+    background: linear-gradient(145deg, #9BAE7E 0%, #8B6F47 50%, #E9EDC9 100%);
     transform: translateY(-8px) scale(1.08);
-    box-shadow: 0 10px 40px rgba(204, 213, 174, 0.6);
+    box-shadow: 0 10px 40px rgba(155, 174, 126, 0.6);
 }
 
 .final-faceoff .team {
@@ -1470,7 +1470,7 @@ a:not(.btn):not(.download-link):hover {
 }
 
 .overall-winner-title {
-    background: linear-gradient(135deg, #CCD5AE 0%, #D4A373 100%);
+    background: linear-gradient(135deg, #9BAE7E 0%, #8B6F47 100%);
     color: white;
     font-size: 1.8rem;
     font-weight: bold;
@@ -1478,25 +1478,25 @@ a:not(.btn):not(.download-link):hover {
     padding: 1.5rem;
     border-radius: 12px;
     margin-bottom: 2rem;
-    box-shadow: 0 4px 15px rgba(204, 213, 174, 0.3);
+    box-shadow: 0 4px 15px rgba(155, 174, 126, 0.3);
     border: none;
 }
 
 .overall-winner-box {
     background: linear-gradient(135deg, #FEFAE0 0%, #FAEDCD 100%);
-    border: 3px solid #CCD5AE;
+    border: 3px solid #9BAE7E;
     border-radius: 15px;
     padding: 2rem;
     min-height: 200px;
-    box-shadow: 0 8px 25px rgba(204, 213, 174, 0.2);
+    box-shadow: 0 8px 25px rgba(155, 174, 126, 0.2);
     transition: all 0.3s ease;
     cursor: pointer;
 }
 
 .overall-winner-box:hover {
     transform: translateY(-5px) scale(1.03);
-    box-shadow: 0 12px 35px rgba(204, 213, 174, 0.4);
-    background: linear-gradient(135deg, #CCD5AE 0%, #D4A373 100%);
+    box-shadow: 0 12px 35px rgba(155, 174, 126, 0.4);
+    background: linear-gradient(135deg, #9BAE7E 0%, #8B6F47 100%);
 }
 
 .overall-winner-box:hover .overall-winner-content {
@@ -1527,7 +1527,7 @@ a:not(.btn):not(.download-link):hover {
 
 .champion-subtitle {
     font-size: 1rem;
-    color: #CCD5AE;
+    color: #9BAE7E;
     font-weight: 600;
     transition: color 0.3s ease;
 }
@@ -1544,19 +1544,19 @@ a:not(.btn):not(.download-link):hover {
 }
 
 .achievement-badge {
-    background-color: #CCD5AE;
+    background-color: #9BAE7E;
     color: white;
     padding: 0.8rem 1.5rem;
     border-radius: 25px;
     font-size: 1.1rem;
     font-weight: bold;
-    box-shadow: 0 3px 10px rgba(204, 213, 174, 0.3);
+    box-shadow: 0 3px 10px rgba(155, 174, 126, 0.3);
     transition: all 0.3s ease;
 }
 
 .overall-winner-box:hover .achievement-badge {
     background-color: white;
-    color: #CCD5AE;
+    color: #9BAE7E;
 }
 
 .tournament-stats {
@@ -1683,7 +1683,7 @@ a:not(.btn):not(.download-link):hover {
 .contact-form input:focus,
 .contact-form textarea:focus {
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(212, 163, 115, 0.1);
+    box-shadow: 0 0 0 3px rgba(92, 74, 51, 0.1);
 }
 
 .contact-form button {
