@@ -12,20 +12,29 @@
 }
 
 :root {
-    /* Nature-Inspired Color Palette */
-    --primary-color: #8B6F47;      /* Dark tan/brown - primary emphasis */
-    --secondary-color: #9BAE7E;    /* Darker sage green - secondary emphasis */
-    --accent-color: #9BAE7E;       /* Darker sage green - accents */
-    --soft-peach: #FAEDCD;         /* Pale peach - soft backgrounds */
-    --light-cream: #E9EDC9;        /* Light cream - subtle backgrounds */
-    --pure-white: #FEFAE0;         /* Ivory - main backgrounds */
-    --off-white: #FEFAE0;          /* Ivory - alternate backgrounds */
-    --text-dark: #5C4A33;          /* Dark brown - primary text */
-    --text-gray: #6B5744;          /* Medium dark brown - secondary text */
+    /* STEM-Focused Color Palette - Professional yet Fun */
+    --primary-color: #2C5F7C;      /* Deep blue - science/tech primary */
+    --secondary-color: #5A9C7E;    /* Teal green - innovation/growth */
+    --accent-color: #E17055;       /* Coral accent - energy/creativity */
+    --accent-light: #FFB88C;       /* Light coral - warm highlights */
+    --soft-peach: #FFF4E6;         /* Very pale peach - soft backgrounds */
+    --light-cream: #F0F4F8;        /* Light blue-gray - subtle backgrounds */
+    --pure-white: #FFFFFF;         /* Pure white - main backgrounds */
+    --off-white: #FAFBFC;          /* Off white - alternate backgrounds */
+    --text-dark: #2D3748;          /* Dark gray-blue - primary text */
+    --text-gray: #4A5568;          /* Medium gray - secondary text */
+    --text-light: #718096;         /* Light gray - tertiary text */
+    
+    /* STEM Accent Colors */
+    --stem-science: #6366F1;       /* Indigo - science */
+    --stem-tech: #3B82F6;          /* Blue - technology */
+    --stem-engineering: #10B981;   /* Green - engineering */
+    --stem-math: #8B5CF6;          /* Purple - mathematics */
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, #8B6F47 0%, #9BAE7E 100%);
-    --gradient-warm: linear-gradient(135deg, #E9EDC9 0%, #FAEDCD 100%);
+    --gradient-primary: linear-gradient(135deg, #2C5F7C 0%, #5A9C7E 100%);
+    --gradient-warm: linear-gradient(135deg, #F0F4F8 0%, #FFF4E6 100%);
+    --gradient-accent: linear-gradient(135deg, #E17055 0%, #FFB88C 100%);
     
     /* Spacing System */
     --space-xs: 0.5rem;
@@ -35,10 +44,11 @@
     --space-xl: 3rem;
     --space-xxl: 4rem;
     
-    /* Shadows */
-    --shadow-sm: 0 2px 8px rgba(92, 74, 51, 0.1);
-    --shadow-md: 0 4px 16px rgba(92, 74, 51, 0.15);
-    --shadow-lg: 0 8px 24px rgba(92, 74, 51, 0.2);
+    /* Shadows - Updated for better depth */
+    --shadow-sm: 0 2px 8px rgba(44, 95, 124, 0.08);
+    --shadow-md: 0 4px 16px rgba(44, 95, 124, 0.12);
+    --shadow-lg: 0 8px 24px rgba(44, 95, 124, 0.16);
+    --shadow-xl: 0 12px 32px rgba(44, 95, 124, 0.2);
     
     /* Transitions */
     --transition-fast: 0.2s ease;
@@ -60,7 +70,7 @@ h1 {
     font-weight: 800;
     line-height: 1.2;
     color: var(--text-dark);
-    background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
