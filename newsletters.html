@@ -7,9 +7,6 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/style.css">
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    
     
     <!-- Animation libraries removed - unused in codebase, using native CSS transitions instead -->
     
@@ -35,7 +32,7 @@
     
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#FFA07A">
+    <meta name="theme-color" content="#FF6B35">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     
     <!-- Preconnects and DNS prefetch for performance -->
@@ -100,81 +97,36 @@
     </div>
 
     <!-- Main Content -->
-    <main class="ultra-main" id="main">
-        <!-- Hero Section -->
-        <section class="hero-section" aria-labelledby="newsletters-hero-title">
-            <div class="hero-content">
-                <h1 id="newsletters-hero-title">MSC Initiative Newsletters</h1>
-                <p class="hero-subtitle">Stay up to date with the latest news, achievements, and updates from the MSC Initiative community. Our newsletters provide insights into ongoing projects, upcoming events, member spotlights, and developments in Mathematics, Science, and Computing.</p>
-            </div>
-        </section>
+    <main id="main">
+        <h1>MSC Initiative Newsletters</h1>
         
-        <!-- Available Newsletters Section -->
-        <section class="content-section" aria-labelledby="available-newsletters-title">
-            <h2 id="available-newsletters-title">Available Newsletters</h2>
-            <p class="section-intro">Download our newsletters to learn more about our activities and community progress:</p>
-            
-            <div class="newsletter-list">
-                <article class="newsletter-item">
-                    <div class="newsletter-icon" aria-hidden="true">📰</div>
-                    <h3>Sample Newsletter</h3>
-                    <p>This is a placeholder newsletter demonstrating the format and content structure for future MSC Initiative newsletters.</p>
-                    <div class="newsletter-meta">
-                        <span class="meta-item"><strong>Format:</strong> PDF</span>
-                        <span class="meta-divider">|</span>
-                        <span class="meta-item"><strong>Type:</strong> Sample</span>
-                    </div>
-                    <a href="newsletters/Sample-Newsletter.pdf" class="download-link" target="_blank" rel="noopener noreferrer" aria-label="Download Sample Newsletter PDF file">
-                        <span class="download-icon" aria-hidden="true">📄</span>
-                        Download PDF
-                    </a>
-                </article>
-            </div>
-        </section>
+        <p>Stay up to date with the latest news, achievements, and updates from the MSC Initiative community. Our newsletters provide insights into ongoing projects, upcoming events, member spotlights, and developments in Mathematics, Science, and Computing.</p>
         
-        <!-- Newsletter Archive Section -->
-        <section class="content-section archive-section" aria-labelledby="archive-title">
-            <div class="archive-card">
-                <div class="archive-icon" aria-hidden="true">📚</div>
-                <h2 id="archive-title">Newsletter Archive</h2>
-                <p>As we continue to grow and develop, this section will contain our complete newsletter archive. Check back regularly for new updates and publications from the MSC Initiative team.</p>
-            </div>
-        </section>
+        <h3>Available Newsletters</h3>
+        <p>Download our newsletters to learn more about our activities and community progress:</p>
         
-        <!-- Subscribe Section -->
-        <section class="content-section subscribe-section" aria-labelledby="subscribe-title">
-            <div class="subscribe-card">
-                <div class="subscribe-icon" aria-hidden="true">📧</div>
-                <h2 id="subscribe-title">Subscribe to Updates</h2>
-                <p>To receive notifications about new newsletters and updates, please visit our <a href="/contact">contact page</a> to get in touch with our team.</p>
-                <a href="/contact" class="btn btn-primary" aria-label="Visit contact page to subscribe">Get in Touch</a>
-            </div>
-        </section>
-    </main>
-
-    <!-- Ultra-Modern Footer -->
-    <footer class="ultra-footer">
-        <div class="footer-container">
-            <div class="footer-brand">
-                <img src="/images/msc-logo.svg" alt="MSC Initiative" class="footer-logo">
-                <p class="footer-tagline">Empowering STEM Excellence</p>
-            </div>
-            <div class="footer-links">
-                <a href="/about">About</a>
-                <a href="/events">Events</a>
-                <a href="/newsletters">Newsletters</a>
-                <a href="/contact">Contact</a>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved.</p>
+        <div class="newsletter-list">
+            <div class="newsletter-item">
+                <h4>Sample Newsletter</h4>
+                <p>This is a placeholder newsletter demonstrating the format and content structure for future MSC Initiative newsletters.</p>
+                <p><strong>Format:</strong> PDF | <strong>Size:</strong> Sample</p>
+                <a href="newsletters/Sample-Newsletter.pdf" class="download-link" target="_blank" rel="noopener noreferrer">📄 Download PDF</a>
             </div>
         </div>
+        
+        <h3>Newsletter Archive</h3>
+        <p>As we continue to grow and develop, this section will contain our complete newsletter archive. Check back regularly for new updates and publications from the MSC Initiative team.</p>
+        
+        <h3>Subscribe to Updates</h3>
+        <p>To receive notifications about new newsletters and updates, please visit our <a href="/contact">contact page</a> to get in touch with our team.</p>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
     </footer>
 
     <!-- Animation libraries removed - unused in codebase, using native CSS transitions instead -->
-    
-    <!-- Bootstrap 5 JS Bundle -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous" defer></script>
     
     <!-- Custom JS -->
     <script src="/script.js" defer></script>
