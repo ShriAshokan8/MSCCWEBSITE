@@ -1,3 +1,6 @@
+// MSC Initiative - Core Functionality Script
+// Handles stopwatch, service worker, and legacy header effects
+
 document.addEventListener('DOMContentLoaded', () => {
     console.log("MSC Initiative website loaded successfully!");
     initializeBasicFeatures();
@@ -18,16 +21,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+/**
+ * Initialize basic features and log startup
+ */
 function initializeBasicFeatures() {
     console.log("Basic features initialized");
+    
+    // Set current year in footer if present
+    const currentYearElements = document.querySelectorAll('#currentYear');
+    currentYearElements.forEach(el => {
+        el.textContent = new Date().getFullYear();
+    });
 }
 
 /**
  * Initialize scroll-based header effect
- * Header becomes smaller and semi-transparent with blur on scroll
+ * Supports both old header and new ultra-nav styles
  */
 function initScrollHeaderEffect() {
-    const header = document.querySelector('header');
+    const header = document.querySelector('header, .ultra-nav');
     if (!header) return;
     
     let lastScrollTop = 0;
@@ -38,8 +50,15 @@ function initScrollHeaderEffect() {
         
         if (scrollTop > 50) {
             header.classList.add('scrolled');
+            // Add subtle shadow for ultra-nav on scroll
+            if (header.classList.contains('ultra-nav')) {
+                header.style.boxShadow = '0 4px 20px rgba(255, 160, 122, 0.15)';
+            }
         } else {
             header.classList.remove('scrolled');
+            if (header.classList.contains('ultra-nav')) {
+                header.style.boxShadow = '';
+            }
         }
         
         lastScrollTop = scrollTop;
