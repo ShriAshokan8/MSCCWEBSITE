@@ -1,7 +1,8 @@
 /* ===================================
    MODERNIZED CSS REDESIGN
-   Color Palette: White, Peach, Orange, Black
-   Enhanced Interactivity & Animations
+   Luxurious STEM Theme
+   Color Palette: White #FFFFFF, Soft Peach #FFCDB2, Vibrant Orange #FFA07A, Sleek Black #2F2F2F
+   Enhanced for Maths, Science & Computing
    =================================== */
 
 /* CSS Reset & Base Variables */
@@ -12,23 +13,25 @@
 }
 
 :root {
-    /* Modern Color Palette */
-    --primary-orange: #FF6B35;
-    --deep-orange: #E85A2E;
-    --vibrant-orange: #FF8C5A;
-    --soft-peach: #FFDAB9;
-    --light-peach: #FFE8D9;
-    --pale-peach: #FFF5ED;
+    /* Luxurious STEM Color Palette */
     --pure-white: #FFFFFF;
+    --soft-peach: #FFCDB2;
+    --vibrant-orange: #FFA07A;
+    --sleek-black: #2F2F2F;
+    
+    /* Derived shades for depth */
+    --light-peach: #FFE8DC;
+    --pale-peach: #FFF5F0;
+    --deep-orange: #FF8C5A;
     --off-white: #FAFAFA;
     --rich-black: #1A1A1A;
-    --soft-black: #2D2D2D;
     --text-gray: #333333;
     
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, #FF6B35 0%, #FF8C5A 100%);
-    --gradient-warm: linear-gradient(135deg, #FFE8D9 0%, #FFDAB9 100%);
-    --gradient-glow: linear-gradient(145deg, rgba(255, 107, 53, 0.1), rgba(255, 218, 185, 0.2));
+    --gradient-primary: linear-gradient(135deg, var(--vibrant-orange) 0%, var(--soft-peach) 100%);
+    --gradient-warm: linear-gradient(135deg, var(--light-peach) 0%, var(--soft-peach) 100%);
+    --gradient-glow: linear-gradient(145deg, rgba(255, 160, 122, 0.1), rgba(255, 205, 178, 0.2));
+    --gradient-hero: linear-gradient(135deg, var(--pure-white) 0%, var(--light-peach) 50%, var(--soft-peach) 100%);
     
     /* Spacing System */
     --space-xs: 0.5rem;
@@ -39,11 +42,11 @@
     --space-xxl: 4rem;
     
     /* Shadows with Depth */
-    --shadow-sm: 0 2px 8px rgba(255, 107, 53, 0.1);
-    --shadow-md: 0 4px 16px rgba(255, 107, 53, 0.15);
-    --shadow-lg: 0 8px 24px rgba(255, 107, 53, 0.2);
-    --shadow-xl: 0 12px 32px rgba(255, 107, 53, 0.25);
-    --shadow-hover: 0 16px 40px rgba(255, 107, 53, 0.3);
+    --shadow-sm: 0 2px 8px rgba(255, 160, 122, 0.1);
+    --shadow-md: 0 4px 16px rgba(255, 160, 122, 0.15);
+    --shadow-lg: 0 8px 24px rgba(255, 160, 122, 0.2);
+    --shadow-xl: 0 12px 32px rgba(255, 160, 122, 0.25);
+    --shadow-hover: 0 16px 40px rgba(255, 160, 122, 0.3);
     
     /* Transitions */
     --transition-fast: 0.2s ease;
@@ -55,40 +58,44 @@
 body {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     line-height: 1.7;
-    background: linear-gradient(to bottom, var(--pure-white) 0%, var(--pale-peach) 100%);
+    background: var(--gradient-hero);
     color: var(--text-gray);
     font-size: clamp(1rem, 0.95rem + 0.25vw, 1.125rem);
     overflow-x: hidden;
+    font-weight: 400;
 }
 
 h1 {
-    font-size: clamp(2rem, 2rem + 2vw, 3rem);
+    font-size: clamp(2rem, 2rem + 2vw, 3.5rem);
     font-weight: 800;
     line-height: 1.2;
     color: var(--rich-black);
-    background: linear-gradient(135deg, var(--primary-orange), var(--deep-orange));
+    background: linear-gradient(135deg, var(--vibrant-orange), var(--deep-orange));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: var(--space-lg);
+    letter-spacing: -0.02em;
 }
 
 h2 {
-    font-size: clamp(1.5rem, 1.5rem + 1vw, 2.25rem);
+    font-size: clamp(1.5rem, 1.5rem + 1vw, 2.5rem);
     font-weight: 700;
     line-height: 1.3;
-    color: var(--primary-orange);
+    color: var(--vibrant-orange);
     margin-top: var(--space-xl);
     margin-bottom: var(--space-md);
+    letter-spacing: -0.01em;
 }
 
 h3 {
-    font-size: clamp(1.25rem, 1.2rem + 0.5vw, 1.75rem);
+    font-size: clamp(1.25rem, 1.2rem + 0.5vw, 1.875rem);
     font-weight: 600;
     line-height: 1.4;
-    color: var(--soft-black);
+    color: var(--sleek-black);
     margin-top: var(--space-lg);
     margin-bottom: var(--space-md);
+    letter-spacing: -0.01em;
 }
 
 p {
@@ -328,10 +335,10 @@ main#bracket-content {
 }
 
 main h2 {
-    color: var(--primary-orange);
+    color: var(--vibrant-orange);
     margin-top: var(--space-xl);
     margin-bottom: var(--space-md);
-    border-bottom: 3px solid var(--primary-orange);
+    border-bottom: 3px solid var(--vibrant-orange);
     padding-bottom: var(--space-sm);
     text-shadow: 0 2px 4px rgba(255, 107, 53, 0.1);
 }
@@ -341,7 +348,7 @@ main h2:first-child {
 }
 
 main h3 {
-    color: var(--primary-orange);
+    color: var(--vibrant-orange);
     margin-top: var(--space-lg);
     margin-bottom: var(--space-md);
     cursor: pointer;
@@ -374,7 +381,7 @@ main ul li {
     background: var(--gradient-warm);
     margin-block: var(--space-sm);
     padding: var(--space-md);
-    border-left: 4px solid var(--primary-orange);
+    border-left: 4px solid var(--vibrant-orange);
     border-radius: 8px;
     font-weight: 600;
     color: var(--text-gray);
@@ -424,7 +431,7 @@ button:hover::before, .btn:hover::before {
 }
 
 button:hover, .btn:hover {
-    background: linear-gradient(135deg, var(--deep-orange), var(--primary-orange));
+    background: linear-gradient(135deg, var(--deep-orange), var(--vibrant-orange));
     transform: translateY(-4px) scale(1.05);
     box-shadow: var(--shadow-hover);
 }
@@ -505,7 +512,7 @@ button:active, .btn:active {
 }
 
 .newsletter-item h4 {
-    color: var(--primary-orange);
+    color: var(--vibrant-orange);
     margin-top: 0;
     margin-bottom: var(--space-sm);
     font-weight: 700;
@@ -547,7 +554,7 @@ button:active, .btn:active {
 }
 
 .download-link:hover {
-    background: linear-gradient(135deg, var(--deep-orange), var(--primary-orange));
+    background: linear-gradient(135deg, var(--deep-orange), var(--vibrant-orange));
     transform: translateY(-3px);
     box-shadow: var(--shadow-md);
     text-decoration: none;
@@ -584,7 +591,7 @@ footer p span {
    LINK STYLES
    =================================== */
 a {
-    color: var(--primary-orange);
+    color: var(--vibrant-orange);
     text-decoration: none;
     transition: all var(--transition-smooth);
     position: relative;
@@ -671,7 +678,7 @@ header.scrolled + .msc-stopwatch-wrap {
 }
 
 .msc-stopwatch-heading {
-    color: var(--primary-orange);
+    color: var(--vibrant-orange);
     font-weight: 800;
     text-align: center;
     font-size: 1.2rem;
@@ -690,7 +697,7 @@ header.scrolled + .msc-stopwatch-wrap {
 
 .msc-stopwatch-grid .unit {
     background: var(--gradient-warm);
-    border: 2px solid var(--primary-orange);
+    border: 2px solid var(--vibrant-orange);
     border-radius: 12px;
     padding: var(--space-sm) var(--space-md);
     min-width: 95px;
@@ -726,7 +733,7 @@ header.scrolled + .msc-stopwatch-wrap {
     font-variant-numeric: tabular-nums;
     font-size: 2rem;
     font-weight: 900;
-    color: var(--primary-orange);
+    color: var(--vibrant-orange);
     line-height: 1;
     text-shadow: 0 2px 4px rgba(255, 107, 53, 0.15);
 }
@@ -784,7 +791,7 @@ header.scrolled + .msc-stopwatch-wrap {
 .contact-form input:focus,
 .contact-form textarea:focus {
     outline: none;
-    border-color: var(--primary-orange);
+    border-color: var(--vibrant-orange);
     box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.15);
     transform: translateY(-2px);
 }
@@ -798,7 +805,7 @@ header.scrolled + .msc-stopwatch-wrap {
    FOCUS STYLES FOR ACCESSIBILITY
    =================================== */
 *:focus {
-    outline: 3px solid var(--primary-orange);
+    outline: 3px solid var(--vibrant-orange);
     outline-offset: 3px;
 }
 
@@ -807,7 +814,7 @@ header.scrolled + .msc-stopwatch-wrap {
 }
 
 *:focus-visible {
-    outline: 3px solid var(--primary-orange);
+    outline: 3px solid var(--vibrant-orange);
     outline-offset: 3px;
 }
 
@@ -995,6 +1002,170 @@ header.scrolled + .msc-stopwatch-wrap {
     border: none;
 }
 
+/* ===================================
+   HERO SECTION - LUXURIOUS STEM THEME
+   =================================== */
+.hero-section {
+    text-align: center;
+    padding: var(--space-xxl) 0;
+    background: var(--gradient-hero);
+    border-radius: 20px;
+    margin-bottom: var(--space-xl);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(255, 205, 178, 0.3) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(255, 160, 122, 0.2) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 var(--space-lg);
+}
+
+.hero-subtitle {
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.3rem);
+    font-weight: 500;
+    color: var(--text-gray);
+    margin-bottom: var(--space-md);
+    line-height: 1.6;
+}
+
+.hero-description {
+    font-size: clamp(1rem, 0.95rem + 0.25vw, 1.15rem);
+    color: var(--sleek-black);
+    margin-bottom: var(--space-xl);
+    line-height: 1.7;
+}
+
+/* ===================================
+   DISCIPLINES GRID - STEM CARDS
+   =================================== */
+.disciplines-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-lg);
+    margin-top: var(--space-lg);
+}
+
+.discipline-card {
+    background: linear-gradient(145deg, var(--pure-white), var(--light-peach));
+    border: 2px solid var(--soft-peach);
+    border-radius: 20px;
+    padding: var(--space-xl);
+    text-align: center;
+    transition: all var(--transition-smooth);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.discipline-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--gradient-primary);
+    border-radius: 20px 20px 0 0;
+}
+
+.discipline-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: var(--shadow-hover);
+    border-color: var(--vibrant-orange);
+}
+
+.discipline-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-md);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.discipline-card h3 {
+    color: var(--vibrant-orange);
+    margin-top: 0;
+    margin-bottom: var(--space-md);
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.discipline-card p {
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+/* ===================================
+   MISSION SECTION
+   =================================== */
+.mission-section {
+    background: linear-gradient(135deg, var(--light-peach) 0%, var(--pure-white) 100%);
+    border: 2px solid var(--soft-peach);
+    border-radius: 20px;
+    padding: var(--space-xl);
+    margin-top: var(--space-xl);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+}
+
+.mission-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--gradient-primary);
+    border-radius: 20px 20px 0 0;
+}
+
+.mission-section h2 {
+    text-align: center;
+    margin-top: 0;
+}
+
+.mission-statement {
+    font-size: clamp(1.1rem, 1rem + 0.5vw, 1.3rem);
+    font-weight: 600;
+    text-align: center;
+    color: var(--sleek-black);
+    line-height: 1.7;
+    margin-bottom: var(--space-lg);
+}
+
+.mission-timeline {
+    text-align: center;
+    color: var(--text-gray);
+    line-height: 1.7;
+}
+
+/* ===================================
+   CONTENT SECTION WRAPPER
+   =================================== */
+.content-section {
+    margin-bottom: var(--space-xl);
+}
+
 
 /* Tournament Bracket Styles - Professisonal Login Menu */
 .login-container {
@@ -1027,7 +1198,7 @@ header.scrolled + .msc-stopwatch-wrap {
     left: 0;
     right: 0;
     height: 4px;
-    background: linear-gradient(90deg, var(--primary-orange), var(--soft-peach), var(--primary-orange));
+    background: linear-gradient(90deg, var(--vibrant-orange), var(--soft-peach), var(--vibrant-orange));
 }
 
 .login-header {
@@ -1040,7 +1211,7 @@ header.scrolled + .msc-stopwatch-wrap {
     width: 80px;
     height: 80px;
     margin: 0 auto 1rem;
-    background: linear-gradient(135deg, var(--primary-orange), var(--deep-orange));
+    background: linear-gradient(135deg, var(--vibrant-orange), var(--deep-orange));
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -1050,7 +1221,7 @@ header.scrolled + .msc-stopwatch-wrap {
 }
 
 .login-header h2 {
-    color: var(--primary-orange);
+    color: var(--vibrant-orange);
     margin: 0 0 0.5rem;
     font-size: 1.8rem;
     font-weight: 700;
@@ -1093,13 +1264,13 @@ header.scrolled + .msc-stopwatch-wrap {
 
 .input-group input:focus {
     outline: none;
-    border-color: var(--primary-orange);
+    border-color: var(--vibrant-orange);
     box-shadow: 0 0 0 4px rgba(255, 107, 53, 0.1);
     transform: translateY(-1px);
 }
 
 .input-group input:focus + label {
-    color: var(--primary-orange);
+    color: var(--vibrant-orange);
     transform: translateY(-2px);
 }
 
@@ -1121,7 +1292,7 @@ header.scrolled + .msc-stopwatch-wrap {
     left: 1rem;
     top: 50%;
     transform: translateY(-50%);
-    color: var(--primary-orange);
+    color: var(--vibrant-orange);
     z-index: 1;
     opacity: 0.7;
     transition: all 0.3s ease;
@@ -1129,11 +1300,11 @@ header.scrolled + .msc-stopwatch-wrap {
 
 .input-group input:focus ~ .input-icon {
     opacity: 1;
-    color: var(--primary-orange);
+    color: var(--vibrant-orange);
 }
 
 .login-btn {
-    background: linear-gradient(135deg, var(--primary-orange), var(--deep-orange));
+    background: linear-gradient(135deg, var(--vibrant-orange), var(--deep-orange));
     color: white;
     border: none;
     padding: 1rem 2rem;
@@ -1168,7 +1339,7 @@ header.scrolled + .msc-stopwatch-wrap {
 }
 
 .login-btn:hover {
-    background: linear-gradient(135deg, var(--deep-orange), var(--primary-orange));
+    background: linear-gradient(135deg, var(--deep-orange), var(--vibrant-orange));
     transform: translateY(-2px);
     box-shadow: 0 6px 25px rgba(255, 107, 53, 0.4);
 }
@@ -1192,7 +1363,7 @@ header.scrolled + .msc-stopwatch-wrap {
 
 .error-alert svg {
     flex-shrink: 0;
-    color: var(--primary-orange);
+    color: var(--vibrant-orange);
 }
 
 .login-footer {
@@ -1239,14 +1410,14 @@ header.scrolled + .msc-stopwatch-wrap {
 
 .round-title {
     text-align: center;
-    color: var(--primary-orange);
+    color: var(--vibrant-orange);
     margin-bottom: 2rem;
     font-size: 1.5rem;
     font-weight: bold;
     background-color: var(--pure-white);
     padding: 1rem;
     border-radius: 8px;
-    border: 2px solid var(--primary-orange);
+    border: 2px solid var(--vibrant-orange);
     box-shadow: 0 2px 8px rgba(255, 107, 53, 0.2);
 }
 
@@ -1273,7 +1444,7 @@ header.scrolled + .msc-stopwatch-wrap {
 
 .match-box:hover {
     background-color: #FFA500 !important; /* Orange hover effect */
-    border-color: #FF6B35;
+    border-color: #FFA07A;
     transform: translateY(-3px) scale(1.02);
     box-shadow: 0 6px 20px rgba(255, 165, 0, 0.3);
     color: white;
@@ -1304,7 +1475,7 @@ header.scrolled + .msc-stopwatch-wrap {
 .match-note {
     margin-top: 0.5rem;
     font-size: 0.85rem;
-    color: var(--primary-orange);
+    color: var(--vibrant-orange);
     font-style: italic;
     min-height: 20px;
 }
@@ -1316,12 +1487,12 @@ header.scrolled + .msc-stopwatch-wrap {
 
 .championship-match {
     background: linear-gradient(145deg, #FFD700 0%, #FFA500 100%);
-    border: 3px solid var(--primary-orange);
+    border: 3px solid var(--vibrant-orange);
     box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
 }
 
 .championship-match:hover {
-    background: linear-gradient(145deg, #FFA500 0%, #FF6B35 100%);
+    background: linear-gradient(145deg, #FFA500 0%, #FFA07A 100%);
     transform: translateY(-5px) scale(1.05);
 }
 
@@ -1334,24 +1505,24 @@ header.scrolled + .msc-stopwatch-wrap {
 /* Wildcard specific styles */
 .wildcard-box {
     background: linear-gradient(145deg, var(--soft-peach) 0%, #FFE8D9 100%);
-    border: 2px solid var(--primary-orange);
+    border: 2px solid var(--vibrant-orange);
     margin-top: 1rem;
 }
 
 .wildcard-box:hover {
-    background: linear-gradient(145deg, #FFE8D9 0%, var(--primary-orange) 100%);
-    border-color: var(--primary-orange);
+    background: linear-gradient(145deg, #FFE8D9 0%, var(--vibrant-orange) 100%);
+    border-color: var(--vibrant-orange);
 }
 
 .wildcard-team {
     background-color: rgba(255, 213, 180, 0.3); /* Peach with transparency */
-    border-color: var(--primary-orange);
+    border-color: var(--vibrant-orange);
     text-align: center;
     font-style: italic;
 }
 
 .wildcard-note {
-    color: var(--primary-orange);
+    color: var(--vibrant-orange);
     font-weight: bold;
     text-align: center;
 }
@@ -1359,13 +1530,13 @@ header.scrolled + .msc-stopwatch-wrap {
 /* Final Faceoff (3-way challenge) specific styles */
 .final-faceoff {
     min-height: 180px;
-    background: linear-gradient(145deg, #FFD700 0%, #FF6B35 20%, #FFA500 100%);
-    border: 3px solid var(--primary-orange);
+    background: linear-gradient(145deg, #FFD700 0%, #FFA07A 20%, #FFA500 100%);
+    border: 3px solid var(--vibrant-orange);
     box-shadow: 0 6px 30px rgba(255, 215, 0, 0.5);
 }
 
 .final-faceoff:hover {
-    background: linear-gradient(145deg, #FFA500 0%, #FF6B35 50%, #FFD700 100%);
+    background: linear-gradient(145deg, #FFA500 0%, #FFA07A 50%, #FFD700 100%);
     transform: translateY(-8px) scale(1.08);
     box-shadow: 0 10px 40px rgba(255, 165, 0, 0.6);
 }
@@ -1412,7 +1583,7 @@ header.scrolled + .msc-stopwatch-wrap {
     content: '';
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg, var(--primary-orange) 0%, var(--soft-peach) 100%);
+    background: linear-gradient(90deg, var(--vibrant-orange) 0%, var(--soft-peach) 100%);
     position: absolute;
 }
 
@@ -1427,7 +1598,7 @@ header.scrolled + .msc-stopwatch-wrap {
 }
 
 .bracket-legend h4 {
-    color: var(--primary-orange);
+    color: var(--vibrant-orange);
     margin-bottom: 1rem;
     border-bottom: 1px solid var(--light-peach);
     padding-bottom: 0.5rem;
@@ -1665,7 +1836,7 @@ header.scrolled + .msc-stopwatch-wrap {
 }
 
 .overall-winner-title {
-    background: linear-gradient(135deg, #FFA500 0%, #FF6B35 100%);
+    background: linear-gradient(135deg, #FFA500 0%, #FFA07A 100%);
     color: white;
     font-size: 1.8rem;
     font-weight: bold;
@@ -1691,7 +1862,7 @@ header.scrolled + .msc-stopwatch-wrap {
 .overall-winner-box:hover {
     transform: translateY(-5px) scale(1.03);
     box-shadow: 0 12px 35px rgba(255, 165, 0, 0.4);
-    background: linear-gradient(135deg, #FFA500 0%, #FF6B35 100%);
+    background: linear-gradient(135deg, #FFA500 0%, #FFA07A 100%);
 }
 
 .overall-winner-box:hover .overall-winner-content {
@@ -1795,7 +1966,7 @@ header.scrolled + .msc-stopwatch-wrap {
 }
 
 .btn-primary {
-    background-color: var(--primary-orange);
+    background-color: var(--vibrant-orange);
     color: white;
 }
 
@@ -1810,7 +1981,7 @@ header.scrolled + .msc-stopwatch-wrap {
 }
 
 .btn-secondary:hover {
-    background-color: var(--primary-orange);
+    background-color: var(--vibrant-orange);
     transform: translateY(-2px);
 }
 
@@ -1828,7 +1999,7 @@ header.scrolled + .msc-stopwatch-wrap {
 
 /* Focus styles for accessibility */
 *:focus {
-    outline: 3px solid var(--primary-orange);
+    outline: 3px solid var(--vibrant-orange);
     outline-offset: 2px;
 }
 
@@ -1838,7 +2009,7 @@ header.scrolled + .msc-stopwatch-wrap {
 }
 
 *:focus-visible {
-    outline: 3px solid var(--primary-orange);
+    outline: 3px solid var(--vibrant-orange);
     outline-offset: 2px;
 }
 
@@ -1877,7 +2048,7 @@ header.scrolled + .msc-stopwatch-wrap {
 
 .contact-form input:focus,
 .contact-form textarea:focus {
-    border-color: var(--primary-orange);
+    border-color: var(--vibrant-orange);
     box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.1);
 }
 
