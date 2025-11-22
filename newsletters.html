@@ -7,6 +7,9 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/style.css">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
     
     <!-- Animation libraries removed - unused in codebase, using native CSS transitions instead -->
     
@@ -97,7 +100,7 @@
     </div>
 
     <!-- Main Content -->
-    <main id="main">
+    <main class="ultra-main" id="main">
         <!-- Hero Section -->
         <section class="hero-section" aria-labelledby="newsletters-hero-title">
             <div class="hero-content">
@@ -149,12 +152,29 @@
         </section>
     </main>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
+    <!-- Ultra-Modern Footer -->
+    <footer class="ultra-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="/images/msc-logo.svg" alt="MSC Initiative" class="footer-logo">
+                <p class="footer-tagline">Empowering STEM Excellence</p>
+            </div>
+            <div class="footer-links">
+                <a href="/about">About</a>
+                <a href="/events">Events</a>
+                <a href="/newsletters">Newsletters</a>
+                <a href="/contact">Contact</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
 
     <!-- Animation libraries removed - unused in codebase, using native CSS transitions instead -->
+    
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous" defer></script>
     
     <!-- Custom JS -->
     <script src="/script.js" defer></script>

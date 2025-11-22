@@ -7,6 +7,9 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/style.css">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    
     
     <!-- Animation libraries removed - unused in codebase, using native CSS transitions instead -->
     
@@ -73,49 +76,61 @@
     </script>
 </head>
 <body>
-    <!-- Header with Navigation -->
-    <header>
-        <nav class="nav-left desktop-only">
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about">About</a></li>
-                <li><a href="/events">Events</a></li>
+    <!-- Ultra-Modern Navigation -->
+    <nav class="ultra-nav" role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+            <!-- Logo Section -->
+            <div class="nav-brand">
+                <a href="/" class="logo-link" aria-label="MSC Initiative Home">
+                    <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="nav-logo">
+                </a>
+            </div>
+            
+            <!-- Desktop Navigation Links -->
+            <ul class="nav-menu desktop-menu" role="menubar">
+                <li role="none"><a href="/" role="menuitem" class="nav-item">Home</a></li>
+                <li role="none"><a href="/about" role="menuitem" class="nav-item">About</a></li>
+                <li role="none"><a href="/events" role="menuitem" class="nav-item">Events</a></li>
+                <li role="none"><a href="/newsletters" role="menuitem" class="nav-item">Newsletters</a></li>
+                <li role="none"><a href="/contact" role="menuitem" class="nav-item active">Contact</a></li>
             </ul>
-        </nav>
-        
-        <div class="header-center">
-            <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="logo" width="200" height="120">
+            
+            <!-- CTA Button -->
+            <div class="nav-cta desktop-only">
+                <a href="/brackets" class="cta-btn">
+                    <span>View Brackets</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="m9 18 6-6-6-6"/>
+                    </svg>
+                </a>
+            </div>
+            
+            <!-- Mobile Menu Toggle -->
+            <button class="mobile-menu-toggle" aria-label="Toggle mobile menu" aria-expanded="false">
+                <span class="menu-icon">
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                    <span class="menu-line"></span>
+                </span>
+            </button>
         </div>
-        
-        <nav class="nav-right desktop-only">
-            <ul class="nav-links">
-                <li><a href="/newsletters">Newsletters</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/brackets">Brackets</a></li>
+    </nav>
+    
+    <!-- Mobile Navigation Overlay -->
+    <div class="mobile-nav-overlay" aria-hidden="true">
+        <div class="mobile-nav-content">
+            <ul class="mobile-nav-menu" role="menu">
+                <li role="none"><a href="/" role="menuitem" class="mobile-nav-item">Home</a></li>
+                <li role="none"><a href="/about" role="menuitem" class="mobile-nav-item">About</a></li>
+                <li role="none"><a href="/events" role="menuitem" class="mobile-nav-item">Events</a></li>
+                <li role="none"><a href="/newsletters" role="menuitem" class="mobile-nav-item">Newsletters</a></li>
+                <li role="none"><a href="/contact" role="menuitem" class="mobile-nav-item">Contact</a></li>
+                <li role="none"><a href="/brackets" role="menuitem" class="mobile-nav-item mobile-nav-cta">View Brackets</a></li>
             </ul>
-        </nav>
-        
-        <!-- Hamburger Menu -->
-        <div class="hamburger" aria-label="Toggle mobile navigation" role="button" tabindex="0" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
         </div>
-    </header>
-
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav">
-        <ul class="nav-links">
-            <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
-            <li><a href="/events">Events</a></li>
-            <li><a href="/newsletters">Newsletters</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/brackets">Brackets</a></li>
-        </ul>
     </div>
     
-    <main id="main">
+    <main class="ultra-main" id="main">
         <!-- Hero Section -->
         <section class="hero-section" aria-labelledby="contact-hero-title">
             <div class="hero-content">
@@ -165,11 +180,29 @@
         </section>
     </main>
 
-    <footer>
-        <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
+    <!-- Ultra-Modern Footer -->
+    <footer class="ultra-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <img src="/images/msc-logo.svg" alt="MSC Initiative" class="footer-logo">
+                <p class="footer-tagline">Empowering STEM Excellence</p>
+            </div>
+            <div class="footer-links">
+                <a href="/about">About</a>
+                <a href="/events">Events</a>
+                <a href="/newsletters">Newsletters</a>
+                <a href="/contact">Contact</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved.</p>
+            </div>
+        </div>
     </footer>
     
     <!-- Animation libraries removed - unused in codebase, using native CSS transitions instead -->
+    
+    <!-- Bootstrap 5 JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous" defer></script>
     
     <!-- Custom JS -->
     <script src="/script.js" defer></script>

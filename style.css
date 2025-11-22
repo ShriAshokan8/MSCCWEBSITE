@@ -353,7 +353,21 @@ p {
     display: none !important;
 }
 
-/* Main Content - Adjusted for repositioned stopwatch */
+/* Main Content - Adjusted for Fixed Navigation */
+.ultra-main {
+    padding-top: 120px;
+    min-height: calc(100vh - 200px);
+    padding-bottom: var(--space-xxxl);
+}
+
+/* Hero sections within main */
+.ultra-main .hero-section,
+.ultra-main .bento-section,
+.ultra-main .split-section {
+    padding-top: 0;
+}
+
+/* Old main styles kept for compatibility */
 body.has-stopwatch main {
     margin-top: 320px;
 }
