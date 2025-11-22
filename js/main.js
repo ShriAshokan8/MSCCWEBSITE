@@ -1,18 +1,15 @@
-// MSC Initiative Website JavaScript
+// MSC Initiative Website JavaScript - Ultra Modern Edition
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize all functions
+    initializeUltraNavigation();
     initializeAnimations();
-    initializeNavigation();
-    initializeHamburgerMenu();
-    initializeMottoTransition();
     initializeScrollEffects();
     initializeLoadingAnimations();
     setCurrentYear();
     
     console.log('MSC Initiative website loaded successfully!');
 });
-
 
 // Set current year in footer
 function setCurrentYear() {
@@ -22,62 +19,76 @@ function setCurrentYear() {
     }
 }
 
-// Hamburger menu functionality
-function initializeHamburgerMenu() {
-    const hamburger = document.querySelector('.hamburger');
-    const mobileNav = document.querySelector('.mobile-nav');
+// Ultra-modern navigation functionality
+function initializeUltraNavigation() {
+    const mobileToggle = document.querySelector('.mobile-menu-toggle');
+    const mobileOverlay = document.querySelector('.mobile-nav-overlay');
+    const nav = document.querySelector('.ultra-nav');
     
-    if (hamburger && mobileNav) {
-        // Click event
-        hamburger.addEventListener('click', function() {
-            toggleMobileNav();
+    if (mobileToggle && mobileOverlay) {
+        // Toggle mobile menu
+        mobileToggle.addEventListener('click', function() {
+            toggleMobileMenu();
         });
         
-        // Keyboard event for accessibility
-        hamburger.addEventListener('keydown', function(event) {
-            if (event.key === 'Enter' || event.key === ' ') {
-                event.preventDefault();
-                toggleMobileNav();
+        // Close on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape' && mobileOverlay.getAttribute('aria-hidden') === 'false') {
+                closeMobileMenu();
             }
         });
         
-        function toggleMobileNav() {
-            hamburger.classList.toggle('active');
-            mobileNav.classList.toggle('active');
-            
-            // Update aria-expanded attribute
-            const isExpanded = hamburger.classList.contains('active');
-            hamburger.setAttribute('aria-expanded', isExpanded);
-        }
+        // Close when clicking outside
+        mobileOverlay.addEventListener('click', function(event) {
+            if (event.target === mobileOverlay) {
+                closeMobileMenu();
+            }
+        });
         
-        // Close mobile menu when clicking on a link
-        const mobileNavLinks = mobileNav.querySelectorAll('a');
-        mobileNavLinks.forEach(link => {
+        // Close when clicking a link
+        const mobileLinks = mobileOverlay.querySelectorAll('.mobile-nav-item');
+        mobileLinks.forEach(link => {
             link.addEventListener('click', function() {
-                hamburger.classList.remove('active');
-                mobileNav.classList.remove('active');
-                hamburger.setAttribute('aria-expanded', false);
+                closeMobileMenu();
             });
         });
         
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', function(event) {
-            if (!hamburger.contains(event.target) && !mobileNav.contains(event.target)) {
-                hamburger.classList.remove('active');
-                mobileNav.classList.remove('active');
-                hamburger.setAttribute('aria-expanded', false);
+        function toggleMobileMenu() {
+            const isHidden = mobileOverlay.getAttribute('aria-hidden') === 'true';
+            if (isHidden) {
+                openMobileMenu();
+            } else {
+                closeMobileMenu();
             }
-        });
+        }
         
-        // Close mobile menu on Escape key
-        document.addEventListener('keydown', function(event) {
-            if (event.key === 'Escape' && hamburger.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                mobileNav.classList.remove('active');
-                hamburger.setAttribute('aria-expanded', false);
-                hamburger.focus(); // Return focus to hamburger
+        function openMobileMenu() {
+            mobileOverlay.setAttribute('aria-hidden', 'false');
+            mobileToggle.setAttribute('aria-expanded', 'true');
+            document.body.style.overflow = 'hidden';
+        }
+        
+        function closeMobileMenu() {
+            mobileOverlay.setAttribute('aria-hidden', 'true');
+            mobileToggle.setAttribute('aria-expanded', 'false');
+            document.body.style.overflow = '';
+        }
+    }
+    
+    // Scroll effect for navigation
+    if (nav) {
+        let lastScroll = 0;
+        window.addEventListener('scroll', function() {
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.style.boxShadow = '0 4px 20px rgba(255, 160, 122, 0.15)';
+            } else {
+                nav.style.boxShadow = '';
             }
-        });
+            
+            lastScroll = currentScroll;
+        }, { passive: true });
     }
 }
 
