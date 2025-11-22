@@ -98,15 +98,18 @@
     </div>
 
     <main id="main">
-        <div style="text-align: center; padding: 4rem 2rem;">
-            <h2>404 - Page Not Found</h2>
-            <p style="font-size: 1.2rem; margin: 2rem 0;">Oops! The page you're looking for doesn't exist.</p>
-            <p>It might have been moved, deleted, or you might have typed the wrong address.</p>
-            <div class="cta-buttons" style="margin-top: 3rem;">
-                <a href="/" class="btn btn-primary">Go back to Home</a>
-                <a href="/contact" class="btn btn-secondary">Contact Us</a>
+        <section class="utility-section" aria-labelledby="error-title">
+            <div class="utility-card">
+                <div class="utility-icon" aria-hidden="true">🔍</div>
+                <h1 id="error-title">404 - Page Not Found</h1>
+                <p class="utility-message">Oops! The page you're looking for doesn't exist.</p>
+                <p class="utility-description">It might have been moved, deleted, or you might have typed the wrong address.</p>
+                <div class="cta-buttons">
+                    <a href="/" class="btn btn-primary" aria-label="Return to homepage">Go back to Home</a>
+                    <a href="/contact" class="btn btn-secondary" aria-label="Contact us for help">Contact Us</a>
+                </div>
             </div>
-        </div>
+        </section>
     </main>
 
     <footer>

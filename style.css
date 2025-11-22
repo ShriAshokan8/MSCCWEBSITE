@@ -1542,6 +1542,247 @@ header.scrolled + .msc-stopwatch-wrap {
     font-size: 1.1rem;
 }
 
+/* ===================================
+   NEWSLETTERS PAGE
+   =================================== */
+.newsletter-list {
+    display: grid;
+    gap: var(--space-lg);
+}
+
+.newsletter-item {
+    background: linear-gradient(145deg, var(--pure-white), var(--light-peach));
+    border: 2px solid var(--soft-peach);
+    border-radius: 20px;
+    padding: var(--space-xl);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-smooth);
+    position: relative;
+}
+
+.newsletter-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--gradient-primary);
+    border-radius: 20px 20px 0 0;
+}
+
+.newsletter-item:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-hover);
+}
+
+.newsletter-icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-md);
+}
+
+.newsletter-item h3 {
+    color: var(--vibrant-orange);
+    margin-top: 0;
+    margin-bottom: var(--space-md);
+    font-size: 1.5rem;
+    background: none;
+    border: none;
+    padding: 0;
+    box-shadow: none;
+}
+
+.newsletter-item h3:hover {
+    transform: none;
+    background: none;
+}
+
+.newsletter-item p {
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+}
+
+.newsletter-meta {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-lg);
+    font-size: 0.95rem;
+    color: var(--text-gray);
+}
+
+.meta-item {
+    display: inline-block;
+}
+
+.meta-divider {
+    color: var(--soft-peach);
+}
+
+.download-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--space-sm);
+    background: var(--gradient-primary);
+    color: var(--pure-white) !important;
+    padding: var(--space-md) var(--space-xl);
+    text-decoration: none;
+    border-radius: 12px;
+    font-weight: 700;
+    transition: all var(--transition-smooth);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    overflow: hidden;
+}
+
+.download-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
+.download-link:hover::before {
+    left: 100%;
+}
+
+.download-link:hover {
+    background: linear-gradient(135deg, var(--deep-orange), var(--vibrant-orange));
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+    text-decoration: none;
+}
+
+.download-icon {
+    font-size: 1.2rem;
+}
+
+.archive-section,
+.subscribe-section {
+    display: flex;
+    justify-content: center;
+}
+
+.archive-card,
+.subscribe-card {
+    background: linear-gradient(145deg, var(--pure-white), var(--light-peach));
+    border: 2px solid var(--soft-peach);
+    border-radius: 20px;
+    padding: var(--space-xl);
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    max-width: 600px;
+    width: 100%;
+}
+
+.archive-card::before,
+.subscribe-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--gradient-primary);
+    border-radius: 20px 20px 0 0;
+}
+
+.archive-icon,
+.subscribe-icon {
+    font-size: 4rem;
+    margin-bottom: var(--space-md);
+    animation: float 3s ease-in-out infinite;
+}
+
+.archive-card h2,
+.subscribe-card h2 {
+    color: var(--vibrant-orange);
+    margin-top: 0;
+    margin-bottom: var(--space-md);
+}
+
+.archive-card p,
+.subscribe-card p {
+    color: var(--text-gray);
+    line-height: 1.7;
+    margin-bottom: var(--space-md);
+}
+
+.subscribe-card .btn {
+    margin-top: var(--space-md);
+}
+
+/* ===================================
+   UTILITY PAGES (404, ERROR, THANKS)
+   =================================== */
+.utility-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 500px;
+    padding: var(--space-xl) 0;
+}
+
+.utility-card {
+    background: linear-gradient(145deg, var(--pure-white), var(--light-peach));
+    border: 2px solid var(--soft-peach);
+    border-radius: 20px;
+    padding: var(--space-xxl);
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    max-width: 700px;
+    width: 100%;
+}
+
+.utility-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: var(--gradient-primary);
+    border-radius: 20px 20px 0 0;
+}
+
+.utility-icon {
+    font-size: 5rem;
+    margin-bottom: var(--space-lg);
+    animation: float 3s ease-in-out infinite;
+}
+
+.utility-card h1 {
+    color: var(--vibrant-orange);
+    margin-top: 0;
+    margin-bottom: var(--space-md);
+}
+
+.utility-message {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--sleek-black);
+    margin-bottom: var(--space-md);
+    line-height: 1.6;
+}
+
+.utility-description {
+    font-size: 1rem;
+    color: var(--text-gray);
+    margin-bottom: var(--space-xl);
+    line-height: 1.7;
+}
+
+.utility-card .cta-buttons {
+    margin-top: var(--space-xl);
+}
+
 
 /* Tournament Bracket Styles - Professisonal Login Menu */
 .login-container {
