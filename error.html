@@ -14,7 +14,7 @@
     
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#FF6B35">
+    <meta name="theme-color" content="#FFA07A">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     
     <!-- Preconnects and DNS prefetch for performance -->
@@ -81,10 +81,19 @@
         </ul>
     </div>
 
-    <main>
-        <h2>An Error Occurred</h2>
-        <p>Something went wrong. Please try again later.</p>
-        <p><a href="/" style="background-color: var(--primary-color); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Go back to Home</a></p>
+    <main id="main">
+        <section class="utility-section" aria-labelledby="error-title">
+            <div class="utility-card">
+                <div class="utility-icon" aria-hidden="true">⚠️</div>
+                <h1 id="error-title">An Error Occurred</h1>
+                <p class="utility-message">Something went wrong. Please try again later.</p>
+                <p class="utility-description">If the problem persists, please contact our support team.</p>
+                <div class="cta-buttons">
+                    <a href="/" class="btn btn-primary" aria-label="Return to homepage">Go back to Home</a>
+                    <a href="/contact" class="btn btn-secondary" aria-label="Contact support">Contact Support</a>
+                </div>
+            </div>
+        </section>
     </main>
 
     <footer>

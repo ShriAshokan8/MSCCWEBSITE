@@ -34,7 +34,7 @@
     
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
-    <meta name="theme-color" content="#FF6B35">
+    <meta name="theme-color" content="#FFA07A">
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
     
     <!-- Preconnects and DNS prefetch for performance -->
@@ -116,18 +116,18 @@
 
     <!-- Main Content -->
     <main id="main">
-        <div style="text-align: center; padding: 4rem 2rem;">
-            <h2>Thank You!</h2>
-            
-            <p style="font-size: 1.2rem; margin: 2rem 0;">We've received your message and will get back to you soon.</p>
-            
-            <p>Your interest in the MSC Initiative means a lot to us. We typically respond within 24-48 hours.</p>
-            
-            <div class="cta-buttons" style="margin-top: 3rem;">
-                <a href="/" class="btn btn-primary">Return Home</a>
-                <a href="/about" class="btn btn-secondary">Learn More</a>
+        <section class="utility-section" aria-labelledby="thanks-title">
+            <div class="utility-card">
+                <div class="utility-icon" aria-hidden="true">✅</div>
+                <h1 id="thanks-title">Thank You!</h1>
+                <p class="utility-message">We've received your message and will get back to you soon.</p>
+                <p class="utility-description">Your interest in the MSC Initiative means a lot to us. We typically respond within 24-48 hours.</p>
+                <div class="cta-buttons">
+                    <a href="/" class="btn btn-primary" aria-label="Return to homepage">Return Home</a>
+                    <a href="/about" class="btn btn-secondary" aria-label="Learn more about MSC">Learn More</a>
+                </div>
             </div>
-        </div>
+        </section>
     </main>
 
     <!-- Footer -->
