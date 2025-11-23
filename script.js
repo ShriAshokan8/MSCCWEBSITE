@@ -59,10 +59,21 @@ function initScrollHeaderEffect() {
 
 /**
  * Convert a UK local date-time (Europe/London, respecting GMT/BST) to UTC epoch milliseconds.
- * Handles DST correctly by using Intl.DateTimeFormat.
+ * Handles DST correctly by using Intl.DateTimeFormat when available.
  */
 function zonedUKToUtc({ year, month, day, hour = 0, minute = 0, second = 0 }) {
     const timeZone = 'Europe/London';
+
+    // Fallback for very old browsers without Intl/timeZone support:
+    if (
+        typeof Intl === 'undefined' ||
+        !Intl.DateTimeFormat ||
+        !Intl.DateTimeFormat().resolvedOptions().timeZone
+    ) {
+        // This treats the given components as local time in the browser.
+        // It's less accurate but avoids total failure.
+        return new Date(year, month - 1, day, hour, minute, second).getTime();
+    }
 
     // Construct as if those components are UTC
     const localAsUTC = Date.UTC(year, month - 1, day, hour, minute, second);
@@ -92,8 +103,25 @@ function zonedUKToUtc({ year, month, day, hour = 0, minute = 0, second = 0 }) {
 }
 
 /**
+ * Helper: set text content and trigger a small tick animation when value changes.
+ */
+function setValueWithTick(el, newText) {
+    if (!el) return;
+    if (el.textContent === newText) return; // no change, no animation
+
+    el.textContent = newText;
+    el.classList.remove('ticking');
+    // Force reflow so animation can restart
+    // eslint-disable-next-line no-unused-expressions
+    el.offsetWidth;
+    el.classList.add('ticking');
+}
+
+/**
  * Initialize the count-up stopwatch from UK start time.
- * Day counter now shows fully elapsed whole days (Day 0 at the start moment).
+ * - Shows weeks, days, hours, minutes, seconds
+ * - Uses Europe/London rules via zonedUKToUtc (GMT/BST aware)
+ * - Announces via aria-live only once per minute for accessibility
  */
 function initMSCRunningStopwatch() {
     const root = document.getElementById('mscStopwatch');
@@ -103,12 +131,17 @@ function initMSCRunningStopwatch() {
     const START_UK = { year: 2024, month: 9, day: 23, hour: 17, minute: 3, second: 37 };
     const startMs = zonedUKToUtc(START_UK);
 
-    const daysEl = root.querySelector('.value[data-unit="days"]');
+    const weeksEl = root.querySelector('.value[data-unit="weeks"]');
+    const daysEl  = root.querySelector('.value[data-unit="days"]');
     const hoursEl = root.querySelector('.value[data-unit="hours"]');
     const minsEl  = root.querySelector('.value[data-unit="minutes"]');
     const secsEl  = root.querySelector('.value[data-unit="seconds"]');
 
+    // Live region: we reuse the visible note for announcements
+    const liveRegion = document.getElementById('mscStartNote');
+
     const pad2 = (n) => String(n).padStart(2, '0');
+    let lastAnnouncedMinute = null;
 
     function update() {
         const nowMs = Date.now();
@@ -119,8 +152,10 @@ function initMSCRunningStopwatch() {
             diffSec = 0;
         }
 
-        // Elapsed whole days (Day 0 at the exact start timestamp)
-        const elapsedDays = Math.floor(diffSec / 86400);
+        // Total elapsed days
+        const totalDays = Math.floor(diffSec / 86400);
+        const weeks = Math.floor(totalDays / 7);
+        const days  = totalDays % 7;
 
         // Remainder within current (partial) day
         const rem = diffSec % 86400;
@@ -129,10 +164,24 @@ function initMSCRunningStopwatch() {
         const minutes = Math.floor(rem2 / 60);
         const seconds = rem2 - minutes * 60;
 
-        if (daysEl)  daysEl.textContent = String(elapsedDays);
-        if (hoursEl) hoursEl.textContent = pad2(hours);
-        if (minsEl)  minsEl.textContent = pad2(minutes);
-        if (secsEl)  secsEl.textContent = pad2(seconds);
+        // Update visible values with tick animation
+        setValueWithTick(weeksEl, String(weeks));
+        setValueWithTick(daysEl,  String(days));
+        setValueWithTick(hoursEl, pad2(hours));
+        setValueWithTick(minsEl,  pad2(minutes));
+        setValueWithTick(secsEl,  pad2(seconds));
+
+        // Accessibility: announce only once per minute to avoid spam
+        const totalMinutes = totalDays * 24 * 60 + hours * 60 + minutes;
+        if (liveRegion && totalMinutes !== lastAnnouncedMinute) {
+            liveRegion.textContent =
+                `MSC has been running for ${weeks} week${weeks === 1 ? '' : 's'}, ` +
+                `${days} day${days === 1 ? '' : 's'}, ` +
+                `${hours} hour${hours === 1 ? '' : 's'} and ` +
+                `${minutes} minute${minutes === 1 ? '' : 's'}. ` +
+                `Started on the 23rd of September 2024 at 17:03:37 UK time (Europe/London).`;
+            lastAnnouncedMinute = totalMinutes;
+        }
     }
 
     update();
