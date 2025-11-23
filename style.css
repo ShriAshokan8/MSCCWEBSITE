@@ -71,6 +71,7 @@ h1 {
     -webkit-text-fill-color: transparent;
     background-clip: text;
     margin-bottom: var(--space-lg);
+    text-align: center;
 }
 
 h2 {
@@ -284,7 +285,7 @@ nav {
 
 /* Main Content - Adjusted for repositioned stopwatch */
 body.has-stopwatch main {
-    margin-top: 320px;
+    margin-top: 340px;
 }
 
 main {
@@ -632,11 +633,14 @@ a:not(.btn):not(.download-link):hover {
     width: calc(100% - var(--space-lg));
     max-width: 900px;
     padding: 0;
-    transition: top var(--transition-smooth);
+    transition: top var(--transition-smooth), opacity var(--transition-smooth), transform var(--transition-smooth);
+    opacity: 1;
 }
 
 header.scrolled + .msc-stopwatch-wrap {
-    top: 60px;
+    top: -300px;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .msc-stopwatch-card {
@@ -750,6 +754,7 @@ header.scrolled + .msc-stopwatch-wrap {
     margin-top: var(--space-xs);
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .msc-start-note {
