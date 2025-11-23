@@ -119,7 +119,7 @@ function setValueWithTick(el, newText) {
 
 /**
  * Initialize the count-up stopwatch from UK start time.
- * - Shows weeks, days, hours, minutes, seconds
+ * - Shows days, hours, minutes, seconds
  * - Uses Europe/London rules via zonedUKToUtc (GMT/BST aware)
  * - Announces via aria-live only once per minute for accessibility
  */
@@ -131,7 +131,6 @@ function initMSCRunningStopwatch() {
     const START_UK = { year: 2024, month: 9, day: 23, hour: 17, minute: 3, second: 37 };
     const startMs = zonedUKToUtc(START_UK);
 
-    const weeksEl = root.querySelector('.value[data-unit="weeks"]');
     const daysEl  = root.querySelector('.value[data-unit="days"]');
     const hoursEl = root.querySelector('.value[data-unit="hours"]');
     const minsEl  = root.querySelector('.value[data-unit="minutes"]');
@@ -154,8 +153,6 @@ function initMSCRunningStopwatch() {
 
         // Total elapsed days
         const totalDays = Math.floor(diffSec / 86400);
-        const weeks = Math.floor(totalDays / 7);
-        const days  = totalDays % 7;
 
         // Remainder within current (partial) day
         const rem = diffSec % 86400;
@@ -165,8 +162,7 @@ function initMSCRunningStopwatch() {
         const seconds = rem2 - minutes * 60;
 
         // Update visible values with tick animation
-        setValueWithTick(weeksEl, String(weeks));
-        setValueWithTick(daysEl,  String(days));
+        setValueWithTick(daysEl,  String(totalDays));
         setValueWithTick(hoursEl, pad2(hours));
         setValueWithTick(minsEl,  pad2(minutes));
         setValueWithTick(secsEl,  pad2(seconds));
@@ -175,11 +171,10 @@ function initMSCRunningStopwatch() {
         const totalMinutes = totalDays * 24 * 60 + hours * 60 + minutes;
         if (liveRegion && totalMinutes !== lastAnnouncedMinute) {
             liveRegion.textContent =
-                `MSC has been running for ${weeks} week${weeks === 1 ? '' : 's'}, ` +
-                `${days} day${days === 1 ? '' : 's'}, ` +
+                `MSC has been running for ${totalDays} day${totalDays === 1 ? '' : 's'}, ` +
                 `${hours} hour${hours === 1 ? '' : 's'} and ` +
                 `${minutes} minute${minutes === 1 ? '' : 's'}. ` +
-                `Started on the 23rd of September 2024 at 17:03:37 UK time (Europe/London).`;
+                `Started on the 23rd of September 2024 at 17:03:37 GMT/BST (Europe/London).`;
             lastAnnouncedMinute = totalMinutes;
         }
     }

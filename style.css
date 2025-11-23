@@ -750,6 +750,7 @@ header.scrolled + .msc-stopwatch-wrap {
     margin-top: var(--space-xs);
     letter-spacing: 0.5px;
     text-transform: uppercase;
+    text-align: center;
 }
 
 .msc-start-note {
