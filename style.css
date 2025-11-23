@@ -72,6 +72,9 @@ h1 {
     background-clip: text;
     margin-bottom: var(--space-lg);
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
 }
 
 h2 {
@@ -1019,7 +1022,6 @@ header.scrolled + .msc-stopwatch-wrap {
 
 /* Tournament Bracket Styles - Professisonal Login Menu */
 .login-container {
-}
     display: flex;
     justify-content: center;
     align-items: center;
