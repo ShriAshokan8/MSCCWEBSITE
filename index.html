@@ -103,32 +103,38 @@
     </header>
 
     <!-- Stopwatch directly under the logo (outside the header) -->
-<section class="msc-stopwatch-wrap" aria-live="polite">
-    <div class="msc-stopwatch-card" role="timer" aria-label="MSC running time">
-        <div class="msc-stopwatch-heading">MSC has been running for</div>
-        <div class="msc-stopwatch-grid" id="mscStopwatch">
-            <div class="unit">
-                <div class="value" data-unit="days">0</div>
-                <div class="label">Days</div>
+    <section class="msc-stopwatch-wrap" aria-live="polite">
+        <div class="msc-stopwatch-card" role="timer" aria-label="MSC running time">
+            <div class="msc-stopwatch-heading">MSC has been running for</div>
+            <div class="msc-stopwatch-grid" id="mscStopwatch">
+                <div class="unit">
+                    <div class="value" data-unit="weeks">0</div>
+                    <div class="label">Weeks</div>
+                </div>
+                <div class="unit">
+                    <div class="value" data-unit="days">0</div>
+                    <div class="label">Days</div>
+                </div>
+                <div class="unit">
+                    <div class="value" data-unit="hours">00</div>
+                    <div class="label">Hours</div>
+                </div>
+                <div class="unit">
+                    <div class="value" data-unit="minutes">00</div>
+                    <div class="label">Minutes</div>
+                </div>
+                <div class="unit">
+                    <div class="value" data-unit="seconds">00</div>
+                    <div class="label">Seconds</div>
+                </div>
             </div>
-            <div class="unit">
-                <div class="value" data-unit="hours">00</div>
-                <div class="label">Hours</div>
-            </div>
-            <div class="unit">
-                <div class="value" data-unit="minutes">00</div>
-                <div class="label">Minutes</div>
-            </div>
-            <div class="unit">
-                <div class="value" data-unit="seconds">00</div>
-                <div class="label">Seconds</div>
+
+            <!-- This is now both the visible note and the live region we update once per minute -->
+            <div class="msc-start-note" id="mscStartNote">
+                Started on the 23rd of September 2024 at 17:03:37 GMT/BST (Europe/London)
             </div>
         </div>
-        <div class="msc-start-note" id="mscStartNote">
-            Started on the 23rd of September 2024 at 17:03:37 GMT/BST (Europe/London)
-        </div>
-    </div>
-</section>
+    </section>
 
     <!-- Mobile Navigation -->
     <div class="mobile-nav">
@@ -160,7 +166,7 @@
         <h2>Our Mission</h2>
         <p>To create a brilliant community of STEM enthusiasts who love thinking creatively, coming up with amazing solutions, and doing their very best in all areas of STEM.</p>
         
-        <p>Since we started on 23rd September 2024, and with our MSC Competition beginning on 7th March 2025, we've been helping to connect what you learn in the classroom with real-world activities, projects, and challenges.</p>
+        <p>Since we started on 23rd September 2024, and with our MSC Competition beginning on 7th March 2025, we've been helping to connect what you learn in the classroom with real-world activities, challenges and exciting projects.</p>
         
         <div class="cta-buttons">
             <a href="/about" class="btn btn-primary">Learn More</a>
