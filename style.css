@@ -731,6 +731,17 @@ header.scrolled + .msc-stopwatch-wrap {
     text-shadow: 0 2px 4px rgba(255, 107, 53, 0.15);
 }
 
+/* Tick animation when values change */
+@keyframes msc-tick {
+    0%   { transform: scale(1);   opacity: 1; }
+    30%  { transform: scale(1.1); opacity: 1; }
+    100% { transform: scale(1);   opacity: 1; }
+}
+
+.msc-stopwatch-grid .value.ticking {
+    animation: msc-tick 0.25s ease-out;
+}
+
 .msc-stopwatch-grid .label {
     font-size: 0.85rem;
     font-weight: 700;
@@ -861,6 +872,11 @@ header.scrolled + .msc-stopwatch-wrap {
         padding: var(--space-sm);
     }
     
+    .msc-stopwatch-grid .unit {
+        min-width: 70px;
+        padding: var(--space-xs) var(--space-xs);
+    }
+
     .msc-stopwatch-grid .value {
         font-size: 1.5rem;
     }
@@ -998,6 +1014,7 @@ header.scrolled + .msc-stopwatch-wrap {
 
 /* Tournament Bracket Styles - Professisonal Login Menu */
 .login-container {
+}
     display: flex;
     justify-content: center;
     align-items: center;
@@ -1941,6 +1958,7 @@ main.duration-main {
 @media (max-width: 600px) { 
   .duration-main .responsive-iframe-container iframe { height: 300px; } 
 }
+
 
 
 
