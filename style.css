@@ -2312,3 +2312,343 @@ main.duration-main {
         transform: scale(1.1);
     }
 }
+
+/* ===================================
+   FEATURE GRID - Home Page "What We Do"
+   4-column grid on desktop, 2x2 on tablet, stack on mobile
+   =================================== */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--space-lg);
+    margin: var(--space-lg) 0;
+}
+
+.feature-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.feature-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.feature-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-border-accent);
+}
+
+.feature-card h4 {
+    color: var(--color-accent);
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin: 0 0 var(--space-sm) 0;
+}
+
+.feature-card p {
+    color: var(--color-text-main);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Feature grid responsive */
+@media (max-width: 1024px) {
+    .feature-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .feature-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    .feature-card {
+        padding: var(--space-md);
+    }
+}
+
+/* ===================================
+   TIMELINE STYLES - About Page
+   Vertical timeline with left border and dots
+   =================================== */
+.timeline-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+}
+
+.timeline-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.timeline-card h3 {
+    color: var(--color-accent);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 0 0 var(--space-md) 0;
+    background: none;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: default;
+}
+
+.timeline-card h3:hover {
+    background: none;
+    color: var(--color-accent);
+    transform: none;
+    box-shadow: none;
+    border-left-color: transparent;
+}
+
+.timeline-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    padding-left: var(--space-lg);
+    border-left: 2px solid var(--color-accent-soft);
+}
+
+.timeline-list li {
+    position: relative;
+    margin-bottom: var(--space-md);
+    padding: var(--space-sm) 0;
+    background: none;
+    border: none;
+    border-left: none;
+    box-shadow: none;
+}
+
+.timeline-list li:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-list li::before {
+    content: '';
+    position: absolute;
+    left: calc(-1 * var(--space-lg) - 5px);
+    top: var(--space-sm);
+    width: 10px;
+    height: 10px;
+    background: var(--color-accent);
+    border-radius: var(--radius-round);
+    border: 2px solid var(--color-bg-card);
+    box-shadow: 0 0 0 2px var(--color-accent-soft);
+}
+
+.timeline-list li:hover {
+    transform: none;
+    background: none;
+}
+
+.timeline-date {
+    display: block;
+    color: var(--color-accent);
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin-bottom: var(--space-xs);
+}
+
+.timeline-text {
+    color: var(--color-text-main);
+    font-size: 0.95rem;
+    line-height: 1.6;
+}
+
+/* ===================================
+   VALUES GRID - About Page
+   2-column grid on desktop, stack on mobile
+   Text-only cards (no icons)
+   =================================== */
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+    margin: var(--space-lg) 0;
+}
+
+.value-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+}
+
+.value-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.value-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--color-border-accent);
+}
+
+.value-card h4 {
+    color: var(--color-accent);
+    font-size: 1.15rem;
+    font-weight: 600;
+    margin: 0 0 var(--space-sm) 0;
+}
+
+.value-card p {
+    color: var(--color-text-main);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* Values grid responsive */
+@media (max-width: 768px) {
+    .values-grid {
+        grid-template-columns: 1fr;
+        gap: var(--space-md);
+    }
+    
+    .value-card {
+        padding: var(--space-md);
+    }
+}
+
+/* Section heading for values and other boxed sections */
+.section-heading {
+    color: var(--color-accent);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 0 0 var(--space-md) 0;
+    background: none;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: default;
+}
+
+.section-heading:hover {
+    background: none;
+    color: var(--color-accent);
+    transform: none;
+    box-shadow: none;
+    border-left-color: transparent;
+}
+
+/* ===================================
+   SECTION CARD - About Page Future Expansion
+   =================================== */
+.section-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border-soft);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-md);
+    position: relative;
+    overflow: hidden;
+    margin-bottom: var(--space-lg);
+}
+
+.section-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+}
+
+.section-card h3 {
+    color: var(--color-accent);
+    font-size: 1.35rem;
+    font-weight: 600;
+    margin: 0 0 var(--space-md) 0;
+    background: none;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    cursor: default;
+}
+
+.section-card h3:hover {
+    background: none;
+    color: var(--color-accent);
+    transform: none;
+    box-shadow: none;
+    border-left-color: transparent;
+}
+
+.section-card p {
+    margin-bottom: var(--space-md);
+}
+
+.section-card ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.section-card ul li {
+    position: relative;
+    padding-left: var(--space-lg);
+    margin-bottom: var(--space-sm);
+    background: none;
+    border: none;
+    box-shadow: none;
+    color: var(--color-text-main);
+}
+
+.section-card ul li::before {
+    content: '•';
+    position: absolute;
+    left: var(--space-xs);
+    color: var(--color-accent);
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.section-card ul li:hover {
+    transform: none;
+    background: none;
+}
