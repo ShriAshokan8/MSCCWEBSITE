@@ -12,7 +12,7 @@
     <!-- Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
     
-    <!-- Offline-specific styles (minimal fallback in case CSS fails to load) -->
+    <!-- Offline-specific styles -->
     <style>
         .offline-container {
             display: flex;
@@ -35,17 +35,21 @@
         .offline-tips {
             margin-top: var(--space-lg);
             padding: var(--space-md);
-            background-color: var(--light-peach, #FAE8DC);
-            border-radius: var(--radius-md, 8px);
+            background-color: var(--light-peach);
+            border-radius: var(--radius-md);
             text-align: left;
         }
         
         .offline-tips h2 {
-            color: var(--primary-orange, #E05A24);
+            color: var(--primary-orange);
             font-size: 1.2rem;
             margin-bottom: var(--space-xs);
             margin-top: 0;
             border-bottom: none;
+            background: none;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: unset;
+            background-clip: unset;
         }
         
         .offline-tips h2::after {
@@ -63,6 +67,7 @@
             border: none;
             padding: 0;
             box-shadow: none;
+            border-left: none;
         }
         
         .offline-tips li:hover {

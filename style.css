@@ -820,6 +820,10 @@ a:not(.btn):not(.download-link):not(.nav-links a):hover {
 /* Spacing utilities */
 .mt-0 { margin-top: 0; }
 .mb-0 { margin-bottom: 0; }
+.mt-xs { margin-top: var(--space-xs); }
+.mb-xs { margin-bottom: var(--space-xs); }
+.mt-sm { margin-top: var(--space-sm); }
+.mb-sm { margin-bottom: var(--space-sm); }
 .mt-md { margin-top: var(--space-md); }
 .mb-md { margin-bottom: var(--space-md); }
 .mt-lg { margin-top: var(--space-lg); }
