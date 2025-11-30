@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initializeBasicFeatures();
     initMSCRunningStopwatch();
     initScrollHeaderEffect();
+    initNavActiveState();
     
     // Register service worker for PWA offline support
     if ('serviceWorker' in navigator) {
@@ -20,6 +21,28 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initializeBasicFeatures() {
     console.log("Basic features initialized");
+}
+
+/**
+ * Initialize navigation active state based on current page
+ * Applies .is-active class to matching nav links
+ */
+function initNavActiveState() {
+    const currentPath = window.location.pathname;
+    const navLinks = document.querySelectorAll('.nav-links li a');
+    
+    navLinks.forEach(link => {
+        const linkHref = link.getAttribute('href');
+        // Normalize paths for comparison
+        const normalizedCurrentPath = currentPath.replace(/\/$/, '') || '/';
+        const normalizedLinkPath = linkHref.replace(/\/$/, '') || '/';
+        
+        // Check for exact match or if current path starts with link path (for nested pages)
+        if (normalizedCurrentPath === normalizedLinkPath ||
+            (normalizedLinkPath !== '/' && normalizedCurrentPath.startsWith(normalizedLinkPath))) {
+            link.classList.add('is-active');
+        }
+    });
 }
 
 /**
