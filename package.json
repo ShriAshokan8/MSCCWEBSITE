@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "MSC Initiative - A student-led STEM movement exploring Maths, Science, and Computing",
   "scripts": {
-    "minify:css": "cleancss -o style.min.css style.css",
+    "format:css": "postcss style.css --replace --use css-declaration-sorter",
+    "minify:css": "postcss style.css -o style.min.css --use cssnano",
     "minify:js": "terser script.js -o script.min.js --compress --mangle && terser js/main.js -o js/main.min.js --compress --mangle && terser sw.js -o sw.min.js --compress --mangle",
     "minify": "npm run minify:css && npm run minify:js",
-    "build": "npm run minify"
+    "format": "npm run format:css",
+    "build": "npm run format && npm run minify"
   },
   "keywords": [
     "STEM",
@@ -18,7 +20,10 @@
   "author": "MSC Initiative",
   "license": "Apache-2.0",
   "devDependencies": {
-    "clean-css-cli": "^5.6.3",
+    "css-declaration-sorter": "^7.2.0",
+    "cssnano": "^7.0.1",
+    "postcss": "^8.4.38",
+    "postcss-cli": "^11.0.0",
     "terser": "^5.27.0"
   }
 }
