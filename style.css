@@ -2347,7 +2347,7 @@ main.duration-main {
 }
 
 .feature-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     box-shadow: var(--shadow-lg);
     border-color: var(--color-border-accent);
 }
@@ -2520,7 +2520,7 @@ main.duration-main {
 }
 
 .value-card:hover {
-    transform: translateY(-4px);
+    transform: translateY(-3px);
     box-shadow: var(--shadow-lg);
     border-color: var(--color-border-accent);
 }
