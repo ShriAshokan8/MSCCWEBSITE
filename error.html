@@ -74,17 +74,22 @@
     <div class="mobile-nav">
         <ul class="nav-links">
             <li><a href="/">Home</a></li>
-            <li><a href="/about.html">About</a></li>
-            <li><a href="/events.html">Events</a></li>
-            <li><a href="/newsletters.html">Newsletters</a></li>
-            <li><a href="/contact.html">Contact</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/newsletters">Newsletters</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/brackets">Brackets</a></li>
         </ul>
     </div>
 
-    <main>
-        <h2>An Error Occurred</h2>
-        <p>Something went wrong. Please try again later.</p>
-        <p><a href="/" style="background-color: var(--primary-color); color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">Go back to Home</a></p>
+    <main id="main">
+        <section class="section section--peach text-center">
+            <h2>An Error Occurred</h2>
+            <p class="mb-lg">Something went wrong. Please try again later.</p>
+            <div class="cta-buttons">
+                <a href="/" class="btn btn-primary">Go back to Home</a>
+            </div>
+        </section>
     </main>
 
     <footer>
@@ -92,12 +97,7 @@
     </footer>
 
     <!-- Custom JS -->
-    <script src="script.js"></script>
-    <script src="js/main.js"></script>
-    
-    <!-- Set current year -->
-    <script>
-        document.getElementById("currentYear").textContent = new Date().getFullYear();
-    </script>
+    <script src="/script.js" defer></script>
+    <script src="/js/main.js" defer></script>
 </body>
 </html>

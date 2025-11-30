@@ -5,107 +5,143 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Offline - MSC Initiative</title>
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/style.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+    
+    <!-- Offline-specific styles (minimal fallback in case CSS fails to load) -->
     <style>
-        :root {
-            --primary-color: #FF6B35;
-            --secondary-color: #FFD5B4;
-            --text-color: #333333;
-            --background-color: #FFFFFF;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Inter', 'Arial', sans-serif;
-            background-color: var(--background-color);
-            color: var(--text-color);
+        .offline-container {
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
-            padding: 2rem;
+            min-height: calc(100vh - 200px);
+            padding: var(--space-lg);
+            text-align: center;
         }
         
-        .container {
-            text-align: center;
+        .offline-content {
             max-width: 600px;
         }
         
-        .icon {
+        .offline-icon {
             font-size: 4rem;
-            margin-bottom: 1rem;
-        }
-        
-        h1 {
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: clamp(1.5rem, 3vw, 2.5rem);
-        }
-        
-        p {
-            margin-bottom: 1.5rem;
-            line-height: 1.6;
-        }
-        
-        .btn {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 0.75rem 1.5rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(255, 107, 53, 0.3);
+            margin-bottom: var(--space-md);
         }
         
         .offline-tips {
-            margin-top: 2rem;
-            padding: 1rem;
-            background-color: var(--secondary-color);
-            border-radius: 8px;
+            margin-top: var(--space-lg);
+            padding: var(--space-md);
+            background-color: var(--light-peach, #FAE8DC);
+            border-radius: var(--radius-md, 8px);
             text-align: left;
         }
         
         .offline-tips h2 {
-            color: var(--primary-color);
+            color: var(--primary-orange, #E05A24);
             font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: var(--space-xs);
+            margin-top: 0;
+            border-bottom: none;
+        }
+        
+        .offline-tips h2::after {
+            display: none;
         }
         
         .offline-tips ul {
             padding-left: 1.5rem;
+            list-style-type: disc;
         }
         
         .offline-tips li {
-            margin-bottom: 0.5rem;
+            margin-bottom: var(--space-xs);
+            background: none;
+            border: none;
+            padding: 0;
+            box-shadow: none;
+        }
+        
+        .offline-tips li:hover {
+            transform: none;
+            background: none;
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="icon">📡</div>
-        <h1>You're Offline</h1>
-        <p>It looks like you've lost your internet connection. Don't worry, you can still access some content that was previously loaded.</p>
-        
-        <button onclick="window.location.reload()" class="btn">Try Again</button>
-        
-        <div class="offline-tips">
-            <h2>What you can do:</h2>
-            <ul>
-                <li>Check your internet connection</li>
-                <li>Try refreshing the page when you're back online</li>
-                <li>Some previously visited pages may still be available</li>
+    <!-- Header with Navigation -->
+    <header>
+        <nav class="nav-left desktop-only">
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/events">Events</a></li>
             </ul>
+        </nav>
+        
+        <div class="header-center">
+            <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="logo" width="200" height="120">
         </div>
+        
+        <nav class="nav-right desktop-only">
+            <ul class="nav-links">
+                <li><a href="/newsletters">Newsletters</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/brackets">Brackets</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Hamburger Menu -->
+        <div class="hamburger" aria-label="Toggle mobile navigation" role="button" tabindex="0" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/newsletters">Newsletters</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/brackets">Brackets</a></li>
+        </ul>
     </div>
+
+    <main id="main">
+        <div class="offline-container">
+            <div class="offline-content">
+                <div class="offline-icon">📡</div>
+                <h1>You're Offline</h1>
+                <p class="mb-lg">It looks like you've lost your internet connection. Don't worry, you can still access some content that was previously loaded.</p>
+                
+                <button onclick="window.location.reload()" class="btn btn-primary">Try Again</button>
+                
+                <div class="offline-tips">
+                    <h2>What you can do:</h2>
+                    <ul>
+                        <li>Check your internet connection</li>
+                        <li>Try refreshing the page when you're back online</li>
+                        <li>Some previously visited pages may still be available</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="/script.js" defer></script>
+    <script src="/js/main.js" defer></script>
 </body>
 </html>
