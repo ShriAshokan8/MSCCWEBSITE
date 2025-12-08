@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Nexus | MSC Initiative</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/nexus/css/signup.css">
+</head>
+<body>
+    <div class="auth-container">
+        <div class="auth-card">
+            <div class="auth-header">
+                <div class="logo">
+                    <div class="logo-icon">M</div>
+                    <div class="logo-text">
+                        <div class="logo-title">MSC Initiative</div>
+                        <div class="logo-subtitle">NEXUS PORTAL</div>
+                    </div>
+                </div>
+                <h1 class="auth-title">Join Nexus</h1>
+                <p class="auth-subtitle">Create your staff account</p>
+            </div>
+            
+            <form id="signupForm" class="auth-form">
+                <div id="alertContainer"></div>
+                
+                <div class="form-group">
+                    <label for="fullName" class="form-label">Full Name</label>
+                    <input 
+                        type="text" 
+                        id="fullName" 
+                        class="form-input" 
+                        placeholder="John Doe"
+                        required
+                        autocomplete="name"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="primaryEmail" class="form-label">Primary Email</label>
+                    <input 
+                        type="email" 
+                        id="primaryEmail" 
+                        class="form-input" 
+                        placeholder="your.email@example.com"
+                        required
+                        autocomplete="email"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">Additional Emails (Optional)</label>
+                    <div id="secondaryEmailsContainer">
+                        <div class="email-input-row">
+                            <input 
+                                type="email" 
+                                class="form-input secondary-email" 
+                                placeholder="additional.email@example.com"
+                            >
+                        </div>
+                    </div>
+                    <button type="button" id="addEmailButton" class="btn-add-email">
+                        + Add another email
+                    </button>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        class="form-input" 
+                        placeholder="Create a strong password"
+                        required
+                        autocomplete="new-password"
+                        minlength="6"
+                    >
+                    <small class="form-hint">Minimum 6 characters</small>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirmPassword" class="form-label">Confirm Password</label>
+                    <input 
+                        type="password" 
+                        id="confirmPassword" 
+                        class="form-input" 
+                        placeholder="Re-enter your password"
+                        required
+                        autocomplete="new-password"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="role" class="form-label">Role</label>
+                    <select id="role" class="form-input" required>
+                        <option value="">Select your role</option>
+                        <option value="HAPU - School Lead">HAPU - School Lead</option>
+                        <option value="HAPU - Deputy School Lead">HAPU - Deputy School Lead</option>
+                        <option value="HAPU - Core Team">HAPU - Core Team</option>
+                        <option value="HAPU - Support Team">HAPU - Support Team</option>
+                        <option value="HAPU - Staff">HAPU - Staff</option>
+                        <option value="HAPU - Staff Coordinator">HAPU - Staff Coordinator</option>
+                    </select>
+                    <small class="form-hint">Select your primary role in the initiative</small>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block" id="signupButton">
+                    <span id="buttonText">Create Account</span>
+                    <span id="buttonSpinner" class="spinner-sm hidden"></span>
+                </button>
+            </form>
+            
+            <div class="auth-footer">
+                <p>Already have an account? <a href="/nexus/login.html" class="auth-link">Sign in</a></p>
+            </div>
+        </div>
+        
+        <div class="auth-illustration">
+            <div class="illustration-content">
+                <h2>Welcome to Nexus</h2>
+                <p>Your gateway to collaborative STEM excellence</p>
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <span class="feature-icon">✨</span>
+                        <span>Instant access to resources</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🎯</span>
+                        <span>Role-based permissions</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🤝</span>
+                        <span>Team collaboration tools</span>
+                    </div>
+                    <div class="feature-item">
+                        <span class="feature-icon">🚀</span>
+                        <span>Streamlined workflows</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Firebase Config -->
+    <script src="/nexus/js/firebase.js"></script>
+    
+    <!-- Signup Script -->
+    <script src="/nexus/js/signup.js"></script>
+</body>
+</html>
