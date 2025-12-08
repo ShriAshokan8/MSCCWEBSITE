@@ -1,0 +1,165 @@
+/**
+ * Dashboard Page Styles
+ * MSC Initiative - Nexus Portal
+ */
+
+/* Welcome Section */
+.welcome-section {
+    background: linear-gradient(135deg, var(--color-orange), var(--color-dark-orange));
+    color: var(--color-white);
+    padding: var(--spacing-xl);
+    border-radius: var(--radius-lg);
+    margin-bottom: var(--spacing-lg);
+    box-shadow: var(--shadow-lg);
+}
+
+.welcome-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: var(--spacing-xs);
+}
+
+.welcome-subtitle {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* Section Titles */
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-md);
+    color: var(--color-text-dark);
+}
+
+/* Roles Section */
+.roles-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.roles-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+}
+
+/* Quick Links Section */
+.quick-links-section,
+.admin-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-md);
+}
+
+.quick-card,
+.admin-card {
+    background: var(--color-white);
+    padding: var(--spacing-lg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: all var(--transition-base);
+    cursor: pointer;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.quick-card:hover,
+.admin-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.admin-card {
+    background: linear-gradient(135deg, var(--color-light-peach), var(--color-peach));
+}
+
+.card-icon {
+    font-size: 2.5rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.card-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: var(--spacing-xs);
+    color: var(--color-text-dark);
+}
+
+.card-description {
+    color: var(--color-text-light);
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Recent Files Section */
+.recent-files-section {
+    margin-bottom: var(--spacing-xl);
+}
+
+.recent-files-list {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    box-shadow: var(--shadow-sm);
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    padding: var(--spacing-sm);
+    border-bottom: 1px solid var(--color-border);
+    transition: background var(--transition-fast);
+    cursor: pointer;
+}
+
+.file-item:last-child {
+    border-bottom: none;
+}
+
+.file-item:hover {
+    background: var(--color-light-peach);
+}
+
+.file-icon {
+    font-size: 1.5rem;
+}
+
+.file-info {
+    flex: 1;
+}
+
+.file-name {
+    font-weight: 500;
+    color: var(--color-text-dark);
+    margin-bottom: 0.25rem;
+}
+
+.file-meta {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .welcome-section {
+        padding: var(--spacing-lg);
+    }
+    
+    .welcome-title {
+        font-size: 1.5rem;
+    }
+    
+    .welcome-subtitle {
+        font-size: 1rem;
+    }
+    
+    .cards-grid {
+        grid-template-columns: 1fr;
+    }
+}
