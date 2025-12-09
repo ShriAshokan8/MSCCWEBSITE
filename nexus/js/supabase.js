@@ -3,9 +3,9 @@
  * MSC Initiative Staff Portal
  */
 
-// Supabase Configuration - Replace with your actual Supabase config
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
+// Supabase Configuration
+const SUPABASE_URL = 'https://khkzrkycmkpfnkdpbfcy.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtoa3pya3ljbWtwZm5rZHBiZmN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUyMjIzMjAsImV4cCI6MjA4MDc5ODMyMH0.xt9FxJfk156rBdndaAbFDEnAs4HOXgiozzSv1VHE8yY';
 const BUCKET_NAME = 'msc-nexus';
 
 // Initialize Supabase client
