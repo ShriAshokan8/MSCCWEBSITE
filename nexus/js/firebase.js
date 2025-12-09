@@ -3,14 +3,15 @@
  * MSC Initiative Staff Portal
  */
 
-// Firebase Configuration - Replace with your actual Firebase config
+// Firebase Configuration
 const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
+    apiKey: "AIzaSyASXjzd6LC99IJQkgSFZsOwHtnHtylnXbI",
+    authDomain: "mscnexus-2.firebaseapp.com",
+    projectId: "mscnexus-2",
+    storageBucket: "mscnexus-2.firebasestorage.app",
+    messagingSenderId: "574546810006",
+    appId: "1:574546810006:web:557a43e6b97dcdbbc0deb7",
+    measurementId: "G-96HMQ32H0L"
 };
 
 // Initialize Firebase
