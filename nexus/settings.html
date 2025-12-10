@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Nexus | MSC Initiative</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/nexus/css/shared.css">
+    <link rel="stylesheet" href="/nexus/css/settings.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="/nexus/dashboard.html" class="sidebar-logo">
+                    <div class="logo-icon">M</div>
+                    <div class="logo-text">
+                        <div class="logo-title">MSC Initiative</div>
+                        <div class="logo-subtitle">NEXUS</div>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="/nexus/dashboard.html" class="nav-link">
+                            <span class="nav-icon">📊</span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/nexus/files.html" class="nav-link">
+                            <span class="nav-icon">📁</span>
+                            <span>Files</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/nexus/roles.html" class="nav-link">
+                            <span class="nav-icon">👥</span>
+                            <span>Roles</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/nexus/settings.html" class="nav-link active">
+                            <span class="nav-icon">⚙️</span>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+                <h1 class="page-title">Settings</h1>
+                <div class="top-bar-actions">
+                    <div class="user-profile">
+                        <div class="user-avatar" id="userAvatar">A</div>
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="dropdown-item" id="viewProfile">View Profile</div>
+                            <div class="dropdown-item" id="addEmail">Add Email</div>
+                            <div class="dropdown-item danger" id="signOut">Sign Out</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content Container -->
+            <div class="content-container">
+                <!-- System Overview -->
+                <section class="settings-section">
+                    <h2 class="section-title">System Overview</h2>
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon">👥</div>
+                            <div class="stat-value" id="totalUsers">-</div>
+                            <div class="stat-label">Total Users</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">🎭</div>
+                            <div class="stat-value" id="totalRoles">-</div>
+                            <div class="stat-label">Total Roles</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📁</div>
+                            <div class="stat-value" id="totalFiles">-</div>
+                            <div class="stat-label">Total Files</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-icon">📝</div>
+                            <div class="stat-value" id="totalLogs">-</div>
+                            <div class="stat-label">Activity Logs</div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Role Configuration Summary -->
+                <section class="settings-section">
+                    <h2 class="section-title">Role Configuration</h2>
+                    <div class="card">
+                        <div class="roles-summary" id="rolesSummary">
+                            <div class="spinner"></div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Activity Logs -->
+                <section class="settings-section">
+                    <h2 class="section-title">Activity Logs</h2>
+                    <div class="card">
+                        <div class="tabs">
+                            <button class="tab-button active" data-tab="allLogs">All Activity</button>
+                            <button class="tab-button" data-tab="rolesLogs">Roles</button>
+                            <button class="tab-button" data-tab="filesLogs">Files</button>
+                        </div>
+                        
+                        <div class="tab-content active" id="allLogsTab">
+                            <div class="activity-log" id="allActivityLog">
+                                <div class="spinner"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="rolesLogsTab">
+                            <div class="activity-log" id="rolesActivityLog">
+                                <div class="spinner"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="filesLogsTab">
+                            <div class="activity-log" id="filesActivityLog">
+                                <div class="spinner"></div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Future Configuration Placeholder -->
+                <section class="settings-section">
+                    <h2 class="section-title">System Configuration</h2>
+                    <div class="card">
+                        <p class="text-muted">Additional system configuration options will be available here in future updates.</p>
+                        <div class="config-placeholder">
+                            <div class="placeholder-item">
+                                <span class="placeholder-icon">🔔</span>
+                                <span>Notification Settings</span>
+                            </div>
+                            <div class="placeholder-item">
+                                <span class="placeholder-icon">🔐</span>
+                                <span>Security Settings</span>
+                            </div>
+                            <div class="placeholder-item">
+                                <span class="placeholder-icon">📧</span>
+                                <span>Email Configuration</span>
+                            </div>
+                            <div class="placeholder-item">
+                                <span class="placeholder-icon">🎨</span>
+                                <span>Branding & Appearance</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Firebase & Supabase Config -->
+    <script src="/nexus/js/firebase.js"></script>
+    <script src="/nexus/js/supabase.js"></script>
+    <script src="/nexus/js/firebaseFunctions.js"></script>
+    
+    <!-- Settings Script -->
+    <script src="/nexus/js/settings.js"></script>
+</body>
+</html>

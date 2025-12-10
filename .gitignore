@@ -9,3 +9,22 @@ package-lock.json
 # Build artifacts
 *.log
 .DS_Store
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+*.secret
+*_secret.js
+
+# Firebase
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
