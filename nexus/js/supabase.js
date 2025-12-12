@@ -3,10 +3,20 @@
  * MSC Initiative Staff Portal
  */
 
-// Supabase Configuration
-const SUPABASE_URL = 'https://khkzrkycmkpfnkdpbfcy.supabase.co';
-const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Imtoa3pya3ljbWtwZm5rZHBiZmN5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjUyMjIzMjAsImV4cCI6MjA4MDc5ODMyMH0.xt9FxJfk156rBdndaAbFDEnAs4HOXgiozzSv1VHE8yY';
+// Supabase Configuration from environment variables
+const SUPABASE_URL = window.ENV?.SUPABASE_URL || '';
+const SUPABASE_KEY = window.ENV?.SUPABASE_KEY || '';
 const BUCKET_NAME = 'msc-nexus';
+
+// Validate Supabase configuration
+if (!SUPABASE_URL || !SUPABASE_KEY) {
+    const missing = [];
+    if (!SUPABASE_URL) missing.push('SUPABASE_URL');
+    if (!SUPABASE_KEY) missing.push('SUPABASE_KEY');
+    console.error('Supabase configuration error: Missing required configuration');
+    console.error('Missing:', missing.join(', '));
+    console.error('Please ensure environment variables are properly set in your deployment configuration.');
+}
 
 // Initialize Supabase client
 let supabase;
@@ -14,6 +24,9 @@ try {
     supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 } catch (error) {
     console.error('Error initializing Supabase:', error);
+    if (!SUPABASE_URL || !SUPABASE_KEY) {
+        console.error('This error may be due to missing configuration. Check that all environment variables are set.');
+    }
 }
 
 /**

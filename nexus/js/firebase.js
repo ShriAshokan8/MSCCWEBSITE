@@ -3,16 +3,25 @@
  * MSC Initiative Staff Portal
  */
 
-// Firebase Configuration
+// Firebase Configuration from environment variables
 const firebaseConfig = {
-    apiKey: "AIzaSyASXjzd6LC99IJQkgSFZsOwHtnHtylnXbI",
-    authDomain: "mscnexus-2.firebaseapp.com",
-    projectId: "mscnexus-2",
-    storageBucket: "mscnexus-2.firebasestorage.app",
-    messagingSenderId: "574546810006",
-    appId: "1:574546810006:web:557a43e6b97dcdbbc0deb7",
-    measurementId: "G-96HMQ32H0L"
+    apiKey: window.ENV?.FIREBASE_API_KEY || '',
+    authDomain: window.ENV?.FIREBASE_AUTH_DOMAIN || '',
+    projectId: window.ENV?.FIREBASE_PROJECT_ID || '',
+    storageBucket: window.ENV?.FIREBASE_STORAGE_BUCKET || '',
+    messagingSenderId: window.ENV?.FIREBASE_MESSAGING_SENDER_ID || '',
+    appId: window.ENV?.FIREBASE_APP_ID || '',
+    measurementId: window.ENV?.FIREBASE_MEASUREMENT_ID || ''
 };
+
+// Validate Firebase configuration
+const requiredFields = ['apiKey', 'authDomain', 'projectId', 'appId'];
+const missingFields = requiredFields.filter(field => !firebaseConfig[field]);
+
+if (missingFields.length > 0) {
+    console.error('Firebase configuration error: Missing required fields:', missingFields);
+    console.error('Please ensure environment variables are properly set in your deployment configuration.');
+}
 
 // Initialize Firebase
 let app;
@@ -25,6 +34,9 @@ try {
     db = firebase.firestore();
 } catch (error) {
     console.error('Error initializing Firebase:', error);
+    if (missingFields.length > 0) {
+        console.error('This error may be due to missing configuration. Check that all environment variables are set.');
+    }
 }
 
 // Helper Functions
