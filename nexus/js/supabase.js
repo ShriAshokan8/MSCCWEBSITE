@@ -10,11 +10,11 @@ const BUCKET_NAME = 'msc-nexus';
 
 // Validate Supabase configuration
 if (!SUPABASE_URL || !SUPABASE_KEY) {
+    const missing = [];
+    if (!SUPABASE_URL) missing.push('SUPABASE_URL');
+    if (!SUPABASE_KEY) missing.push('SUPABASE_KEY');
     console.error('Supabase configuration error: Missing required configuration');
-    console.error('Missing:', 
-        !SUPABASE_URL ? 'SUPABASE_URL' : '', 
-        !SUPABASE_KEY ? 'SUPABASE_KEY' : ''
-    );
+    console.error('Missing:', missing.join(', '));
     console.error('Please ensure environment variables are properly set in your deployment configuration.');
 }
 
