@@ -1,0 +1,63 @@
+{
+  "functions": {
+    "source": "functions",
+    "runtime": "nodejs18"
+  },
+  "hosting": {
+    "public": ".",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**",
+      "functions/**",
+      "package.json",
+      "package-lock.json",
+      "postcss.config.js",
+      "*.md",
+      "LICENSE",
+      "CODE_OF_CONDUCT.md",
+      "CONTRIBUTING.md",
+      "BUILD.md",
+      "SECURITY.md",
+      "SECURITY_IMPLEMENTATION.md",
+      "SRI_IMPLEMENTATION.md",
+      "IMPLEMENTATION_SUMMARY.md",
+      "VERIFICATION_CHECKLIST.md",
+      "NEXUS_CONFIG_GUIDE.md",
+      "NEXUS_DELIVERABLES.txt",
+      "NEXUS_IMPLEMENTATION_GUIDE.md",
+      "NEXUS_QUICKSTART.md",
+      "NEXUS_VISUAL_OVERVIEW.md",
+      "setup-nexus-config.sh",
+      ".editorconfig",
+      ".git/**",
+      ".github/**"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ],
+    "headers": [
+      {
+        "source": "**/*.@(js|css|png|jpg|jpeg|gif|ico|svg|woff|woff2|ttf|eot)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=31536000"
+          }
+        ]
+      },
+      {
+        "source": "**/*.@(html|json)",
+        "headers": [
+          {
+            "key": "Cache-Control",
+            "value": "max-age=0, must-revalidate"
+          }
+        ]
+      }
+    ]
+  }
+}
