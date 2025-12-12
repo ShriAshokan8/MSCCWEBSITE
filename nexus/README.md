@@ -13,35 +13,50 @@ The Nexus Staff Portal is a secure, role-based staff management system for the M
 
 ## Configuration
 
+### Environment Variables
+
+The Nexus portal uses environment variables to securely manage API keys and configuration. These are injected at build time via the `build-env.sh` script.
+
+#### Required Environment Variables
+
+Set the following environment variables in your Cloudflare Pages project settings:
+
+**Firebase Configuration:**
+- `FIREBASE_API_KEY` - Your Firebase API key
+- `FIREBASE_AUTH_DOMAIN` - Your Firebase auth domain (e.g., `your-project.firebaseapp.com`)
+- `FIREBASE_PROJECT_ID` - Your Firebase project ID
+- `FIREBASE_STORAGE_BUCKET` - Your Firebase storage bucket (e.g., `your-project.appspot.com`)
+- `FIREBASE_MESSAGING_SENDER_ID` - Your Firebase messaging sender ID
+- `FIREBASE_APP_ID` - Your Firebase app ID
+- `FIREBASE_MEASUREMENT_ID` - Your Firebase measurement ID (optional, for Analytics)
+
+**Supabase Configuration:**
+- `SUPABASE_URL` - Your Supabase project URL (e.g., `https://xxx.supabase.co`)
+- `SUPABASE_KEY` - Your Supabase anon/public key
+
+#### Cloudflare Pages Setup
+
+1. Go to your Cloudflare Pages project settings
+2. Navigate to **Settings** > **Environment Variables**
+3. Add all the required environment variables listed above
+4. Set the build command to: `./build-env.sh`
+5. The script will generate `/nexus/js/env.js` with your environment variables at build time
+
+**Important:** The `nexus/js/env.js` file is auto-generated during build and should never be committed to the repository. It's already added to `.gitignore`.
+
 ### Firebase Setup
 
 1. Create a Firebase project at https://console.firebase.google.com/
 2. Enable Authentication with Email/Password provider
 3. Enable Firestore Database
-4. Update Firebase configuration in `/nexus/js/firebase.js`:
-
-```javascript
-const firebaseConfig = {
-    apiKey: "YOUR_API_KEY",
-    authDomain: "YOUR_AUTH_DOMAIN",
-    projectId: "YOUR_PROJECT_ID",
-    storageBucket: "YOUR_STORAGE_BUCKET",
-    messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
-    appId: "YOUR_APP_ID"
-};
-```
+4. Copy your Firebase configuration values to Cloudflare Pages environment variables
 
 ### Supabase Setup
 
 1. Create a Supabase project at https://supabase.com/
 2. Create a storage bucket named `msc-nexus`
 3. Set appropriate access policies for the bucket
-4. Update Supabase configuration in `/nexus/js/supabase.js`:
-
-```javascript
-const SUPABASE_URL = 'YOUR_SUPABASE_URL';
-const SUPABASE_KEY = 'YOUR_SUPABASE_ANON_KEY';
-```
+4. Copy your Supabase URL and anon key to Cloudflare Pages environment variables
 
 ### Firebase Functions Deployment
 

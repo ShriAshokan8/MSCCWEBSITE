@@ -16,6 +16,7 @@ package-lock.json
 .env.*.local
 *.secret
 *_secret.js
+nexus/js/env.js
 
 # Firebase
 .firebase/
