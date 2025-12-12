@@ -14,6 +14,15 @@ const firebaseConfig = {
     measurementId: window.ENV?.FIREBASE_MEASUREMENT_ID || ''
 };
 
+// Validate Firebase configuration
+const requiredFields = ['apiKey', 'authDomain', 'projectId', 'appId'];
+const missingFields = requiredFields.filter(field => !firebaseConfig[field]);
+
+if (missingFields.length > 0) {
+    console.error('Firebase configuration error: Missing required fields:', missingFields);
+    console.error('Please ensure environment variables are properly set in your deployment configuration.');
+}
+
 // Initialize Firebase
 let app;
 let auth;
@@ -25,6 +34,9 @@ try {
     db = firebase.firestore();
 } catch (error) {
     console.error('Error initializing Firebase:', error);
+    if (missingFields.length > 0) {
+        console.error('This error may be due to missing configuration. Check that all environment variables are set.');
+    }
 }
 
 // Helper Functions

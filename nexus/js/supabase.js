@@ -8,12 +8,25 @@ const SUPABASE_URL = window.ENV?.SUPABASE_URL || '';
 const SUPABASE_KEY = window.ENV?.SUPABASE_KEY || '';
 const BUCKET_NAME = 'msc-nexus';
 
+// Validate Supabase configuration
+if (!SUPABASE_URL || !SUPABASE_KEY) {
+    console.error('Supabase configuration error: Missing required configuration');
+    console.error('Missing:', 
+        !SUPABASE_URL ? 'SUPABASE_URL' : '', 
+        !SUPABASE_KEY ? 'SUPABASE_KEY' : ''
+    );
+    console.error('Please ensure environment variables are properly set in your deployment configuration.');
+}
+
 // Initialize Supabase client
 let supabase;
 try {
     supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 } catch (error) {
     console.error('Error initializing Supabase:', error);
+    if (!SUPABASE_URL || !SUPABASE_KEY) {
+        console.error('This error may be due to missing configuration. Check that all environment variables are set.');
+    }
 }
 
 /**
