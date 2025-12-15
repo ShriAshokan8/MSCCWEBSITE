@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSC Meetings Calendar - MSC Initiative</title>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/style.css">
+    
+    <!-- Meta tags -->
+    <meta name="description" content="View the MSC Initiative meetings calendar - stay updated on upcoming meetings, events, and important dates.">
+    <meta name="keywords" content="MSC, Mathematics, Science, Computing, STEM, Initiative, Calendar, Meetings, Events">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://msccompetition.live/msc-calendar">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MSC Initiative">
+    <meta property="og:title" content="MSC Meetings Calendar - MSC Initiative">
+    <meta property="og:description" content="View the MSC Initiative meetings calendar - stay updated on upcoming meetings, events, and important dates.">
+    <meta property="og:url" content="https://msccompetition.live/msc-calendar">
+    <meta property="og:image" content="https://msccompetition.live/images/og-default-1200x630.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MSC Meetings Calendar - MSC Initiative">
+    <meta name="twitter:description" content="View the MSC Initiative meetings calendar - stay updated on upcoming meetings, events, and important dates.">
+    <meta name="twitter:image" content="https://msccompetition.live/images/og-default-1200x630.png">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    
+    <!-- Preconnects and DNS prefetch for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://calendar.google.com">
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    <link rel="dns-prefetch" href="//calendar.google.com">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/images/msc-logo.svg" as="image" type="image/svg+xml">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+    
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "MSC Meetings Calendar",
+      "description": "View the MSC Initiative meetings calendar - stay updated on upcoming meetings, events, and important dates.",
+      "url": "https://msccompetition.live/msc-calendar",
+      "publisher": {
+        "@type": "Organization",
+        "name": "MSC Initiative",
+        "url": "https://msccompetition.live",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://msccompetition.live/images/msc-logo.svg"
+        }
+      }
+    }
+    </script>
+    
+    <style>
+        /* Responsive Calendar Container */
+        .calendar-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+        
+        .calendar-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background: #fff;
+        }
+        
+        /* Responsive iframe with adaptive height */
+        .calendar-wrapper iframe {
+            width: 100%;
+            height: 600px;
+            min-height: 400px;
+            border: 0;
+            display: block;
+        }
+        
+        /* Media queries for different screen sizes */
+        @media (max-width: 768px) {
+            .calendar-wrapper iframe {
+                height: 500px;
+                min-height: 350px;
+            }
+            
+            .calendar-container {
+                margin: 1rem auto;
+                padding: 0 0.5rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .calendar-wrapper iframe {
+                height: 450px;
+                min-height: 300px;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            .calendar-wrapper iframe {
+                height: 700px;
+            }
+        }
+        
+        /* Calendar description styling */
+        .calendar-description {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            padding: 0 1rem;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .calendar-description h1 {
+            margin-bottom: 1rem;
+        }
+        
+        .calendar-description p {
+            font-size: 1.1rem;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header with Navigation -->
+    <header>
+        <nav class="nav-left desktop-only">
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/events">Events</a></li>
+            </ul>
+        </nav>
+        
+        <div class="header-center">
+            <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="logo" width="200" height="120">
+        </div>
+        
+        <nav class="nav-right desktop-only">
+            <ul class="nav-links">
+                <li><a href="/newsletters">Newsletters</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/brackets">Brackets</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Hamburger Menu -->
+        <div class="hamburger" aria-label="Toggle mobile navigation" role="button" tabindex="0" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/newsletters">Newsletters</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/brackets">Brackets</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main">
+        <div class="calendar-description">
+            <h1>MSC Meetings Calendar</h1>
+            <p>Stay up to date with all MSC Initiative meetings and important events. This calendar shows our scheduled meetings, workshops, and key dates. All times are displayed in Europe/London timezone.</p>
+        </div>
+        
+        <div class="calendar-container">
+            <div class="calendar-wrapper">
+                <iframe src="https://calendar.google.com/calendar/embed?src=4d0d8a0dc6614b50f806e741b36ce7b34432d66e309f30ed7964281f7fe04fc4%40group.calendar.google.com&amp;ctz=Europe%2FLondon" title="MSC Meetings Calendar" loading="lazy"></iframe>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
+    </footer>
+    
+    <!-- Custom JS -->
+    <script src="/script.js" defer></script>
+    <script src="/js/main.js" defer></script>
+    
+</body>
+</html>
