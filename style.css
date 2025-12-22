@@ -321,6 +321,32 @@ nav {
     font-weight: 600;
 }
 
+/* Contact Us Button in Nav */
+.nav-links li a.btn-contact {
+    background: var(--gradient-primary);
+    color: var(--color-text-inverse);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    box-shadow: var(--shadow-accent);
+    transition: all var(--transition-smooth);
+}
+
+.nav-links li a.btn-contact::before {
+    display: none;
+}
+
+.nav-links li a.btn-contact:hover {
+    background: linear-gradient(135deg, var(--color-accent-hover), var(--color-accent));
+    box-shadow: var(--shadow-accent-lg);
+    transform: translateY(-2px);
+    color: var(--color-text-inverse);
+}
+
+.nav-links li a.btn-contact.is-active {
+    color: var(--color-text-inverse);
+}
+
 /* Mobile Navigation - Light warm theme */
 .mobile-nav {
     background: var(--gradient-section-peach);
@@ -448,6 +474,24 @@ main h3 {
 main p {
     line-height: 1.8;
     margin-bottom: var(--space-md);
+}
+
+/* Value proposition styling */
+p.value-prop {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    margin-bottom: var(--space-lg);
+    color: var(--charcoal-text);
+}
+
+/* FAQ link styling */
+.faq-link {
+    text-align: center;
+    margin-top: var(--space-lg);
+}
+
+.faq-link a {
+    font-weight: 600;
 }
 
 main h3:hover {
@@ -797,6 +841,38 @@ a:not(.btn):not(.download-link):not(.nav-links a):hover {
     display: block;
 }
 
+/* Breadcrumbs */
+.breadcrumbs {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-lg);
+    padding: var(--space-sm) 0;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.breadcrumbs a {
+    color: var(--primary-orange);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+.breadcrumbs a:hover {
+    color: var(--deep-orange);
+    text-decoration: underline;
+}
+
+.breadcrumbs .separator {
+    color: var(--text-muted);
+    margin: 0 var(--space-xs);
+}
+
+.breadcrumbs .current {
+    color: var(--charcoal-text);
+    font-weight: 500;
+}
+
 /* Text alignment utilities */
 .text-center {
     text-align: center;
@@ -1003,6 +1079,56 @@ header.scrolled + .msc-stopwatch-wrap {
     position: relative;
     text-align: center;
     z-index: 1;
+}
+
+/* ===================================
+   FAQ STYLES
+   =================================== */
+.faq-section {
+    margin-top: var(--space-xl);
+}
+
+.faq-item {
+    background: var(--pale-peach);
+    border: 1px solid rgba(224, 90, 36, 0.1);
+    border-left: 3px solid var(--primary-orange);
+    border-radius: 8px;
+    box-shadow: var(--shadow-sm);
+    margin-bottom: var(--space-md);
+    padding: var(--space-lg);
+    transition: all var(--transition-smooth);
+}
+
+.faq-item:hover {
+    background: var(--light-peach);
+    box-shadow: var(--shadow-md);
+    transform: translateX(4px);
+}
+
+.faq-item h3 {
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    color: var(--primary-orange);
+    cursor: default;
+    font-size: 1.2rem;
+    margin: 0 0 var(--space-sm) 0;
+    padding: 0;
+}
+
+.faq-item h3:hover {
+    transform: none;
+}
+
+.faq-item p {
+    color: var(--charcoal-text);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.faq-item a {
+    color: var(--primary-orange);
+    font-weight: 500;
 }
 
 /* ===================================

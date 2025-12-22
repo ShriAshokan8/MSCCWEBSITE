@@ -3,7 +3,75 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MSC Initiative</title>
+    <title>MSC Initiative - Student-Led STEM Movement | Explore, Innovate, Excel</title>
+    
+    <!-- Inline Critical CSS for above-the-fold content -->
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --primary-orange: #FF6B35;
+            --charcoal-text: #1A1A1A;
+            --pure-white: #FFF;
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+        }
+        body {
+            background: linear-gradient(180deg, #FAFAFA 0%, #FFF4EA 100%);
+            color: var(--charcoal-text);
+            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            font-size: 1rem;
+            line-height: 1.75;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        header {
+            align-items: center;
+            backdrop-filter: blur(12px);
+            background: hsla(0, 0%, 100%, 0.8);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            left: 0;
+            min-height: 80px;
+            padding: var(--space-sm) var(--space-lg);
+            position: fixed;
+            right: 0;
+            top: 0;
+            z-index: 1000;
+        }
+        .logo { height: 50px; width: auto; }
+        .nav-links { display: flex; gap: var(--space-sm); list-style: none; }
+        .nav-links li a {
+            color: var(--charcoal-text);
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: var(--space-xs) var(--space-sm);
+            text-decoration: none;
+        }
+        main {
+            background: var(--pure-white);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin: 130px auto 100px;
+            max-width: 1100px;
+            padding: var(--space-xl) var(--space-lg);
+        }
+        h1 {
+            background: linear-gradient(135deg, var(--primary-orange) 0%, #FF4E00 100%);
+            font-size: clamp(2rem, 1.8rem + 2vw, 3rem);
+            font-weight: 700;
+            line-height: 1.15;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: var(--space-lg);
+            text-align: center;
+        }
+    </style>
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/style.css">
@@ -89,8 +157,8 @@
         <nav class="nav-right desktop-only">
             <ul class="nav-links">
                 <li><a href="/newsletters">Newsletters</a></li>
-                <li><a href="/contact">Contact</a></li>
                 <li><a href="/brackets">Brackets</a></li>
+                <li><a href="/contact" class="btn-contact">Contact Us</a></li>
             </ul>
         </nav>
         
@@ -139,8 +207,8 @@
             <li><a href="/about">About</a></li>
             <li><a href="/events">Events</a></li>
             <li><a href="/newsletters">Newsletters</a></li>
-            <li><a href="/contact">Contact</a></li>
             <li><a href="/brackets">Brackets</a></li>
+            <li><a href="/contact" class="btn-contact">Contact Us</a></li>
         </ul>
     </div>
 
@@ -148,9 +216,12 @@
     <main id="main">
         <h1>Explore, Innovate, Excel:<br>Maths, Science, Computing</h1>
         
-        <p>Welcome to the MSC Initiative - an exciting & comprehensive student-led STEM initiative that brings together enthusiastic students interested in <strong>Maths</strong>, <strong>Science</strong>, and <strong>Computing</strong>.</p>
+        <p class="value-prop"><strong>Join a vibrant student-led STEM community where curiosity meets innovation.</strong> We bring together enthusiastic students to compete, learn, and excel in Maths, Science, and Computing through engaging challenges and real-world projects.</p>
         
-        <p>Join our community of young innovators and problem-solvers as we explore exciting STEM activities through competitions, clubs, events, and fun learning experiences.</p>
+        <div class="cta-buttons">
+            <a href="/about" class="btn btn-primary">Learn More About Us</a>
+            <a href="/contact" class="btn btn-secondary">Get in Touch</a>
+        </div>
         
         <h3>What We Do</h3>
         <div class="feature-grid">
@@ -175,12 +246,16 @@
         <h2>Our Mission</h2>
         <p>To create a brilliant community of STEM enthusiasts who love thinking creatively, coming up with amazing solutions, and doing their very best in all areas of STEM.</p>
         
-        <p>Since we started on 23rd September 2024, and with our first ever MSC Competition beginning on 7th March 2025, we've been helping to connect what you learn in the classroom with real-world activities, challenges and exciting projects.</p>
+        <p>Since launching on 23rd September 2024, we've been connecting classroom learning with real-world activities, challenges, and exciting projects. Our first MSC Competition begins on 7th March 2025.</p>
         
         <div class="cta-buttons">
-            <a href="/about" class="btn btn-primary">Learn More</a>
-            <a href="/events" class="btn btn-secondary">Upcoming Events</a>
+            <a href="/events" class="btn btn-primary">View Upcoming Events</a>
+            <a href="/contact" class="btn btn-secondary">Have Questions? Contact Us</a>
         </div>
+        
+        <p class="faq-link">
+            <a href="/faq">View Frequently Asked Questions →</a>
+        </p>
     </main>
 
     <!-- Footer -->

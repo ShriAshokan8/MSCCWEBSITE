@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Newsletters - MSC Initiative</title>
+    <title>Newsletters - MSC Initiative | STEM Updates & Community News</title>
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/style.css">
@@ -11,7 +11,7 @@
     <!-- Animation libraries removed - unused in codebase, using native CSS transitions instead -->
     
     <!-- Meta tags -->
-    <meta name="description" content="Access newsletters and updates from the MSC Initiative. Stay informed about our latest activities, achievements, and upcoming events in Mathematics, Science, and Computing.">
+    <meta name="description" content="Read MSC Initiative newsletters for the latest STEM news, event updates, member spotlights, and developments in Mathematics, Science, and Computing.">
     <meta name="keywords" content="MSC, Mathematics, Science, Computing, STEM, Initiative">
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     
@@ -71,8 +71,8 @@
         <nav class="nav-right desktop-only">
             <ul class="nav-links">
                 <li><a href="/newsletters">Newsletters</a></li>
-                <li><a href="/contact">Contact</a></li>
                 <li><a href="/brackets">Brackets</a></li>
+                <li><a href="/contact" class="btn-contact">Contact Us</a></li>
             </ul>
         </nav>
         
@@ -91,16 +91,23 @@
             <li><a href="/about">About</a></li>
             <li><a href="/events">Events</a></li>
             <li><a href="/newsletters">Newsletters</a></li>
-            <li><a href="/contact">Contact</a></li>
             <li><a href="/brackets">Brackets</a></li>
+            <li><a href="/contact" class="btn-contact">Contact Us</a></li>
         </ul>
     </div>
 
     <!-- Main Content -->
     <main id="main">
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span class="separator">/</span>
+            <span class="current" aria-current="page">Newsletters</span>
+        </nav>
+        
         <h1>MSC Initiative Newsletters</h1>
         
-        <p>Stay up to date with the latest news, achievements, and updates from the MSC Initiative community. Our newsletters provide insights into ongoing projects, upcoming events, member spotlights, and developments in Mathematics, Science, and Computing.</p>
+        <p class="value-prop"><strong>Stay connected with the MSC community through our newsletters.</strong> Get insights into ongoing projects, upcoming events, member spotlights, and the latest developments in Mathematics, Science, and Computing.</p>
         
         <h3>Available Newsletters</h3>
         <p>Download our newsletters to learn more about our activities and community progress:</p>
@@ -117,8 +124,10 @@
         <h3>Newsletter Archive</h3>
         <p>As we continue to grow and develop, this section will contain our complete newsletter archive. Check back regularly for new updates and publications from the MSC Initiative team.</p>
         
-        <h3>Subscribe to Updates</h3>
-        <p>To receive notifications about new newsletters and updates, please visit our <a href="/contact">contact page</a> to get in touch with our team.</p>
+        <div class="cta-buttons">
+            <a href="/contact" class="btn btn-primary">Subscribe to Updates</a>
+            <a href="/about" class="btn btn-secondary">Learn More About Us</a>
+        </div>
     </main>
 
     <!-- Footer -->
