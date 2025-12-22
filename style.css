@@ -476,11 +476,21 @@ main p {
 }
 
 /* Value proposition styling */
-main p.value-prop {
+p.value-prop {
     font-size: 1.125rem;
     line-height: 1.8;
     margin-bottom: var(--space-lg);
     color: var(--charcoal-text);
+}
+
+/* FAQ link styling */
+.faq-link {
+    text-align: center;
+    margin-top: var(--space-lg);
+}
+
+.faq-link a {
+    font-weight: 600;
 }
 
 main h3:hover {
