@@ -7,6 +7,7 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/css/advanced-components.css">
     
     <!-- Meta tags -->
     <meta name="description" content="Find answers to common questions about MSC Initiative - joining our STEM community, events, competitions, and more.">
@@ -51,9 +52,15 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
 </head>
 <body>
+    <!-- Skip Links for Accessibility -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <a href="#navigation" class="skip-link">Skip to navigation</a>
+    
+    
+<body>
     <!-- Header with Navigation -->
-    <header>
-        <nav class="nav-left desktop-only">
+    <header id="navigation">
+        <nav class="nav-left desktop-only" aria-label="Primary navigation">
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
@@ -162,5 +169,9 @@
     <!-- Custom JS -->
     <script src="/script.js" defer></script>
     <script src="/js/main.js" defer></script>
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">↑</button>
+    
+    <script src="/js/advanced-components.js" defer></script>
 </body>
 </html>

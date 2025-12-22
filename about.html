@@ -7,6 +7,7 @@
     
     <!-- Custom CSS -->
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/css/advanced-components.css">
     
     <!-- Animation libraries removed - unused in codebase, using native CSS transitions instead -->
     
@@ -16,15 +17,15 @@
     <link rel="icon" href="/favicon.ico" type="image/x-icon">
     
     <!-- Canonical -->
-    <link rel="canonical" href="https://msccompetition.live/about">
+    <link rel="canonical" href="https://mscinitiative.app/about">
 
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="MSC Initiative">
     <meta property="og:title" content="About Us - MSC Initiative">
     <meta property="og:description" content="Learn about the MSC Initiative - a student-led STEM movement that started on 23rd September 2024, fostering innovation in Mathematics, Science, and Computing.">
-    <meta property="og:url" content="https://msccompetition.live/about">
-    <meta property="og:image" content="https://msccompetition.live/images/og-default-1200x630.png">
+    <meta property="og:url" content="https://mscinitiative.app/about">
+    <meta property="og:image" content="https://mscinitiative.app/images/og-default-1200x630.png">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
@@ -32,7 +33,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="About Us - MSC Initiative">
     <meta name="twitter:description" content="Learn about the MSC Initiative - a student-led STEM movement that started on 23rd September 2024, fostering innovation in Mathematics, Science, and Computing.">
-    <meta name="twitter:image" content="https://msccompetition.live/images/og-default-1200x630.png">
+    <meta name="twitter:image" content="https://mscinitiative.app/images/og-default-1200x630.png">
     
     <!-- PWA -->
     <link rel="manifest" href="/manifest.json">
@@ -59,27 +60,31 @@
       "@type": "WebSite",
       "name": "MSC Initiative",
       "description": "MSC Initiative - A student-led STEM movement exploring Maths, Science, and Computing. Join us to Explore, Innovate, and Excel!",
-      "url": "https://msccompetition.live",
+      "url": "https://mscinitiative.app",
       "sameAs": [],
       "publisher": {
         "@type": "Organization",
         "name": "MSC Initiative",
-        "url": "https://msccompetition.live",
+        "url": "https://mscinitiative.app",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://msccompetition.live/images/msc-logo.svg"
+          "url": "https://mscinitiative.app/images/msc-logo.svg"
         }
       }
     }
     </script>
     <meta name="twitter:title" content="About Us - MSC Initiative">
     <meta name="twitter:description" content="Learn about the MSC Initiative - a student-led STEM movement that started on 23rd September 2024, fostering innovation in Mathematics, Science, and Computing.">
-    <meta name="twitter:image" content="https://msccompetition.live/images/og-default-1200x630.png">
+    <meta name="twitter:image" content="https://mscinitiative.app/images/og-default-1200x630.png">
 </head>
 <body>
+    <!-- Skip Links for Accessibility -->
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <a href="#navigation" class="skip-link">Skip to navigation</a>
+    
     <!-- Header with Navigation -->
-    <header>
-        <nav class="nav-left desktop-only">
+    <header id="navigation">
+        <nav class="nav-left desktop-only" aria-label="Primary navigation">
             <ul class="nav-links">
                 <li><a href="/">Home</a></li>
                 <li><a href="/about">About</a></li>
@@ -121,6 +126,17 @@
 
     <!-- Main Content -->
     <main id="main">
+        <!-- Breadcrumbs -->
+        <nav aria-label="Breadcrumb" class="breadcrumbs">
+            <div class="breadcrumb-item">
+                <a href="/">Home</a>
+            </div>
+            <span class="breadcrumb-separator">/</span>
+            <div class="breadcrumb-item">
+                <span class="breadcrumb-current">About</span>
+            </div>
+        </nav>
+        
         <h1>About the MSC Initiative</h1>
         
         <p class="value-prop"><strong>Empowering the next generation of STEM leaders through collaboration, innovation, and excellence.</strong> Since September 2024, we've been building a thriving community where students discover, create, and excel together.</p>
@@ -209,6 +225,10 @@
     <!-- Custom JS -->
     <script src="/script.js" defer></script>
     <script src="/js/main.js" defer></script>
+    <script src="/js/advanced-components.js" defer></script>
+    
+    <!-- Back to Top Button -->
+    <button class="back-to-top" aria-label="Back to top">↑</button>
     
 </body>
 </html>
