@@ -36,6 +36,16 @@
     --text-gray: #333333;
     --text-muted: #5A5A5A;
     
+    /* State Colors (AA Contrast Compliant) */
+    --color-success: #28A745;
+    --color-success-bg: #D4EDDA;
+    --color-warning: #E67E22;
+    --color-warning-bg: #FFF3CD;
+    --color-error: #DC3545;
+    --color-error-bg: #F8D7DA;
+    --color-info: #17A2B8;
+    --color-info-bg: #D1ECF1;
+    
     /* Semantic Background Colors */
     --color-bg-page: var(--off-white);
     --color-bg-section-white: var(--pure-white);
@@ -75,13 +85,44 @@
     --gradient-section-peach: linear-gradient(180deg, var(--pale-peach) 0%, var(--light-peach) 100%);
     --gradient-section-warm: linear-gradient(180deg, var(--light-peach) 0%, var(--soft-peach) 100%);
     
-    /* Spacing System */
-    --space-xs: 0.5rem;
-    --space-sm: 1rem;
-    --space-md: 1.5rem;
-    --space-lg: 2rem;
-    --space-xl: 3rem;
-    --space-xxl: 4rem;
+    /* Typography Scale (12/14/16/20/24/32/40) */
+    --font-size-xs: 0.75rem;      /* 12px */
+    --font-size-sm: 0.875rem;     /* 14px */
+    --font-size-base: 1rem;       /* 16px */
+    --font-size-md: 1.25rem;      /* 20px */
+    --font-size-lg: 1.5rem;       /* 24px */
+    --font-size-xl: 2rem;         /* 32px */
+    --font-size-2xl: 2.5rem;      /* 40px */
+    
+    /* Line Heights */
+    --line-height-tight: 1.25;
+    --line-height-normal: 1.5;
+    --line-height-relaxed: 1.75;
+    --line-height-loose: 2;
+    
+    /* Font Families */
+    --font-family-base: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-family-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    
+    /* Spacing System (4px base stack) */
+    --space-1: 0.25rem;   /* 4px */
+    --space-2: 0.5rem;    /* 8px */
+    --space-3: 0.75rem;   /* 12px */
+    --space-4: 1rem;      /* 16px */
+    --space-5: 1.25rem;   /* 20px */
+    --space-6: 1.5rem;    /* 24px */
+    --space-8: 2rem;      /* 32px */
+    --space-10: 2.5rem;   /* 40px */
+    --space-12: 3rem;     /* 48px */
+    --space-16: 4rem;     /* 64px */
+    
+    /* Legacy spacing (keeping for compatibility) */
+    --space-xs: var(--space-2);
+    --space-sm: var(--space-4);
+    --space-md: var(--space-6);
+    --space-lg: var(--space-8);
+    --space-xl: var(--space-12);
+    --space-xxl: var(--space-16);
     
     /* Border Radius System */
     --radius-sm: 6px;
@@ -104,6 +145,21 @@
     --transition-fast: 0.15s ease;
     --transition-smooth: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     --transition-slow: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    /* Container Max Width */
+    --container-max-width: 1280px;
+    --container-padding: var(--space-4);
+    
+    /* Hit Area Minimum (Accessibility) */
+    --hit-area-min: 44px;
+    
+    /* Z-Index Scale */
+    --z-dropdown: 1000;
+    --z-sticky: 1020;
+    --z-fixed: 1030;
+    --z-modal-backdrop: 1040;
+    --z-modal: 1050;
+    --z-tooltip: 1060;
 }
 
 /* Body & Typography - Premium STEM aesthetic with light backgrounds */
