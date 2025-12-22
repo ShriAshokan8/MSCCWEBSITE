@@ -340,6 +340,7 @@ nav {
     background: linear-gradient(135deg, var(--color-accent-hover), var(--color-accent));
     box-shadow: var(--shadow-accent-lg);
     transform: translateY(-2px);
+    color: var(--color-text-inverse);
 }
 
 .nav-links li a.btn-contact.is-active {
