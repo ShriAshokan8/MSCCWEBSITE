@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Files - Nexus | MSC Initiative</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/nexus/css/shared.css">
+    <link rel="stylesheet" href="/nexus/css/files.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="/nexus/dashboard.html" class="sidebar-logo">
+                    <div class="logo-icon">M</div>
+                    <div class="logo-text">
+                        <div class="logo-title">MSC Initiative</div>
+                        <div class="logo-subtitle">NEXUS</div>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="/nexus/dashboard.html" class="nav-link">
+                            <span class="nav-icon">📊</span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/nexus/files.html" class="nav-link active">
+                            <span class="nav-icon">📁</span>
+                            <span>Files</span>
+                        </a>
+                    </li>
+                    <li class="nav-item admin-only hidden">
+                        <a href="/nexus/roles.html" class="nav-link">
+                            <span class="nav-icon">👥</span>
+                            <span>Roles</span>
+                        </a>
+                    </li>
+                    <li class="nav-item admin-only hidden">
+                        <a href="/nexus/settings.html" class="nav-link">
+                            <span class="nav-icon">⚙️</span>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+                <h1 class="page-title">Files</h1>
+                <div class="top-bar-actions">
+                    <button class="btn btn-primary admin-only hidden" id="uploadFileBtn">📤 Upload</button>
+                    <button class="btn btn-secondary admin-only hidden" id="createFolderBtn">➕ New Folder</button>
+                    <div class="user-profile">
+                        <div class="user-avatar" id="userAvatar">U</div>
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="dropdown-item" id="viewProfile">View Profile</div>
+                            <div class="dropdown-item" id="addEmail">Add Email</div>
+                            <div class="dropdown-item danger" id="signOut">Sign Out</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content Container -->
+            <div class="content-container files-container">
+                <!-- Folder Tree Sidebar -->
+                <div class="folder-tree-sidebar">
+                    <div class="tree-header">
+                        <h3>Folders</h3>
+                    </div>
+                    <div class="folder-tree" id="folderTree">
+                        <div class="tree-item active" data-path="">
+                            <span class="tree-icon">📁</span>
+                            <span class="tree-label">Root</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Files Grid -->
+                <div class="files-main">
+                    <!-- Breadcrumb -->
+                    <div class="breadcrumb" id="breadcrumb">
+                        <span class="breadcrumb-item active" data-path="">Root</span>
+                    </div>
+                    
+                    <!-- Files Grid -->
+                    <div class="files-grid" id="filesGrid" 
+                         ondrop="handleDrop(event)" 
+                         ondragover="handleDragOver(event)"
+                         ondragleave="handleDragLeave(event)">
+                        <div class="spinner"></div>
+                    </div>
+                    
+                    <div class="drop-zone hidden" id="dropZone">
+                        <div class="drop-zone-content">
+                            <p class="drop-zone-icon">📤</p>
+                            <p class="drop-zone-text">Drop files here to upload</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Upload File Modal -->
+    <div class="modal-overlay" id="uploadModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Upload Files</h3>
+                <button class="modal-close" id="closeUploadModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="uploadAlertContainer"></div>
+                <div class="upload-area" id="uploadArea">
+                    <input type="file" id="fileInput" multiple style="display: none;">
+                    <p class="upload-icon">📤</p>
+                    <p class="upload-text">Click to select files or drag them here</p>
+                    <p class="upload-hint">You can select multiple files</p>
+                </div>
+                <div id="fileList" class="file-list"></div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cancelUpload">Cancel</button>
+                <button type="button" class="btn btn-primary" id="startUpload" disabled>Upload</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Create Folder Modal -->
+    <div class="modal-overlay" id="folderModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3 class="modal-title">Create Folder</h3>
+                <button class="modal-close" id="closeFolderModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="folderAlertContainer"></div>
+                <div class="form-group">
+                    <label for="folderName" class="form-label">Folder Name</label>
+                    <input 
+                        type="text" 
+                        id="folderName" 
+                        class="form-input" 
+                        placeholder="Enter folder name"
+                        required
+                    >
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cancelFolder">Cancel</button>
+                <button type="button" class="btn btn-primary" id="createFolder">Create</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Supabase SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    
+    <!-- Environment Configuration -->
+    <script src="/nexus/js/env.js"></script>
+    
+    <!-- Firebase & Supabase Config -->
+    <script src="/nexus/js/firebase.js"></script>
+    <script src="/nexus/js/supabase.js"></script>
+    <script src="/nexus/js/firebaseFunctions.js"></script>
+    
+    <!-- Files Script -->
+    <script src="/nexus/js/files.js"></script>
+</body>
+</html>

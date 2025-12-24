@@ -1,0 +1,103 @@
+name: Validate Nexus Portal
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'nexus/**'
+      - 'functions/**'
+  push:
+    branches:
+      - main
+    paths:
+      - 'nexus/**'
+      - 'functions/**'
+
+jobs:
+  validate:
+    name: Validate Code
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+      
+      - name: Validate HTML files
+        run: |
+          echo "Checking HTML files for syntax errors..."
+          for file in nexus/*.html; do
+            if [ -f "$file" ]; then
+              echo "Checking $file"
+              # Basic HTML validation - check for closing tags
+              if ! grep -q "</html>" "$file"; then
+                echo "Error: $file is missing closing </html> tag"
+                exit 1
+              fi
+            fi
+          done
+          echo "✓ HTML files validated"
+      
+      - name: Validate JavaScript files
+        run: |
+          echo "Checking JavaScript files for syntax errors..."
+          for file in nexus/js/*.js; do
+            if [ -f "$file" ]; then
+              echo "Checking $file"
+              node -c "$file" || exit 1
+            fi
+          done
+          echo "✓ JavaScript files validated"
+      
+      - name: Validate Firebase Functions
+        run: |
+          echo "Installing Firebase Functions dependencies..."
+          cd functions
+          npm ci
+          echo "✓ Firebase Functions dependencies installed"
+          
+          echo "Checking Firebase Functions syntax..."
+          node -c index.js || exit 1
+          echo "✓ Firebase Functions validated"
+      
+      - name: Check for placeholder values
+        run: |
+          echo "Checking for placeholder configuration values..."
+          
+          # Check Firebase config
+          if grep -q "YOUR_API_KEY" nexus/js/firebase.js; then
+            echo "⚠️  Warning: Firebase configuration contains placeholder values"
+            echo "Please update nexus/js/firebase.js with actual Firebase credentials"
+          else
+            echo "✓ Firebase configuration appears to be set"
+          fi
+          
+          # Check Supabase config
+          if grep -q "YOUR_SUPABASE_URL" nexus/js/supabase.js; then
+            echo "⚠️  Warning: Supabase configuration contains placeholder values"
+            echo "Please update nexus/js/supabase.js with actual Supabase credentials"
+          else
+            echo "✓ Supabase configuration appears to be set"
+          fi
+      
+      - name: Summary
+        run: |
+          echo "================================================"
+          echo "Nexus Portal Validation Complete"
+          echo "================================================"
+          echo "✓ HTML files validated"
+          echo "✓ JavaScript files validated"
+          echo "✓ Firebase Functions validated"
+          echo ""
+          echo "Next steps:"
+          echo "1. Configure Firebase credentials in nexus/js/firebase.js"
+          echo "2. Configure Supabase credentials in nexus/js/supabase.js"
+          echo "3. Deploy Firebase Functions using the Firebase Deploy workflow"
+          echo "4. Apply Firestore security rules"
+          echo "5. Apply Supabase storage policies"
+          echo "================================================"

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roles Manager - Nexus | MSC Initiative</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="/nexus/css/shared.css">
+    <link rel="stylesheet" href="/nexus/css/roles.css">
+</head>
+<body>
+    <div class="app-layout">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="/nexus/dashboard.html" class="sidebar-logo">
+                    <div class="logo-icon">M</div>
+                    <div class="logo-text">
+                        <div class="logo-title">MSC Initiative</div>
+                        <div class="logo-subtitle">NEXUS</div>
+                    </div>
+                </a>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <ul class="nav-list">
+                    <li class="nav-item">
+                        <a href="/nexus/dashboard.html" class="nav-link">
+                            <span class="nav-icon">📊</span>
+                            <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/nexus/files.html" class="nav-link">
+                            <span class="nav-icon">📁</span>
+                            <span>Files</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/nexus/roles.html" class="nav-link active">
+                            <span class="nav-icon">👥</span>
+                            <span>Roles</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/nexus/settings.html" class="nav-link">
+                            <span class="nav-icon">⚙️</span>
+                            <span>Settings</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+        
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Top Bar -->
+            <div class="top-bar">
+                <button class="mobile-menu-toggle" id="mobileMenuToggle">☰</button>
+                <h1 class="page-title">Roles Manager</h1>
+                <div class="top-bar-actions">
+                    <button class="btn btn-primary" id="createRoleBtn">+ Create Role</button>
+                    <div class="user-profile">
+                        <div class="user-avatar" id="userAvatar">A</div>
+                        <div class="user-dropdown" id="userDropdown">
+                            <div class="dropdown-item" id="viewProfile">View Profile</div>
+                            <div class="dropdown-item" id="addEmail">Add Email</div>
+                            <div class="dropdown-item danger" id="signOut">Sign Out</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Content Container -->
+            <div class="content-container">
+                <!-- Tab Navigation -->
+                <div class="tabs">
+                    <button class="tab-button active" data-tab="roles">Roles</button>
+                    <button class="tab-button" data-tab="users">User Management</button>
+                    <button class="tab-button" data-tab="activity">Activity Log</button>
+                </div>
+                
+                <!-- Roles Tab -->
+                <div class="tab-content active" id="rolesTab">
+                    <div class="roles-list" id="rolesList">
+                        <div class="spinner"></div>
+                    </div>
+                </div>
+                
+                <!-- Users Tab -->
+                <div class="tab-content" id="usersTab">
+                    <div class="search-bar">
+                        <input 
+                            type="text" 
+                            id="userSearch" 
+                            class="form-input" 
+                            placeholder="Search users by name or email..."
+                        >
+                    </div>
+                    <div class="users-list" id="usersList">
+                        <!-- Users will be loaded dynamically -->
+                    </div>
+                </div>
+                
+                <!-- Activity Tab -->
+                <div class="tab-content" id="activityTab">
+                    <div class="activity-log" id="activityLog">
+                        <!-- Activity logs will be loaded dynamically -->
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    
+    <!-- Create/Edit Role Modal -->
+    <div class="modal-overlay" id="roleModal">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h3 class="modal-title" id="roleModalTitle">Create Role</h3>
+                <button class="modal-close" id="closeRoleModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="roleForm">
+                    <div id="roleAlertContainer"></div>
+                    
+                    <div class="form-group">
+                        <label for="roleName" class="form-label">Role Name</label>
+                        <input 
+                            type="text" 
+                            id="roleName" 
+                            class="form-input" 
+                            placeholder="e.g., HAPU - Core Team"
+                            required
+                        >
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="roleDescription" class="form-label">Description</label>
+                        <textarea 
+                            id="roleDescription" 
+                            class="form-textarea" 
+                            placeholder="Describe this role's responsibilities..."
+                        ></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">
+                            <input type="checkbox" id="roleIsAdmin">
+                            Admin Role (grants full system access)
+                        </label>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label">Permissions</label>
+                        <div class="permissions-grid">
+                            <label class="permission-item">
+                                <input type="checkbox" name="permission" value="manageFiles">
+                                <span>Manage Files</span>
+                            </label>
+                            <label class="permission-item">
+                                <input type="checkbox" name="permission" value="manageRoles">
+                                <span>Manage Roles</span>
+                            </label>
+                            <label class="permission-item">
+                                <input type="checkbox" name="permission" value="viewLogs">
+                                <span>View Logs</span>
+                            </label>
+                            <label class="permission-item">
+                                <input type="checkbox" name="permission" value="manageUsers">
+                                <span>Manage Users</span>
+                            </label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="cancelRoleModal">Cancel</button>
+                <button type="button" class="btn btn-primary" id="submitRole">Save Role</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- User Details Modal -->
+    <div class="modal-overlay" id="userModal">
+        <div class="modal modal-large">
+            <div class="modal-header">
+                <h3 class="modal-title" id="userModalTitle">User Details</h3>
+                <button class="modal-close" id="closeUserModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div id="userDetails">
+                    <!-- User details will be loaded dynamically -->
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" id="closeUserDetailsModal">Close</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-functions-compat.js"></script>
+    
+    <!-- Environment Configuration -->
+    <script src="/nexus/js/env.js"></script>
+    
+    <!-- Firebase Config -->
+    <script src="/nexus/js/firebase.js"></script>
+    <script src="/nexus/js/firebaseFunctions.js"></script>
+    
+    <!-- Roles Script -->
+    <script src="/nexus/js/roles.js"></script>
+</body>
+</html>

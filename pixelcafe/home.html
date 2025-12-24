@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Pixel Café — Home</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Inter:wght@400;600;800&display=swap" rel="stylesheet" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="https://emoji.slack-edge.com/T01A6S6A8S6/pixel-heart/2b9a6f4bc2d1c0a7.png" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="logo" href="home.html"><span class="logo-emoji">☕🎮</span> Pixel Café</a>
+
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <span class="bar"></span><span class="bar"></span><span class="bar"></span>
+      </button>
+
+      <nav class="nav" aria-label="Primary">
+        <a href="home.html" class="active">Home</a>
+        <a href="menu.html">Menu</a>
+        <a href="#events">Events</a>
+        <a href="#gallery">Gallery</a>
+        <a href="about.html">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <h1 class="title neon">Where gamers meet coffee</h1>
+          <p class="subtitle">Retro vibes. Esports energy. Barista-crafted fuel.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="menu.html">Explore Menu</a>
+            <a class="btn btn-ghost" href="#contact">Book a Station</a>
+          </div>
+          <ul class="badges">
+            <li class="badge">Ultra Wi‑Fi</li>
+            <li class="badge">LAN Tournaments</li>
+            <li class="badge">Retro Consoles</li>
+            <li class="badge">Pro Beans</li>
+          </ul>
+        </div>
+        <div class="hero-art">
+          <div class="pixel-card floating">
+            <div class="pixel-card-inner">
+              <span class="pixel-emoji">🕹️</span>
+              <h3>Play + Sip</h3>
+              <p>Reserve a setup. Bring your squad. GG’s guaranteed.</p>
+            </div>
+          </div>
+          <div class="pixel-card">
+            <div class="pixel-card-inner">
+              <span class="pixel-emoji">☕</span>
+              <h3>Signature Brews</h3>
+              <p>From 8-bit espresso to boss-level cold brew.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="hero-glow"></div>
+    </section>
+
+    <section class="section" aria-labelledby="specials-heading">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="specials-heading">This Week’s Specials</h2>
+          <a class="link" href="menu.html">See full menu →</a>
+        </div>
+        <div class="grid cards-3">
+          <article class="card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1503481766315-7a586b20f66f?q=80&w=1200&auto=format&fit=crop" alt="Latte with art" />
+            <div class="card-body">
+              <h3>8‑Bit Latte</h3>
+              <p>Creamy latte with pixel-art foam. Unlocks +10 focus.</p>
+              <span class="price">$4.50</span>
+            </div>
+          </article>
+          <article class="card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1511920170033-f8396924c348?q=80&w=1200&auto=format&fit=crop" alt="Cold brew coffee" />
+            <div class="card-body">
+              <h3>Boss Cold Brew</h3>
+              <p>Bold, smooth, on tap. Keep your APM high.</p>
+              <span class="price">$4.00</span>
+            </div>
+          </article>
+          <article class="card">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1519241047957-be31d7379a5d?q=80&w=1200&auto=format&fit=crop" alt="Chocolate donut" />
+            <div class="card-body">
+              <h3>GG Donut</h3>
+              <p>Chocolate-glazed ring of victory. Perfect post‑match.</p>
+              <span class="price">$2.50</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="events" class="section alt" aria-labelledby="events-heading">
+      <div class="container">
+        <h2 id="events-heading">Events & Tournaments</h2>
+        <div class="timeline">
+          <div class="tl-item">
+            <div class="tl-dot">🎯</div>
+            <div class="tl-content">
+              <h3>Weekly Aim Labs Sprint</h3>
+              <p>Thursdays 6–8pm. Track PBs, win café credits.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">🎮</div>
+            <div class="tl-content">
+              <h3>Retro Friday</h3>
+              <p>NES/SNES night. Score attacks and speedrun showdowns.</p>
+            </div>
+          </div>
+          <div class="tl-item">
+            <div class="tl-dot">👾</div>
+            <div class="tl-content">
+              <h3>Lan Party Saturday</h3>
+              <p>Bring your rig or rent a station. Team brackets all day.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section" aria-labelledby="gallery-heading">
+      <div class="container">
+        <h2 id="gallery-heading">Gallery</h2>
+        <div class="grid gallery">
+          <img loading="lazy" src="https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop" alt="Gaming setup" />
+          <img loading="lazy" src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1200&auto=format&fit=crop" alt="Coffee pour" />
+          <img loading="lazy" src="https://images.unsplash.com/photo-1527515637462-cff94eecc1ac?q=80&w=1200&auto=format&fit=crop" alt="Pastries" />
+          <img loading="lazy" src="https://images.unsplash.com/photo-1511512634089-2f3f2730b3c8?q=80&w=1200&auto=format&fit=crop" alt="Retro console" />
+          <img loading="lazy" src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?q=80&w=1200&auto=format&fit=crop" alt="Latte art" />
+          <img loading="lazy" src="https://images.unsplash.com/photo-1511117833895-4f58be4a98a3?q=80&w=1200&auto=format&fit=crop" alt="Gamers at café" />
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section alt" aria-labelledby="contact-heading">
+      <div class="container">
+        <div class="section-head">
+          <h2 id="contact-heading">Visit & Contact</h2>
+        </div>
+        <div class="grid cards-2">
+          <div class="card">
+            <div class="card-body">
+              <h3>Hours & Location</h3>
+              <p>123 Pixel Lane, Coimbatore</p>
+              <ul class="list">
+                <li>Mon–Thu: 9am – 9pm</li>
+                <li>Fri–Sat: 9am – 11pm</li>
+                <li>Sun: 10am – 8pm</li>
+              </ul>
+            </div>
+          </div>
+          <form class="card form" onsubmit="event.preventDefault(); alert('Message sent! GG.');">
+            <div class="card-body">
+              <h3>Send a Message</h3>
+              <label>
+                <span>Name</span>
+                <input required type="text" placeholder="Your name" />
+              </label>
+              <label>
+                <span>Email</span>
+                <input required type="email" placeholder="you@example.com" />
+              </label>
+              <label>
+                <span>Message</span>
+                <textarea required rows="4" placeholder="Say hello or book a station"></textarea>
+              </label>
+              <button class="btn btn-primary" type="submit">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p>© 2025 Pixel Café •</p>
+      <div class="socials">
+        <a aria-label="Instagram" href="#"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M7 2h10a5 5 0 015 5v10a5 5 0 01-5 5H7a5 5 0 01-5-5V7a5 5 0 015-5zm0 2a3 3 0 00-3 3v10a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H7zm5 3.5A5.5 5.5 0 1112 18.5 5.5 5.5 0 0112 7.5zm0 2A3.5 3.5 0 1015.5 13 3.5 3.5 0 0012 9.5zM17.5 6A1.5 1.5 0 1116 7.5 1.5 1.5 0 0117.5 6z"/></svg></a>
+        <a aria-label="Twitter" href="#"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M22 5.8a8.2 8.2 0 01-2.36.65 4.1 4.1 0 001.8-2.27 8.2 8.2 0 01-2.6 1 4.1 4.1 0 00-7 3.74A11.6 11.6 0 013 4.7a4.1 4.1 0 001.27 5.47 4.1 4.1 0 01-1.86-.51v.05a4.1 4.1 0 003.29 4 4.1 4.1 0 01-1.85.07 4.1 4.1 0 003.82 2.84A8.23 8.23 0 012 18.26 11.6 11.6 0 008.29 20c7.55 0 11.68-6.26 11.68-11.68v-.53A8.35 8.35 0 0022 5.8z"/></svg></a>
+        <a aria-label="YouTube" href="#"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M23.5 6.2a3 3 0 00-2.1-2.1C19.6 3.5 12 3.5 12 3.5s-7.6 0-9.4.6A3 3 0 00.5 6.2 31.1 31.1 0 000 12a31.1 31.1 0 00.5 5.8 3 3 0 002.1 2.1c1.8.6 9.4.6 9.4.6s7.6 0 9.4-.6a3 3 0 002.1-2.1A31.1 31.1 0 0024 12a31.1 31.1 0 00-.5-5.8zM9.6 15.5v-7l6 3.5-6 3.5z"/></svg></a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>

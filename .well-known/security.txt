@@ -1,0 +1,6 @@
+Contact: mailto:support@msccompetition.live
+Preferred-Languages: en
+Expires: 2025-12-31T23:59:59.000Z
+Encryption: https://msccompetition.live/.well-known/pgp-key.txt
+Acknowledgments: https://msccompetition.live/security-acknowledgments.html
+Policy: https://msccompetition.live/security-policy.html

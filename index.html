@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSC Initiative</title>
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/style.css">
+    
+    <!-- Meta tags -->
+    <meta name="description" content="MSC Initiative - A student-led STEM movement exploring Maths, Science, and Computing. Join us to Explore, Innovate, and Excel!">
+    <meta name="keywords" content="MSC, Mathematics, Science, Computing, STEM, Initiative, Student-led">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://mscinitiative.app/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="MSC Initiative">
+    <meta property="og:title" content="MSC Initiative">
+    <meta property="og:description" content="MSC Initiative - A student-led STEM movement exploring Maths, Science, and Computing. Join us to Explore, Innovate, and Excel!">
+    <meta property="og:url" content="https://mscinitiative.app/">
+    <meta property="og:image" content="https://mscinitiative.app/images/og-default-1200x630.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="MSC Initiative">
+    <meta name="twitter:description" content="MSC Initiative - A student-led STEM movement exploring Maths, Science, and Computing. Join us to Explore, Innovate, and Excel!">
+    <meta name="twitter:image" content="https://mscinitiative.app/images/og-default-1200x630.png">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#FF6B35">
+    <link rel="apple-touch-icon" href="/images/apple-touch-icon.png">
+    
+    <!-- Preconnects and DNS prefetch for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="//fonts.googleapis.com">
+    <link rel="dns-prefetch" href="//fonts.gstatic.com">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="/images/msc-logo.svg" as="image" type="image/svg+xml">
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" as="style">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+    
+    <!-- JSON-LD -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "name": "MSC Initiative",
+      "description": "MSC Initiative - A student-led STEM movement exploring Maths, Science, and Computing. Join us to Explore, Innovate, and Excel!",
+      "url": "https://mscinitiative.app",
+      "sameAs": [],
+      "publisher": {
+        "@type": "Organization",
+        "name": "MSC Initiative",
+        "url": "https://mscinitiative.app",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://mscinitiative.app/images/msc-logo.svg"
+        }
+      }
+    }
+    </script>
+</head>
+<body class="has-stopwatch">
+    <!-- Header with Navigation -->
+    <header>
+        <nav class="nav-left desktop-only">
+            <ul class="nav-links">
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/events">Events</a></li>
+            </ul>
+        </nav>
+        
+        <div class="header-center">
+            <img src="/images/msc-logo.svg" alt="MSC Initiative Logo" class="logo" width="200" height="120">
+        </div>
+        
+        <nav class="nav-right desktop-only">
+            <ul class="nav-links">
+                <li><a href="/newsletters">Newsletters</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/brackets">Brackets</a></li>
+            </ul>
+        </nav>
+        
+        <!-- Hamburger Menu -->
+        <div class="hamburger" aria-label="Toggle mobile navigation" role="button" tabindex="0" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </header>
+
+    <!-- Stopwatch directly under the logo (outside the header) -->
+    <section class="msc-stopwatch-wrap" aria-live="polite">
+        <div class="msc-stopwatch-card" role="timer" aria-label="MSC running time">
+            <div class="msc-stopwatch-heading">MSC has been running for</div>
+            <div class="msc-stopwatch-grid" id="mscStopwatch">
+                <div class="unit">
+                    <div class="value" data-unit="days">0</div>
+                    <div class="label">Days</div>
+                </div>
+                <div class="unit">
+                    <div class="value" data-unit="hours">00</div>
+                    <div class="label">Hours</div>
+                </div>
+                <div class="unit">
+                    <div class="value" data-unit="minutes">00</div>
+                    <div class="label">Minutes</div>
+                </div>
+                <div class="unit">
+                    <div class="value" data-unit="seconds">00</div>
+                    <div class="label">Seconds</div>
+                </div>
+            </div>
+
+            <!-- This is now both the visible note and the live region we update once per minute -->
+            <div class="msc-start-note" id="mscStartNote">
+                Started on the 23rd of September 2024 at 17:03:37 GMT/BST (Europe/London)
+            </div>
+        </div>
+    </section>
+
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav">
+        <ul class="nav-links">
+            <li><a href="/">Home</a></li>
+            <li><a href="/about">About</a></li>
+            <li><a href="/events">Events</a></li>
+            <li><a href="/newsletters">Newsletters</a></li>
+            <li><a href="/contact">Contact</a></li>
+            <li><a href="/brackets">Brackets</a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+    <main id="main">
+        <h1>Explore, Innovate, Excel:<br>Maths, Science, Computing</h1>
+        
+        <p>Welcome to the MSC Initiative - an exciting & comprehensive student-led STEM initiative that brings together enthusiastic students interested in <strong>Maths</strong>, <strong>Science</strong>, and <strong>Computing</strong>.</p>
+        
+        <p>Join our community of young innovators and problem-solvers as we explore exciting STEM activities through competitions, clubs, events, and fun learning experiences.</p>
+        
+        <h3>What We Do</h3>
+        <div class="feature-grid">
+            <article class="feature-card">
+                <h4>Maths</h4>
+                <p>Solve exciting mathematical problems and puzzles through fun challenges and competitions.</p>
+            </article>
+            <article class="feature-card">
+                <h4>Science</h4>
+                <p>Discover amazing scientific facts, carry out cool experiments, and learn about the natural world around us.</p>
+            </article>
+            <article class="feature-card">
+                <h4>Computing</h4>
+                <p>Learn programming skills, create brilliant projects, and explore the exciting world of technology.</p>
+            </article>
+            <article class="feature-card">
+                <h4>Community &amp; Competitions</h4>
+                <p>Join a vibrant community of young innovators, compete in exciting challenges, and celebrate achievements together.</p>
+            </article>
+        </div>
+        
+        <h2>Our Mission</h2>
+        <p>To create a brilliant community of STEM enthusiasts who love thinking creatively, coming up with amazing solutions, and doing their very best in all areas of STEM.</p>
+        
+        <p>Since we started on 23rd September 2024, and with our first ever MSC Competition beginning on 7th March 2025, we've been helping to connect what you learn in the classroom with real-world activities, challenges and exciting projects.</p>
+        
+        <div class="cta-buttons">
+            <a href="/about" class="btn btn-primary">Learn More</a>
+            <a href="/events" class="btn btn-secondary">Upcoming Events</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; <span id="currentYear"></span> MSC Initiative. All rights reserved. | <span>Empowering STEM Excellence</span></p>
+    </footer>
+
+    <!-- Custom JS -->
+    <script src="/script.js" defer></script>
+    <script src="/js/main.js" defer></script>
+</body>
+</html>
