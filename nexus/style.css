@@ -1,0 +1,273 @@
+/* Nexus page-specific layout tweaks — premium MSC palette.
+   Additive only: does not override the global MSC base styles. */
+
+:root {
+  --msc-pearl: #ffffff;
+  --msc-blush: #ffe9dc;
+  --msc-amber: #ff8a2a;
+  --msc-amber-deep: #e26f0a;
+  --msc-soft: #f6f3ef;
+  --msc-charcoal: #0f0f0f;
+  --msc-border: #f1d9c3;
+  --msc-glow: 0 16px 42px rgba(0,0,0,0.12);
+  --msc-glass: rgba(255,255,255,0.78);
+}
+
+body {
+  background: radial-gradient(circle at 15% 20%, rgba(255,233,220,0.35), transparent 35%),
+              radial-gradient(circle at 85% 10%, rgba(255,169,97,0.18), transparent 30%),
+              var(--msc-soft);
+  color: var(--msc-charcoal);
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.section {
+  padding: 2.6rem 0 3.2rem;
+}
+
+/* Cards: subtle glassy look */
+.card {
+  background: linear-gradient(150deg, var(--msc-pearl) 0%, #fff8f2 60%, #fff2e6 100%);
+  border-radius: 16px;
+  box-shadow: var(--msc-glow);
+  padding: 1.9rem;
+  border: 1px solid rgba(241, 217, 195, 0.9);
+  backdrop-filter: blur(4px);
+}
+
+.msc-hero,
+.page-header {
+  padding: 2.8rem 0 2rem;
+}
+
+/* Optional header band */
+.band-peach-premium {
+  background: linear-gradient(90deg, #fff7ef 0%, #ffe4d2 50%, #fff7ef 100%);
+}
+
+.hero-title,
+.page-title {
+  margin: 0 0 0.35rem;
+  color: var(--msc-charcoal);
+  letter-spacing: 0.01em;
+}
+
+.hero-subtitle,
+.page-subtitle {
+  margin: 0 0 0.55rem;
+  color: #232323;
+  font-weight: 500;
+}
+
+.hero-description,
+.section-text,
+.meta-text {
+  color: #3a3a3a;
+  margin: 0 0 1.05rem;
+}
+
+.cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+  margin-top: 0.9rem;
+}
+
+/* Buttons: premium pill style that harmonizes with global btn classes */
+.btn,
+.btn-primary,
+.btn-secondary,
+.btn-ghost {
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.15s ease, filter 0.15s ease, box-shadow 0.2s ease;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--msc-amber) 0%, var(--msc-amber-deep) 100%);
+  color: #fff;
+  border: 1px solid var(--msc-amber-deep);
+  box-shadow: 0 10px 30px rgba(255, 138, 42, 0.28);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #fff3e8 0%, var(--msc-blush) 100%);
+  color: var(--msc-charcoal);
+  border: 1px solid var(--msc-border);
+}
+
+.btn-ghost {
+  padding: 0.48rem 1rem;
+  border: 1px solid var(--msc-border);
+  background: rgba(255, 250, 244, 0.9);
+  color: var(--msc-charcoal);
+  text-decoration: none;
+  display: inline-block;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+}
+
+.btn:hover,
+.btn-primary:hover,
+.btn-secondary:hover,
+.btn-ghost:hover {
+  filter: brightness(0.98);
+  transform: translateY(-1px);
+  box-shadow: 0 12px 32px rgba(0,0,0,0.12);
+}
+
+/* Text links */
+.text-link {
+  color: var(--msc-amber-deep);
+  text-decoration: underline;
+  font-weight: 600;
+}
+
+/* Table */
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+.msc-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 640px;
+  background: var(--msc-pearl);
+  border: 1px solid var(--msc-border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.08);
+}
+
+.msc-table th,
+.msc-table td {
+  padding: 0.95rem 0.8rem;
+  text-align: left;
+  border-bottom: 1px solid #f3e2d5;
+  color: #181818;
+}
+
+.msc-table th {
+  font-weight: 800;
+  background: linear-gradient(90deg, #fff6ee 0%, #ffe9dc 100%);
+  letter-spacing: 0.01em;
+}
+
+.msc-table tr:hover td {
+  background: #fff5ed;
+}
+
+/* Upload form */
+.upload-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.3rem;
+}
+
+.dropzone {
+  border: 2px dashed var(--msc-border);
+  border-radius: 16px;
+  padding: 2.4rem 1.7rem;
+  text-align: center;
+  background: linear-gradient(145deg, rgba(255, 250, 244, 0.94), rgba(255, 239, 227, 0.96));
+  transition: border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease, transform 0.15s ease;
+}
+
+.dropzone-title {
+  font-size: 1.12rem;
+  margin: 0 0 0.38rem;
+  color: var(--msc-charcoal);
+  font-weight: 700;
+}
+
+.dropzone-subtitle {
+  margin: 0 0 0.65rem;
+  color: #4a4a4a;
+}
+
+.dropzone.is-dragover {
+  border-color: var(--msc-amber);
+  background: linear-gradient(145deg, #fff0e5, #ffe4d2);
+  box-shadow: 0 12px 34px rgba(255, 138, 42, 0.24);
+  transform: translateY(-1px);
+}
+
+/* Form controls */
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+}
+
+.form-label {
+  font-weight: 800;
+  color: #171717;
+  letter-spacing: 0.005em;
+}
+
+.form-control {
+  display: flex;
+  gap: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.radio {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* Progress */
+.progress {
+  width: 100%;
+  background: #ffeede;
+  border-radius: 999px;
+  height: 12px;
+  overflow: hidden;
+  border: 1px solid var(--msc-border);
+  box-shadow: inset 0 1px 3px rgba(0,0,0,0.06);
+}
+
+.progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, var(--msc-amber) 0%, var(--msc-amber-deep) 100%);
+  transition: width 0.2s ease;
+}
+
+/* Layout & meta */
+.form-actions {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.link-row {
+  margin-top: 1rem;
+}
+
+@media (max-width: 720px) {
+  .msc-table {
+    min-width: 0;
+  }
+  .msc-table th,
+  .msc-table td {
+    white-space: nowrap;
+  }
+  .cta-group {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .dropzone {
+    padding: 1.8rem 1.3rem;
+  }
+}
