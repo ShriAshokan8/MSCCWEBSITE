@@ -1,0 +1,16 @@
+dist
+build
+node_modules/*
+.env
+.env.local
+.env.production
+.log
+.vscode/*
+npm-debug.log
+stats.json
+.DS_Store
+data/*
+.idea
+*.pem
+*.key
+*.cert

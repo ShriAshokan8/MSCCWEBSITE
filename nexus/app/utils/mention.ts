@@ -1,0 +1,63 @@
+import type { IntegrationSettings, IntegrationType } from "@shared/types";
+import { IntegrationService, MentionType } from "@shared/types";
+import type Integration from "~/models/Integration";
+
+export const isURLMentionable = ({
+  url,
+  integration,
+}: {
+  url: URL;
+  integration: Integration;
+}): boolean => {
+  const { hostname, pathname } = url;
+
+  switch (integration.service) {
+    case IntegrationService.GitHub: {
+      return hostname === "github.com";
+    }
+
+    case IntegrationService.Linear: {
+      const pathParts = pathname.split("/");
+      const settings =
+        integration.settings as IntegrationSettings<IntegrationType.Embed>;
+
+      return (
+        hostname === "linear.app" &&
+        settings.linear?.workspace.key === pathParts[1] // ensure installed workspace key matches with the provided url.
+      );
+    }
+
+    default:
+      return false;
+  }
+};
+
+export const determineMentionType = ({
+  url,
+  integration,
+}: {
+  url: URL;
+  integration: Integration;
+}): MentionType | undefined => {
+  const { pathname } = url;
+  const pathParts = pathname.split("/");
+
+  switch (integration.service) {
+    case IntegrationService.GitHub: {
+      const type = pathParts[3];
+      return type === "pull"
+        ? MentionType.PullRequest
+        : type === "issues"
+          ? MentionType.Issue
+          : undefined;
+    }
+
+    case IntegrationService.Linear: {
+      const type = pathParts[2];
+      return type === "issue" ? MentionType.Issue : undefined;
+    }
+
+    default:
+      return;
+  }
+};

@@ -1,0 +1,125 @@
+import { MoreIcon } from "outline-icons";
+import * as React from "react";
+import styled from "styled-components";
+import { extraArea, hover, s } from "@shared/styles";
+import { isMobile } from "@shared/utils/browser";
+import Flex from "~/components/Flex";
+import Text from "~/components/Text";
+import { draggableOnDesktop, undraggableOnDesktop } from "~/styles";
+import Desktop from "~/utils/Desktop";
+
+export type SidebarButtonProps = React.ComponentProps<typeof Button> & {
+  position: "top" | "bottom";
+  title: React.ReactNode;
+  image: React.ReactNode;
+  showMoreMenu?: boolean;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
+  children?: React.ReactNode;
+};
+
+const SidebarButton = React.forwardRef<HTMLButtonElement, SidebarButtonProps>(
+  function SidebarButton_(
+    {
+      position = "top",
+      showMoreMenu,
+      image,
+      title,
+      children,
+      onClick,
+      ...rest
+    }: SidebarButtonProps,
+    ref
+  ) {
+    return (
+      <Container
+        justify="space-between"
+        align="center"
+        shrink={false}
+        $position={position}
+      >
+        <Button
+          {...rest}
+          onClick={onClick}
+          $position={position}
+          as="button"
+          ref={ref}
+          role="button"
+        >
+          <Content gap={8} align="center">
+            {image}
+            {title && <Title>{title}</Title>}
+          </Content>
+          {showMoreMenu && <StyledMoreIcon />}
+        </Button>
+        {children}
+      </Container>
+    );
+  }
+);
+
+const StyledMoreIcon = styled(MoreIcon)`
+  flex-shrink: 0;
+`;
+
+const Container = styled(Flex)<{ $position: "top" | "bottom" }>`
+  overflow: hidden;
+  padding-top: ${(props) =>
+    props.$position === "top" && Desktop.hasInsetTitlebar() ? 36 : 0}px;
+  ${draggableOnDesktop()}
+`;
+
+const Title = styled(Text)`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+`;
+
+const Content = styled(Flex)`
+  flex-shrink: 1;
+  flex-grow: 1;
+`;
+
+const Button = styled(Flex)<{
+  $position: "top" | "bottom";
+}>`
+  flex: 1;
+  color: ${s("textTertiary")};
+  align-items: center;
+  padding: ${isMobile() ? 12 : 4}px 4px;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 4px;
+  border: 0;
+  margin: ${(props) => (!isMobile() && props.$position === "top" ? 16 : 8)}px 0;
+  background: none;
+  flex-shrink: 0;
+
+  -webkit-appearance: none;
+  text-decoration: none;
+  text-align: left;
+  user-select: none;
+  position: relative;
+
+  ${undraggableOnDesktop()}
+  ${extraArea(4)}
+
+  &:not(:disabled) {
+    &:active,
+    &:${hover},
+    &[aria-expanded="true"] {
+      color: ${s("sidebarText")};
+      background: ${s("sidebarActiveBackground")};
+      cursor: var(--pointer);
+    }
+  }
+
+  &:last-child {
+    margin-right: 8px;
+  }
+
+  &:first-child {
+    margin-left: 8px;
+  }
+`;
+
+export default SidebarButton;
