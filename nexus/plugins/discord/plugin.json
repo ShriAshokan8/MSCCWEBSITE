@@ -1,6 +1,0 @@
-{
-  "id": "discord",
-  "name": "Discord",
-  "priority": 10,
-  "description": "Adds a Discord authentication provider."
-}

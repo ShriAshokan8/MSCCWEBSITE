@@ -1,6 +1,0 @@
-{
-  "id": "zapier",
-  "name": "Zapier",
-  "description": "Adds a settings screen for connecting to Zapier.",
-  "deployments": ["cloud"]
-}

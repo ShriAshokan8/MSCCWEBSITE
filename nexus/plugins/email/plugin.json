@@ -1,6 +1,0 @@
-{
-  "id": "email",
-  "name": "Email",
-  "priority": 200,
-  "description": "Adds an email magic link authentication provider."
-}
