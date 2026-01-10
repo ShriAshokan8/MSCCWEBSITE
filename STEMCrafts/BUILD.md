@@ -26,7 +26,7 @@ npm run build
 ```
 
 This will create minified versions:
-- `style.min.css` (from `style.css`)
+
 - `script.min.js` (from `script.js`)
 - `js/main.min.js` (from `js/main.js`)
 - `sw.min.js` (from `sw.js`)

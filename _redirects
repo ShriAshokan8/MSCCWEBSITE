@@ -11,6 +11,7 @@
 /brackets.html /brackets 301
 /tech/index.html /tech/ 301
 /thanks.html /thanks 301
+/vertex.html /vertex 301
 
 # Note: Clean URL -> .html redirects are omitted to prevent conflicts
 # with Cloudflare Pages Clean URLs setting which handles this automatically

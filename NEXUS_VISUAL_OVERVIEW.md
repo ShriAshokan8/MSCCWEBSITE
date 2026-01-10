@@ -197,7 +197,7 @@ This document provides a visual overview of all pages in the Nexus staff portal.
 ## Color Scheme
 
 Throughout all pages:
-- **Primary**: Orange #FF6B2C (buttons, active states, gradients)
+
 - **Secondary**: Peach #FFE5D0 (backgrounds, cards, hover states)
 - **Text**: Black #000000 / Charcoal #1A1A1A
 - **Background**: White #FFFFFF / Light Gray #F5F5F5

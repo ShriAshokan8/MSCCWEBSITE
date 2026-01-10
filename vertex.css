@@ -1,0 +1,372 @@
+/* stylelint-disable scss/function-disallowed-list */
+body.vertex-body {
+    margin: 0;
+    font-family: Poppins, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #fdfdfd;
+    color: #1c1c1c;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+}
+
+.vertex-header {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem 1.5rem;
+    border-bottom: 2px solid #1c1c1c;
+    background: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.vertex-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.vertex-logo {
+    filter: drop-shadow(0 2px 4px rgb(0 0 0 / 5%));
+}
+
+.vertex-title-block h1 {
+    margin: 0;
+    font-size: 1.4rem;
+    letter-spacing: -0.02em;
+}
+
+.vertex-eyebrow {
+    margin: 0;
+    color: #555;
+    font-size: 0.85rem;
+}
+
+.vertex-project-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.vertex-project-input {
+    width: min(380px, 100%);
+    border: 2px solid #1c1c1c;
+    border-radius: 10px;
+    padding: 0.65rem 0.85rem;
+    font-size: 1rem;
+    background: #fff7f0;
+    transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.vertex-project-input:focus {
+    outline: none;
+    border-color: #ff6b35;
+    box-shadow: 0 0 0 3px rgb(255 107 53 / 25%);
+}
+
+.vertex-badges {
+    display: flex;
+    gap: 0.4rem;
+    align-items: center;
+}
+
+.vertex-badge {
+    background: #ffeddc;
+    color: #1c1c1c;
+    border: 1px solid #1c1c1c;
+    border-radius: 999px;
+    padding: 0.25rem 0.75rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.vertex-badge.subtle {
+    background: #f7f7f7;
+    color: #444;
+}
+
+.vertex-actions {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.btn {
+    font-family: inherit;
+    font-weight: 700;
+    border-radius: 10px;
+    border: 2px solid #1c1c1c;
+    cursor: pointer;
+    transition: transform 0.1s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+    padding: 0.65rem 1.1rem;
+    background: #fff7f0;
+    color: #1c1c1c;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgb(0 0 0 / 8%);
+}
+
+.btn.primary {
+    background: #ff6b35;
+    color: #fff;
+}
+
+.btn.outline {
+    background: #fff;
+}
+
+.btn.ghost {
+    background: #fff;
+}
+
+.btn.tiny {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.9rem;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.vertex-shell {
+    display: grid;
+    grid-template-columns: 240px 1fr 420px;
+    gap: 1rem;
+    padding: 1rem 1.5rem 2rem;
+}
+
+.vertex-sidebar {
+    background: #fff7f0;
+    border: 2px solid #1c1c1c;
+    border-radius: 14px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    min-height: 70vh;
+}
+
+.vertex-sidebar-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+}
+
+.vertex-sidebar-title {
+    font-weight: 700;
+    margin: 0;
+}
+
+.vertex-file-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+}
+
+.vertex-file-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.4rem;
+}
+
+.vertex-file-btn {
+    flex: 1;
+    text-align: left;
+    padding: 0.55rem 0.75rem;
+    border: 2px solid #1c1c1c;
+    border-radius: 10px;
+    background: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.vertex-file-btn:hover {
+    background: #ffeddc;
+    transform: translateY(-1px);
+}
+
+.vertex-file-btn.active {
+    background: #ff6b35;
+    color: #fff;
+}
+
+.vertex-file-meta {
+    font-size: 0.8rem;
+    color: #444;
+}
+
+.vertex-hint {
+    margin-top: 0.75rem;
+    font-size: 0.9rem;
+    color: #444;
+}
+
+.vertex-editor-panel {
+    border: 2px solid #1c1c1c;
+    border-radius: 14px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    min-height: 70vh;
+}
+
+.vertex-tabs {
+    display: flex;
+    gap: 0.35rem;
+    padding: 0.75rem;
+    border-bottom: 2px solid #1c1c1c;
+    overflow-x: auto;
+}
+
+.vertex-tab {
+    border: 2px solid #1c1c1c;
+    border-radius: 10px;
+    padding: 0.45rem 0.9rem;
+    background: #fff7f0;
+    cursor: pointer;
+    white-space: nowrap;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.vertex-tab.active {
+    background: #ff6b35;
+    color: #fff;
+}
+
+.vertex-tab .lang {
+    font-size: 0.85rem;
+    background: rgb(255 255 255 / 20%);
+    padding: 0.1rem 0.5rem;
+    border-radius: 6px;
+    border: 1px solid rgb(28 28 28 / 12%);
+}
+
+.vertex-editor {
+    flex: 1;
+    min-height: 400px;
+}
+
+.vertex-status {
+    border-top: 2px solid #1c1c1c;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.65rem 0.9rem;
+    background: #fff7f0;
+    border-radius: 0 0 12px 12px;
+    font-size: 0.95rem;
+}
+
+.vertex-log {
+    color: #ff6b35;
+    font-weight: 700;
+}
+
+.vertex-output {
+    border: 2px solid #1c1c1c;
+    border-radius: 14px;
+    background: #fff7f0;
+    display: flex;
+    flex-direction: column;
+    min-height: 70vh;
+}
+
+.vertex-output-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 2px solid #1c1c1c;
+    font-weight: 700;
+}
+
+.vertex-output-body {
+    flex: 1;
+    display: grid;
+    grid-template-rows: 1fr auto;
+    background: #fff;
+}
+
+.vertex-preview {
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 0 0 14px 14px;
+    background: #fff;
+}
+
+.vertex-console {
+    margin: 0;
+    padding: 0.75rem;
+    border-top: 2px solid #1c1c1c;
+    background: #111;
+    color: #0f0;
+    font-family: SFMono-Regular, Consolas, "Liberation Mono", Menlo, monospace;
+    font-size: 0.95rem;
+    min-height: 140px;
+    border-radius: 0 0 12px 12px;
+}
+
+@media (width <= 1200px) {
+    .vertex-shell {
+        grid-template-columns: 1fr;
+    }
+
+    .vertex-output {
+        order: 3;
+    }
+
+    .vertex-sidebar {
+        order: 1;
+    }
+
+    .vertex-editor-panel {
+        order: 2;
+    }
+}
+
+@media (width <= 768px) {
+    .vertex-header {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .vertex-brand {
+        justify-content: center;
+    }
+
+    .vertex-project-meta {
+        justify-content: center;
+    }
+
+    .vertex-actions {
+        justify-content: center;
+    }
+}

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MSC Vertex | MSC Initiative</title>
+    <link rel="canonical" href="https://mscinitiative.app/vertex">
+    <meta name="description" content="MSC Vertex is the MSC Initiative's web-based IDE for students and teachers, featuring Monaco Editor with safe execution for HTML, CSS, JavaScript, and Python.">
+    <meta name="keywords" content="MSC Vertex, web IDE, Monaco Editor, STEM, MSC Initiative">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" crossorigin="anonymous">
+    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/vertex.css">
+    <meta name="theme-color" content="#FF6B35">
+</head>
+<body class="vertex-body">
+    <header class="vertex-header">
+        <div class="vertex-brand">
+            <img src="/images/msc-logo.svg" alt="MSC logo" class="vertex-logo" width="140" height="80">
+            <div class="vertex-title-block">
+                <p class="vertex-eyebrow">MSC Initiative</p>
+                <h1 aria-label="MSC Vertex web IDE">MSC Vertex</h1>
+            </div>
+        </div>
+        <div class="vertex-project-meta">
+            <label for="vertexProjectName" class="sr-only">Project name</label>
+            <input id="vertexProjectName" class="vertex-project-input" value="My Vertex Project" aria-label="Project name">
+            <div class="vertex-badges">
+                <span class="vertex-badge" id="vertexRoleBadge" aria-live="polite">Role: Student</span>
+                <span class="vertex-badge subtle" id="vertexSaveState" aria-live="polite">Unsaved</span>
+            </div>
+        </div>
+        <div class="vertex-actions" role="toolbar" aria-label="Project actions">
+            <button class="btn ghost" id="vertexSaveBtn">Save</button>
+            <button class="btn primary" id="vertexRunBtn">Run</button>
+            <button class="btn outline" id="vertexSubmitBtn">Submit</button>
+        </div>
+    </header>
+
+    <main class="vertex-shell">
+        <aside class="vertex-sidebar" aria-label="File explorer">
+            <div class="vertex-sidebar-top">
+                <p class="vertex-sidebar-title">Files</p>
+                <button class="btn tiny ghost" id="vertexAddFileBtn" aria-label="Add new file">+</button>
+            </div>
+            <ul class="vertex-file-list" id="vertexFileList"></ul>
+            <div class="vertex-hint">Auto-saves every few seconds. Submissions become read-only.</div>
+        </aside>
+
+        <section class="vertex-editor-panel">
+            <div class="vertex-tabs" id="vertexTabs" role="tablist" aria-label="Open files"></div>
+            <div id="vertexEditor" class="vertex-editor" aria-label="Code editor"></div>
+            <div class="vertex-status">
+                <span id="vertexTimestamp">Last edited: —</span>
+                <span id="vertexExecutionLog" class="vertex-log" aria-live="polite"></span>
+            </div>
+        </section>
+
+        <section class="vertex-output" aria-label="Output preview">
+            <div class="vertex-output-header">
+                <p>Output / Preview</p>
+                <select id="vertexOutputMode" aria-label="Output format">
+                    <option value="live">Live preview</option>
+                    <option value="console">Console log</option>
+                </select>
+            </div>
+            <div class="vertex-output-body">
+                <iframe id="vertexPreview" title="Live preview" sandbox="allow-scripts" class="vertex-preview"></iframe>
+                <pre id="vertexConsole" class="vertex-console" hidden></pre>
+            </div>
+        </section>
+    </main>
+
+    <template id="vertex-file-row-template">
+        <li class="vertex-file-row">
+            <button class="vertex-file-btn"></button>
+            <span class="vertex-file-meta"></span>
+        </li>
+    </template>
+
+    <script id="monaco-loader" src="https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.47.0/min/vs/loader.min.js" integrity="sha384-OLBgp1GsljhM2TJ+sbHjaiH9txEUvgdDTAzHv2P24donTt6/529l+9Ua0vFImLlb" crossorigin="anonymous"></script>
+    <script src="/vertex.js" type="module" defer></script>
+</body>
+</html>

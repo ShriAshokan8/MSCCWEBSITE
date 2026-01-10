@@ -13,7 +13,7 @@ Any relevant screenshots or error messages.
 2. Submitting Changes
 If you’d like to contribute code, follow these steps:
 Fork the repository: Click the “Fork” button on GitHub.
-Clone your fork: Run git clone https://github.com/ShriAshokan8/MSCCWEBSITE.git
+Clone your fork: Run git clone <https://github.com/ShriAshokan8/MSCCWEBSITE.git>
 Create a new branch: Use git checkout -b feature-name
 Make changes: Ensure your code follows the existing style.
 Test your changes: Confirm everything works as expected.

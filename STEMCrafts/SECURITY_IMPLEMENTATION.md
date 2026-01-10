@@ -26,7 +26,7 @@ Google Fonts intentionally cannot use SRI hashes because:
 #### Option 1: Self-Host Fonts (Recommended for Production)
 
 Self-hosting fonts provides:
-- Complete control over resources
+
 - Ability to use SRI hashes
 - Improved performance (no external DNS lookup)
 - Better privacy (no data sent to Google)
