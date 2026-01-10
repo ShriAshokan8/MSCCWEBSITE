@@ -67,14 +67,17 @@ const state = {
 function deriveUserContext() {
     const contextUser = window.mscAuth?.user || window.mscAuth || window.currentUser || window.mscUser;
     const userId = contextUser?.id || contextUser?.uid || 'guest';
-    const normalizeRole = (raw) => {
-        const value = (raw ?? 'student').toString().toLowerCase();
-        return ['student', 'staff', 'admin'].includes(value) ? value : 'student';
-    };
-    state.role = normalizeRole(contextUser?.role || contextUser?.claims?.role || document.body.dataset.role);
+    const roleSource = contextUser?.role ?? contextUser?.claims?.role ?? document.body.dataset.role ?? 'student';
+    const normalizedRole = ['student', 'staff', 'admin'].includes(String(roleSource).toLowerCase())
+        ? String(roleSource).toLowerCase()
+        : 'student';
+    state.role = normalizedRole;
     state.userId = userId;
     const badge = $('vertexRoleBadge');
-    if (badge) badge.textContent = `Role: ${role.charAt(0).toUpperCase()}${role.slice(1)}`;
+    if (badge) {
+        const label = normalizedRole.charAt(0).toUpperCase() + normalizedRole.slice(1);
+        badge.textContent = `Role: ${label}`;
+    }
 }
 
 function loadProject() {
@@ -211,12 +214,14 @@ function mapLanguage(language) {
 
 function initMonaco() {
     const run = () => {
-        require.config({
+        const monacoRequire = window.require;
+        if (!monacoRequire || !monacoRequire.config) return;
+        monacoRequire.config({
             paths: {
                 vs: 'https://cdnjs.cloudflare.com/ajax/libs/monaco-editor/0.47.0/min/vs',
             },
         });
-        require(['vs/editor/editor.main'], () => {
+        monacoRequire(['vs/editor/editor.main'], () => {
             const activeFile = state.files.find((f) => f.id === state.activeFileId) || state.files[0];
             state.editor = monaco.editor.create($('vertexEditor'), {
                 value: activeFile.content,
