@@ -4,9 +4,9 @@ Due to network restrictions in the current environment, SRI hashes could not be 
 
 ## Required SRI Hashes
 
-1. **animate.css 4.1.1**: https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css
-2. **GSAP 3.12.2**: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js
-3. **Anime.js 3.2.1**: https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js
+1. **animate.css 4.1.1**: <https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css>
+2. **GSAP 3.12.2**: <https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js>
+3. **Anime.js 3.2.1**: <https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js>
 
 ## Implementation Steps
 

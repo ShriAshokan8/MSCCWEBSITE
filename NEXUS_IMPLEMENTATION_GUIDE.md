@@ -90,7 +90,7 @@ Located in `/functions/index.js`:
 7. **removeSecondaryEmail**: Remove secondary email from user
 
 All functions include:
-- Admin verification
+
 - Input validation
 - Error handling
 - Activity logging

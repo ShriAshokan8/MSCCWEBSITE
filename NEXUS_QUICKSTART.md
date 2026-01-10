@@ -21,7 +21,7 @@ chmod +x setup-nexus-config.sh
 ```
 
 The script will prompt you for:
-- Firebase API Key
+
 - Firebase Auth Domain
 - Firebase Project ID
 - Firebase Storage Bucket
