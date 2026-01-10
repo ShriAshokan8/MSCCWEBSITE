@@ -67,9 +67,11 @@ const state = {
 function deriveUserContext() {
     const contextUser = window.mscAuth?.user || window.mscAuth || window.currentUser || window.mscUser;
     const userId = contextUser?.id || contextUser?.uid || 'guest';
-    const roleRaw = (contextUser?.role || contextUser?.claims?.role || document.body.dataset.role || 'student').toString().toLowerCase();
-    const role = ['student', 'staff', 'admin'].includes(roleRaw) ? roleRaw : 'student';
-    state.role = role;
+    const normalizeRole = (raw) => {
+        const value = (raw ?? 'student').toString().toLowerCase();
+        return ['student', 'staff', 'admin'].includes(value) ? value : 'student';
+    };
+    state.role = normalizeRole(contextUser?.role || contextUser?.claims?.role || document.body.dataset.role);
     state.userId = userId;
     const badge = $('vertexRoleBadge');
     if (badge) badge.textContent = `Role: ${role.charAt(0).toUpperCase()}${role.slice(1)}`;
@@ -176,7 +178,12 @@ function renderTabs() {
         tab.role = 'tab';
         tab.setAttribute('aria-selected', file.id === state.activeFileId ? 'true' : 'false');
         tab.classList.toggle('active', file.id === state.activeFileId);
-        tab.innerHTML = `<span>${file.name}</span><span class="lang">${file.language}</span>`;
+        const nameSpan = document.createElement('span');
+        nameSpan.textContent = file.name;
+        const langSpan = document.createElement('span');
+        langSpan.className = 'lang';
+        langSpan.textContent = file.language;
+        tab.append(nameSpan, langSpan);
         tab.addEventListener('click', () => setActiveFile(file.id));
         if (state.submitted) tab.disabled = true;
         tabs.appendChild(tab);
@@ -272,7 +279,7 @@ function buildHtmlOutput() {
     const html = state.files.find((f) => f.language === 'html')?.content || '';
     const css = state.files.find((f) => f.language === 'css')?.content || '';
     const js = state.files.find((f) => f.language === 'javascript')?.content || '';
-    return `<!doctype html><html><head><style>${css}</style></head><body>${html}<script>${js}<\/script></body></html>`;
+    return `<!doctype html><html><head><style>${css}</style></head><body>${html}<script>${js}</script></body></html>`;
 }
 
 function runHtmlPreview() {
@@ -331,7 +338,7 @@ function pythonRunner() {
         };
 
         return async function run(code) {
-            const { worker, url } = ensureWorker();
+            const { worker } = ensureWorker();
             return new Promise((resolve, reject) => {
                 const timeout = setTimeout(() => {
                     cleanupWorker();
@@ -362,10 +369,7 @@ function pythonRunner() {
 
 const runPythonCode = pythonRunner();
 
-async function runCurrentFile() {
-    const file = state.files.find((f) => f.id === state.activeFileId) || state.files[0];
-    if (!file) return;
-    if (file.language === 'python') {
+async function handlePythonRun(file) {
         setExecutionLog('Running Python securely...');
         setOutputMode('console');
         const consoleEl = $('vertexConsole');
@@ -392,9 +396,13 @@ async function runCurrentFile() {
             setExecutionLog('Python run failed.');
             logExecution('sandbox', 'python', 'error');
         }
-    } else {
-        runHtmlPreview();
-    }
+}
+
+async function runCurrentFile() {
+    const file = state.files.find((f) => f.id === state.activeFileId) || state.files[0];
+    if (!file) return;
+    if (file.language === 'python') return handlePythonRun(file);
+    runHtmlPreview();
 }
 
 function setExecutionLog(text) {
@@ -450,3 +458,4 @@ function bootstrap() {
 }
 
 document.addEventListener('DOMContentLoaded', bootstrap);
+/* global monaco, require */
